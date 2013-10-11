@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="../styles/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="../styles/global.css" />
+<link rel="stylesheet" type="text/css" href="../styles/index.css" />
+<script type="text/javascript" src="../scripts/jquery.js"></script>
+<script type="text/javascript" src="../scripts/bootstrap.js"></script>
+<script type="text/javascript" src="../scripts/global.js"></script>
+<title>后台</title>
+<script type="text/javascript">
+//<![CDATA[
+var PAGES = {
+	page_0: 'study.html',
+	page_1: 'examinations.html',
+	page_2: 'classes.html',
+	page_3: 'resource.html',
+	page_4: 'human.html',
+	page_5: 'report.html',
+	page_6: 'system.html',
+};
+
+function load_page(page)
+{
+	$('#container').attr('src', PAGES[page]);
+}
+
+$(document).ready(function ()
+{
+	$('.header-menu-item > a').click(function ()
+	{
+		$('.header-menu-item').removeClass('active');
+		$(this).parent().addClass('active');
+		load_page($(this).parent().attr('id'));
+	});
+
+	load_page('page_0');
+	setInterval(function ()
+	{
+		try
+		{
+			var h1 = $('#container').contents()[0].body.offsetHeight;
+			var h2 = $('#container').contents()[0].body.scrollHeight;
+			$('#container').height(h1 < h2 ? h1 : h2);
+		} catch (e) {}
+	}, 33);
+});
+//]]>
+</script>
+</head>
+<body>
+<div class="row-fluid">
+	<img src="../images/logo.jpg" class="header-item"></img>
+	<div class="header-item header-title">
+		网络培训平台后端管理模块
+	</div>
+</div>
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="row-fluid">
+			<ul class="span12 nav nav-pills header-menu">
+				<li id="page_0" class="header-menu-item active"><a href="#">学习管理</a></li>
+				<li id="page_1" class="header-menu-item"><a href="#">考试管理</a></li>
+				<li id="page_2" class="header-menu-item"><a href="#">班级管理</a></li>
+				<li id="page_3" class="header-menu-item"><a href="#">资源管理</a></li>
+				<li id="page_4" class="header-menu-item"><a href="#">人员管理</a></li>
+				<li id="page_5" class="header-menu-item"><a href="#">报表管理</a></li>
+				<li id="page_6" class="header-menu-item"><a href="#">系统管理</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<iframe id="container" scrolling="no" frameborder="0" class="span12">
+	</iframe>
+</div>
+</body>
+</html>

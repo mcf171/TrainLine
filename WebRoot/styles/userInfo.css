@@ -1,0 +1,117 @@
+a
+{
+    text-decoration:none;
+    }
+
+a:hover
+{
+    text-decoration:underline;
+    }
+    
+body
+{
+    color:#444444;
+    }
+#center
+{
+    width:960px;
+    height:520px;
+    margin-top:20px;
+
+    margin-left:auto;
+    margin-right:auto;
+    }
+#right
+{
+    border:1px solid #2068B2;
+    width:180px;
+    height:325px;
+    float:right;
+
+    }
+#left
+{
+    width:760px;
+    height:500px;
+    }    
+#asd
+{
+     background-color:#2068B2;
+     border-top:1px solid #2068B2;
+     border-left:1px solid #2068B2;
+     border-right:1px solid #2068B2;
+     width:758px;
+     height:30px;
+    }
+#tl
+{
+    padding-top:5px; 
+    margin-left:10px;
+    }
+    
+#zil
+{
+    width:758px;
+    height:470px;
+    border:1px solid #2068B2;
+    }
+
+
+.xw0 {
+    font-weight: 400;
+}
+
+.first li {
+    float: left;
+    width: 300px;
+}
+.first em {
+    color: #666666;
+    padding-right: 10px;
+}
+.xi1, .onerror {
+    color: #F26C4F;
+}
+
+
+a {
+    color: #006699;
+}   
+.pipe {
+    color: #CCCCCC;
+    margin: 0 5px;
+}
+.bir li
+{
+    float: left;
+    width: 300px;
+    }
+    
+.bir em {
+    color: #666666;
+    padding-right: 10px;
+}
+#zilt
+{
+    width:710px;
+    height:430px;
+    margin-top:20px;
+    margin-left:23px;
+    }
+.tong em {
+    color: #666666;
+    padding-right: 10px;
+}
+.tong li {
+    float: left;
+    width: 300px;
+}
+
+.time li {
+    float: left;
+    width: 300px;
+}
+.time em {
+    color: #666666;
+    padding-right: 10px;
+}

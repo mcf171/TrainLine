@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url" value="jdbc:mysql://127.0.0.1"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="919294"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>cn/com/model/User.hbm.xml</value>
+				<value>cn/com/model/Exam.hbm.xml</value>
+				<value>cn/com/model/Course.hbm.xml</value>
+				<value>cn/com/model/Usercourse.hbm.xml</value>
+				<value>cn/com/model/Train.hbm.xml</value>
+				<value>cn/com/model/Position.hbm.xml</value>
+				<value>cn/com/model/Coursecategory.hbm.xml</value>
+				<value>cn/com/model/Trainuser.hbm.xml</value>
+				<value>cn/com/model/Userexam.hbm.xml</value>
+				<value>cn/com/model/Book.hbm.xml</value>
+				<value>cn/com/model/Announcement.hbm.xml</value>
+				<value>cn/com/model/Resourse.hbm.xml</value></list>
+		</property></bean>
+	
+	
+	<import resource="cn/com/config/spring/sping-config-user.xml"/>
+	<import resource="cn/com/config/spring/sping-config-exam.xml"/>
+	<import resource="cn/com/config/spring/sping-config-course.xml"/>
+	<import resource="cn/com/config/spring/sping-config-train.xml"/>
+	<import resource="cn/com/config/spring/sping-config-book.xml"/>
+	<import resource="cn/com/config/spring/sping-config-home.xml"/>
+	
+	<bean id="UserDAO" class="cn.com.dao.impl.UserDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"></ref>
+		</property>
+	</bean>
+
+
+	<bean id="UsercourseDAO" class="cn.com.dao.impl.UsercourseDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="PositionDAO" class="cn.com.dao.impl.PositionDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CoursecategoryDAO"
+		class="cn.com.dao.impl.CoursecategoryDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="TrainuserDAO" class="cn.com.dao.impl.TrainuserDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="UserexamDAO" class="cn.com.dao.impl.UserexamDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="CourseDAO" class="cn.com.dao.impl.CourseDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ResourseDAO" class="cn.com.dao.impl.ResourseDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean></beans>

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="styles/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="styles/mmpaginator.css" />
+<link rel="stylesheet" type="text/css" href="themes/mmgrid/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="themes/mmgrid/mmpaginator.css" />
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="scripts/bootstrap.js"></script>
+<script type="text/javascript" src="scripts/mmgrid.js"></script>
+<script type="text/javascript" src="scripts/mmpaginator.js"></script>
+<title>Grid Test</title>
+<script type="text/javascript">
+$(document).ready(function ()
+{
+	$('#grid').mmGrid({
+		url: '/api/getgrid',
+		cache: false,
+		method: 'post',
+		autoLoad: true,
+		checkCol: true,
+		multiSelect: true,
+		fullWithRows: true,
+		cols: [
+			{ title: '问卷编号', sortable: true, width: 150, name: 'no' },
+			{ title: '问卷名称', sortable: true, width: 280, name: 'name' },
+			{ title: '开始日期', sortable: true, width: 100, name: 'start' },
+			{ title: '截止日期', sortable: true, width: 100, name: 'end' },
+			{ title: '问卷状态', sortable: true, width: 100, name: 'status' },
+			{
+				title: '操作',
+				width: 300,
+				renderer: function (val, item, row)
+				{
+					return '<input type="hidden" value="' + item.no + '" />';
+				}
+			}
+		],
+		plugins: [
+			$('#page').mmPaginator({})
+		]
+	});
+});
+</script>
+</head>
+<body>
+<table id="grid"></table>
+<div id="page" class="pull-right"></div>
+</body>
+</html>

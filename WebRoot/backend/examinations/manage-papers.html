@@ -1,0 +1,103 @@
+<link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
+<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
+<script type="text/javascript" src="../scripts/mmgrid.js"></script>
+<script type="text/javascript" src="../scripts/mmpaginator.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function ()
+{
+	$('#grid').mmGrid({
+		url: '/api/backend/examinations/get_papers',
+		height: 370,
+		autoLoad: true,
+		checkCol: true,
+		multiSelect: true,
+		fullWithRows: true,
+		cols: [
+			{ title: '试卷编号', sortable: true, width: 120, name: 'no' },
+			{ title: '试卷名称', sortable: true, width: 340, name: 'name' },
+			{ title: '出卷人', sortable: true, width: 90, name: 'author' },
+			{
+				width: 240,
+				title: '试卷类型',
+				sortable: true,
+				renderer: function (val, item, row)
+				{
+					switch (item.type)
+					{
+						case 0: return '固定试卷'
+						case 1: return '半随机试卷（题目固定顺序随机）';
+						case 2: return '全随机试卷（题目顺序全部随机）';
+						default: return '';
+					}
+				}
+			},
+			{
+				width: 50,
+				title: '状态',
+				sortable: true,
+				renderer: function (val, item, row)
+				{
+					return item.stored ? '封存' : '可用';
+				}
+			},
+			{
+				title: '操作',
+				width: 130,
+				renderer: function (val, item, row)
+				{
+					return '<input type="hidden" value="' + item.id + '" />' +
+						'<a href="#">查看</a>&nbsp;&nbsp;' +
+						'<a href="#">修改</a>&nbsp;&nbsp;' +
+						(item.stored ? '<a href="#">解封</a>' : '<a href="#">封存</a>');
+				}
+			}
+		],
+		plugins: [
+			$('#page').mmPaginator({})
+		]
+	});
+});
+//]]>
+</script>
+<div class="row-fluid line-margin">
+	<div class="span12">
+		<button class="btn"><i class="icon-plus"></i>&nbsp;新增</button>
+		<button class="btn"><i class="icon-remove"></i>&nbsp;封存</button>
+	</div>
+</div>
+<div class="row-fluid">
+	<form id="condition" class="span12 form-inline no-margin">
+		<div class="row-fluid line-margin">
+			<span class="help-inline"><b>基本过滤：</b>试卷编号</span>
+			<input type="text" class="span2" placeholder="请输入试卷编号" />
+			<span class="help-inline">试卷名称</span>
+			<input type="text" class="span2" placeholder="请输入试卷名称" />
+		</div>
+		<div class="row-fluid line-margin">
+			<span class="help-inline"><b>高级过滤：</b>&#12288;出卷人</span>
+			<input type="text" class="span2" placeholder="请输入出卷人" />
+			<span class="help-inline">试卷类型</span>
+			<select class="input-xlarge">
+				<option>所有</option>
+				<option>固定试卷</option>
+				<option>半随机试卷（题目固定顺序随机）</option>
+				<option>全随机试卷（题目顺序全部随机）</option>
+			</select>
+			<div class="pull-right">
+				<button class="btn"><i class="icon-search"></i>&nbsp;查询</button>
+				<button class="btn" onclick="$('#condition')[0].reset();return false;">
+					<i class="icon-remove"></i>&nbsp;清除条件
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<table id="grid"></table>
+		<div id="page" class="pull-right"></div>
+	</div>
+</div>

@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+
+.header-item
+{
+	display: inline-block;
+}
+
+.header-title
+{
+	left: 359px;
+	right: 0px;
+	color: #E9FCF8;
+	height: 86px;
+	position: absolute;
+	font-size: 24pt;
+	background: linear-gradient(top, #0F5CAC, #2B6FB6);
+	background: -o-linear-gradient(top, #0F5CAC, #2B6FB6);
+	background: -ms-linear-gradient(top, #0F5CAC, #2B6FB6);
+	background: -moz-linear-gradient(top, #0F5CAC, #2B6FB6);
+	background: -webkit-linear-gradient(top, #0F5CAC, #2B6FB6);
+	line-height: 86px;
+}
+
+.menu-container
+{
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.header-menu-item
+{
+	text-align: center;
+}
+
+.push
+{
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	height: 48px;
+	z-index: -1;
+}
+
+.footer
+{
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	height: 20px;
+	border: 1px solid #AAAAFF;
+	padding: 8px 35px 8px 14px;
+	position: fixed;
+	line-height: 20px;
+	border-radius: 4px;
+	background-color: #CCCCFF;
+}
+
+.footer [class*="span"]
+{
+	min-height: 20px;
+}

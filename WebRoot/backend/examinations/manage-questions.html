@@ -1,0 +1,150 @@
+<link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
+<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
+<script type="text/javascript" src="../scripts/mmgrid.js"></script>
+<script type="text/javascript" src="../scripts/mmpaginator.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function ()
+{
+	$('#grid').mmGrid({
+		url: '/api/backend/examinations/get_questions',
+		height: 370,
+		autoLoad: true,
+		checkCol: true,
+		multiSelect: true,
+		fullWithRows: true,
+		cols: [
+			{
+				width: 50,
+				title: '题型',
+				sortable: true,
+				renderer: function (val, item, row)
+				{
+					switch (item.type)
+					{
+						case 0: return '单选题';
+						case 1: return '多选题';
+						case 2: return '判断题';
+						case 3: return '填空题';
+						case 4: return '问答题';
+						default: return '';
+					}
+				}
+			},
+			{ title: '内容', sortable: true, width: 420, name: 'text' },
+			{ title: '标签', sortable: true, width: 140, name: 'label' },
+			{ title: '分数', sortable: true, width: 50, name: 'score' },
+			{
+				width: 50,
+				title: '难度',
+				sortable: true,
+				renderer: function (val, item, row)
+				{
+					switch (item.level)
+					{
+						case 1: return '简单';
+						case 2: return '较简单';
+						case 3: return '中等';
+						case 4: return '较难';
+						case 5: return '困难';
+						default: return '';
+					}
+				}
+			},
+			{
+				width: 50,
+				title: '状态',
+				sortable: true,
+				renderer: function (val, item, row)
+				{
+					return item.stored ? '封存' : '可用';
+				}
+			},
+			{
+				title: '操作',
+				width: 180,
+				renderer: function (val, item, row)
+				{
+					return '<input type="hidden" value="' + item.id + '" />' +
+						'<a href="#">查看</a>&nbsp;&nbsp;' +
+						'<a href="#">修改</a>&nbsp;&nbsp;' +
+						(item.stored ? '<a href="#">解封</a>&nbsp;&nbsp;' : '<a href="#">封存</a>&nbsp;&nbsp;') +
+						'<a href="#">设置标签</a>';
+				}
+			}
+		],
+		plugins: [
+			$('#page').mmPaginator({})
+		]
+	});
+});
+//]]>
+</script>
+<div class="row-fluid line-margin">
+	<div class="span12">
+		<button class="btn"><i class="icon-plus"></i>&nbsp;新增</button>
+		<button class="btn"><i class="icon-remove"></i>&nbsp;封存</button>
+		<button class="btn"><i class="icon-ok"></i>&nbsp;解封</button>
+		&#12288;
+		<button class="btn"><i class="icon-align-right"></i>&nbsp;分析</button>
+		<button class="btn"><i class="icon-upload"></i>&nbsp;导入</button>
+		<button class="btn"><i class="icon-edit"></i>&nbsp;设置标签</button>
+	</div>
+</div>
+<div class="row-fluid">
+	<form id="condition" class="span12 form-inline no-margin">
+		<div class="row-fluid line-margin">
+			<span class="help-inline"><b>基本过滤：</b>题型</span>
+			<select class="input-small">
+				<option>所有</option>
+				<option>单选题</option>
+				<option>多选题</option>
+				<option>判断题</option>
+				<option>填空题</option>
+				<option>问答题</option>
+			</select>
+			<span class="help-inline">题库</span>
+			<select class="input-small">
+				<option>所有</option>
+				<option>速度个</option>
+				<option>撒旦发跟</option>
+				<option>阿斯顿</option>
+			</select>
+			<span class="help-inline">内容</span>
+			<input type="text" class="span2" placeholder="请输入内容" />
+		</div>
+		<div class="row-fluid line-margin">
+			<span class="help-inline"><b>高级过滤：</b>状态</span>
+			<select class="input-small">
+				<option>所有</option>
+				<option>可用</option>
+				<option>封存</option>
+			</select>
+			<span class="help-inline">难度</span>
+			<select class="input-small">
+				<option>所有</option>
+				<option>简单</option>
+				<option>中等</option>
+				<option>较难</option>
+			</select>
+			<span class="help-inline">标签</span>
+			<input type="text" class="span2" placeholder="请输入标签" />
+			&nbsp;
+			<label class="checkbox"><input type="checkbox" />是否为练习题</label>
+			<div class="pull-right">
+				<button class="btn"><i class="icon-search"></i>&nbsp;查询</button>
+				<button class="btn" onclick="$('#condition')[0].reset();return false;">
+					<i class="icon-remove"></i>&nbsp;清除条件
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<table id="grid"></table>
+		<div id="page" class="pull-right"></div>
+	</div>
+</div>

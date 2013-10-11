@@ -1,0 +1,95 @@
+<link rel="stylesheet" type="text/css" href="../styles/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
+<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
+<script type="text/javascript" src="../scripts/datepicker.js"></script>
+<script type="text/javascript" src="../scripts/mmgrid.js"></script>
+<script type="text/javascript" src="../scripts/mmpaginator.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function ()
+{
+	$('#time-to').css('background', 'none').datepicker();
+	$('#time-from').css('background', 'none').datepicker();
+
+	$('#grid').mmGrid({
+		url: '/api/getgrid',
+		height: 410,
+		autoLoad: true,
+		fullWithRows: true,
+		cols: [
+			{ title: '工号', sortable: true, width: 90, name: 'no' },	
+			{ title: '姓名', sortable: true, width: 90, name: 'title' },
+			{ title: '组织名称', sortable: true, width: 100, name: 'title' },
+			{ title: '岗位名称', sortable: true, width: 100, name: 'name' },
+			{ title: '课程名称', sortable: true, width: 350, name: 'name' },
+			{ title: '进度', sortable: true, width: 100, name: 'name' },
+			{ title: '课程状态', sortable: true, width: 60, name: 'status' },
+			{
+				title: '操作',
+				width: 80,
+				renderer: function (val, item, row)
+				{
+					return '<input type="hidden" value="' + item.id + '" /><a href="#">查看学习</a>';
+				}
+			}
+		],
+		plugins: [
+			$('#page').mmPaginator({})
+		]
+	});
+});
+//]]>
+</script>
+<div class="row-fluid">
+	<form id="condition" class="span12 form-inline no-margin">
+		<div class="row-fluid line-margin">
+			<span class="help-inline"><b>查询过滤：</b>课程</span>
+			<input type="text" class="span2" placeholder="请输入课程名称或编号" />
+			<span class="help-inline">姓名</span>
+			<input type="text" class="span2" placeholder="请输入姓名" />
+			<span class="help-inline">工号</span>
+			<input type="text" class="span2" placeholder="请输入工号" />
+		</div>
+		<div class="row-fluid line-margin">
+			<span class="help-inline"><b>时间范围：</b>&#12288;从</span>
+			<input
+				type="text"
+				id="time-from"
+				class="span2"
+				readonly="readonly"
+				placeholder="单击选择开始时间"
+				data-date-format="yyyy-mm-dd"
+			/>
+			<span class="help-inline">&#12288;到</span>
+			<input
+				type="text"
+				id="time-to"
+				class="span2"
+				readonly="readonly"
+				placeholder="单击选择结束时间"
+				data-date-format="yyyy-mm-dd"
+			/>
+			<span class="help-inline">进度</span>
+			<select class="input-small">
+				<option>未开始</option>
+				<option>1/3</option>
+				<option>2/3</option>
+				<option>已完成</option>
+			</select>
+			<div class="pull-right">
+				<button class="btn"><i class="icon-search"></i>&nbsp;查询</button>
+				<button class="btn" onclick="$('#condition')[0].reset();return false;">
+					<i class="icon-remove"></i>&nbsp;清除条件
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<table id="grid"></table>
+		<div id="page" class="pull-right"></div>
+	</div>
+</div>

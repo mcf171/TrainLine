@@ -1,0 +1,101 @@
+﻿
+	
+    <link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
+    <link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
+    <link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
+    
+    <script type="text/javascript" src="../scripts/mmgrid.js"></script>
+    <script type="text/javascript" src="../scripts/mmpaginator.js"></script>
+    <script type="text/javascript" src="../scripts/datepicker.js"></script>
+
+	<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function ()
+{
+	$('#time-to').css('background', 'none').datepicker();
+	$('#time-from').css('background', 'none').datepicker();
+
+	$('#grid').mmGrid({
+		url: '/api/questionnaire',
+		height: 410,
+		autoLoad: true,
+		fullWithRows: true,
+		cols: [
+			{ title: '名字', sortable: true, width: 100, name: 'name' },	
+			{ title: '课程', sortable: true, width: 100, name: 'course' },
+			{ title: '', sortable: true, width: 110, name: '' },
+			{ title: '', sortable: true, width: 110, name: '' },
+			{ title: '', sortable: true, width: 110, name: '' },
+			{ title: '', sortable: true, width: 110, name: '' },
+			{ title: '', sortable: true, width: 100, name: '' },
+			{ title: '是否置顶 ', sortable: true, width: 100, name: '' },
+			{ title: '操作 ', sortable: true, width: 100, name: '' }
+		],
+		plugins: [
+			$('#page').mmPaginator({})
+		]
+	});
+});
+//]]>
+</script>
+	
+            <div class="row-fluid ">
+	            <div class="span12">
+		              <button class="btn"><i class="icon-plus"></i>添加</button>
+	            </div>
+            </div>
+            <div class="row-fluid">
+            	<div class="span12">
+            		<form id="condition" class="span12 form-inline no-margin">
+            			<div class="row-fluid line-margin">
+			               <span class="help-inline"><b>基本过滤：</b>类型：</span>
+			               <select class="input-small">
+				               <option></option>
+				               <option></option>
+				               <option></option>
+				               <option></option>
+				               <option></option>
+				               <option></option>
+			                </select>
+			                <span class="help-inline">编号：</span>
+			                <select class="input-small">
+				               <option></option>
+				               <option></option>
+				               <option></option>
+				               <option></option>
+			                </select>
+			                <span class="help-inline">内容：</span>
+			                <input type="text" class="span2" placeholder="请输入相应内容" />
+		               </div>
+		               <div>
+		               		<div class="row-fluid line-margin">
+		               			<span class="help-inline"><b>高级过滤：</b></span>
+		               			<input 
+				                 	type="text"
+									id="time-from"
+									class="span2"
+									placeholder="开始时间"
+									data-date-format="yyyy-mm-dd"
+			                     />
+			                     <span class="help-inline">至</span>
+			                     <input 
+				                 	type="text"
+									id="time-to"
+									class="span2"
+									placeholder="结束时间"
+									data-date-format="yyyy-mm-dd"
+			                     />
+			                     <button class="btn "><i class="icon-search"></i>查询</button>
+			                     <button class="btn" type="reset"><i class="icon-remove"></i>清除</button>
+		               		</div>
+		               		<div class="row-fluid">
+	                             <div class="span12">
+								    <table id="grid"></table>
+								 <div id="page" class="pull-right"></div>
+						    	</div>
+                            </div>
+		               </div>
+		            </form>
+            	</div>
+            </div>

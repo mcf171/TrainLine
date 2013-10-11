@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html><head><script type="text/javascript">
+document.domain="mail.qq.com";
+function getTop()
+{
+var f=arguments.callee,w;
+if(!f.t)
+{try{w=window;f.t=w!=parent?(parent.getTop?parent.getTop():parent.parent.getTop()):w;}catch(e){f.t=w;}}
+return f.t;
+}
+try{window.top=getTop();}catch(e){eval("var top=getTop();");}
+var gsUsed="74";
+var g_uin="756309673";
+window == getTop() && document.write('<script src="http://rescdn.qqmail.com/zh_CN/htmledition/js/all189894.js"></'+'script>');
+(getTop().initPageEvent || function(){})(window);
+</script><script type="text/javascript">parent.beginStatTime && parent.beginStatTime(window);</script><meta http-equiv="Content-Type" content="text/html; charset=gb18030"><meta name="save" content="history"><title>QQ邮箱 - 草稿箱</title><link rel="stylesheet" type="text/css" href="css/comm20101898cc.css"><link rel="stylesheet" type="text/css" href="css/getcss.css"><style type="text/css">.smt_id_settopcontainer {margin-left:-14px;}.smt_container.smt_id_settopcontainer .smt_inner:after {margin-left:8px;}u {outline: medium none;}.tbody {overflow-x:hidden;_overflow-y:visible;min-width:675px;overflow-x:auto;}.talk {display:block;font-size:12px;font-weight:normal;text-decoration:none;clear:both;border-left:none;border-right:none;*position:relative;padding:8px 0px 3px 9px;border-bottom-width:2px;border-top:none;}.talk b {font-size:14px}.talk .one{left:0;}.toarea .F,.toarea .M{border-bottom-width:1px;}.toarea .bd {border-bottom-width:1px;border-top:0 none;border-left:0 none;border-right:0 none;}.talk label{cursor:pointer;}.talk .cur_default {text-decoration:none;}.jumpmenusdjust {_padding-top:8px;}input.s2bg {background:url(http://rescdn.qqmail.com/zh_CN/htmledition/images/newicon/shop104472.gif) 0 0 no-repeat;border:0;padding:0;width:16px;height:14px;_vertical-align:middle;} .rssbg {background:url(http://rescdn.qqmail.com/zh_CN/htmledition/images/dy/dy_center104470.png) no-repeat 0 0px;width:12px;height:14px;padding:0;border-width:0;}.ico_rssObj{margin:2px 0 0 -15px;position:absolute;}table.i td.ab{padding-top:0;padding-bottom:2px;}.importantmail{position:relative; margin-right:5px; padding:0 5px 2px; *padding:2px 5px 0; border-radius:2px; color:#fff; font-weight:normal; }.importantmail .arrow{_display:none; position:absolute; right:-3px; top:50%; margin-top:-3px; border-width:3px 0 3px 3px; border-style:dashed dashed dashed solid; border-color:transparent transparent transparent #e5e5e5; width:0; height:0; font-size:0; line-height:0;}.F .importantmail{background-color:#e5e5e5; color:#666;}.M .importantmail{background-color:#e5e5e5; color:#bbb;}.M .importantmail .arrow{border-left-color:#e5e5e5;}@media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0){.importantmail .arrow{display:none;}}</style><script language="javascript" type="text/javascript">
+function changeUnreadVersion()
+{
+getTop().showProcess(1, true, "切换中...", null, false);
+var _sContent = "Fun=submit&t=unreadmail.json&subt=changeversion&sid=JYzfO2XjPSlqRGk7&openunread=0&loc=mail_list,,,119";
+getTop().QMAjax.send( "/cgi-bin/setting4",
+{
+method : "POST",
+content: _sContent,
+onload: function(_abIsSuccess)
+{
+if (_abIsSuccess)
+{
+getTop().showProcess(0);
+window.location.href = "/cgi-bin/readtemplate?sid=JYzfO2XjPSlqRGk7&t=unreadmail&tagid=&folderid=4";
+}
+else
+{
+getTop().showErr('切换失败');
+}
+}
+});
+}
+</script><script language="javascript" type="text/javascript">
+(function()
+{
+window.tmpSortTypePrev = parseInt("6");
+window.tmpReadedMailId = null;
+
+window.oPreMails = [];
+window.oPreUWMails = [];
+getTop().QMAjax.send("/cgi-bin/do?sid=JYzfO2XjPSlqRGk7&action=checkpoint&url=" + encodeURIComponent(location.href));
+if(getTop().QMMLCache.useCache())
+{
+getTop().QMMLCache.check();
+}
+getTop().QMMailCache.newCache( window, "1380157748424929" );
+window.gRefresh = !getTop().QMMailCache.isRefresh(window);
+
+})();
+(function()
+{
+if (!window.gRefresh)
+{
+getTop().setFolderUnread("4", +"5", 1);
+}
+else
+{
+getTop().setFolderUnread("4", getTop().getFolderUnread("4"), null, window);
+}
+}
+)();
+function submitSort(iurl, iSortType, iSortAsc)
+{
+var t = getTop().SN("mailid", document);
+var tmpMailId = "";
+for(var i=0;i<t.length;i++) {
+if(t[i].checked == true) {
+tmpMailId = t[i].value;
+break;
+}
+}
+getTop().gSelectedMailId = tmpMailId;
+if(tmpMailId == "" && tmpReadedMailId) {
+tmpMailId = tmpReadedMailId;
+getTop().recordReadedMailId(tmpMailId);
+}
+if(tmpMailId != "") iurl += "&checkmailid=" + tmpMailId;
+
+if(tmpSortTypePrev == iSortType){
+iurl += "&sortasc=" + iSortAsc;
+}
+else{
+if(iSortType == 5 || iSortType == 7)
+iurl += "&sortasc=1";
+else
+iurl += "&sortasc=0";
+}
+
+location.href=iurl ;
+}
+
+function DoMailOpr(fr, act)
+{
+if ( "del_unread" == act && !confirm( "您确定要彻底删除此文件夹的所有未读邮件？" ) )
+return;
+else if("del_stranger" == act && !confirm("您确定要彻底删除此文件夹中所有陌生人的未读邮件吗？"))
+return;
+if ("read_stranger" == act)
+{
+fr.flag.value = "new";
+fr.status.value = "false";
+fr.loc.value = "mail_list,,,104";
+}
+else if("del_stranger" == act)
+{
+fr.Fun.value="PerDel";
+fr.loc.value = "mail_list,,,105"
+}
+fr.mailaction.value = act;
+fr.action="/cgi-bin/mail_mgr?sid=JYzfO2XjPSlqRGk7";
+fr.submit();
+}
+function ShowMails(flag,loc)
+{
+location.href="/cgi-bin/mail_list?sid=JYzfO2XjPSlqRGk7&folderid=4&tagid=&ftype=&stype=&flag=" + flag + "&loc=mail_list,,,"+loc;
+}
+function CheckCheckBoxsCount()
+{
+var _oTop = getTop();
+var _inputs = _oTop.GelTags("input", _oTop.S("frm",window));
+var _count = 0;
+for ( var i = 0, _len = _inputs.length; i < _len; i++ )
+{
+if ( _inputs[ i ].type == "checkbox" && _inputs[ i ].name == "mailid" && _inputs[ i ].checked )
+{
+if ( _inputs[i].value.indexOf("@") == 0  && _count > 0)
+{
+_count = -1;
+break;
+}
+else if ( _inputs[i].value.indexOf("C") == 0 )
+{
+if(_inputs[i].getAttribute("adconv") == 1)
+{
+_count = -3;
+}
+else
+{
+_count = -2;
+}
+break;
+}
+else
+{
+_count ++;
+}
+   }
+}
+   return _count;
+}
+function FwMailML()
+{
+var _count = CheckCheckBoxsCount();
+if ( _count == -1 )
+{
+getTop().showError( "群邮件不能作为附件批量转发" );
+return false;
+}
+else if ( _count == -2 )
+{
+getTop().showError( "会话邮件不能作为附件批量转发" );
+return false;
+}
+else if( _count == -3)
+{
+getTop().showError( "广告邮件不能作为附件批量转发" );
+return false;
+}
+else if (_count == 0)
+{
+getTop().showError(getTop().gsMsgNoMail);
+return false;
+}
+else if (_count > 10)
+{
+getTop().showError( "转发邮件不能超过10封" );
+return false;
+}
+if(getTop().checkSelectGroup())
+{
+getTop().showError("该组邮件不能作为附件批量转发");
+return false;
+}
+var _frm=getTop().S("frm",window);
+_frm.mailaction.value = _count == 1 ? "readmailemlfw" : "readmaileml";
+_frm.t.value = "compose";
+_frm.s.value = "forward";
+_frm.action = "/cgi-bin/readmail?t=compose&s=forward&sid=JYzfO2XjPSlqRGk7";
+_frm.target = "mainFrame";
+_frm.submit();
+
+return false;
+}
+</script></head><body class="tbody" id="list"><script>getTop().gnIsUseWideScreen && getTop().addClass(document.body, "widescreen");</script><div class="mailcontainer" id="qqmail_mailcontainer"><form name="f_topmail" method="post" action="/cgi-bin/mail_mgr?sid=JYzfO2XjPSlqRGk7" target="actionFrame"><input name="topmails" value="0" type="hidden"><input name="mailaction" value="topstatus" type="hidden"><input name="s" value="topmail" type="hidden"></form><form name="submit_form" action="/cgi-bin/foldermgr?sid=JYzfO2XjPSlqRGk7" method="POST" target="actionFrame"><input name="sid" value="JYzfO2XjPSlqRGk7" type="hidden"><input name="fun" value="empty" type="hidden"><input name="folderid" type="hidden"><input name="rk" value="" type="hidden"><input name="loc" value="" type="hidden"></form><div class="txt_title"><div class="somail" id="somail"><form id="frmSort" name="frmSort" method="get" action="/cgi-bin/mail_list?sid=JYzfO2XjPSlqRGk7" target="mainFrame" style="margin:0;padding:0"><input name="sid" value="JYzfO2XjPSlqRGk7" type="hidden"><input name="s" value="" type="hidden"><input name="page" value="0" type="hidden"><input name="sortasc" value="0" type="hidden"><input name="sorttype" value="7" type="hidden"></form><form id="star_frm" name="star_frm" method="post" target="actionFrame" action="/cgi-bin/mail_mgr?sid=JYzfO2XjPSlqRGk7"><input name="mailid" value="" type="hidden"><input name="status" value="false" type="hidden"><input name="flag" value="star" type="hidden"><input name="mailaction" value="mail_flag" type="hidden"><input name="sid" value="JYzfO2XjPSlqRGk7" type="hidden"></form><div id="gotnomail" class="normal" style="position:absolute;top:35px;"></div></div><div class="right normal f_size" style="margin-right: 2px;"><input class="ico_input ico_group_draft" style="margin: 0 3px 0 0;" type="button"><a class="green" href="http://mail.qq.com/cgi-bin/mail_list?sid=JYzfO2XjPSlqRGk7&amp;folderid=14&amp;kvclick=mail_list%7Cgroupdraft%7Cfromdraft%7C1">群邮件草稿</a><span class="black" style="">&nbsp;0&nbsp;封</span></div>草稿箱<span id="_ut" class="f_size normal black">   (共&nbsp;<span id="_ut_c">5</span>&nbsp;封<span id="_ua" style="  display:none;  ">，其中 <span id="_ur" style="display:none;"><a href="http://mail.qq.com/cgi-bin/readtemplate?sid=JYzfO2XjPSlqRGk7&amp;t=unreadmail&amp;flag=new&amp;folderid=4&amp;loc=unreadmail,,," class="green" onclick="getTop().QMMLCache.upVer()">未读邮件</a> <span id="_ur_c">0</span> 封</span><span id="_uc" style="display:none;" class="hide">，</span><span id="_ui" style="display:none;"><b class="hide"><a href="http://mail.qq.com/cgi-bin/mail_list?sid=JYzfO2XjPSlqRGk7&amp;s=star&amp;folderid=4&amp;flag=star&amp;page=0&amp;topmails=0" class="green">星标邮件</a> <span id="_ui_c">0</span> 封</b></span></span>)</span></div><script>
+(function() {
+var tag = [{}];
+tag.length = tag.length - 1;
+getTop().QMTag && getTop().QMTag.set(tag, "1380157748425551");
+window.goMoveItems = [
+{ sId: 'fid_1', sItemValue: "收件箱" },
+{ sId: 'fid_3', sItemValue: "已发送" },
+{ sId: "fid_130", sItemValue:"QQ邮件订阅" },{ sId: "fid_131", sItemValue: "邮件归档" },{ nHeight: 10, sItemValue: '<div style="background:#CCC; height:1px; margin-top:5px; overflow:hidden;"></div>' },
+{ sId: "new", sItemValue : '新建文件夹...' }
+];
+} )();
+</script><div id="sortinfo" style="display:none;" isorttype="6" isortasc="1" ssorttype="day"></div><form id="frm" name="frm" method="post" target="actionFrame"><input name="folderid" value="4" type="hidden"><input name="s" value="maillist" type="hidden"><input name="sid" value="JYzfO2XjPSlqRGk7" type="hidden"><input name="Fun" value="PerDel" type="hidden"><input name="srcfolderid" value="4" type="hidden"><input name="destfolderid" type="hidden"><input name="status" type="hidden"><input name="isspam" type="hidden"><input name="flag" type="hidden"><input name="mailaction" type="hidden"><input name="confirm" type="hidden"><input name="addr" type="hidden"><input name="nick" type="hidden"><input name="destfolder" type="hidden"><input name="t" type="hidden"><input name="loc" type="hidden"><input name="foldername" type="hidden"><input name="reporttype" type="hidden"><div class="toolbg toolbgline toolheight nowrap" style=""><div class="right"><script>document.write(0 + 1);</script>1/<script>document.write(0 + 1);</script>1 页</div><div class="nowrap left" unselectable="on" onselectstart="return false;"><a class="btn_gray btn_space" hidefocus="" id="quick_del" onclick="return getTop().checkPerDelML( '4', false,document);" href="javascript:;" name="del">删除草稿</a><a class="btn_gray btn_space" hidefocus="" onclick="return FwMailML();" href="javascript:;">转发</a><span id="markContainer" name="markContainer" class="btn_space"><a tabindex="-1" class="btn_gray  btn_dropdown " href="javascript:;" id="QmCs_2_0.2508003985864422_div" style="width:px;"><span id="QmCs_2_0.2508003985864422" class="btn_select_txt">标记为...</span><span class="ico_select_s"></span></a></span><span id="selmContainer" name="selmContainer"><a tabindex="-1" class="btn_gray  btn_dropdown " href="javascript:;" id="QmCs_2_0.07993027235890893_div" style="width:px;"><span id="QmCs_2_0.07993027235890893" class="btn_select_txt">移动到...</span><span class="ico_select_s"></span></a></span><script>(function() {
+(typeof goMoveItems != "undefined") && getTop().initMailSelect(goMoveItems, true, true, window, '4', false,false);
+} )();</script></div></div><table style="table-layout:fixed;width:100%;*width:auto;" class="O2" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:1px 0 1px 5px;" width="27"><input onclick="getTop().hideSelectGroupTip();getTop().selectAll(this.checked,document);getTop().checkAll('mailid',document)" title="选中/取消选中" type="checkbox"></td><td class="o_title2" style="width:6px;font-size:1px;padding:0;">&nbsp;</td><td style="width:31px;padding:0;"><input class="ico_mailtitle" disabled="disabled" type="button"></td><td class="o_title2" style="width:135px;*width:134px;"><a href="javascript:;" target="actionFrame" onclick="submitSort('/cgi-bin/mail_list?sid=JYzfO2XjPSlqRGk7&amp;folderid=4&amp;page=0&amp;sorttype=5&amp;fun=&amp;s=&amp;searchmode=&amp;filetype=&amp;stype=&amp;topmails=',9,1)" hidefocus="">收件人</a></td><td class="o_title2"><a href="javascript:;" target="actionFrame" onclick="submitSort('/cgi-bin/mail_list?sid=JYzfO2XjPSlqRGk7&amp;folderid=4&amp;page=0&amp;sorttype=7&amp;fun=&amp;s=&amp;searchmode=&amp;filetype=&amp;stype=&amp;topmails=',7,1)" hidefocus="">主题</a></td><td class="o_title2" style="padding-left:2px;width:100px;"><div style="margin-left:10px;"><a href="javascript:;" target="actionFrame" onclick="submitSort('/cgi-bin/mail_list?sid=JYzfO2XjPSlqRGk7&amp;folderid=4&amp;page=0&amp;sorttype=6&amp;fun=&amp;s=&amp;searchmode=&amp;filetype=&amp;stype=&amp;topmails=',6,1)" hidefocus="">时间↓</a></div></td><td style="width:20px;font-size:1px;padding-left:2px">&nbsp;</td></tr></tbody></table><div id="selectAll" style="height:0;width:0;display:none;left:-1000px;" ftype="mail_operall" fid="4" tid="" totalcnt="5" flags="" unreadcnt=""></div><div id="tips_bar"></div><script>(function(){getTop().loadJsFile("http://rescdn.qqmail.com/zh_CN/htmledition/js/qmtip181b8c.js",true);getTop().waitFor(function(){return getTop().QMTip;},function(b){if(b){getTop().QMTip.markunshow({domid:'btn_reportSpam',tipid:46,win:window,dumb:null});getTop().QMTip.markunshow({domid:'sepLineTd',tipid:38,win:getTop(),click_id:'frame_html_setting',dumb:null});}})})()</script>                                                            <div class="bd talk"><input class="one" name="selectgroup" onclick="getTop().CA(this)" style="position:absolute;margin:0 0 0 -33px" id="showbefore1380157748429403" keyword="showbefore" type="checkbox"><a class="cur_default"><label for="showbefore1380157748429403" hidefocus=""><b>更早</b> (<span class="newfd underline" title="选中组内该页所有邮件" hidefocus="">5 封</span>)</label></a><div class="sidetip" style="visibility:visible;" name="selectgrouptip" keyword="showbefore"><span class="sidetip_content" un="select">已勾选<span un="nowcnt">50</span>封邮件，<a href="javascript:;" onclick="getTop().selectGroupCheck(this,true);">勾选该组全部1736封邮件</a></span><span class="sidetip_content" style="display:none;" un="unselect">已勾选<span un="totalcnt">1736</span>封邮件，<a href="javascript:;" onclick="getTop().selectGroupCheck(this,false);">取消勾选</a></span><div class="arrow"><div class="arrow_dk"></div><div class="arrow_lt"></div></div></div></div>      <div class="toarea"><table class="i M" cellspacing="0"><tbody><tr><td class="cx"><input init="true" totime="1341936870000" unread="false" isendtime="0" fn="若&amp;#39;米" fa="756309673@qq.com" name="mailid" value="ZD0811-zWSCGEYS5_MPQm8g8JuMY27" colid="0" adconv="0" type="checkbox"></td><td class="ci"><div class="ciz ">&nbsp;</div><div class="cir  Rc" title="草稿">&nbsp;</div><div class="cij" title="附件">&nbsp;</div></td><td hitmailid="" onclick="getTop().RD(event,'ZD0811-zWSCGEYS5_MPQm8g8JuMY27',0,0,4,0,0,'','6870');" class="l"><table class="i" cellspacing="0"><tbody><tr><td class="tl tf" title="1015759472@qq.com"><nobr>卢莎&nbsp;</nobr></td><td class="fg_n "><div></div></td><td class="gt"><div class="tf no"><u tabindex="0" class="black tt ">Pioneer</u><b class="no "></b>&nbsp;</div><div class="TagDiv"></div></td><td class="dt"><div>2012/07/11</div></td><td title="标记星标" class="fg"><div></div></td></tr></tbody></table></td></tr></tbody></table><script>getTop().MLI(null, window,'4', '6870');</script><table class="i M" cellspacing="0"><tbody><tr><td class="cx"><input init="true" totime="1337509104000" unread="false" isendtime="0" fn="若&amp;#39;米" fa="756309673@qq.com" name="mailid" value="ZD3020-PpdnuuQgcGTcLQBPV6snI25" colid="0" adconv="0" type="checkbox"></td><td class="ci"><div class="ciz ">&nbsp;</div><div class="cir  Rc" title="草稿">&nbsp;</div><div class="cij" title="附件">&nbsp;</div></td><td hitmailid="" onclick="getTop().RD(event,'ZD3020-PpdnuuQgcGTcLQBPV6snI25',0,0,4,0,0,'','9104');" class="l"><table class="i" cellspacing="0"><tbody><tr><td class="tl tf" title="290565359@qq.com"><nobr>苏德祥&nbsp;</nobr></td><td class="fg_n "><div></div></td><td class="gt"><div class="tf no"><u tabindex="0" class="black tt ">SSD1实验报告--1107班戴泽书</u><b class="no "></b>&nbsp;</div><div class="TagDiv"></div></td><td class="dt"><div>2012/05/20</div></td><td title="标记星标" class="fg"><div></div></td></tr></tbody></table></td></tr></tbody></table><script>getTop().MLI(null, window,'4', '9104');</script><table class="i M" cellspacing="0"><tbody><tr><td class="cx"><input init="true" totime="1325122785000" unread="false" isendtime="0" fn="若&amp;#39;米" fa="756309673@qq.com" name="mailid" value="ZD2029-_VS1wpxYLjrBTmMtu1LTO1c" colid="0" adconv="0" type="checkbox"></td><td class="ci"><div class="ciz ">&nbsp;</div><div class="cir  Rc" title="草稿">&nbsp;</div><div class="cij Ju" title="附件">&nbsp;</div></td><td hitmailid="" onclick="getTop().RD(event,'ZD2029-_VS1wpxYLjrBTmMtu1LTO1c',0,0,4,0,0,'','2785');" class="l"><table class="i" cellspacing="0"><tbody><tr><td class="tl tf" title=""><nobr>(收件人未填写)&nbsp;</nobr></td><td class="fg_n "><div></div></td><td class="gt"><div class="tf no"><u tabindex="0" class="black tt ">学生类</u><b class="no "></b>&nbsp;</div><div class="TagDiv"></div></td><td class="dt"><div>2011/12/29</div></td><td title="标记星标" class="fg"><div></div></td></tr></tbody></table></td></tr></tbody></table><script>getTop().MLI(null, window,'4', '2785');</script><table class="i M V" cellspacing="0"><tbody><tr><td class="cx"><input init="true" totime="1323588951000" unread="false" isendtime="0" fn="若&amp;#39;米" fa="756309673@qq.com" name="mailid" value="ZD1311-TOWy3YPeb3ufAi9htedCL1c" colid="0" adconv="0" type="checkbox"></td><td class="ci"><div class="ciz ">&nbsp;</div><div class="cir  Rc" title="草稿">&nbsp;</div><div class="cij" title="附件">&nbsp;</div></td><td hitmailid="" onclick="getTop().RD(event,'ZD1311-TOWy3YPeb3ufAi9htedCL1c',0,0,4,0,0,'','8951');" class="l"><table class="i" cellspacing="0"><tbody><tr><td class="tl tf" title="290565359@qq.com"><nobr>苏德祥&nbsp;</nobr></td><td class="fg_n "><div></div></td><td class="gt"><div class="tf no"><u tabindex="0" class="black tt ">ssd2</u><b class="no "></b>&nbsp;</div><div class="TagDiv"></div></td><td class="dt"><div>2011/12/11</div></td><td title="标记星标" class="fg"><div></div></td></tr></tbody></table></td></tr></tbody></table><script>getTop().MLI(null, window,'4', '8951');</script><table class="i M" cellspacing="0"><tbody><tr><td class="cx"><input init="true" totime="1322967816000" unread="false" isendtime="0" fn="若&amp;#39;米" fa="756309673@qq.com" name="mailid" value="ZD2604-135257laqLxmIw5AiNMiZ1c" colid="0" adconv="0" type="checkbox"></td><td class="ci"><div class="ciz ">&nbsp;</div><div class="cir  Rc" title="草稿">&nbsp;</div><div class="cij" title="附件">&nbsp;</div></td><td hitmailid="" onclick="getTop().RD(event,'ZD2604-135257laqLxmIw5AiNMiZ1c',0,0,4,0,0,'','7816');" class="l"><table class="i" cellspacing="0"><tbody><tr><td class="tl tf" title="290565359@qq.com"><nobr>苏德祥&nbsp;</nobr></td><td class="fg_n "><div></div></td><td class="gt"><div class="tf no"><u tabindex="0" class="black tt ">戴泽书——SSD2</u><b class="no "></b>&nbsp;</div><div class="TagDiv"></div></td><td class="dt"><div>2011/12/04</div></td><td title="标记星标" class="fg"><div></div></td></tr></tbody></table></td></tr></tbody></table><script>getTop().MLI(null, window,'4', '7816');</script></div><div class="list_btline"><div style="height:19px;*height:24px;padding-top:5px;*padding-top:3px;" class="f_size selbar_bt barspace2"><span class="addrtitle">选择：</span>&nbsp;<a href="javascript:''" onclick="getTop().selectAll(true,document);getTop().checkAll('mailid',document);return false;">全部</a>&nbsp;-&nbsp;<a href="javascript:''" onclick="getTop().selectAll(false,document);getTop().checkAll('mailid',document);return false;">无</a>&nbsp;</div></div><div class="toolbg toolbgline toolheight nowrap" style=""><div class="right"><script>document.write(0 + 1);</script>1/<script>document.write(0 + 1);</script>1 页</div><div class="nowrap left" unselectable="on" onselectstart="return false;"><a class="btn_gray btn_space" hidefocus="" id="quick_del" onclick="return getTop().checkPerDelML( '4', false,document);" href="javascript:;" name="del">删除草稿</a><a class="btn_gray btn_space" hidefocus="" onclick="return FwMailML();" href="javascript:;">转发</a><span id="markContainer" name="markContainer" class="btn_space"><a tabindex="-1" class="btn_gray  btn_dropdown " href="javascript:;" id="QmCs_2_0.3300316331934836_div" style="width:px;"><span id="QmCs_2_0.3300316331934836" class="btn_select_txt">标记为...</span><span class="ico_select_s"></span></a></span><span id="selmContainer" name="selmContainer"><a tabindex="-1" class="btn_gray  btn_dropdown " href="javascript:;" id="QmCs_2_0.7059902130049366_div" style="width:px;"><span id="QmCs_2_0.7059902130049366" class="btn_select_txt">移动到...</span><span class="ico_select_s"></span></a></span><script>(function() {
+(typeof goMoveItems != "undefined") && getTop().initMailSelect(goMoveItems, true, true, window, '4', false,false);
+} )();</script></div></div></form><script>
+(function()
+{
+getTop().switchFolder('folder_4');
+if (window.gRefresh)
+{
+var info = getTop().getMailListInfo();
+getTop().setMailListInfo(getTop().getFolderUnread("4")
+|| (info.unread + getTop().QMMailCache.getVar("unread")), info.star + getTop().QMMailCache.getVar("star"));
+}
+getTop().rdVer.preRD(oPreUWMails.concat(oPreMails));
+})();
+</script></div><script>
+function _fSetScale(_aoDom, _anScale)
+{
+if (gbIsIE)
+{
+_aoDom.style.zoom = _anScale;
+}
+else
+{
+_aoDom.style.WebkitTransformOrigin = 
+_aoDom.style.MozTransformOrigin =
+_aoDom.style.OTransformOrigin =
+_aoDom.style.TransformOrigin = "0 0";
+_aoDom.style.WebkitTransform =
+_aoDom.style.MozTransform =
+_aoDom.style.OTransform =
+_aoDom.style.Transform = "scale(" + _anScale + ")";
+}
+}
+
+</script><script type="text/javascript">parent.endStatTime && parent.endStatTime(window, 
+{folderid:"4",perpage:"25",type:"mail_list",rcgi:"mail_list",rt:"",rs:"",wm_flowid:"9901462"});</script></body></html>

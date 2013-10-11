@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>论坛</title>
+<link rel="stylesheet" type="text/css" media="screen" href="files/fourm_2.css">
+
+
+<style>
+.size12,.size12 a{font-size:12px;}
+.size12 a,.data_footer .right a{margin-right:2px}
+.center{text-align:center}
+.data_list_main td{background:#F3F8FC}
+.data_list_main td.title{font-weight:bold;text-align:left}
+.data_list_sub td.title{padding-left:22px;text-align:left}
+.data_footer .left{color:white}
+.data_footer .right{line-height:26px;margin-right:24px}
+.data_footer .right a{color:white}
+.ctl_link a{color:white !important}
+.up_down_img{cursor: pointer;}
+</style>
+</head>
+
+<body>
+<div id="header">
+  <ul>  
+    <li class="head_logo"><a href="#"><img src="files/logo.png" alt="时代光华" title="文峰集团网络商学院"></a><h3>中铁四局网络教育平台</h3>
+    </li>
+    <li class="header_right">
+    <span style="margin-right:8px">你好，<a>XXX</a></span>
+    <img src="files/icon_member.gif" style="margin-bottom:-3px"><span style="margin-right:30px">4&nbsp;人在线</span>
+    
+    <a href="#"><img src="files/console.gif"></a> &nbsp;&nbsp;&nbsp;&nbsp;
+    
+    <a href="#"><img src="files/butt_my_subject.gif"></a>
+    </li>
+  </ul>
+</div>
+
+
+<div class="p_title2">
+    <a href="#">论坛首页</a> &gt;
+    <a href="#">论坛管理</a> &gt;
+    <a href="#">版块管理</a> &gt; 常规设置
+</div>
+
+<!-- main s-->
+<div id="main">
+  
+
+<div id="main_left">
+  <ul>
+    <div class="parent_area"><a>论坛管理</a></div>
+    <li class="sub_area"><a href="index.html">版块管理</a></li>
+    <li class="sub_area"><a href="CreditNum.html">积分管理</a></li>
+    <li class="sub_area"><a href="ForumLog.html">论坛日志</a></li>
+  </ul>
+  <ul>
+    <div class="parent_area"><a>数据统计</a></div>
+    <li class="sub_area"><a href="basic.html">基本概况</a></li>
+    <li class="sub_area"><a href="sorcerank.html">积分排行</a></li>
+    <li class="sub_area"><a href="adminteam.html">版主团队</a></li>
+  </ul>
+</div>
+
+  
+  <div id="main_right">
+    <table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="open_off""><img src="files/open_off.png"></td><td id="con_main">
+      <div class="main_r_p2">
+        <div class="data_header">
+          <div class="left">
+          <span class="p_l bg act"><a href="#">常规设置</a></span>
+          <span class="p_l bg"><a href="">版块合并</a></span>
+          <span class="p_l bg"><a href="">开放范围设定</a></span>
+          </div>
+          
+          <div class="right ctl_link" style="padding:4px 6px 0">
+            <a href="javascript:control('add', '0',0)">[添加主版块]</a>
+            <a href="javascript:;" onclick="form_area_sub()">[删除]</a>
+          </div>
+        </div>
+
+        <table class="data_list center" width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tbody><tr class="first_line">
+            <th colspan="2">版块名称</th>
+            <th>显示顺序</th>
+            <th>操作</th>
+          </tr>
+          
+          <!-- main s-->
+          
+        </tbody></table>
+
+        <div class="data_footer">
+          <button style="margin:3px 0 0 18px;display:inline-block;color:#222;cursor: pointer" onclick="check()">反选</button>
+        </div>
+
+        <!--
+        <div class="center" style="margin-bottom:8px">
+          <a href="javascript:datumEdit('topic','0')"><img src="" border="0" class="middle"/></a>&nbsp;&nbsp;
+          <span>取消修改</span>
+        </div> 
+         -->
+      </div>
+    </td></tr></tbody></table>
+  </div>
+  <!--[if IE 6.0]><span class="clear_fl" style="margin-top:-1px"></span><![endif]-->
+</div>
+<!-- main e-->
+
+
+<div id="confirm" style="display:none"> 
+  <a href="#" title="Close" class="modalCloseX simplemodal-close">x</a>
+  <div class="header"><span>系统提示</span></div>
+  <p class="message"></p>
+  <div class="buttons">
+    <div class="no simplemodal-close">否</div><div class="yes">是</div>
+  </div>
+</div>
+
+<div id="container_for_alert_page" style="display:none">
+  <div id="alert_page_con">
+    <div style="text-align:center"><img src="files/load.gif" alt="loading..."></div>
+  </div>
+</div>
+
+</body>
+</html>

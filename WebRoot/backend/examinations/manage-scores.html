@@ -1,0 +1,90 @@
+<link rel="stylesheet" type="text/css" href="../styles/datepicker.css" />
+<script type="text/javascript" src="../scripts/datepicker.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function ()
+{
+	init_spinner('#score', 0, 100).addClass('span4');
+	$('#time-to').css('background', 'none').datepicker();
+	$('#time-from').css('background', 'none').datepicker();
+});
+//]]>
+</script>
+<div class="row-fluid">
+	<form id="condition" class="span12 form-inline no-margin">
+		<div class="row-fluid line-margin">
+			<span class="help-inline">考试编号</span>
+			<input type="text" class="span2" placeholder="请输入考试编号" />
+			<span class="help-inline">考试名称</span>
+			<input type="text" class="span2" placeholder="请输入考试名称" />
+			<span class="help-inline">时间：从</span>
+			<input
+				type="text"
+				id="time-from"
+				class="span2"
+				readonly="readonly"
+				placeholder="单击选择开始时间"
+				data-date-format="yyyy-mm-dd"
+			/>
+			<span class="help-inline">&#12288;&#12288;&#12288;到</span>
+			<input
+				type="text"
+				id="time-to"
+				class="span2"
+				readonly="readonly"
+				placeholder="单击选择结束时间"
+				data-date-format="yyyy-mm-dd"
+			/>
+		</div>
+		<div class="row-fluid line-margin">
+			<span class="help-inline">学员部门</span>
+			<input type="text" class="span2" placeholder="请输入学员部门" />
+			<span class="help-inline">学员岗位</span>
+			<input type="text" class="span2" placeholder="请输入学员岗位" />
+			<span class="help-inline">学员工号</span>
+			<input type="text" class="span2" placeholder="请输入学员工号" />
+			<span class="help-inline">学员姓名</span>
+			<input type="text" class="span2" placeholder="请输入学员姓名" />
+		</div>
+		<div class="row-fluid line-margin">
+			<span class="help-inline">学员标签</span>
+			<input type="text" class="span2" placeholder="请输入学员标签" />
+			<span class="help-inline">作弊情况</span>
+			<select class="span2">
+				<option>全部</option>
+				<option>是</option>
+				<option>否</option>
+			</select>
+			<span class="help-inline">通过情况</span>
+			<select class="span2">
+				<option>全部</option>
+				<option>是</option>
+				<option>否</option>
+			</select>
+			<span class="help-inline">学分情况</span>
+			<select class="span2">
+				<option>全部</option>
+				<option>获得</option>
+				<option>未获得</option>
+			</select>
+		</div>
+		<div class="row-fluid line-margin">
+			<span class="help-inline">得分情况</span>
+			<select class="input-small">
+				<option>&gt;=</option>
+				<option>&lt;=</option>
+			</select>
+			<div id="score"></div>
+			<div class="pull-right">
+				<button class="btn"><i class="icon-search"></i>&nbsp;查询</button>
+				<button class="btn" onclick="$('#condition')[0].reset();return false;">
+					<i class="icon-remove"></i>&nbsp;清除条件
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="row-fluid">
+	<div id="search-result" class="span12">
+	</div>
+</div>

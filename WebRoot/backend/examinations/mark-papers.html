@@ -1,0 +1,74 @@
+<link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
+<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
+<script type="text/javascript" src="../scripts/mmgrid.js"></script>
+<script type="text/javascript" src="../scripts/mmpaginator.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function ()
+{
+	$('#grid').mmGrid({
+		url: '/api/getgrid',
+		height: 410,
+		autoLoad: true,
+		checkCol: true,
+		multiSelect: true,
+		fullWithRows: true,
+		cols: [
+			{ title: '考试编号', sortable: true, width: 90, name: 'no' },
+			{ title: '试卷编号', sortable: true, width: 90, name: 'no' },
+			{ title: '考试名称', sortable: true, width: 340, name: 'name' },
+			{ title: '试卷名称', sortable: true, width: 340, name: 'name' },
+			{
+				title: '操作',
+				width: 120,
+				renderer: function (val, item, row)
+				{
+					return '<input type="hidden" value="' + item.id + '" />' +
+						'<a href="#">交卷记录</a>&nbsp;&nbsp;<a href="#">阅卷</a>';
+				}
+			}
+		],
+		plugins: [
+			$('#page').mmPaginator({})
+		]
+	});
+});
+//]]>
+</script>
+<div class="row-fluid">
+	<form id="condition" class="span12 form-inline no-margin">
+		<div class="row-fluid line-margin">
+			<span class="help-inline"><b>考试过滤：</b>考试编号</span>
+			<input type="text" class="span2" placeholder="请输入考试编号" />
+			<span class="help-inline">考试名称</span>
+			<input type="text" class="span2" placeholder="请输入考试名称" />
+		</div>
+		<div class="row-fluid line-margin">
+			<span class="help-inline"><b>试卷过滤：</b>试卷编号</span>
+			<input type="text" class="span2" placeholder="请输入试卷编号" />
+			<span class="help-inline">试卷名称</span>
+			<input type="text" class="span2" placeholder="请输入试卷名称" />
+			<span class="help-inline">试卷类型</span>
+			<select class="input-small">
+				<option>所有</option>
+				<option>固定试卷</option>
+				<option>半随机试卷（题目固定顺序随机）</option>
+				<option>全随机试卷（题目顺序全部随机）</option>
+			</select>
+			<div class="pull-right">
+				<button class="btn"><i class="icon-search"></i>&nbsp;查询</button>
+				<button class="btn" onclick="$('#condition')[0].reset();return false;">
+					<i class="icon-remove"></i>&nbsp;清除条件
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<table id="grid"></table>
+		<div id="page" class="pull-right"></div>
+	</div>
+</div>
