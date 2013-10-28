@@ -5,3 +5,8 @@ $(document).ready(function ()
 		cache: false
 	});
 });
+
+function hiddenClass(divClass){
+	
+	$('.'+divClass).hide();
+}

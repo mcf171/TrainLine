@@ -29,14 +29,8 @@ $('#editor').wysiwyg();
 <body style="background-color: #c0c0c0;">
 <div class="container-fluid top-margin">
   <div class="row-fluid">
-    <div class="span6 offset1 ">
-      <video id="1" class="video-js vjs-default-skin" controls preload="none" width="640" height="464"
-	      poster="${basePath}mp4/1.png"
-	      data-setup="{}">
-        <source src="${basePath}mp4/1.mp4" type='video/mp4' />
-      </video>
-    </div>
-    <div class="span4">
+    
+    <div class="span6  offset1">
     <a id="viewerPlaceHolder" style="width:100%;height:464px;display:block"></a>
     	    <script type="text/javascript">
 	     		var fp = new FlexPaperViewer(	
@@ -67,6 +61,13 @@ $('#editor').wysiwyg();
 						 }});
 	        </script>
      </div>
+     <div class="span4 ">
+      <video id="1" class="video-js vjs-default-skin" controls preload="none" width="418" height="464"
+	      poster="${basePath}mp4/1.png"
+	      data-setup="{}">
+        <source src="${basePath}mp4/1.mp4" type='video/mp4' />
+      </video>
+    </div>
   </div>
     </div>
     <div class="container-fluid top-margin">

@@ -58,7 +58,7 @@ $(document).ready(function ()
 				width: 100,
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.id + '" /><a href="#">参加</a>';
+					return '<input type="hidden" value="' + item.id + '" /><a href="classes.jsp">进入</a>';
 				}
 			}
 		],

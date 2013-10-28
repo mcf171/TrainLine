@@ -24,12 +24,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //<![CDATA[
 $(document).ready(function ()
 {
-	$(window).resize(function ()
+	$('#course-switcher a[href="#selected"]').click(function ()
+			{
+				$('#list-selected, #filter-selected, #button-remove').removeClass('hidden');
+				$('#list-available, #filter-available, #button-select').addClass('hidden');
+			});
+
+	$('#course-switcher a[href="#available"]').click(function ()
 	{
-		;
+		$('#list-selected, #filter-selected, #button-remove').addClass('hidden');
+		$('#list-available, #filter-available, #button-select').removeClass('hidden');
 	});
 
-	$('#grid').mmGrid({
+	$('#grid-available').mmGrid({
 		url:  '${basePath}bookList.action',
 		height: 280,
 		autoLoad: true,
@@ -53,6 +60,33 @@ $(document).ready(function ()
 			$('#page').mmPaginator({})
 		]
 	});
+	
+	$('#grid-selected').mmGrid({
+		url:  '${basePath}bookList.action',
+		height: 280,
+		autoLoad: true,
+		fullWithRows: true,
+		root:'bookList',
+		cols: [
+			{ title: '图书名称', sortable: true, width: 210, name: 'bookName' },
+			{ title: '图书简介', sortable: true, width: 250, name: 'bookContent' },
+			{ title: '图书类别', sortable: true, width: 210, name: 'bookClass' },	
+			{ title: '图书编号', sortable: true, width: 210, name: 'bookClassIndex' },
+			{
+				title: '操作',
+				width: 100,
+				renderer: function (val, item, row)
+				{
+					return '<input type="hidden" value="' + item.id + '" /><a href="http://lib.csu.edu.cn/pubnew/zndxtsgnew/resourcedha/sydatabase/201304/t20130403_2433.html" target="_blank">阅读</a> ';
+				}
+			}
+		],
+		plugins: [
+			$('#page').mmPaginator({})
+		]
+	});
+	
+	
 });
 //]]>
 </script>
@@ -65,8 +99,8 @@ $(document).ready(function ()
       <div class="row-fluid resources">
         <ul id="course-switcher" class="row-fluid nav nav-pills line-margin">
 						
-						<li class="active"><a href="#selected" data-toggle="tab">内部图书</a></li>
-						<li ><a href="http://www.nlc.gov.cn/" target="_blank" >外部图书</a></li>
+						<li class="active"><a href="#available" data-toggle="tab">内部图书</a></li>
+						<li ><a href="#selected"  data-toggle="tab">外部图书</a></li>
 					</ul>
         <div >
           <div class="row-fluid">
@@ -105,8 +139,18 @@ $(document).ready(function ()
       </div>
       <div class="row-fluid">
 				<div id="grid-container" class="span12">
-					<table id="grid"></table>
-					<div id="page" class="pull-right"></div>
+					<div id="list-available" class="row-fluid">
+						<div class="span12">
+							<table id="grid-available"></table>
+							<div id="page-available" class="pull-right"></div>
+						</div>
+						</div>
+						<div id="list-selected" class="row-fluid hidden">
+							<div class="span12">
+								<table id="grid-selected"></table>
+								<div id="page-selected" class="pull-right"></div>
+							</div>
+						</div>
 				</div>
 			</div>
     </div>

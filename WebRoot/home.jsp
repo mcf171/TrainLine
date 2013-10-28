@@ -67,7 +67,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="row-fluid">
 						<div class="span12">
 							<b>热门资源排行</b>
+							  
 							<a target="_blank" href="#" class="more">更多</a>
+							 <select class="input-small more">
+              <option>所有</option>
+              <option>已完成</option>
+              <option>未完成</option>
+            </select>
 						</div>
 					</div>
 					<hr class="seperator" />

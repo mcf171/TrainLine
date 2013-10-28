@@ -12,6 +12,14 @@
 <script type="text/javascript" src="../scripts/global.js"></script>
 <script type="text/javascript" src="../scripts/backend.js"></script>
 <title>人员管理</title>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function ()
+{
+	$('#content').load('person/person.html');
+});
+//]]>
+</script>
 </head>
 <body>
 <div class="container-fluid">
@@ -21,26 +29,16 @@
 				<li class="jstree-open">
 					<a href="#">人员管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="#">人员管理</a></li>
-						<li class="jstree-leaf"><a href="#">角色管理</a></li>
+						<li class="jstree-leaf"><a href="person/person.html">人员管理</a></li>
+			
 					</ul>
 				</li>
 				<li class="jstree-open">
 					<a href="#">组织管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="#">组织管理</a></li>
-					</ul>
-				</li>
-				<li class="jstree-open">
-					<a href="#">岗位管理</a>
-					<ul>
-						<li class="jstree-leaf"><a href="#">岗位管理</a></li>
-					</ul>
-				</li>
-				<li class="jstree-open">
-					<a href="#">班级管理</a>
-					<ul>
-						<li class="jstree-leaf"><a href="#">班级管理</a></li>
+						<li class="jstree-leaf"><a href="orgnizes/showCompany.html">公司管理</a></li>
+						<li class="jstree-leaf"><a href="orgnizes/showDepartment.html">部门管理</a></li>
+						<li class="jstree-leaf"><a href="orgnizes/showPosition.html"">岗位管理</a></li>
 					</ul>
 				</li>
 			</ul>

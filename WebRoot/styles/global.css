@@ -91,3 +91,8 @@ a.blacked:focus
     white-space: nowrap;
 	max-width: 160px;
 }
+.importantInfo{
+	position:fixed;
+	right:132px;
+	bottom:37px;
+}

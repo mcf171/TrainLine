@@ -71,7 +71,7 @@ $(document).ready(function ()
 				renderer: function (val, item, row)
 				{
 					return '<input type="hidden" value="' + item.id + '" />' +
-						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
+						'<a href="studyContent.jsp">详细信息</a>&nbsp;&nbsp;' +
 						(item.select ? '' : (item.public ? '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>'));
 				}
 			}
@@ -138,6 +138,8 @@ $(document).ready(function ()
 					<ul id="course-switcher" class="row-fluid nav nav-pills line-margin">
 						<li class="active"><a href="#available" data-toggle="tab">选课中心</a></li>
 						<li><a href="#selected" data-toggle="tab">我的课程</a></li>
+						<li><a href="#selected" data-toggle="tab">案例教学</a></li>
+						<li><a href="#selected" data-toggle="tab">错题集</a></li>
 					</ul>
 					<hr class="seperator" />
 					<div id="filter-available">
@@ -200,7 +202,7 @@ $(document).ready(function ()
 					<hr class="seperator top-margin" />
 					<div class="row-fluid">
 						<div id="button-select" class="span2 first-button">
-							<button class="btn"><i class="icon-ok"></i>&nbsp;批量选课</button>
+							<button class="btn"><i class="icon-ok"></i>&nbsp;批量提交</button>
 						</div>
 						<div id="button-remove" class="span2 first-button hidden">
 							<button class="btn"><i class="icon-remove"></i>&nbsp;批量退选</button>

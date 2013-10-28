@@ -12,6 +12,14 @@
 <script type="text/javascript" src="../scripts/global.js"></script>
 <script type="text/javascript" src="../scripts/backend.js"></script>
 <title>课程管理</title>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function ()
+{
+	$('#content').load('classes/classes.html');
+});
+//]]>
+</script>
 </head>
 <body>
 <div class="container-fluid">
@@ -21,18 +29,13 @@
 				<li class="jstree-open">
 					<a href="#">班级管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="#">班级计划</a></li>
-						<li class="jstree-leaf"><a href="#">线上培训</a></li>
-						<li class="jstree-leaf"><a href="#">线下培训</a></li>
-						<li class="jstree-leaf"><a href="#">统计分析</a></li>
+						<li class="jstree-leaf"><a href="classes/classes.html">班级管理</a></li>
 					</ul>
 				</li>
 				<li class="jstree-open">
 					<a href="#">证书管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="#">证书管理</a></li>
-						<li class="jstree-leaf"><a href="#">证书查询</a></li>
-						<li class="jstree-leaf"><a href="#">证书类型管理</a></li>
+						<li class="jstree-leaf"><a href="classes/certificateList.html">证书管理</a></li>
 					</ul>
 				</li>
 			</ul>

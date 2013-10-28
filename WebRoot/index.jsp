@@ -13,6 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/bootstrap.js"></script>
 <script type="text/javascript" src="scripts/global.js"></script>
+<script type="text/javascript" src="scripts/global.js"></script>
 <title>主页</title>
 <script type="text/javascript">
 //<![CDATA[
@@ -21,8 +22,7 @@ var PAGES = {
 	page_1: 'course.jsp',
 	page_2: 'exam.jsp',
 	page_3: 'education.jsp',
-	page_4: 'liberary.jsp',
-	page_5: '',
+	page_4: 'liberary.jsp'
 };
 
 function load_page(page)
@@ -80,6 +80,9 @@ $(document).ready(function ()
 	</iframe>
 </div>
 <div class="push"></div>
+<div class="importantInfo">
+	<a href="#" onclick="hiddenClass('importantInfo')"><img src="images/importantInfo.png"/></a>
+</div>
 <div class="footer">
 	<div class="row-fluid">
 		<div class="span4">
@@ -88,7 +91,7 @@ $(document).ready(function ()
 		<div class="pull-right">
 			<a href="userInfo.html" target="_blank">个人中心</a>
 			&nbsp;
-			<a href="${basePath}email/shouye.htm">收件箱</a>
+			<a href="${basePath}email/index.html">收件箱</a>
 		</div>
 	</div>
 </div>

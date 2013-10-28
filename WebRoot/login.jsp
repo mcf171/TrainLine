@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>中铁四局登陆页面</title>
+		<title>中铁四局集团远程培训及管理平台登陆</title>
 <style type="text/css">
 #model-header {
 	background: blue;
@@ -51,7 +51,7 @@ position:absolute;
 		<div class="modal">
 			<div class="modal-header" id="model-header">
 				<h3>
-					中铁四局登录
+					中铁四局集团远程培训及管理平台登陆
 				</h3>
 			</div>
 			<div class="modal-body">
@@ -80,10 +80,6 @@ position:absolute;
 							</label>
 							<button type="submit" class="btn btn-primary">
 								登录
-							</button>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<button type="button" class="btn btn-primary" onclick="window.location.href='${basePath}register.jsp'">
-								注册
 							</button>
 						</div>
 					</div>
