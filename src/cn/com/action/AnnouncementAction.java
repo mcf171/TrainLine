@@ -10,5 +10,6 @@ public class AnnouncementAction extends BaseActionSupport{
 public void test(){
 	
 	System.out.println("test");
+	System.out.println("卧槽");
 }
 }
