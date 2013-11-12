@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName"
-			value="com.mysql.jdbc.Driver">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
 		<property name="url" value="jdbc:mysql://localhost:3306/trainline"></property>
 		<property name="username" value="root"></property>
@@ -18,7 +14,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">
-			<ref bean="dataSource"/>
+			<ref bean="dataSource" />
 		</property>
 		<property name="hibernateProperties">
 			<props>
@@ -66,8 +62,12 @@
 				<value>cn/com/model/Certificatetype.hbm.xml</value>
 				<value>cn/com/model/Credential.hbm.xml</value>
 				<value>cn/com/model/Note.hbm.xml</value>
-				<value>cn/com/model/Classandcourse.hbm.xml</value></list>
-		</property></bean>
-	<import resource="cn/com/config/spring/applicationContext-dao.xml"/>
-	
-	</beans>
+				<value>cn/com/model/Classandcourse.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<import resource="cn/com/config/spring/applicationContext-dao.xml" />
+	<import resource="cn/com/config/spring/applicationContext-service.xml" />
+	<import resource="cn/com/config/spring/applicationContext-action.xml" />
+
+</beans>

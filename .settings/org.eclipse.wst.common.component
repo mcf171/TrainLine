@@ -3,6 +3,7 @@
     <wb-module deploy-name="TrainLine">
         <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/tesing"/>
         <property name="context-root" value="/TrainLine"/>
         <property name="java-output-path" value="/TrainLine/WebRoot/WEB-INF/classes"/>
     </wb-module>
