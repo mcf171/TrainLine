@@ -12,11 +12,14 @@ public class Course implements java.io.Serializable {
 	// Fields
 
 	private Integer courseId;
-	private Integer keepsecret;
 	private String courseName;
-	private String videoPlace;
-	private String bookPlace;
-	
+	private String courseSpeaker;
+	private String courseIntro;
+	private Integer courseState;
+	private Set classandcourses = new HashSet(0);
+	private Set userandcourses = new HashSet(0);
+	private Set catalogues = new HashSet(0);
+	private Set testquestions = new HashSet(0);
 
 	// Constructors
 
@@ -25,13 +28,17 @@ public class Course implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Course(Integer keepsecret, String courseName, String videoPlace,
-			String bookPlace) {
-		this.keepsecret = keepsecret;
+	public Course(String courseName, String courseSpeaker, String courseIntro,
+			Integer courseState, Set classandcourses, Set userandcourses,
+			Set catalogues, Set testquestions) {
 		this.courseName = courseName;
-		this.videoPlace = videoPlace;
-		this.bookPlace = bookPlace;
-		
+		this.courseSpeaker = courseSpeaker;
+		this.courseIntro = courseIntro;
+		this.courseState = courseState;
+		this.classandcourses = classandcourses;
+		this.userandcourses = userandcourses;
+		this.catalogues = catalogues;
+		this.testquestions = testquestions;
 	}
 
 	// Property accessors
@@ -44,14 +51,6 @@ public class Course implements java.io.Serializable {
 		this.courseId = courseId;
 	}
 
-	public Integer getKeepsecret() {
-		return this.keepsecret;
-	}
-
-	public void setKeepsecret(Integer keepsecret) {
-		this.keepsecret = keepsecret;
-	}
-
 	public String getCourseName() {
 		return this.courseName;
 	}
@@ -60,21 +59,60 @@ public class Course implements java.io.Serializable {
 		this.courseName = courseName;
 	}
 
-	public String getVideoPlace() {
-		return this.videoPlace;
+	public String getCourseSpeaker() {
+		return this.courseSpeaker;
 	}
 
-	public void setVideoPlace(String videoPlace) {
-		this.videoPlace = videoPlace;
+	public void setCourseSpeaker(String courseSpeaker) {
+		this.courseSpeaker = courseSpeaker;
 	}
 
-	public String getBookPlace() {
-		return this.bookPlace;
+	public String getCourseIntro() {
+		return this.courseIntro;
 	}
 
-	public void setBookPlace(String bookPlace) {
-		this.bookPlace = bookPlace;
+	public void setCourseIntro(String courseIntro) {
+		this.courseIntro = courseIntro;
 	}
 
+	public Integer getCourseState() {
+		return this.courseState;
+	}
+
+	public void setCourseState(Integer courseState) {
+		this.courseState = courseState;
+	}
+
+	public Set getClassandcourses() {
+		return this.classandcourses;
+	}
+
+	public void setClassandcourses(Set classandcourses) {
+		this.classandcourses = classandcourses;
+	}
+
+	public Set getUserandcourses() {
+		return this.userandcourses;
+	}
+
+	public void setUserandcourses(Set userandcourses) {
+		this.userandcourses = userandcourses;
+	}
+
+	public Set getCatalogues() {
+		return this.catalogues;
+	}
+
+	public void setCatalogues(Set catalogues) {
+		this.catalogues = catalogues;
+	}
+
+	public Set getTestquestions() {
+		return this.testquestions;
+	}
+
+	public void setTestquestions(Set testquestions) {
+		this.testquestions = testquestions;
+	}
 
 }
