@@ -7,6 +7,8 @@ import org.hibernate.LockMode;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.com.model.Userandmail;
+
 /**
  * A data access object (DAO) providing persistence and search support for
  * Userandmail entities. Transaction control of the save(), update() and

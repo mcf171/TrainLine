@@ -8,6 +8,8 @@ import org.hibernate.LockMode;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.com.model.Post;
+
 /**
  * A data access object (DAO) providing persistence and search support for Post
  * entities. Transaction control of the save(), update() and delete() operations

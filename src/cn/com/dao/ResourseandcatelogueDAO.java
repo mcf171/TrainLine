@@ -7,6 +7,8 @@ import org.hibernate.LockMode;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.com.model.Resourseandcatelogue;
+
 /**
  * A data access object (DAO) providing persistence and search support for
  * Resourseandcatelogue entities. Transaction control of the save(), update()
