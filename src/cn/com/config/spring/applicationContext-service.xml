@@ -22,7 +22,7 @@
 	</bean>
 	
 	<bean id="testQuestionService" class="cn.com.service.TestQuestionService">
-	<property name="testquestionDAO" ref="TestquestionDAO"></property>]
+	<property name="testquestionDAO" ref="TestquestionDAO"></property>
 	</bean>
 	
 	<bean id="testPaperService" class="cn.com.service.TestPaperService">
