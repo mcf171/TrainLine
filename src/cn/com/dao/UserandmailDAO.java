@@ -1,11 +1,15 @@
 package cn.com.dao;
 
 import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import cn.com.model.Userandmail;
+
 
 import cn.com.model.Userandmail;
 
