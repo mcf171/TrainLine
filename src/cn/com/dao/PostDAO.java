@@ -1,5 +1,6 @@
 package cn.com.dao;
 
+
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -9,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.com.model.Post;
+
 
 /**
  * A data access object (DAO) providing persistence and search support for Post
