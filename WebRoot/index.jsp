@@ -20,9 +20,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 var PAGES = {
 	page_0: 'homeList.action',
 	page_1: 'course.jsp',
-	page_2: 'exam.jsp',
-	page_3: 'education.jsp',
-	page_4: 'liberary.jsp'
+	page_2:'exam.jsp',
+	page_3: 'dangjian.jsp',
+	page_4: 'education.jsp',
+	page_5: 'liberary.jsp'
 };
 
 function load_page(page)
@@ -65,12 +66,13 @@ $(document).ready(function ()
 	<div class="navbar-inner">
 		<div class="row-fluid menu-container">
 			<ul class="span12 nav nav-pills header-menu">
-				<li id="page_0" class="span2 header-menu-item active"><a href="#">首页</a></li>
+				<li id="page_0" class="span1 header-menu-item active"><a href="#">首页</a></li>
 				<li id="page_1" class="span2 header-menu-item"><a href="#">学习中心</a></li>
 				<li id="page_2" class="span2 header-menu-item"><a href="#">考试中心</a></li>
-				<li id="page_3" class="span2 header-menu-item"><a href="#">培训班</a></li>
-				<li id="page_4" class="span2 header-menu-item"><a href="#">图书馆</a></li>
-				<li id="page_5" class="span2 header-menu-item"><a href="forum/index.html" target="_blank">社区</a></li>
+				<li id="page_3" class="span2 header-menu-item"><a href="#">网上党校</a></li>
+				<li id="page_4" class="span2 header-menu-item"><a href="#">培训班</a></li>
+				<li id="page_5" class="span2 header-menu-item"><a href="#">图书馆</a></li>
+				<li id="page_6" class="span1 header-menu-item"><a href="forum/index.html" target="_blank">社区</a></li>
 			</ul>
 		</div>
 	</div>
