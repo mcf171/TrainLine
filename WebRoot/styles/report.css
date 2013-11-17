@@ -1,7 +1,43 @@
-	input{
+	caption{
+		border:none;
+		box-shadow:none;
+		text-align:center;
+	}
+	
+	
+	input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],  input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{
 		border: none;
-		width: 85%;
-		
+		width: 85%;	
+		box-shadow:none;
+	}
+	
+	 input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus
+	{
+		border-color:none;
+		box-shadow:none;
+	}
+	
+	input[type="date"]{
+		border: none;
+		width: 90px;	
+		box-shadow:none;
+	}
+	
+	input[type="date"]:focus{
+		border: none;
+		width: 90px;	
+		box-shadow:none;
+	}
+	
+	input[type="month"]{
+		border: none;
+		width: 40px;	
+		box-shadow:none;
+	}
+	
+	input[type="month"]:focus{
+		border: none;
+		width: 40px;	
 		box-shadow:none;
 	}
 	
@@ -11,17 +47,30 @@
 		height:90%;
 	}
 	
+	textarea{
+		border:none;
+		box-shadow:none;
+		width:95%;
+		height:95%
+	}
+	
+	textarea:focus{
+		border:none;
+		box-shadow:none;
+		width:95%;
+		height:95%
+	}
+	
 	td{
 		border:1px solid; 
 	}
 	
-	.tdWidth{
-		width:70px;
+	.borderNone{
+		border:none;
 	}
 	
-	.gwpxbTextarea{
-		width:95%;
-		height:100%;
+	.tdWidth{
+		width:70px;
 	}
 	
 	.gaizhang{
@@ -29,6 +78,15 @@
 		text-align:center; 
 	}
 	
-	.year{
-		border:none;box-shadow:none;width:30px;
+	.textRight{
+		text-align:right;
+	}
+	
+	.textCenter{
+		text-align:center;
+	}
+	
+	.title{
+		text-align: center;
+		height:50px;
 	}
