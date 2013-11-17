@@ -10,3 +10,6 @@ function hiddenClass(divClass){
 	
 	$('.'+divClass).hide();
 }
+function loadHTML(name){
+	$('#content').load(name);
+}
