@@ -17,10 +17,10 @@ $(document).ready(function ()
 	$('#time-from').css('background', 'none').datepicker();
 
 	$('#grid').mmGrid({
-		url: 'questionnaire_findAllQuestionnare',
+		url:'http://127.0.0.1:8080/TrainLine/questionnaire_findAllQuestionnare.action',
 		height: 410,
 		autoLoad: true,
-		root:qList,
+		root:'qList',
 		fullWithRows: true,
 		cols: [
 			{ title: 'ID', sortable: true, width: 100, name: 'questionnaireId' },	

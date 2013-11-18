@@ -5,7 +5,7 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="questionnarieAction" class="cn.com.action.QuestionnaireAction">
+	<bean id="questionnarieAction" class="cn.com.action.QuestionnaireAction" scope="prototype">
 	<property name="questionnairerService" ref="questionnairerService"></property>
 	</bean>
 	
