@@ -25,23 +25,6 @@
         <property name="uploadingPerson" type="java.lang.String">
             <column name="uploadingPerson" length="20" />
         </property>
-        <set name="notes" inverse="true">
-            <key>
-                <column name="catalogueId" />
-            </key>
-            <one-to-many class="cn.com.model.Note" />
-        </set>
-        <set name="tcomments" inverse="true">
-            <key>
-                <column name="catalogueId" />
-            </key>
-            <one-to-many class="cn.com.model.Tcomment" />
-        </set>
-        <set name="resourseandcatelogues" inverse="true">
-            <key>
-                <column name="catalogueId" not-null="true" />
-            </key>
-            <one-to-many class="cn.com.model.Resourseandcatelogue" />
-        </set>
+        
     </class>
 </hibernate-mapping>

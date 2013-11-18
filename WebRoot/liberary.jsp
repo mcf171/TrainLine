@@ -37,22 +37,27 @@ $(document).ready(function ()
 	});
 
 	$('#grid-available').mmGrid({
-		url:  '${basePath}bookList.action',
+		url:  '${basePath}getInsideLiberaryList.action',
 		height: 280,
 		autoLoad: true,
 		fullWithRows: true,
-		root:'bookList',
+		root:'liberary',
 		cols: [
 			{ title: '图书名称', sortable: true, width: 210, name: 'bookName' },
 			{ title: '图书简介', sortable: true, width: 250, name: 'bookContent' },
-			{ title: '图书类别', sortable: true, width: 210, name: 'bookClass' },	
+			{ title: '图书类别', sortable: true, width: 210, 
+				renderer: function (val, item, row)
+				{
+				return item.bookType.bookTypeName;
+				}
+			},	
 			{ title: '图书编号', sortable: true, width: 210, name: 'bookClassIndex' },
 			{
 				title: '操作',
 				width: 100,
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.id + '" /><a href="read.jsp" target="_blank">阅读</a> ';
+					return '<input type="hidden" value="' + item.bookType.bookTypeName + '" /><a href="read.jsp" target="_blank">阅读</a> ';
 				}
 			}
 		],

@@ -16,10 +16,7 @@ public class Course implements java.io.Serializable {
 	private String courseSpeaker;
 	private String courseIntro;
 	private Integer courseState;
-	private Set classandcourses = new HashSet(0);
-	private Set userandcourses = new HashSet(0);
-	private Set catalogues = new HashSet(0);
-	private Set testquestions = new HashSet(0);
+	
 
 	// Constructors
 
@@ -35,10 +32,7 @@ public class Course implements java.io.Serializable {
 		this.courseSpeaker = courseSpeaker;
 		this.courseIntro = courseIntro;
 		this.courseState = courseState;
-		this.classandcourses = classandcourses;
-		this.userandcourses = userandcourses;
-		this.catalogues = catalogues;
-		this.testquestions = testquestions;
+		
 	}
 
 	// Property accessors
@@ -83,36 +77,5 @@ public class Course implements java.io.Serializable {
 		this.courseState = courseState;
 	}
 
-	public Set getClassandcourses() {
-		return this.classandcourses;
-	}
-
-	public void setClassandcourses(Set classandcourses) {
-		this.classandcourses = classandcourses;
-	}
-
-	public Set getUserandcourses() {
-		return this.userandcourses;
-	}
-
-	public void setUserandcourses(Set userandcourses) {
-		this.userandcourses = userandcourses;
-	}
-
-	public Set getCatalogues() {
-		return this.catalogues;
-	}
-
-	public void setCatalogues(Set catalogues) {
-		this.catalogues = catalogues;
-	}
-
-	public Set getTestquestions() {
-		return this.testquestions;
-	}
-
-	public void setTestquestions(Set testquestions) {
-		this.testquestions = testquestions;
-	}
 
 }

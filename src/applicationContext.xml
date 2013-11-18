@@ -4,68 +4,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver">
-		</property>
-		<property name="url" value="jdbc:mysql://localhost:3306/trainline"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="123456"></property>
-	</bean>
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-		<property name="dataSource">
-			<ref bean="dataSource"/>
-		</property>
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">
-					org.hibernate.dialect.MySQLDialect
-				</prop>
-			</props>
-		</property>
-		<property name="mappingResources">
-			<list>
-				<value>cn/com/model/Course.hbm.xml</value>
-				<value>cn/com/model/Testarrangement.hbm.xml</value>
-				<value>cn/com/model/Tcomment.hbm.xml</value>
-				<value>cn/com/model/Resourseandcatelogue.hbm.xml</value>
-				<value>cn/com/model/Userandquestion.hbm.xml</value>
-				<value>cn/com/model/Classanduser.hbm.xml</value>
-				<value>cn/com/model/Personalinformation.hbm.xml</value>
-				<value>cn/com/model/Mailaccessory.hbm.xml</value>
-				<value>cn/com/model/Trainingclass.hbm.xml</value>
-				<value>cn/com/model/Questionarrangement.hbm.xml</value>
-				<value>cn/com/model/Mail.hbm.xml</value>
-				<value>cn/com/model/Jobtechnicalgrade.hbm.xml</value>
-				<value>cn/com/model/Questionnairerubric.hbm.xml</value>
-				<value>cn/com/model/Topic.hbm.xml</value>
-				<value>cn/com/model/Company.hbm.xml</value>
-				<value>cn/com/model/Majorqualification.hbm.xml</value>
-				<value>
-					cn/com/model/Practisingcertificate.hbm.xml
-				</value>
-				<value>cn/com/model/Theme.hbm.xml</value>
-				<value>cn/com/model/Testquestion.hbm.xml</value>
-				<value>cn/com/model/Notice.hbm.xml</value>
-				<value>cn/com/model/Post.hbm.xml</value>
-				<value>cn/com/model/Record.hbm.xml</value>
-				<value>cn/com/model/Catalogue.hbm.xml</value>
-				<value>cn/com/model/Educationbackground.hbm.xml</value>
-				<value>cn/com/model/Userandcourse.hbm.xml</value>
-				<value>cn/com/model/Noticetype.hbm.xml</value>
-				<value>cn/com/model/Topicaccessory.hbm.xml</value>
-				<value>cn/com/model/Userandmail.hbm.xml</value>
-				<value>cn/com/model/Classcase.hbm.xml</value>
-				<value>cn/com/model/Questionnaire.hbm.xml</value>
-				<value>cn/com/model/Testpaper.hbm.xml</value>
-				<value>cn/com/model/Resource.hbm.xml</value>
-				<value>cn/com/model/Certificatetype.hbm.xml</value>
-				<value>cn/com/model/Credential.hbm.xml</value>
-				<value>cn/com/model/Note.hbm.xml</value>
-				<value>cn/com/model/Classandcourse.hbm.xml</value>
-			</list>
-		</property>
-	</bean>
 	<import resource="cn/com/config/spring/applicationContext-dao.xml" />
 	<import resource="cn/com/config/spring/applicationContext-service.xml" />
 	<import resource="cn/com/config/spring/applicationContext-action.xml" />

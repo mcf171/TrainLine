@@ -22,29 +22,6 @@
         <property name="courseState" type="java.lang.Integer">
             <column name="courseState" />
         </property>
-        <set name="classandcourses" inverse="true">
-            <key>
-                <column name="courseId" not-null="true" />
-            </key>
-            <one-to-many class="cn.com.model.Classandcourse" />
-        </set>
-        <set name="userandcourses" inverse="true">
-            <key>
-                <column name="courseId" not-null="true" />
-            </key>
-            <one-to-many class="cn.com.model.Userandcourse" />
-        </set>
-        <set name="catalogues" inverse="true">
-            <key>
-                <column name="courseId" />
-            </key>
-            <one-to-many class="cn.com.model.Catalogue" />
-        </set>
-        <set name="testquestions" inverse="true">
-            <key>
-                <column name="courseId" />
-            </key>
-            <one-to-many class="cn.com.model.Testquestion" />
-        </set>
+        
     </class>
 </hibernate-mapping>

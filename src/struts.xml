@@ -1,32 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-<constant name="struts.devMode" value="fase" />
-	<constant name="struts.multipart.maxSize" value="104857600" />
-	<constant name="struts.objectFactory" value="spring"></constant>
-	<!-- 
-	<package name="myDefaultPkg" abstract="true" extends="struts-default">
-		<result-types>
-			forward跳转 jsp
-			<result-type name="dispatcher"
-				class="org.apache.struts2.dispatcher.ServletDispatcherResult"
-				default="true" />
-			sd
-			<result-type name="stream"
-				class="org.apache.struts2.dispatcher.StreamResult" />
+
+
+
+		<include file="cn/com/config/struts/struts-global.xml"></include>
 		
-			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
-			
-			<result-type name="chain"
-				class="com.opensymphony.xwork2.ActionChainResult" />
-			
-			<result-type name="redirect"
-				class="org.apache.struts2.dispatcher.ServletRedirectResult" />
-		</result-types>
-	</package>
-	 -->
-<include file="cn/com/config/struts/struts-questionnaireAction.xml"></include>
-<include file="cn/com/config/struts/struts-questionnairerubricAction.xml"></include>
-<include file="cn/com/config/struts/struts-courseAction.xml"></include>
-<include file="cn/com/config/struts/struts-noteAction.xml"></include>
+		<include file="cn/com/config/struts/struts-liberary.xml"></include>
+		<include file="cn/com/config/struts/struts-questionnaireAction.xml"></include>
+		<include file="cn/com/config/struts/struts-questionnairerubricAction.xml"></include>
+		<include file="cn/com/config/struts/struts-courseAction.xml"></include>
+		<include file="cn/com/config/struts/struts-noteAction.xml"></include>
+
 </struts>    

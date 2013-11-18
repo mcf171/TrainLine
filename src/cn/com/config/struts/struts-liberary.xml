@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="note" namespace="/" extends="system">
-		<action name="note_findAllNote" class="noteAction" method="findAllNote">
+	
+	<package name="liberary" extends="system" >
+	<action name="getInsideLiberaryList" class="liberaryAction" method="getInsideLiberaryList">
 			<result type="json">
 			<param name="root">dataMap</param>
 			</result>
-		</action>
-	</package>
+   	</action>
+   	</package>
 </struts>    

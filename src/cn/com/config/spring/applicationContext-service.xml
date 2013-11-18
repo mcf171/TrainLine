@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
+
 	<bean id="questionnairerService" class="cn.com.service.QuestionnaireService">
-	<property name="questionnaireDAO" ref="QuestionnaireDAO"></property>
+		<property name="questionnaireDAO" ref="QuestionnaireDAO"></property>
 	</bean>
-	
+	<bean id="liberaryService" class="cn.com.service.LiberaryService"
+		scope="prototype">
+		<property name="bookDAO" ref="BookDAO"></property>
+
+	</bean>
+
+
 	<bean id="questionnairerubricService" class="cn.com.service.QuestionnairerubricService">
-	<property name="questionnairerubricDAO" ref="QuestionnairerubricDAO"></property>
+		<property name="questionnairerubricDAO" ref="QuestionnairerubricDAO"></property>
 	</bean>
-	
+
 	<bean id="courseService" class="cn.com.service.CourseService">
-	<property name="courseDAO" ref="CourseDAO"></property>
+		<property name="courseDAO" ref="CourseDAO"></property>
 	</bean>
-	
+
 	<bean id="noteService" class="cn.com.service.NoteService">
-	<property name="noteDAO" ref="NoteDAO"></property>
+		<property name="noteDAO" ref="NoteDAO"></property>
 	</bean>
-	
+
 	<bean id="testQuestionService" class="cn.com.service.TestQuestionService">
-	<property name="testquestionDAO" ref="TestquestionDAO"></property>
+		<property name="testquestionDAO" ref="TestquestionDAO"></property>
 	</bean>
-	
+
 	<bean id="testPaperService" class="cn.com.service.TestPaperService">
-	<property name="testpaperDAO" ref="TestpaperDAO"></property>
+		<property name="testpaperDAO" ref="TestpaperDAO"></property>
 	</bean>
-	
+
 	<bean id="testArrangementService" class="cn.com.service.TestArrangementService">
-	<property name="testarrangementDAO" ref="TestarrangementDAO"></property>
+		<property name="testarrangementDAO" ref="TestarrangementDAO"></property>
 	</bean>
-	
+
 	<bean id="trainingClassService" class="cn.com.service.TrainingClassService">
-	<property name="trainingclassDAO" ref="TrainingclassDAO"></property>
+		<property name="trainingclassDAO" ref="TrainingclassDAO"></property>
 	</bean>
-	
+
 	<bean id="credentialService" class="cn.com.service.CredentialService">
-	<property name="credentialDAO" ref="CredentialDAO"></property>
+		<property name="credentialDAO" ref="CredentialDAO"></property>
 	</bean>
-	</beans>
+
+</beans>

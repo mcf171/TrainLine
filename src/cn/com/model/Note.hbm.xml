@@ -10,14 +10,16 @@
             <column name="noteId" />
             <generator class="native" />
         </id>
-        <many-to-one name="catalogue" class="cn.com.model.Catalogue" lazy="false" fetch="join" >
-            <column name="catalogueId" />
-        </many-to-one>
+        
         <property name="userId" type="java.lang.Integer">
             <column name="userId" />
         </property>
         <property name="noteContent" type="java.lang.String">
             <column name="noteContent" length="200" />
         </property>
+        
+        <many-to-one name="catalogue" column="catalogueId" class="cn.com.model.Catalogue" lazy="false" fetch="join" >
+           
+        </many-to-one>
     </class>
 </hibernate-mapping>
