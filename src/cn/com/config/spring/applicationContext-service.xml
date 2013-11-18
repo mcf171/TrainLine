@@ -10,8 +10,6 @@
 		<property name="bookDAO" ref="BookDAO"></property>
 	</bean>
 
-	<bean id="questionnairerService" class="cn.com.service.impl.QuestionnaireService">
-	<property name="questionnaireDAO" ref="QuestionnaireDAO"></property>
-	</bean>
+	
 
 	</beans>
