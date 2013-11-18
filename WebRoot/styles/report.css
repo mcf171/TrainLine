@@ -1,3 +1,7 @@
+	body{
+		font-size:16px;
+	}
+	
 	caption{
 		border:none;
 		box-shadow:none;
@@ -7,7 +11,7 @@
 	
 	input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],  input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{
 		border: none;
-		width: 85%;	
+		width: 70%;	
 		box-shadow:none;
 	}
 	
@@ -90,3 +94,55 @@
 		text-align: center;
 		height:50px;
 	}
+	
+	.bottomBorder{
+		border-right: none;
+		border-left: none;
+		border-top: none;
+	}
+	
+	.NoBorderTable{
+		border:none;
+		width:40%;
+		position:relative;
+		margin-top: 10%;
+		margin-left: 15%;
+		font-size:18px;
+	}
+	
+	.firstTitle{
+		position:relative;
+		margin-top: 5%;
+		margin-left:15%;
+	}
+	
+	.div1{
+		position:relative;
+		margin-top:10%;
+		margin-left:40%;
+	}
+	
+	.div2{
+		position:relative;
+		margin-top:10%;
+		margin-left:15%;
+		font-size:20px;
+		width:55%;
+	}
+	
+	.div3{
+		position:relative;
+		margin-top:5%;
+		font-size:20px;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
