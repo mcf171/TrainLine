@@ -22,9 +22,7 @@ public class NoteAction extends BaseActionSupport {
 	public String findAllNote(){
 		nList = noteService.findAll();
 		dataMap.put("nList", nList);
-		//request.setAttribute("nList", nList);
-		
-		return this.SUCCESS;
+		return SUCCESS;
 	}
 	
 	

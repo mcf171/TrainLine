@@ -3,7 +3,9 @@
 <struts>
 	<package name="questionnaire" namespace="/" extends="json-default">
 		<action name="questionnaire_*" class="questionnarieAction" method="{1}">
-		<result type="json" name="json"></result>
+		<result type="json" name="json">
+		<param name="root">dataMap</param>
+		</result>
 		</action>
 	</package>
 </struts>    

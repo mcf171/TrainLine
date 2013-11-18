@@ -3,9 +3,6 @@ package cn.com.action;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Questionnaire;
 import cn.com.service.QuestionnaireService;
@@ -24,11 +21,9 @@ public class QuestionnaireAction extends BaseActionSupport{
 	public String findAllQuestionnare()throws Exception{
 		qList = questionnairerService.findAll();
 		dataMap.put("qList",qList);
-		request.setAttribute("qList",qList);
+		//request.setAttribute("qList", qList);
 		return JSON;
 	}
-	
-	
 	
 	
 
@@ -37,13 +32,9 @@ public class QuestionnaireAction extends BaseActionSupport{
 	}
 
 
-
-
 	public List<Questionnaire> getqList() {
 		return qList;
 	}
-
-
 
 
 	public void setqList(List<Questionnaire> qList) {
@@ -51,14 +42,13 @@ public class QuestionnaireAction extends BaseActionSupport{
 	}
 
 
-
-
-	public Map getDataMap() {
+	public Map<Object, List> getDataMap() {
 		return dataMap;
 	}
 
 
-	public void setDataMap(Map dataMap) {
+	public void setDataMap(Map<Object, List> dataMap) {
 		this.dataMap = dataMap;
 	}
+
 }

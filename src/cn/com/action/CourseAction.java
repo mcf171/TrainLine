@@ -1,8 +1,8 @@
 package cn.com.action;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Course;
 import cn.com.service.CourseService;
@@ -10,7 +10,12 @@ import cn.com.service.CourseService;
 public class CourseAction extends BaseActionSupport {
 	private List<Course> cList;
 	private CourseService courseService;
-	private Map dataMap;
+	private Map<String,List> dataMap;
+	
+	public CourseAction()
+	{
+		dataMap =new  HashMap<String, List>();
+	}
 	
 	
 	public String findAllCourse(){
@@ -27,9 +32,6 @@ public class CourseAction extends BaseActionSupport {
 		this.cList = cList;
 	}
 
-	public CourseService getCourseService() {
-		return courseService;
-	}
 
 	public void setCourseService(CourseService courseService) {
 		this.courseService = courseService;

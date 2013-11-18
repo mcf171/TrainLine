@@ -13,7 +13,9 @@ public class Note implements java.io.Serializable {
 	private Integer userId;
 	private String noteContent;
 
+	
 	// Constructors
+	
 
 	/** default constructor */
 	public Note() {

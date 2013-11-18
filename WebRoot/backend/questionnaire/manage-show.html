@@ -1,43 +1,47 @@
 ﻿
-	
     <link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
     <link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
     <link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
     <link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
-    
     <script type="text/javascript" src="../scripts/mmgrid.js"></script>
     <script type="text/javascript" src="../scripts/mmpaginator.js"></script>
     <script type="text/javascript" src="../scripts/datepicker.js"></script>
 
 	<script type="text/javascript">
-//<![CDATA[
 $(document).ready(function ()
 {
 	$('#time-to').css('background', 'none').datepicker();
 	$('#time-from').css('background', 'none').datepicker();
 
 	$('#grid').mmGrid({
-		url: '/api/questionnaire',
+		url:'http://127.0.0.1:8080/TrainLine/questionnaire_findAllQuestionnare.action',
 		height: 410,
 		autoLoad: true,
+		root:'qList',
 		fullWithRows: true,
 		cols: [
-			{ title: '名字', sortable: true, width: 100, name: 'name' },	
-			{ title: '课程', sortable: true, width: 100, name: 'course' },
-			{ title: '', sortable: true, width: 110, name: '' },
-			{ title: '', sortable: true, width: 110, name: '' },
-			{ title: '', sortable: true, width: 110, name: '' },
-			{ title: '', sortable: true, width: 110, name: '' },
-			{ title: '', sortable: true, width: 100, name: '' },
-			{ title: '是否置顶 ', sortable: true, width: 100, name: '' },
-			{ title: '操作 ', sortable: true, width: 100, name: '' }
-		],
+     { title: 'ID', sortable: true, width: 100, name: 'questionnaireId' },  
+     { title: '问卷标题', sortable: true, width: 100, name:'questionnaireTitle' },
+     { title: '发起人', sortable: true, width: 110, name:'questionnaireAuthor' },
+     { title: '问卷编号', sortable: true, width: 110, name:'questionnaireNumber' },
+     { title: '是否公开', sortable: true, width: 110, 
+       renderer: function (val, item, row) {
+       return item.open=1? '公开':'不公开';
+       }
+     },
+     {
+     title: '操作',width: 100,renderer: function (val, item, row) 
+       {        
+        return '<input type="hidden" value="' + item.questionnaireId + '" /><a href="read.jsp" target="_blank">阅读</a> ';
+       }
+       }
+       ],
 		plugins: [
 			$('#page').mmPaginator({})
 		]
 	});
+	
 });
-//]]>
 </script>
 	
             <div class="row-fluid ">

@@ -1,16 +1,78 @@
+<link rel="stylesheet" type="text/css" href="../styles/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
 <link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
-<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
-<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
+<link rel="stylesheet" type="text/css"
+	href="../themes/mmgrid/mmgrid.css" />
+<link rel="stylesheet" type="text/css"
+	href="../themes/mmgrid/mmpaginator.css" />
+<script type="text/javascript" src="../scripts/datepicker.js"></script>
 <script type="text/javascript" src="../scripts/mmgrid.js"></script>
 <script type="text/javascript" src="../scripts/mmpaginator.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function ()
+{
+	$('#time-to').css('background', 'none').datepicker();
+	$('#time-from').css('background', 'none').datepicker();
 
-<div class="row-fluid line-margin">
+	$('#grid').mmGrid({
+		url: 'http://127.0.0.1:8080/TrainLine/trainingClass_findAllTrainingClass.action',
+		height: 410,
+		autoLoad: true,
+		root:'tcList',
+		fullWithRows: true,
+		cols: [
+	{ title: '班级ID', sortable: true, width: 80, name: 'trainingClassId' },
+     { title: '班级名称', sortable: true, width:120, name:'trainingClassName' },
+     { title: '班级等级', sortable: true, width: 90, name: 'trainingClassStatus' },
+      {
+         title: '操作',
+         width: 120,
+         renderer: function (val, item, row)
+         {
+         return '<input type="hidden" value="' + item.classcase.classCaseId + '" />' +
+             '<a href="#">查看</a>&nbsp;&nbsp;<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>';
+         }
+
+       }
+		],
+		plugins: [
+			$('#page').mmPaginator({})
+		]
+	});
+});
+//]]>
+</script>
+<div class="row-fluid">
+	<form id="condition" class="span12 form-inline no-margin">
+	<div class="row-fluid line-margin">
+	<button class="btn" id="addClassBtn"><i class="icon-plus"></i>添加</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn" id="batchInsertBtn">批量导入</button>
+	</div>
+		<div class="row-fluid line-margin">
+			<span class="help-inline"><b>查询过滤：</b>班级</span> <input type="text"
+				class="span2" placeholder="请输入班级编号" /> <span class="help-inline">班级名称</span>
+			<input type="text" class="span2" placeholder="请输入班级名称" /> <span
+				class="help-inline">班级等级</span> <input type="text" class="span2"
+				placeholder="请输入班级等级" />
+		</div>
+		<div class="row-fluid line-margin">
+		
+			<div class="pull-right">
+				<button class="btn">
+					<i class="icon-search"></i>&nbsp;查询
+				</button>
+				<button class="btn"
+					onclick="$('#condition')[0].reset();return false;">
+					<i class="icon-remove"></i>&nbsp;清除条件
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="row-fluid">
 	<div class="span12">
-		<img src="classes/classes.png" usemap="#Map2"/>
-		<map id="Map2" name="Map2">
-			<area href="classes/addClass1.html" coords="10,8,110,53" shape="rect">
-		</map>
+		<table id="grid"></table>
+		<button class="btn">批量删除</button>
+		<div id="page" class="pull-right"></div>
 	</div>
 </div>
-	

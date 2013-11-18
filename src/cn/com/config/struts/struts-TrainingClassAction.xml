@@ -3,6 +3,9 @@
 <struts>
 	<package name="trainingClass" namespace="/" extends="json-default">
 		<action name="trainingClass_*" class="trainingClassAction" method="{1}">
+		<result type="json" name="success">
+		<param name="root">dataMap</param>
+		</result>
 		</action>
 	</package>
 </struts>    

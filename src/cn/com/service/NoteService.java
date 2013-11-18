@@ -29,7 +29,6 @@ public class NoteService {
 	
 	public List<Note> findAll(){
 		return noteDAO.findAll();
-		
 	}
 
 	public NoteDAO getNoteDAO() {
