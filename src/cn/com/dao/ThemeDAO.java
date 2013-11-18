@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.com.model.Theme;
 
 
+import cn.com.model.Theme;
+
 /**
  * A data access object (DAO) providing persistence and search support for Theme
  * entities. Transaction control of the save(), update() and delete() operations

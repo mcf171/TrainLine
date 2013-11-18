@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.com.model.Practisingcertificate;
 
 
+import cn.com.model.Practisingcertificate;
+
 /**
  * A data access object (DAO) providing persistence and search support for
  * Practisingcertificate entities. Transaction control of the save(), update()

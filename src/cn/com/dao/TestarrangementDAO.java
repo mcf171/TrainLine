@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.com.model.Testarrangement;
 
 
+import cn.com.model.Testarrangement;
+
 /**
  * A data access object (DAO) providing persistence and search support for
  * Testarrangement entities. Transaction control of the save(), update() and

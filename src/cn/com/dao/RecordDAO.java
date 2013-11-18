@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.com.model.Record;
 
 
+import cn.com.model.Record;
+
 /**
  * A data access object (DAO) providing persistence and search support for
  * Record entities. Transaction control of the save(), update() and delete()

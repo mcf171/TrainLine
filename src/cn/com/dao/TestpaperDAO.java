@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.com.model.Testpaper;
 
 
+import cn.com.model.Testpaper;
+
 /**
  * A data access object (DAO) providing persistence and search support for
  * Testpaper entities. Transaction control of the save(), update() and delete()

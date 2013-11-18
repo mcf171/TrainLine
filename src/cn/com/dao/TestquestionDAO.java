@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.com.model.Testquestion;
 
 
+import cn.com.model.Testquestion;
+
 /**
  * A data access object (DAO) providing persistence and search support for
  * Testquestion entities. Transaction control of the save(), update() and

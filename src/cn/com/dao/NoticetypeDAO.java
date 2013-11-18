@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.com.model.Noticetype;
 
 
+import cn.com.model.Noticetype;
+
 /**
  * A data access object (DAO) providing persistence and search support for
  * Noticetype entities. Transaction control of the save(), update() and delete()

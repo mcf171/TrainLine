@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.com.model.Topic;
 
 
+import cn.com.model.Topic;
+
 /**
  * A data access object (DAO) providing persistence and search support for Topic
  * entities. Transaction control of the save(), update() and delete() operations

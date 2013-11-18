@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.com.model.Userandquestion;
 
 
+import cn.com.model.Userandquestion;
+
 /**
  * A data access object (DAO) providing persistence and search support for
  * Userandquestion entities. Transaction control of the save(), update() and

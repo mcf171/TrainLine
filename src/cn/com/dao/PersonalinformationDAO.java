@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.com.model.Personalinformation;
 
 
+import cn.com.model.Personalinformation;
+
 /**
  * A data access object (DAO) providing persistence and search support for
  * Personalinformation entities. Transaction control of the save(), update() and

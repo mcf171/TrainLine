@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.com.model.Trainingclass;
 
 
+import cn.com.model.Trainingclass;
+
 /**
  * A data access object (DAO) providing persistence and search support for
  * Trainingclass entities. Transaction control of the save(), update() and
