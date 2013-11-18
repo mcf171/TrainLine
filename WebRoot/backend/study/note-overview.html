@@ -14,22 +14,21 @@ $(document).ready(function ()
 	$('#time-from').css('background', 'none').datepicker();
 
 	$('#grid').mmGrid({
-		url: 'http://127.0.0.1:8080/TrainLine/note_findAllNote.action',
+		url: '/api/backend/study/get_note_overview',
 		height: 410,
 		autoLoad: true,
-		root:'nList',
 		fullWithRows: true,
 		cols: [
-			{ title: '笔记ID', sortable: true, width: 120, name: 'noteId' },
-			{ title: '课程目录ID', sortable: true, width: 120, name: 'catalogue.catalogueId' },
-			{ title: '笔记作者', sortable: true, width: 90, name: 'userId' },
-			{ title: '笔记内容', sortable: true, width: 150, name: 'noteContent' },
+			{ title: '课程名称', sortable: true, width: 320, name: 'course' },
+			{ title: '笔记标题', sortable: true, width: 320, name: 'title' },
+			{ title: '姓名', sortable: true, width: 90, name: 'name' },
+			{ title: '笔记时间', sortable: true, width: 150, name: 'time' },
 			{
 				title: '操作',
 				width: 120,
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.noteId + '" />' +
+					return '<input type="hidden" value="' + item.id + '" />' +
 						'<a href="#">查看</a>&nbsp;&nbsp;<a href="#">批注</a>&nbsp;&nbsp;<a href="#">删除</a>';
 				}
 			}

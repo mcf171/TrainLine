@@ -17,24 +17,20 @@ $(document).ready(function ()
 	$('#time-from').css('background', 'none').datepicker();
 
 	$('#grid').mmGrid({
-		url:'http://127.0.0.1:8080/TrainLine/questionnaire_findAllQuestionnare.action',
+		url: '/api/questionnaire',
 		height: 410,
 		autoLoad: true,
-		root:'qList',
 		fullWithRows: true,
 		cols: [
-			{ title: 'ID', sortable: true, width: 100, name: 'questionnaireId' },	
-			{ title: '问卷标题', sortable: true, width: 100, name: 'questionnaireTitle' },
-			{ title: '发起人', sortable: true, width: 110, name: 'questionnaireAuthor' },
-			{ title: '问卷编号', sortable: true, width: 110, name: 'questionnaireNumber' },
-			{ title: '状态', sortable: true, width: 110, name: 'open' },
-			{title: '操作',
-				width: 100,
-				renderer: function (val, item, row) 
-				{
-					return '<input type="hidden" value="' + item.questionnaireId + '" /><a href="read.jsp" target="_blank">阅读</a> ';
-				}
-				}
+			{ title: '名字', sortable: true, width: 100, name: 'name' },	
+			{ title: '课程', sortable: true, width: 100, name: 'course' },
+			{ title: '', sortable: true, width: 110, name: '' },
+			{ title: '', sortable: true, width: 110, name: '' },
+			{ title: '', sortable: true, width: 110, name: '' },
+			{ title: '', sortable: true, width: 110, name: '' },
+			{ title: '', sortable: true, width: 100, name: '' },
+			{ title: '是否置顶 ', sortable: true, width: 100, name: '' },
+			{ title: '操作 ', sortable: true, width: 100, name: '' }
 		],
 		plugins: [
 			$('#page').mmPaginator({})
