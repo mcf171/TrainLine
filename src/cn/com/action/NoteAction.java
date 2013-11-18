@@ -11,28 +11,34 @@ import cn.com.service.NoteService;
 public class NoteAction extends BaseActionSupport {
 	private List<Note> nList;
 	private NoteService noteService;
-	private Map<Object,List> dataMap;
+	private Map<String,List> dataMap;
 	
 	public NoteAction()
 	{
-		dataMap = new HashMap<Object, List>();
+		dataMap = new HashMap<String, List>();
 	}
 
 	@SuppressWarnings("unchecked")
 	public String findAllNote(){
 		nList = noteService.findAll();
 		dataMap.put("nList", nList);
-		request.setAttribute("nList", nList);
-		return JSON;
+		//request.setAttribute("nList", nList);
+		
+		return this.SUCCESS;
 	}
 	
 	
-	public Map<Object, List> getDataMap() {
+
+	public Map<String, List> getDataMap() {
 		return dataMap;
 	}
 
-	public void setDataMap(Map<Object, List> dataMap) {
+	public void setDataMap(Map<String, List> dataMap) {
 		this.dataMap = dataMap;
+	}
+
+	public NoteService getNoteService() {
+		return noteService;
 	}
 
 	public List<Note> getnList() {

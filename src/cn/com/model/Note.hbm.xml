@@ -10,7 +10,7 @@
             <column name="noteId" />
             <generator class="native" />
         </id>
-        <many-to-one name="catalogue" class="cn.com.model.Catalogue" fetch="select">
+        <many-to-one name="catalogue" class="cn.com.model.Catalogue" lazy="false" fetch="join" >
             <column name="catalogueId" />
         </many-to-one>
         <property name="userId" type="java.lang.Integer">

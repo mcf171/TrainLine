@@ -3,7 +3,10 @@
 <struts>
 	<package name="note" namespace="/" extends="json-default">
 		<action name="note_*" class="noteAction" method="{1}">
-		<result type="json" name="json"></result>
+			<result type="json">
+5	                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
+6	                <param name="root">dataMap</param>
+7	            </result>
 		</action>
 	</package>
 </struts>    
