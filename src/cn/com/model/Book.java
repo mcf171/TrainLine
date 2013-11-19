@@ -13,6 +13,8 @@ public class Book implements java.io.Serializable {
 	private String bookContent;
 	private String bookClassIndex;
 	private Booktype bookType;
+	private Integer bookState;
+	private String bookURL;
 	// Constructors
 
 	/** default constructor */
@@ -70,6 +72,22 @@ public class Book implements java.io.Serializable {
 
 	public void setBookClassIndex(String bookClassIndex) {
 		this.bookClassIndex = bookClassIndex;
+	}
+
+	public Integer getBookState() {
+		return bookState;
+	}
+
+	public void setBookState(Integer bookState) {
+		this.bookState = bookState;
+	}
+
+	public String getBookURL() {
+		return bookURL;
+	}
+
+	public void setBookURL(String bookURL) {
+		this.bookURL = bookURL;
 	}
 
 }

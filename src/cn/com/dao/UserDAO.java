@@ -8,33 +8,33 @@ import org.hibernate.LockMode;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import cn.com.model.Book;
+import cn.com.model.User;
 
 /**
- * A data access object (DAO) providing persistence and search support for Book
+ * A data access object (DAO) providing persistence and search support for User
  * entities. Transaction control of the save(), update() and delete() operations
  * can directly support Spring container-managed transactions or they can be
  * augmented to handle user-managed Spring transactions. Each of these methods
  * provides additional information for how to configure it for the desired type
  * of transaction control.
  * 
- * @see cn.com.model.Book
+ * @see cn.com.dao1.User
  * @author MyEclipse Persistence Tools
  */
-public class BookDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(BookDAO.class);
+public class UserDAO extends HibernateDaoSupport {
+	private static final Log log = LogFactory.getLog(UserDAO.class);
 	// property constants
-	public static final String BOOK_NAME = "bookName";
-	public static final String BOOK_CONTENT = "bookContent";
-	public static final String BOOK_TYPE_ID = "bookTypeId";
-	public static final String BOOK_CLASS_INDEX = "bookClassIndex";
+	public static final String USER_NAME = "userName";
+	public static final String USER_CONTENT = "userContent";
+	public static final String USER_TYPE_ID = "userTypeId";
+	public static final String USER_CLASS_INDEX = "userClassIndex";
 
 	protected void initDao() {
 		// do nothing
 	}
 
-	public void save(Book transientInstance) {
-		log.debug("saving Book instance");
+	public void save(User transientInstance) {
+		log.debug("saving User instance");
 		try {
 			getHibernateTemplate().save(transientInstance);
 			log.debug("save successful");
@@ -44,8 +44,8 @@ public class BookDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void delete(Book persistentInstance) {
-		log.debug("deleting Book instance");
+	public void delete(User persistentInstance) {
+		log.debug("deleting User instance");
 		try {
 			getHibernateTemplate().delete(persistentInstance);
 			log.debug("delete successful");
@@ -55,11 +55,11 @@ public class BookDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public Book findById(java.lang.Integer id) {
-		log.debug("getting Book instance with id: " + id);
+	public User findById(java.lang.Integer id) {
+		log.debug("getting User instance with id: " + id);
 		try {
-			Book instance = (Book) getHibernateTemplate().get(
-					"cn.com.model.Book", id);
+			User instance = (User) getHibernateTemplate().get(
+					"cn.com.dao1.User", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -67,8 +67,8 @@ public class BookDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByExample(Book instance) {
-		log.debug("finding Book instance by example");
+	public List findByExample(User instance) {
+		log.debug("finding User instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
 			log.debug("find by example successful, result size: "
@@ -81,10 +81,10 @@ public class BookDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Book instance with property: " + propertyName
+		log.debug("finding User instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from Book as model where model."
+			String queryString = "from User as model where model."
 					+ propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
@@ -93,26 +93,26 @@ public class BookDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByBookName(Object bookName) {
-		return findByProperty(BOOK_NAME, bookName);
+	public List findByUserName(Object userName) {
+		return findByProperty(USER_NAME, userName);
 	}
 
-	public List findByBookContent(Object bookContent) {
-		return findByProperty(BOOK_CONTENT, bookContent);
+	public List findByUserContent(Object userContent) {
+		return findByProperty(USER_CONTENT, userContent);
 	}
 
-	public List findByBookTypeId(Object bookTypeId) {
-		return findByProperty(BOOK_TYPE_ID, bookTypeId);
+	public List findByUserTypeId(Object userTypeId) {
+		return findByProperty(USER_TYPE_ID, userTypeId);
 	}
 
-	public List findByBookClassIndex(Object bookClassIndex) {
-		return findByProperty(BOOK_CLASS_INDEX, bookClassIndex);
+	public List findByUserClassIndex(Object userClassIndex) {
+		return findByProperty(USER_CLASS_INDEX, userClassIndex);
 	}
 
 	public List findAll() {
-		log.debug("finding all Book instances");
+		log.debug("finding all User instances");
 		try {
-			String queryString = "from Book";
+			String queryString = "from User";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
@@ -120,10 +120,10 @@ public class BookDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public Book merge(Book detachedInstance) {
-		log.debug("merging Book instance");
+	public User merge(User detachedInstance) {
+		log.debug("merging User instance");
 		try {
-			Book result = (Book) getHibernateTemplate().merge(detachedInstance);
+			User result = (User) getHibernateTemplate().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -132,8 +132,8 @@ public class BookDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void attachDirty(Book instance) {
-		log.debug("attaching dirty Book instance");
+	public void attachDirty(User instance) {
+		log.debug("attaching dirty User instance");
 		try {
 			getHibernateTemplate().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -143,8 +143,8 @@ public class BookDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void attachClean(Book instance) {
-		log.debug("attaching clean Book instance");
+	public void attachClean(User instance) {
+		log.debug("attaching clean User instance");
 		try {
 			getHibernateTemplate().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -154,7 +154,7 @@ public class BookDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public static BookDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (BookDAO) ctx.getBean("BookDAO");
+	public static UserDAO getFromApplicationContext(ApplicationContext ctx) {
+		return (UserDAO) ctx.getBean("UserDAO");
 	}
 }

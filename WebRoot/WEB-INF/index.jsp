@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -23,7 +24,7 @@ var PAGES = {
 	page_2:'exam.jsp',
 	page_3: 'dangjian.jsp',
 	page_4: 'education.jsp',
-	page_5: 'liberary.jsp'
+	page_5: 'showNormalLiberaryListPage.action'
 };
 
 function load_page(page)
@@ -91,6 +92,10 @@ $(document).ready(function ()
 			<span class="offset1">${user.userName}</span>
 		</div>
 		<div class="pull-right">
+			<c:if test="${user.userState== 1}">
+			<a href="getBackendIndex.action" target="_blank">后台管理</a>
+			&nbsp;
+			</c:if>
 			<a href="userInfo.html" target="_blank">个人中心</a>
 			&nbsp;
 			<a href="${basePath}email/index.html">收件箱</a>

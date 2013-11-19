@@ -6,7 +6,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 		<bean id="liberaryAction" class="cn.com.action.LiberaryAction" scope="prototype">
-		<property name="liberaryService" ref="liberaryService"></property>
-	</bean>
-
+			<property name="liberaryService" ref="liberaryService"></property>
+		</bean>
+	
+		<bean id="userAction" class="cn.com.action.UserAction" scope="prototype">
+			<property name="userService" ref="userService"></property>
+		</bean>
+		
 	</beans>

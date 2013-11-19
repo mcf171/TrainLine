@@ -21,6 +21,14 @@
             <column name="bookClassIndex" length="20" />
         </property>
         
+        <property name="bookState" type="java.lang.Integer">
+            <column name="bookState"  />
+        </property>
+        
+        <property name="bookURL" type="java.lang.String">
+            <column name="bookURL" length="500" />
+        </property>
+        
         <many-to-one name="bookType" column="bookTypeId" lazy="false" fetch="join" class="cn.com.model.Booktype"></many-to-one>
     </class>
 </hibernate-mapping>

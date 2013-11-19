@@ -4,5 +4,6 @@
 		<include file="cn/com/config/struts/struts-global.xml"></include>
 		
 		<include file="cn/com/config/struts/struts-liberary.xml"></include>
+		<include file="cn/com/config/struts/struts-user.xml"></include>
 
 </struts>    

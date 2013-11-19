@@ -9,7 +9,10 @@
 	<bean id="liberaryService" class="cn.com.service.LiberaryService" scope="prototype">
 		<property name="bookDAO" ref="BookDAO"></property>
 	</bean>
-
+	
+	<bean id="userService" class="cn.com.service.UserService" scope="prototype">
+		<property name="userDAO" ref="UserDAO"></property>
+	</bean>
 	
 
 	</beans>

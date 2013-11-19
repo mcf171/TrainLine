@@ -3,10 +3,48 @@
 <struts>
 	
 	<package name="liberary" extends="system" >
-	<action name="getInsideLiberaryList" class="liberaryAction" method="getInsideLiberaryList">
-			<result type="json">
-			<param name="root">dataMap</param>
-			</result>
-   	</action>
+		<action name="getInsideLiberaryList" class="liberaryAction" method="getInsideLiberaryList">
+				<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+	   	</action>
+	   	
+	   	<action name="getOutSideLiberaryList" class="liberaryAction" method="getOutSideLiberaryList">
+				<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+	   	</action>
+	   	
+	   	<action name="getDangkeLiberaryList" class="liberaryAction" method="getDangkeLiberaryList">
+				<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+	   	</action>
+   	
+   		<action name="readBook" class="liberaryAction" method="readBook">
+   			<result>/WEB-INF/read.jsp</result>
+   		</action>
+   		
+   		<action name="showNormalLiberaryListPage" class="liberaryAction" method="showNormalLiberaryListPage">
+   			<result>/WEB-INF/liberary.jsp</result>
+   		</action>
+   		
+   		
+   		<action name="showBackendLiberaryListPage" class="liberaryAction" method="showBackendLiberaryListPage">
+   			<result>/WEB-INF/backend/liberary.jsp</result>
+   		</action>
+   		
+   		<action name="showBackendInsideLiberaryListPage" class="liberaryAction" method="showBackendInsideLiberaryListPage">
+   			<result>/WEB-INF/backend/liberary/insideLiberary.jsp</result>
+   		</action>
+   		
+   		<action name="showBackendOutSideLiberaryListPage" class="liberaryAction" method="showBackendInsideLiberaryListPage">
+   			<result>/WEB-INF/backend/liberary/outsideLiberary.jsp</result>
+   		</action>
+   		
+   		<action name="showBackendDangkeLiberaryListPage" class="liberaryAction" method="showBackendInsideLiberaryListPage">
+   			<result>/WEB-INF/backend/liberary/dangkeLiberary.jsp</result>
+   		</action>
+   		
    	</package>
 </struts>    

@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     		var fp = new FlexPaperViewer(	
 						 'FlexPaperViewer',
 						 'viewerPlaceHolder', { config : {
-						 SwfFile : escape('${basePath}swfFile/Paper.swf'),
+						 SwfFile : escape('${basePath}${book.bookURL}'),
 						 Scale : 0.6, 
 						 ZoomTransition : 'easeOut',
 						 ZoomTime : 0.5,
