@@ -13,4 +13,40 @@
 			<property name="userService" ref="userService"></property>
 		</bean>
 		
+		<bean id="questionnarieAction" class="cn.com.action.QuestionnaireAction" scope="prototype">
+	<property name="questionnairerService" ref="questionnairerService"></property>
+	</bean>
+	
+	<bean id="questionnairerubricAction" class="cn.com.action.QuestionnaireRubricAction">
+	<property name="questionnairerubricService" ref="questionnairerubricService"></property>
+	</bean>
+	
+	<bean id="courseAction" class="cn.com.action.CourseAction" >
+	<property name="courseService" ref="courseService"></property>
+	</bean>
+	
+	<bean id="noteAction" class="cn.com.action.NoteAction">
+	<property name="noteService" ref="noteService"></property>
+	</bean>
+	
+	<bean id="testquestionAction" class="cn.com.action.TestquestionAction">
+	<property name="testQuestionService" ref="testQuestionService"></property>
+	</bean>
+	
+	<bean id="testPaperAction" class="cn.com.action.TestPaperAction">
+	<property name="testPaperService" ref="testPaperService"></property>
+	</bean>
+	
+	<bean id="testArrangementAction" class="cn.com.action.TestArrangementAction">
+	<property name="testArrangementService" ref="testArrangementService"></property>
+	</bean>
+	
+	<bean id="trainingClassAction" class="cn.com.action.TrainingClassAction">
+	<property name="trainingClassService" ref="trainingClassService"></property>
+	</bean>
+	
+	<bean id="credentialAction" class="cn.com.action.CredentialAction"> 
+	<property name="credentialService" ref="credentialService"></property>
+	</bean>
+		
 	</beans>

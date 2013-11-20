@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-		<include file="cn/com/config/struts/struts-global.xml"></include>
-		
-		<include file="cn/com/config/struts/struts-liberary.xml"></include>
-		<include file="cn/com/config/struts/struts-user.xml"></include>
+
+
+	<constant name="struts.devMode" value="fase" />
+	<constant name="struts.objectFactory" value="spring"></constant>
+	<package name="myDefaultPkg" abstract="true" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+	</package>
+
+	<include file="cn/com/config/struts/struts-global.xml"></include>
+	<include file="cn/com/config/struts/struts-liberary.xml"></include>
+	<include file="cn/com/config/struts/struts-questionnaireAction.xml"></include>
+	<include file="cn/com/config/struts/struts-questionnairerubricAction.xml"></include>
+	<include file="cn/com/config/struts/struts-courseAction.xml"></include>
+	<include file="cn/com/config/struts/struts-noteAction.xml"></include>
+	<include file="cn/com/config/struts/struts-TrainingClassAction.xml"></include>
+	<include file="cn/com/config/struts/struts-credentialAction.xml"></include>
+	<include file="cn/com/config/struts/struts-user.xml"></include>
 
 </struts>    

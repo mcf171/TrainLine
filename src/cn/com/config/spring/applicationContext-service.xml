@@ -14,5 +14,43 @@
 		<property name="userDAO" ref="UserDAO"></property>
 	</bean>
 	
+	<bean id="questionnairerService" class="cn.com.service.QuestionnaireService">
+		<property name="questionnaireDAO" ref="QuestionnaireDAO"></property>
+	</bean>
+	
+	
+
+	<bean id="questionnairerubricService" class="cn.com.service.QuestionnairerubricService">
+		<property name="questionnairerubricDAO" ref="QuestionnairerubricDAO"></property>
+	</bean>
+
+	<bean id="courseService" class="cn.com.service.CourseService">
+		<property name="courseDAO" ref="CourseDAO"></property>
+	</bean>
+
+	<bean id="noteService" class="cn.com.service.NoteService">
+		<property name="noteDAO" ref="NoteDAO"></property>
+	</bean>
+
+	<bean id="testQuestionService" class="cn.com.service.TestQuestionService">
+		<property name="testquestionDAO" ref="TestquestionDAO"></property>
+	</bean>
+
+	<bean id="testPaperService" class="cn.com.service.TestPaperService">
+		<property name="testpaperDAO" ref="TestpaperDAO"></property>
+	</bean>
+
+	<bean id="testArrangementService" class="cn.com.service.TestArrangementService">
+		<property name="testarrangementDAO" ref="TestarrangementDAO"></property>
+	</bean>
+
+	<bean id="trainingClassService" class="cn.com.service.TrainingClassService">
+		<property name="trainingclassDAO" ref="TrainingclassDAO"></property>
+	</bean>
+
+	<bean id="credentialService" class="cn.com.service.CredentialService">
+		<property name="credentialDAO" ref="CredentialDAO"></property>
+	</bean>
+	
 
 	</beans>
