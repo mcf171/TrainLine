@@ -12,11 +12,10 @@ public class NoteAction extends BaseActionSupport {
 	private List<Note> nList;
 	private NoteService noteService;
 	private Map<String,List> dataMap;
-	private Note note;
 	
 	//**查询条件*/
-	private Integer noteId;
-	private Integer catalogueId;
+	private String userId;
+	private String catalogueId;
 	private String noteContent;
 	
 	
@@ -38,21 +37,8 @@ public class NoteAction extends BaseActionSupport {
 		return "search";
 	}
 	
-	public Integer getNoteId() {
-		return noteId;
-	}
 
-	public void setNoteId(Integer noteId) {
-		this.noteId = noteId;
-	}
 
-	public Integer getCatalogueId() {
-		return catalogueId;
-	}
-
-	public void setCatalogueId(Integer catalogueId) {
-		this.catalogueId = catalogueId;
-	}
 
 	public String getNoteContent() {
 		return noteContent;
@@ -70,9 +56,7 @@ public class NoteAction extends BaseActionSupport {
 		this.dataMap = dataMap;
 	}
 
-	public NoteService getNoteService() {
-		return noteService;
-	}
+
 
 	public List<Note> getnList() {
 		return nList;
@@ -81,21 +65,31 @@ public class NoteAction extends BaseActionSupport {
 	public void setnList(List<Note> nList) {
 		this.nList = nList;
 	}
-//
-//	public NoteService getNoteService() {
-//		return noteService;
-//	}
+
 
 	public void setNoteService(NoteService noteService) {
 		this.noteService = noteService;
 	}
 
-	public Note getNote() {
-		return note;
+
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setNote(Note note) {
-		this.note = note;
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
+
+
+	public String getCatalogueId() {
+		return catalogueId;
+	}
+
+
+	public void setCatalogueId(String catalogueId) {
+		this.catalogueId = catalogueId;
+	}
+
 
 }
