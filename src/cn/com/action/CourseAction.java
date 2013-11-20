@@ -6,7 +6,7 @@ import java.util.Map;
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Course;
 import cn.com.service.CourseService;
-
+//test
 public class CourseAction extends BaseActionSupport {
 	private List<Course> cList;
 	private CourseService courseService;

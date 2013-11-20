@@ -7,7 +7,7 @@ import java.util.Map;
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Note;
 import cn.com.service.NoteService;
-
+//test
 public class NoteAction extends BaseActionSupport {
 	private List<Note> nList;
 	private NoteService noteService;

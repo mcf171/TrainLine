@@ -6,7 +6,7 @@ import java.util.Map;
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Questionnaire;
 import cn.com.service.QuestionnaireService;
-
+//test
 public class QuestionnaireAction extends BaseActionSupport{
 	private QuestionnaireService questionnairerService;
 	private List<Questionnaire> qList;
