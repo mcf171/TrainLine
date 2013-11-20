@@ -12,11 +12,19 @@ public class NoteAction extends BaseActionSupport {
 	private List<Note> nList;
 	private NoteService noteService;
 	private Map<String,List> dataMap;
+	private Note note;
+	
+	//**查询条件*/
+	private Integer noteId;
+	private Integer catalogueId;
+	private String noteContent;
+	
 	
 	public NoteAction()
 	{
 		dataMap = new HashMap<String, List>();
 	}
+
 
 	@SuppressWarnings("unchecked")
 	public String findAllNote(){
@@ -25,8 +33,35 @@ public class NoteAction extends BaseActionSupport {
 		return SUCCESS;
 	}
 	
+	public String searchNote()
+	{
+		return "search";
+	}
 	
+	public Integer getNoteId() {
+		return noteId;
+	}
 
+	public void setNoteId(Integer noteId) {
+		this.noteId = noteId;
+	}
+
+	public Integer getCatalogueId() {
+		return catalogueId;
+	}
+
+	public void setCatalogueId(Integer catalogueId) {
+		this.catalogueId = catalogueId;
+	}
+
+	public String getNoteContent() {
+		return noteContent;
+	}
+
+	public void setNoteContent(String noteContent) {
+		this.noteContent = noteContent;
+	}
+	
 	public Map<String, List> getDataMap() {
 		return dataMap;
 	}
@@ -53,6 +88,14 @@ public class NoteAction extends BaseActionSupport {
 
 	public void setNoteService(NoteService noteService) {
 		this.noteService = noteService;
+	}
+
+	public Note getNote() {
+		return note;
+	}
+
+	public void setNote(Note note) {
+		this.note = note;
 	}
 
 }
