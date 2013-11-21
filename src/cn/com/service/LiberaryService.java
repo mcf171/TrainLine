@@ -3,12 +3,21 @@ package cn.com.service;
 import java.util.List;
 
 import cn.com.dao.BookDAO;
+import cn.com.dao.BooktypeDAO;
 import cn.com.model.Book;
+import cn.com.model.Booktype;
 
 public class LiberaryService {
 
 	private BookDAO bookDAO ;
+	private BooktypeDAO bookTypeDAO;
 
+	
+	public List<Booktype> getBookTypeList(){
+		
+		return bookTypeDAO.findAll();
+	}
+	
 	public List<Book> getInsideLiberaryList(){
 		
 		 return bookDAO.findByProperty("bookState", 1);
@@ -35,6 +44,14 @@ public class LiberaryService {
 
 	public void setBookDAO(BookDAO bookDAO) {
 		this.bookDAO = bookDAO;
+	}
+
+	public BooktypeDAO getBookTypeDAO() {
+		return bookTypeDAO;
+	}
+
+	public void setBookTypeDAO(BooktypeDAO bookTypeDAO) {
+		this.bookTypeDAO = bookTypeDAO;
 	}
 	
 	

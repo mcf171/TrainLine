@@ -7,6 +7,7 @@
 	
 		<bean id="liberaryAction" class="cn.com.action.LiberaryAction" scope="prototype">
 			<property name="liberaryService" ref="liberaryService"></property>
+			
 		</bean>
 	
 		<bean id="userAction" class="cn.com.action.UserAction" scope="prototype">

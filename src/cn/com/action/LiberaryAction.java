@@ -6,6 +6,7 @@ import java.util.Map;
 
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Book;
+import cn.com.model.Booktype;
 import cn.com.service.LiberaryService;
 //test
 public class LiberaryAction extends BaseActionSupport{
@@ -31,6 +32,10 @@ public class LiberaryAction extends BaseActionSupport{
 	}
 	
 	public String showBackendInsideLiberaryListPage(){
+		
+		List<Booktype> list = liberaryService.getBookTypeList();
+		//request.setAttribute("test", "test");
+		request.setAttribute("bookTypeList", list);
 		
 		return this.SUCCESS;
 	}
