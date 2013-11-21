@@ -5,12 +5,12 @@
 	<package name="user" extends="system" >
 	
    		<action name="login" class="userAction" method="login">
-   			<result>/WEB-INF/index.jsp</result>
+   			<result>/WEB-INF/jsp/index.jsp</result>
    			<result name="input">login.jsp</result>
    		</action>
    		
    		<action name="getBackendIndex" class="userAction" method="getBackendIndex">
-   			<result>/WEB-INF/backend/index.jsp</result>
+   			<result>/WEB-INF/jsp/backend/index.jsp</result>
    		</action>
    		
    	</package>
