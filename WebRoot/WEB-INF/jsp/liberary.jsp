@@ -7,18 +7,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="styles/global.css" />
-<link rel="stylesheet" type="text/css" href="styles/mmgrid.css" />
-<link rel="stylesheet" type="text/css" href="styles/mmpaginator.css" />
-<link rel="stylesheet" type="text/css" href="themes/mmgrid/mmgrid.css" />
-<link rel="stylesheet" type="text/css" href="themes/mmgrid/mmpaginator.css" />
-<script type="text/javascript" src="scripts/jquery.js"></script>
-<script type="text/javascript" src="scripts/bootstrap.js"></script>
-<script type="text/javascript" src="scripts/mousewheel.js"></script>
-<script type="text/javascript" src="scripts/global.js"></script>
-<script type="text/javascript" src="scripts/mmgrid.js"></script>
-<script type="text/javascript" src="scripts/mmpaginator.js"></script>
+<link rel="stylesheet" type="text/css" href="${basePath}styles/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/global.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/mmpaginator.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmpaginator.css" />
+<script type="text/javascript" src="${basePath}scripts/jquery.js"></script>
+<script type="text/javascript" src="${basePath}scripts/bootstrap.js"></script>
+<script type="text/javascript" src="${basePath}scripts/mousewheel.js"></script>
+<script type="text/javascript" src="${basePath}scripts/global.js"></script>
+<script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
+<script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
 <title>图书馆</title>
 <script type="text/javascript">
 //<![CDATA[
@@ -57,7 +57,10 @@ $(document).ready(function ()
 				width: 100,
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.bookType.bookTypeName + '" /><a href="read.jsp" target="_blank">阅读</a> ';
+					outHTML = '<a href="readBook.action?book.bookId=' + item.bookId + '"  target="_blank">阅读</a> '; 
+					console.log(outHTML);
+					return  outHTML;
+					
 				}
 			}
 		],
@@ -67,25 +70,33 @@ $(document).ready(function ()
 	});
 	
 	$('#grid-selected').mmGrid({
-		url:  '${basePath}bookList.action',
+		url:  '${basePath}getOutSideLiberaryList.action',
 		height: 280,
 		autoLoad: true,
 		fullWithRows: true,
-		root:'bookList',
+		root:'liberary',
 		cols: [
-			{ title: '图书名称', sortable: true, width: 210, name: 'bookName' },
-			{ title: '图书简介', sortable: true, width: 250, name: 'bookContent' },
-			{ title: '图书类别', sortable: true, width: 210, name: 'bookClass' },	
-			{ title: '图书编号', sortable: true, width: 210, name: 'bookClassIndex' },
-			{
-				title: '操作',
-				width: 100,
-				renderer: function (val, item, row)
+				{ title: '图书名称', sortable: true, width: 210, name: 'bookName' },
+				{ title: '图书简介', sortable: true, width: 250, name: 'bookContent' },
+				{ title: '图书类别', sortable: true, width: 210, 
+					renderer: function (val, item, row)
+					{
+					return item.bookType.bookTypeName;
+					}
+				},	
+				{ title: '图书编号', sortable: true, width: 210, name: 'bookClassIndex' },
 				{
-					return '<input type="hidden" value="' + item.id + '" /><a href="http://lib.csu.edu.cn/pubnew/zndxtsgnew/resourcedha/sydatabase/201304/t20130403_2433.html" target="_blank">阅读</a> ';
+					title: '操作',
+					width: 100,
+					renderer: function (val, item, row)
+					{
+						outHTML = '<a href="readBook.action?book.bookId=' + item.bookId + '"  target="_blank">阅读</a> '; 
+						console.log(outHTML);
+						return  outHTML;
+						
+					}
 				}
-			}
-		],
+			],
 		plugins: [
 			$('#page').mmPaginator({})
 		]

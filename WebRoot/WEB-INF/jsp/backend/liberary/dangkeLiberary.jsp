@@ -1,13 +1,14 @@
-﻿
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+
 	
-    <link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
-    <link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
-    <link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
-    <link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
+    <link rel="stylesheet" type="text/css" href="${basePath}styles/mmgrid.css" />
+    <link rel="stylesheet" type="text/css" href="${basePath}styles/mmpaginator.css" />
+    <link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmgrid.css" />
+    <link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmpaginator.css" />
     
-    <script type="text/javascript" src="../scripts/mmgrid.js"></script>
-    <script type="text/javascript" src="../scripts/mmpaginator.js"></script>
-    <script type="text/javascript" src="../scripts/datepicker.js"></script>
+    <script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
+    <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
+    <script type="text/javascript" src="${basePath}scripts/datepicker.js"></script>
 
 	<script type="text/javascript">
 //<![CDATA[
@@ -17,21 +18,30 @@ $(document).ready(function ()
 	$('#time-from').css('background', 'none').datepicker();
 
 	$('#grid').mmGrid({
-		url: '/api/questionnaire',
+		url: '${basePath}getDangkeLiberaryList.action',
 		height: 410,
 		autoLoad: true,
 		fullWithRows: true,
+		root:'liberary',
 		cols: [
-			{ title: '名字', sortable: true, width: 100, name: 'name' },	
-			{ title: '课程', sortable: true, width: 100, name: 'course' },
-			{ title: '', sortable: true, width: 110, name: '' },
-			{ title: '', sortable: true, width: 110, name: '' },
-			{ title: '', sortable: true, width: 110, name: '' },
-			{ title: '', sortable: true, width: 110, name: '' },
-			{ title: '', sortable: true, width: 100, name: '' },
-			{ title: '是否置顶 ', sortable: true, width: 100, name: '' },
-			{ title: '操作 ', sortable: true, width: 100, name: '' }
-		],
+				{ title: '图书名称', sortable: true, width: 210, name: 'bookName' },
+				{ title: '图书简介', sortable: true, width: 250, name: 'bookContent' },
+				{ title: '图书类别', sortable: true, width: 210, 
+					renderer: function (val, item, row)
+					{
+					return item.bookType.bookTypeName;
+					}
+				},	
+				{ title: '图书编号', sortable: true, width: 210, name: 'bookClassIndex' },
+				{
+					title: '操作',
+					width: 100,
+					renderer: function (val, item, row)
+					{
+						return '<a href="#?book.bookId=' +item.bookId + '" target="_blank">修改</a> ' + '&nbsp' + '<a href="#?book.bookId=' +item.bookId + '" target="_blank">删除</a> ';
+					}
+				}
+			],
 		plugins: [
 			$('#page').mmPaginator({})
 		]

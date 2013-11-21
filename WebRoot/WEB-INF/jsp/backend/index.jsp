@@ -1,27 +1,28 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="../styles/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../styles/global.css" />
-<link rel="stylesheet" type="text/css" href="../styles/index.css" />
-<script type="text/javascript" src="../scripts/jquery.js"></script>
-<script type="text/javascript" src="../scripts/bootstrap.js"></script>
-<script type="text/javascript" src="../scripts/global.js"></script>
+<link rel="stylesheet" type="text/css" href="${basePath}styles/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/global.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/index.css" />
+<script type="text/javascript" src="${basePath}scripts/jquery.js"></script>
+<script type="text/javascript" src="${basePath}scripts/bootstrap.js"></script>
+<script type="text/javascript" src="${basePath}scripts/global.js"></script>
 <title>后台</title>
 <script type="text/javascript">
 //<![CDATA[
 var PAGES = {
-	page_0: 'study.html',
-	page_1: 'examinations.html',
-	page_2: 'classes.html',
-	page_3: 'resource.html',
-	page_4: 'human.html',
-	page_5: 'newsManager.html',
-	page_6: 'report.html',
-	page_7: 'system.html',
-	page_8: 'forum.html',
-	page_9:'liberaryhtml'
+	page_0: 'study.jsp',
+	page_1: 'examinations.jsp',
+	page_2: 'classes.jsp',
+	page_3: 'resource.jsp',
+	page_4: 'human.jsp',
+	page_5: 'newsManager.jsp',
+	page_6: 'report.jsp',
+	page_7: 'system.jsp',
+	page_8: 'forum.jsp',
+	page_9:'${basePath}showBackendLiberaryListPage.action'
 };
 
 function load_page(page)
@@ -54,7 +55,7 @@ $(document).ready(function ()
 </head>
 <body>
 <div class="row-fluid">
-	<img src="../images/logo.jpg" class="header-item"></img>
+	<img src="${basePath}images/logo.jpg" class="header-item"></img>
 	<div class="header-item header-title">
 		网络培训平台后端管理模块
 	</div>
@@ -83,3 +84,4 @@ $(document).ready(function ()
 </div>
 </body>
 </html>
+

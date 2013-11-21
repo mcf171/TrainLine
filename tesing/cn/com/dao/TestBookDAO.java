@@ -17,10 +17,12 @@ public class TestBookDAO extends TestCase{
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		BookDAO bookDAO = (BookDAO)context.getBean("BookDAO");
+		
 		List<Book> list = bookDAO.findAll();
 	     Assert.assertNotNull(list.get(0));
 		
 	}
+	
 	/*
 	public void testBookTypeDAO(){
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");

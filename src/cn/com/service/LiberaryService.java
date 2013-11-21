@@ -11,7 +11,22 @@ public class LiberaryService {
 
 	public List<Book> getInsideLiberaryList(){
 		
-		 return bookDAO.findAll();
+		 return bookDAO.findByProperty("bookState", 1);
+	}
+	
+	public List<Book> getOutSideLiberaryList(){
+		
+		return bookDAO.findByProperty("bookState", 2);
+	}
+	
+	public List<Book> getDangkeLiberaryList(){
+		
+		return bookDAO.findByProperty("bookState", 3);
+	}
+	
+	public Book getBook(int id){
+		
+		return bookDAO.findById(id);
 	}
 	
 	public BookDAO getBookDAO() {

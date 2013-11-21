@@ -66,6 +66,7 @@
 				<value>cn/com/model/Credential.hbm.xml</value>
 				<value>cn/com/model/Note.hbm.xml</value>
 				<value>cn/com/model/Classandcourse.hbm.xml</value>
+				<value>cn/com/model/User.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -269,6 +270,12 @@
 	</bean>
 	<bean id="ClassandcourseDAO"
 		class="cn.com.dao.ClassandcourseDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="UserDAO"
+		class="cn.com.dao.UserDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

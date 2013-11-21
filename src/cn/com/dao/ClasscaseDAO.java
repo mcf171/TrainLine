@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.com.model.Classcase;
+import cn.com.model.Trainingclass;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -61,6 +62,7 @@ public class ClasscaseDAO extends HibernateDaoSupport {
 		}
 	}
 
+	
 	public void delete(Classcase persistentInstance) {
 		log.debug("deleting Classcase instance");
 		try {
