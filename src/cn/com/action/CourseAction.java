@@ -6,11 +6,14 @@ import java.util.Map;
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Course;
 import cn.com.service.CourseService;
-//test
+
 public class CourseAction extends BaseActionSupport {
 	private List<Course> cList;
 	private CourseService courseService;
 	private Map<String,List> dataMap;
+	
+	private Integer courseId;
+	private Course course;
 	
 	public CourseAction()
 	{
@@ -19,9 +22,32 @@ public class CourseAction extends BaseActionSupport {
 	
 	
 	public String findAllCourse(){
-		cList =courseService.findAll();
+		if(course!=null)
+		{
+			cList =courseService.searchCourses(course);
+		}else{
+			cList =courseService.findAll();
+		}
 		dataMap.put("cList", cList);
 		return SUCCESS;
+	}
+	
+	public String deleteCourse(){
+		Course course = new Course();
+		course.setCourseId(courseId);
+		courseService.delete(course);
+		return SUCCESS;
+	}
+	
+	public String addCourse()
+	{
+		return "addCourse";
+	}
+	
+	public String intoCoursePage()
+	{
+		
+		return "intoCoursePage";
 	}
 
 	public List<Course> getcList() {
@@ -43,6 +69,26 @@ public class CourseAction extends BaseActionSupport {
 
 	public void setDataMap(Map dataMap) {
 		this.dataMap = dataMap;
+	}
+
+
+	public Integer getCourseId() {
+		return courseId;
+	}
+
+
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
+	}
+
+
+	public Course getCourse() {
+		return course;
+	}
+
+
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
 }

@@ -10,7 +10,7 @@
 		</property>
 		<property name="url" value="jdbc:mysql://localhost:3306/trainline"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="919294"></property>
+		<property name="password" value="123456"></property>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -22,6 +22,8 @@
 				<prop key="hibernate.dialect">
 					org.hibernate.dialect.MySQLDialect
 				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 		<property name="mappingResources">
@@ -71,6 +73,7 @@
 		</property>
 	</bean>
 
+	
 <bean id="BookDAO" class="cn.com.dao.BookDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />

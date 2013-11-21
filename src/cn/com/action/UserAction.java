@@ -26,9 +26,11 @@ public class UserAction extends BaseActionSupport{
 		
 		user = (User) session.get("user");
 		
-		String path = user.getUserState()==1? this.SUCCESS : this.LOGIN;
+//		String path = user.getUserState()==1? this.SUCCESS : this.LOGIN;
+//		
+//		return path;
+		return SUCCESS;
 		
-		return path;
 	}
 	
 	public UserService getUserService() {

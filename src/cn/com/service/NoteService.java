@@ -31,6 +31,11 @@ public class NoteService {
 		return noteDAO.findAll();
 	}
 
+	public List<Note> searchNote(Note note)
+	{
+		return noteDAO.findByConditions(note);
+	}
+	
 	public NoteDAO getNoteDAO() {
 		return noteDAO;
 	}

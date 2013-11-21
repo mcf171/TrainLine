@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -45,14 +47,14 @@ public class NoteDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void delete(Note persistentInstance) {
-		log.debug("deleting Note instance");
-		try {
-			getHibernateTemplate().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
+	public void delete(Note note) {
+		
+			Session session = getHibernateTemplate().getSessionFactory().openSession();
+			try {
+				session.delete(note);
+				session.flush();
+		}catch (Exception e) {
+		 e.printStackTrace();
 		}
 	}
 
@@ -60,12 +62,34 @@ public class NoteDAO extends HibernateDaoSupport {
 		log.debug("getting Note instance with id: " + id);
 		try {
 			Note instance = (Note) getHibernateTemplate().get(
-					"cn.com.model.Note", id);
+					"cn.com.model.Note",id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
 		}
+	}
+	
+	
+	public List findByConditions(Note note){
+		Session session = getHibernateTemplate().getSessionFactory().openSession();
+		String hql ="from Note where 1=1 ";
+		if(note.getUserId()!=null && !(note.getUserId().equals("")))
+		{
+			hql+="and userId = "+note.getUserId()+"  ";
+		}
+		
+		if(note.getCatalogue()!=null){
+			hql+=" and catalogue.catalogueId = "+note.getCatalogue().getCatalogueId()+" ";	
+		}
+		
+		if(note.getNoteContent()!=null && !(note.getNoteContent().equals("")))
+		{
+			hql+=" and  noteContent like '%"+note.getNoteContent()+"%' ";
+		}
+		List<Note>  list= getHibernateTemplate().find(hql);
+		System.out.println("*******************"+list.size()+"*********************");
+		return list;
 	}
 
 	public List findByExample(Note instance) {
@@ -150,4 +174,5 @@ public class NoteDAO extends HibernateDaoSupport {
 	public static NoteDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (NoteDAO) ctx.getBean("NoteDAO");
 	}
+
 }

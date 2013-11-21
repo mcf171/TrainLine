@@ -6,6 +6,8 @@
 			<result type="json" name="success">
 			<param name="root">dataMap</param>
 			</result>
+			<result name="intoStudy">/WEB-INF/jsp/backend/study.jsp</result>
+			<result name="showNotePage">/WEB-INF/jsp/backend/study/note-overview.jsp</result>
 		</action>
 	</package>
 </struts>    

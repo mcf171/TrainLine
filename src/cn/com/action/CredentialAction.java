@@ -7,7 +7,7 @@ import java.util.Map;
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Credential;
 import cn.com.service.CredentialService;
-//test
+
 public class CredentialAction extends BaseActionSupport {
 	private List<Credential> cList = null;
 	private CredentialService credentialService;
