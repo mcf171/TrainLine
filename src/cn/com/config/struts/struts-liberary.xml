@@ -9,6 +9,12 @@
 				</result>
 	   	</action>
 	   	
+	   	<action name="deleteBook" class="liberaryAction" method="deleteBook">
+	   		<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+	   	</action>
+	   	
 	   	<action name="getOutSideLiberaryList" class="liberaryAction" method="getOutSideLiberaryList">
 				<result type="json">
 				<param name="root">dataMap</param>
@@ -23,6 +29,10 @@
    	
    		<action name="readBook" class="liberaryAction" method="readBook">
    			<result>/WEB-INF/jsp/read.jsp</result>
+   		</action>
+   		
+   		<action name="addBook" class="liberaryAction" method="addBook">
+   			<result>/WEB-INF/jsp/backend/liberary/addInsideLiberary.jsp</result>
    		</action>
    		
    		<action name="showNormalLiberaryListPage" class="liberaryAction" method="showNormalLiberaryListPage">

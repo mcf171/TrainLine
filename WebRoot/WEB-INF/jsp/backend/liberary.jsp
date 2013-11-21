@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="${basePath}styles/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${basePath}styles/global.css" />
 <link rel="stylesheet" type="text/css" href="${basePath}styles/backend.css" />
+
 <script type="text/javascript" src="${basePath}scripts/jquery.js"></script>
 <script type="text/javascript" src="${basePath}scripts/jstree.js"></script>
 <script type="text/javascript" src="${basePath}scripts/bootstrap.js"></script>
@@ -30,7 +31,7 @@ $(document).ready(function ()
 				<li class="jstree-open">
 					<a href="#">图书管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="showBackendInsideLiberaryList.action">内部图书管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}showBackendInsideLiberaryListPage.action">内部图书管理</a></li>
 						<li class="jstree-leaf"><a href="showBackendOutSideLiberaryListPage.action">外部图书管理</a></li>
 						<li class="jstree-leaf"><a href="showBackendDangkeLiberaryListPage.action">党课图书管理</a></li>
 					</ul>

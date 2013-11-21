@@ -8,6 +8,7 @@ import cn.com.base.BaseActionSupport;
 import cn.com.model.Book;
 import cn.com.model.Booktype;
 import cn.com.service.LiberaryService;
+import cn.com.util.BookStateConstant;
 //test
 public class LiberaryAction extends BaseActionSupport{
 
@@ -20,18 +21,9 @@ public class LiberaryAction extends BaseActionSupport{
 		// TODO Auto-generated constructor stub
 		dataMap = new HashMap<String, Object>();
 	}
-
-	public String showNormalLiberaryListPage(){
+	/// 内部图书函数模块
+public String showBackendInsideLiberaryListPage(){
 		
-		return this.SUCCESS;
-	}
-	
-	public String showBackendLiberaryListPage(){
-		
-		return this.SUCCESS;
-	}
-	
-	public String showBackendInsideLiberaryListPage(){
 		
 		List<Booktype> list = liberaryService.getBookTypeList();
 		//request.setAttribute("test", "test");
@@ -42,25 +34,52 @@ public class LiberaryAction extends BaseActionSupport{
 	
 	public String getInsideLiberaryList(){
 		
-		List<Book> list = liberaryService.getInsideLiberaryList();
+		List<Book> list = null;
+		if(book !=null){
+			
+			book.setBookState(BookStateConstant.INISDELIBRARY);
+			list = liberaryService.searchInsideLibraryList(book);
+		}else{
+			
+			list=  liberaryService.getInsideLiberaryList();
+		}
+		
 		dataMap.put("liberary", list);
 		return this.SUCCESS;
 	}
 	
+	//—内部图书模块
+	
+	//外部图书模块
+
 	public String getOutSideLiberaryList(){
 		
 		List<Book> list = liberaryService.getOutSideLiberaryList();
 		dataMap.put("liberary", list);
 		return this.SUCCESS;
 	}
+	//——外部图书模块
 	
+	//党课图书模块
+
 	public String getDangkeLiberaryList(){
 		
 		List<Book> list = liberaryService.getDangkeLiberaryList();
 		dataMap.put("liberary", list);
 		return this.SUCCESS;
 	}
+	//——党课图书模块
 	
+	public String showNormalLiberaryListPage(){
+		
+		return this.SUCCESS;
+	}
+	
+	public String showBackendLiberaryListPage(){
+		
+		return this.SUCCESS;
+	}
+
 	public String readBook(){
 		
 		 book = liberaryService.getBook(book.getBookId());
@@ -69,6 +88,20 @@ public class LiberaryAction extends BaseActionSupport{
 		 
 		 return this.SUCCESS;
 		
+	}
+	
+	public String addBook(){
+		
+			
+		return this.SUCCESS;
+	}
+	
+	public String deleteBook(){
+		
+		liberaryService.deleteBook(book);
+		dataMap.put("success", "success");
+		
+		return this.SUCCESS;
 	}
 
 	public LiberaryService getLiberaryService() {

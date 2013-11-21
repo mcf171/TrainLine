@@ -1,5 +1,6 @@
 package cn.com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -48,10 +49,13 @@ public class BookDAO extends HibernateDaoSupport {
 		log.debug("deleting Book instance");
 		try {
 			getHibernateTemplate().delete(persistentInstance);
+			
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
 			throw re;
+		} finally{
+			getHibernateTemplate().flush();
 		}
 	}
 
@@ -156,5 +160,44 @@ public class BookDAO extends HibernateDaoSupport {
 
 	public static BookDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (BookDAO) ctx.getBean("BookDAO");
+	}
+	
+	public  List findByExampleFuzzy(Book book) {
+	
+		String queryString = "from Book where 1=1 ";
+		
+		List<Object> params = new ArrayList<Object>();
+		
+		if(book.getBookState() != null){
+				
+			queryString += "and bookState = ? ";
+			params.add(book.getBookState());
+		}
+		if(book.getBookContent()!=null){
+			
+			queryString +="and bookContent like ? ";
+			params.add("%"+book.getBookContent() + "%");
+		}
+		
+		if(book.getBookType()!=null){
+			if(book.getBookType().getBookTypeId() !=null){
+				
+				queryString +="and bookTypeId = ? ";
+				params.add(book.getBookType().getBookTypeId());
+			}
+		}
+		if(book.getBookName()!=null){
+			
+			queryString +="and bookName like ? ";
+			params.add("%"+book.getBookName() + "%");
+		}
+		if(book.getBookClassIndex()!= null){
+			
+			queryString += "and bookClassIndex like ?";
+			params.add("%"+book.getBookClassIndex() + "%");
+		}
+		List<Book> list = getHibernateTemplate().find(queryString, params.toArray());
+		
+		return list;
 	}
 }
