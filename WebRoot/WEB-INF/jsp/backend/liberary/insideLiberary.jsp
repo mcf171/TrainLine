@@ -41,7 +41,8 @@ $(document).ready(function ()
 					width: 100,
 					renderer: function (val, item, row)
 					{
-						return '<a href="#?book.bookId=' +item.bookId + '" target="_blank">修改</a> ' + '&nbsp' + '<a href="javascript:showConfirm(' +item.bookId + ',' +'\'${basePath}\''+')" >删除</a> ';
+						onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
+						return '<a href="javascript:loadHTML(\'${basePath}modifyBookPage.action?book.bookId=' +item.bookId + '\')">修改</a> ' + '&nbsp' + '<a href="javascript:showConfirm(' +item.bookId + ',' +'\'${basePath}\''+')" >删除</a> ';
 					}
 				}
 			],
@@ -86,7 +87,7 @@ $(document).ready(function ()
             	<div class="span12">
             		
             		<div class="span12">
-						<button class="btn" onclick="loadHTML('${basePath}addBook.action')"><i class="icon-plus"></i>&nbsp;新增</button>
+						<button class="btn" onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"><i class="icon-plus"></i>&nbsp;新增</button>
 					</div>			
             			<div class="row-fluid line-margin">
 			               <span class="help-inline"><b>基本过滤：</b>图书名称：</span>

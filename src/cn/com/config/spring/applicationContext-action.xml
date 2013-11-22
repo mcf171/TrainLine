@@ -49,5 +49,7 @@
 	<bean id="credentialAction" class="cn.com.action.CredentialAction"> 
 	<property name="credentialService" ref="credentialService"></property>
 	</bean>
+	
+	
 		
 	</beans>

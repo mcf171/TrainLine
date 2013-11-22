@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<package name="upload" extends="system" >
+		<action name="upload" class="cn.com.action.UploadUtil" method="upload">
+            <!-- 动态设置savePath的属性值 -->
+            <param name="savePath">/upload</param>
+            <result name="success">/message.jsp</result>
+            <result name="input">/upload.jsp</result>
+            <interceptor-ref name="fileUpload">
+                <!-- 文件过滤 -->
+				<param name="allowedTypes">
+				application/vnd.ms-excel,application/msword,  
+                application/vnd.ms-powerpoint,text/plain,application/pdf,  
+                application/vnd.openxmlformats-officedocument.wordprocessingml.document,  
+                application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,  
+                application/vnd.openxmlformats-officedocument.presentationml.presentation,
+				image/bmp,image/x-png,image/gif,image/pjpeg
+				</param>
+                <!-- 文件大小, 以字节为单位 -->
+                <param name="maximumSize">1025956</param>
+            </interceptor-ref>
+            <!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+            <interceptor-ref name="defaultStack" />
+        </action>
+    
+   		
+   	</package>
+</struts>    

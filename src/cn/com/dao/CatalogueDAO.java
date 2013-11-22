@@ -1,10 +1,11 @@
 package cn.com.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.Set;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -21,8 +22,10 @@ import cn.com.model.Catalogue;
  * @see cn.com.model.Catalogue
  * @author MyEclipse Persistence Tools
  */
+
 public class CatalogueDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(CatalogueDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(CatalogueDAO.class);
 	// property constants
 	public static final String CATALOGUE_NAME = "catalogueName";
 	public static final String CATALOGUE_NUMBER = "catalogueNumber";

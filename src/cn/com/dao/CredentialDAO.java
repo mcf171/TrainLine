@@ -1,10 +1,11 @@
 package cn.com.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.Set;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -21,8 +22,10 @@ import cn.com.model.Credential;
  * @see cn.com.model.Credential
  * @author MyEclipse Persistence Tools
  */
+
 public class CredentialDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(CredentialDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(CredentialDAO.class);
 	// property constants
 	public static final String CREDENTIAL_NAME = "credentialName";
 	public static final String CREDENTIALVALIDITY = "credentialvalidity";

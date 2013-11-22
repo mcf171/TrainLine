@@ -128,6 +128,7 @@ public class BookDAO extends HibernateDaoSupport {
 		log.debug("merging Book instance");
 		try {
 			Book result = (Book) getHibernateTemplate().merge(detachedInstance);
+			getHibernateTemplate().flush();
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {

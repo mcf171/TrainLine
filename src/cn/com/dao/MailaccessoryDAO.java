@@ -1,10 +1,9 @@
 package cn.com.dao;
 
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -21,8 +20,10 @@ import cn.com.model.Mailaccessory;
  * @see cn.com.model.Mailaccessory
  * @author MyEclipse Persistence Tools
  */
+
 public class MailaccessoryDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(MailaccessoryDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(MailaccessoryDAO.class);
 	// property constants
 	public static final String MAIL_ACCESSORY_NAME = "mailAccessoryName";
 	public static final String MAIL_ACCESSORY_PATH = "mailAccessoryPath";

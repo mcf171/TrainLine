@@ -1,14 +1,14 @@
 package cn.com.dao;
 
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.com.model.Classanduser;
+import cn.com.model.ClassanduserId;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -21,8 +21,10 @@ import cn.com.model.Classanduser;
  * @see cn.com.model.Classanduser
  * @author MyEclipse Persistence Tools
  */
+
 public class ClassanduserDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(ClassanduserDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(ClassanduserDAO.class);
 
 	// property constants
 

@@ -1,16 +1,12 @@
 package cn.com.dao;
 
 import java.util.List;
-
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.Set;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import cn.com.model.Testpaper;
-
 
 import cn.com.model.Testpaper;
 
@@ -25,8 +21,10 @@ import cn.com.model.Testpaper;
  * @see cn.com.model.Testpaper
  * @author MyEclipse Persistence Tools
  */
+
 public class TestpaperDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(TestpaperDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(TestpaperDAO.class);
 	// property constants
 	public static final String TEST_PAPER_NAME = "testPaperName";
 
