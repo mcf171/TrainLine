@@ -22,31 +22,31 @@
 	<property name="questionnairerubricService" ref="questionnairerubricService"></property>
 	</bean>
 	
-	<bean id="courseAction" class="cn.com.action.CourseAction" >
+	<bean id="courseAction" class="cn.com.action.CourseAction" scope="prototype">
 	<property name="courseService" ref="courseService"></property>
 	</bean>
 	
-	<bean id="noteAction" class="cn.com.action.NoteAction">
+	<bean id="noteAction" class="cn.com.action.NoteAction" scope="prototype">
 	<property name="noteService" ref="noteService"></property>
 	</bean>
 	
-	<bean id="testquestionAction" class="cn.com.action.TestquestionAction">
+	<bean id="testquestionAction" class="cn.com.action.TestquestionAction" scope="prototype">
 	<property name="testQuestionService" ref="testQuestionService"></property>
 	</bean>
 	
-	<bean id="testPaperAction" class="cn.com.action.TestPaperAction">
+	<bean id="testPaperAction" class="cn.com.action.TestPaperAction" scope="prototype">
 	<property name="testPaperService" ref="testPaperService"></property>
 	</bean>
 	
-	<bean id="testArrangementAction" class="cn.com.action.TestArrangementAction">
+	<bean id="testArrangementAction" class="cn.com.action.TestArrangementAction" scope="prototype">
 	<property name="testArrangementService" ref="testArrangementService"></property>
 	</bean>
 	
-	<bean id="trainingClassAction" class="cn.com.action.TrainingClassAction">
+	<bean id="trainingClassAction" class="cn.com.action.TrainingClassAction" scope="prototype">
 	<property name="trainingClassService" ref="trainingClassService"></property>
 	</bean>
 	
-	<bean id="credentialAction" class="cn.com.action.CredentialAction"> 
+	<bean id="credentialAction" class="cn.com.action.CredentialAction" scope="prototype"> 
 	<property name="credentialService" ref="credentialService"></property>
 	</bean>
 	

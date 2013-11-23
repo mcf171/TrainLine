@@ -39,4 +39,8 @@ public class CourseService {
 	public void setCourseDAO(CourseDAO courseDAO) {
 		this.courseDAO = courseDAO;
 	}
+
+	public List<Course> searchCourses(Course course) {
+		return courseDAO.searchCourses(course);
+	}
 }

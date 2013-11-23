@@ -6,6 +6,7 @@
 		<result type="json" name="json">
 		<param name="root">dataMap</param>
 		</result>
+		<result name="intoQuestionnairePage">/WEB-INF/jsp/backend/questionnaire/manage-show.jsp</result>
 		</action>
 	</package>
 </struts>    

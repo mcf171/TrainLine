@@ -1,10 +1,15 @@
 package cn.com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.LockMode;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import org.hibernate.Session;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -46,13 +51,12 @@ public class CourseDAO extends HibernateDaoSupport {
 	}
 
 	public void delete(Course persistentInstance) {
-		log.debug("deleting Course instance");
 		try {
-			getHibernateTemplate().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
+			Session session = getHibernateTemplate().getSessionFactory().openSession();
+			session.delete(persistentInstance);
+			session.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -158,5 +162,30 @@ public class CourseDAO extends HibernateDaoSupport {
 
 	public static CourseDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (CourseDAO) ctx.getBean("CourseDAO");
+	}
+
+	public List<Course> searchCourses(Course course) {
+		String hql ="from Course where 1=1 ";
+		if(course.getCourseName()!=null)
+		{
+			hql +=" and courseName like '%"+course.getCourseName()+"%'";
+		}
+		if(course.getCourseSpeaker()!=null && !course.getCourseSpeaker().equals(""))
+		{
+			hql +=" and courseSpeaker = '"+course.getCourseSpeaker()+"' ";
+		}
+		if(course.getCourseIntro()!=null)
+		{
+			hql += " and courseIntro like  '%"+course.getCourseIntro()+"%'";
+		}
+
+		List list=null;
+		try{
+		list = getHibernateTemplate().find(hql);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+			System.out.println(list.size());
+		return list;
 	}
 }

@@ -22,7 +22,7 @@
 			<li class="jstree-open">
 					<a href="#">问卷管理</a>
 					<ul>
-						<li class="jstree-leaf"><a class="blacked" href="questionnaire/manage-show.html">显示问卷</a></li>
+						<li class="jstree-leaf"><a class="blacked" href="${basePath}questionnaire_intoQuestionnairePage.action">显示问卷</a></li>
 						<li class="jstree-leaf"><a href="questionnaire/manage-add1.html">增加问卷</a></li>
 						<li class="jstree-leaf"><a href="#">问卷安排</a></li>
 					</ul>
@@ -30,14 +30,14 @@
 				<li class="jstree-open">
 					<a href="#">学习管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="study/class-system.html">课程管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}course_intoCoursePage.action">课程管理</a></li>
 					</ul>
 				</li>
 				 
 				<li class="jstree-open">
 					<a href="#">学习成效管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="study/note-overview.html">笔记总览</a></li>
+						<li class="jstree-leaf"><a href="${basePath}note_showNotePage.action">笔记总览</a></li>
 					</ul>
 				</li>
 				

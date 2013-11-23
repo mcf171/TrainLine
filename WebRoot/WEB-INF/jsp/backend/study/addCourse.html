@@ -1,13 +1,70 @@
-<link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
-<link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
-<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
-<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
-<script type="text/javascript" src="../scripts/mmgrid.js"></script>
-<script type="text/javascript" src="../scripts/mmpaginator.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${basePath}styles/mmgrid.css" />
+<link rel="stylesheet" type="text/css"
+	href="${basePath}styles/mmpaginator.css" />
+<link rel="stylesheet" type="text/css"
+	href="${basePath}themes/mmgrid/mmgrid.css" />
+<link rel="stylesheet" type="text/css"
+	href="${basePath}themes/mmgrid/mmpaginator.css" />
+<script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
+<script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
 
 <div class="row-fluid line-margin">
 	<div class="span12">
-		<img src="addCourse.png" usemap="#Map2"/>
+		<div>
+			<span></span>
+		</div>
+
+
+
+		<form role="form" class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label" for="courseNameInput">课程名称:</label>
+				<div class="controls">
+					<input type="text" id="courseNameInput" placeholder="请输入课程名">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="courseDescInput">课程描述:</label>
+				<div class="controls">
+					<textarea class="form-control" rows="3" id="courseDescInput"
+						placeholder="请输入课程描述"></textarea>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">课程章节:</label><br>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="courseNameInput">章节名称:</label>
+				<div class="controls">
+					<input type="text" id="chNameInput" placeholder="请输入章节名称">
+				</div>
+			</div>
+
+
+
+			<div class="control-group">
+				<label class="control-label" for="courseNameInput">章节资源:</label>
+				<div class="control-group">
+					<input type="file" id="chScourseInput" placeholder="请输入章节资源">
+					<button class="btn">
+						<i class="icon-plus"></i>
+					</button>
+				</div>
+
+			</div>
+			<div class="control-group offset5">
+				<button align="right" class="btn btn-default">添加章节</button>
+			</div>
+			<div class="control-group">
+				<button type="submit" class="btn btn-default">添加</button>
+			</div>
 	</div>
+	</form>
+
+
 </div>
-	
+</div>
