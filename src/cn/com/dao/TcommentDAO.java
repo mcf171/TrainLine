@@ -1,16 +1,12 @@
 package cn.com.dao;
 
-
+import java.sql.Timestamp;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import cn.com.model.Tcomment;
-
 
 import cn.com.model.Tcomment;
 
@@ -25,8 +21,10 @@ import cn.com.model.Tcomment;
  * @see cn.com.model.Tcomment
  * @author MyEclipse Persistence Tools
  */
+
 public class TcommentDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(TcommentDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(TcommentDAO.class);
 	// property constants
 	public static final String TCOMMENT_CONTENT = "tcommentContent";
 	public static final String TCOMMENT_EVALUATE = "tcommentEvaluate";

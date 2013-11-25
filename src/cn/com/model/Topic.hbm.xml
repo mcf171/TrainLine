@@ -22,17 +22,17 @@
         <property name="topicImgPath" type="java.lang.String">
             <column name="topicImgPath" length="50" />
         </property>
-        <set name="topicaccessories" inverse="true">
-            <key>
-                <column name="topicId" />
-            </key>
-            <one-to-many class="cn.com.model.Topicaccessory" />
-        </set>
         <set name="posts" inverse="true">
             <key>
                 <column name="topicId" />
             </key>
             <one-to-many class="cn.com.model.Post" />
+        </set>
+        <set name="tiezis" inverse="true">
+            <key>
+                <column name="topicId" />
+            </key>
+            <one-to-many class="cn.com.model.Tiezi" />
         </set>
     </class>
 </hibernate-mapping>

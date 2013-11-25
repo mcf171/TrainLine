@@ -1,16 +1,12 @@
 package cn.com.dao;
 
-
+import java.sql.Timestamp;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import cn.com.model.Post;
-
 
 import cn.com.model.Post;
 
@@ -25,8 +21,9 @@ import cn.com.model.Post;
  * @see cn.com.model.Post
  * @author MyEclipse Persistence Tools
  */
+
 public class PostDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(PostDAO.class);
+	private static final Logger log = LoggerFactory.getLogger(PostDAO.class);
 	// property constants
 	public static final String USER_ID = "userId";
 	public static final String POST_TITLE = "postTitle";

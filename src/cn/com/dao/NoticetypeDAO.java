@@ -1,16 +1,12 @@
 package cn.com.dao;
 
 import java.util.List;
-
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.Set;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import cn.com.model.Noticetype;
-
 
 import cn.com.model.Noticetype;
 
@@ -25,8 +21,10 @@ import cn.com.model.Noticetype;
  * @see cn.com.model.Noticetype
  * @author MyEclipse Persistence Tools
  */
+
 public class NoticetypeDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(NoticetypeDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(NoticetypeDAO.class);
 	// property constants
 	public static final String NOTICE_TYPE_NAME = "noticeTypeName";
 

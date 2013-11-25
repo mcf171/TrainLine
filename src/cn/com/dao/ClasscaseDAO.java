@@ -1,15 +1,15 @@
 package cn.com.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.Set;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.com.model.Classcase;
-import cn.com.model.Trainingclass;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -22,8 +22,10 @@ import cn.com.model.Trainingclass;
  * @see cn.com.model.Classcase
  * @author MyEclipse Persistence Tools
  */
+
 public class ClasscaseDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(ClasscaseDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(ClasscaseDAO.class);
 	// property constants
 	public static final String PERSON_OF_HIERARCHY = "personOfHierarchy";
 	public static final String PERSON_OF_SUM = "personOfSum";
@@ -62,7 +64,6 @@ public class ClasscaseDAO extends HibernateDaoSupport {
 		}
 	}
 
-	
 	public void delete(Classcase persistentInstance) {
 		log.debug("deleting Classcase instance");
 		try {

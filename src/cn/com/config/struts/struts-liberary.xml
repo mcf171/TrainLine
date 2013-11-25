@@ -9,6 +9,12 @@
 				</result>
 	   	</action>
 	   	
+	   	<action name="deleteBook" class="liberaryAction" method="deleteBook">
+	   		<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+	   	</action>
+	   	
 	   	<action name="getOutSideLiberaryList" class="liberaryAction" method="getOutSideLiberaryList">
 				<result type="json">
 				<param name="root">dataMap</param>
@@ -25,33 +31,61 @@
    			<result>/WEB-INF/jsp/read.jsp</result>
    		</action>
    		
+   		<action name="modifyBookPage" class="liberaryAction" method="modifyBookPage">
+   			<result>/WEB-INF/jsp/backend/liberary/modifyBook.jsp</result>
+   		</action>
+   		
+   		<action name="modifyBook" class="liberaryAction" method="modifyBook">
+   			<result type="redirectAction">
+   				<param name="actionName">showBackendLiberaryListPage</param>
+   			</result>
+   		</action>
+   		
+   		<action name="addBookPage" class="liberaryAction" method="addBookPage">
+   			<result>/WEB-INF/jsp/backend/liberary/addBook.jsp</result>
+   		</action>
+   		
+   		<action name="addBook" class="liberaryAction" method="addBook">
+   			<result type="redirectAction">
+   				<param name="actionName">showBackendLiberaryListPage</param>
+   			</result>
+   			<interceptor-ref name="fileUpload">
+                <!-- 文件过滤 -->
+				<param name="allowedTypes">
+				video/mpeg4,
+				application/vnd.ms-excel,application/msword,  
+                application/vnd.ms-powerpoint,text/plain,application/pdf,  
+                application/vnd.openxmlformats-officedocument.wordprocessingml.document,  
+                application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,  
+                application/vnd.openxmlformats-officedocument.presentationml.presentation,
+				image/bmp,image/x-png,image/gif,image/pjpeg
+				</param>
+                <!-- 文件大小, 以字节为单位 -->
+                <param name="maximumSize">1000000000</param>
+            </interceptor-ref>
+            <!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+            <interceptor-ref name="mydefault" />
+   		</action>
+   		
    		<action name="showNormalLiberaryListPage" class="liberaryAction" method="showNormalLiberaryListPage">
    			<result>/WEB-INF/jsp/liberary.jsp</result>
    		</action>
    		
    		
    		<action name="showBackendLiberaryListPage" class="liberaryAction" method="showBackendLiberaryListPage">
-
    			<result>/WEB-INF/jsp/backend/liberary.jsp</result>
-
    		</action>
    		
    		<action name="showBackendInsideLiberaryListPage" class="liberaryAction" method="showBackendInsideLiberaryListPage">
-
    			<result>/WEB-INF/jsp/backend/liberary/insideLiberary.jsp</result>
-
    		</action>
    		
    		<action name="showBackendOutSideLiberaryListPage" class="liberaryAction" method="showBackendInsideLiberaryListPage">
-
    			<result>/WEB-INF/jsp/backend/liberary/outsideLiberary.jsp</result>
-
    		</action>
    		
    		<action name="showBackendDangkeLiberaryListPage" class="liberaryAction" method="showBackendInsideLiberaryListPage">
-
    			<result>/WEB-INF/jsp/backend/liberary/dangkeLiberary.jsp</result>
-
    		</action>
    		
    	</package>

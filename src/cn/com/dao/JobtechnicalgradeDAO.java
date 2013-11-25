@@ -1,10 +1,10 @@
 package cn.com.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -21,9 +21,10 @@ import cn.com.model.Jobtechnicalgrade;
  * @see cn.com.model.Jobtechnicalgrade
  * @author MyEclipse Persistence Tools
  */
+
 public class JobtechnicalgradeDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory
-			.getLog(JobtechnicalgradeDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(JobtechnicalgradeDAO.class);
 	// property constants
 	public static final String USER_ID = "userId";
 	public static final String TECHNICAL_GRADE = "technicalGrade";

@@ -69,7 +69,7 @@ position:absolute;
 							密 码
 						</label>
 						<div class="controls">
-							<input type="password" id="inputPassword" placeholder="密码" name="user.userPassward" required>
+							<input type="password" id="inputPassword" placeholder="密码" name="user.userPassword" required>
 						</div>
 					</div>
 					<div class="control-group">

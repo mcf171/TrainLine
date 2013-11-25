@@ -1,16 +1,12 @@
 package cn.com.dao;
 
 import java.util.List;
-
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.Set;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import cn.com.model.Trainingclass;
-
 
 import cn.com.model.Trainingclass;
 
@@ -25,8 +21,10 @@ import cn.com.model.Trainingclass;
  * @see cn.com.model.Trainingclass
  * @author MyEclipse Persistence Tools
  */
+
 public class TrainingclassDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(TrainingclassDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(TrainingclassDAO.class);
 	// property constants
 	public static final String TRAINING_CLASS_NAME = "trainingClassName";
 	public static final String TRAINING_CLASS_STATUS = "trainingClassStatus";
