@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	
     <link rel="stylesheet" type="text/css" href="${basePath}styles/mmgrid.css" />
     <link rel="stylesheet" type="text/css" href="${basePath}styles/mmpaginator.css" />
@@ -17,7 +17,7 @@ $(document).ready(function ()
 	$('#time-to').css('background', 'none').datepicker();
 	$('#time-from').css('background', 'none').datepicker();
 
-	$('#grid').mmGrid({
+	mmGirdTable = $('#grid').mmGrid({
 		url: '${basePath}getInsideLiberaryList.action',
 		height: 410,
 		autoLoad: true,
@@ -46,6 +46,15 @@ $(document).ready(function ()
 			$('#page').mmPaginator({})
 		]
 	});
+	
+	var optionString = "";
+		<c:forEach items="${bookTypeList}" var="item">
+				optionString += "<option>" + "${item.bookTypeName}" +"</option>"
+		</c:forEach>
+	
+	$("#option").append(optionString);
+	
+	
 });
 //]]>
 </script>
@@ -56,47 +65,36 @@ $(document).ready(function ()
             <div class="row-fluid">
             	<div class="span12">
             		<form id="condition" class="span12 form-inline no-margin">
+            		<div class="span12">
+						<button class="btn"><i class="icon-plus"></i>&nbsp;新增</button>
+					</div>			
             			<div class="row-fluid line-margin">
-			               <span class="help-inline"><b>基本过滤：</b>类型：</span>
-			               <select class="input-small">
-				               <option></option>
-				               <option></option>
-				               <option></option>
-				               <option></option>
-				               <option></option>
-				               <option></option>
+			               <span class="help-inline"><b>基本过滤：</b>图书名称：</span>
+			               <input
+									type="text"
+									name="keyword"
+									class="span2 "
+									placeholder="请输入内容"
+								/>
+			                <span class="help-inline">图书简介：</span> <input
+									type="text"
+									name="keyword"
+									class="span2 "
+									placeholder="请输入内容"
+								/>
+			                <span class="help-inline">图书类别：</span>
+			                <select class="input-small" id="option">
+				               
 			                </select>
-			                <span class="help-inline">编号：</span>
-			                <select class="input-small">
-				               <option></option>
-				               <option></option>
-				               <option></option>
-				               <option></option>
-			                </select>
-			                <span class="help-inline">内容：</span>
+			                <span class="help-inline">图书编号：</span>
 			                <input type="text" class="span2" placeholder="请输入相应内容" />
-		               </div>
-		               <div>
-		               		<div class="row-fluid line-margin">
-		               			<span class="help-inline"><b>高级过滤：</b></span>
-		               			<input 
-				                 	type="text"
-									id="time-from"
-									class="span2"
-									placeholder="开始时间"
-									data-date-format="yyyy-mm-dd"
-			                     />
-			                     <span class="help-inline">至</span>
-			                     <input 
-				                 	type="text"
-									id="time-to"
-									class="span2"
-									placeholder="结束时间"
-									data-date-format="yyyy-mm-dd"
-			                     />
+			                <div class="row-fluid line-margin">
 			                     <button class="btn "><i class="icon-search"></i>查询</button>
 			                     <button class="btn" type="reset"><i class="icon-remove"></i>清除</button>
 		               		</div>
+		               </div>
+		               <div>
+		               		
 		               		<div class="row-fluid">
 	                             <div class="span12">
 								    <table id="grid"></table>

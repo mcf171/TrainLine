@@ -8,6 +8,7 @@
 
 	<bean id="liberaryService" class="cn.com.service.LiberaryService" scope="prototype">
 		<property name="bookDAO" ref="BookDAO"></property>
+		<property name="bookTypeDAO" ref="BookTypeDAO"></property>
 	</bean>
 	
 	<bean id="userService" class="cn.com.service.UserService" scope="prototype">
@@ -51,6 +52,8 @@
 	<bean id="credentialService" class="cn.com.service.CredentialService">
 		<property name="credentialDAO" ref="CredentialDAO"></property>
 	</bean>
-	
+	<bean id="forumService" class="cn.com.service.ForumService">
+		<property name="themeDAO" ref="ThemeDAO"></property>
+	</bean>
 
 	</beans>

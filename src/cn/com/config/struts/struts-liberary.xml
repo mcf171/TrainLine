@@ -31,19 +31,27 @@
    		
    		
    		<action name="showBackendLiberaryListPage" class="liberaryAction" method="showBackendLiberaryListPage">
-   			<result>/WEB-INF/backend/jsp/liberary.jsp</result>
+
+   			<result>/WEB-INF/jsp/backend/liberary.jsp</result>
+
    		</action>
    		
    		<action name="showBackendInsideLiberaryListPage" class="liberaryAction" method="showBackendInsideLiberaryListPage">
-   			<result>/WEB-INF/backend/jsp/liberary/insideLiberary.jsp</result>
+
+   			<result>/WEB-INF/jsp/backend/liberary/insideLiberary.jsp</result>
+
    		</action>
    		
    		<action name="showBackendOutSideLiberaryListPage" class="liberaryAction" method="showBackendInsideLiberaryListPage">
-   			<result>/WEB-INF/backend/jsp/liberary/outsideLiberary.jsp</result>
+
+   			<result>/WEB-INF/jsp/backend/liberary/outsideLiberary.jsp</result>
+
    		</action>
    		
    		<action name="showBackendDangkeLiberaryListPage" class="liberaryAction" method="showBackendInsideLiberaryListPage">
-   			<result>/WEB-INF/backend/jsp/liberary/dangkeLiberary.jsp</result>
+
+   			<result>/WEB-INF/jsp/backend/liberary/dangkeLiberary.jsp</result>
+
    		</action>
    		
    	</package>

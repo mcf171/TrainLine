@@ -6,7 +6,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 		<bean id="liberaryAction" class="cn.com.action.LiberaryAction" scope="prototype">
-			<property name="liberaryService" ref="liberaryService"></property>
+			<property name="liberaryService" ref="liberaryService"></property>		
 		</bean>
 	
 		<bean id="userAction" class="cn.com.action.UserAction" scope="prototype">
@@ -48,5 +48,7 @@
 	<bean id="credentialAction" class="cn.com.action.CredentialAction"> 
 	<property name="credentialService" ref="credentialService"></property>
 	</bean>
-		
+	
+	<bean id="forumAction" class="cn.com.action.ForumAction"> 
+	</bean>	
 	</beans>
