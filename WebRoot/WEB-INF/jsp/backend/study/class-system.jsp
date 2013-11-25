@@ -10,6 +10,7 @@
 <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
 <script type="text/javascript">
 var mmg;
+var courseID;
 $(document).ready(function ()
 {
 	$('#time-to').css('background', 'none').datepicker();
@@ -17,7 +18,6 @@ $(document).ready(function ()
 
 	//按条件查询
 	$("#searchBtn").click(function(){
-	alert("search");
 	mmg.load({page:1,"course.courseName":$("#courseName_input").val(),
 	"course.courseSpeaker":$("#courseSpeaker_input").val(),"course.courseIntro":$("#courseKey_input").val()});
 	});
@@ -36,16 +36,18 @@ $(document).ready(function ()
       { title: '课程内容', sortable: true, width: 210, name: 'courseIntro' },
       {title:'状态',sortable:true,width:100,
       renderer:function (val,item,row){
-      return item.courseState=1?'是':'否';
+      return item.courseState==1?'是':'否';
       }
       },
        {
          title: '操作',
-         width: 150,
+         width: 180,
          renderer: function (val, item, row)
          {
          return '<input type="hidden" id="'+item.courseId+'" value="' + item.courseId + '" />' +
-             '<a href="#">查看</a>&nbsp;&nbsp;<a href="#">修改</a>&nbsp;&nbsp;<button class="btn" onclick="deleteCourse('+item.courseId+')">删除</button>';
+             '<a href="#" >查看</a>&nbsp;&nbsp;'+
+             '<a href="#myModal0" onclick="updateCourse('+item.courseId+')" role="button" class="btn" data-toggle="modal">修改</a>&nbsp;&nbsp;'+
+             '<a href="#myModal1" onclick="clickCourse('+item.courseId+')" role="button" class="btn" data-toggle="modal">删除</a>';
          }
 
        }
@@ -55,28 +57,87 @@ $(document).ready(function ()
 		]
 	});
 
+
+	$("#sureDeleteBtn").click(function(){
+	$('#myModal1').modal('hide');
+	 $.ajax({
+				type : "POST",
+				url : "${basePath}course_deleteCourse.action?courseId="+courseID,
+				dataType : "json",
+				success : function(json) {
+				mmg.load();
+				},
+				error : function() {
+					alert("操作失败,请重试!");
+					return false;
+				}
+			});
+	});
+	
+	
+	$("#updateBtn").click(function(){
+	$('#myModal0').modal('hide');
+	var courseId= $("#courseIdIID").val();
+	var courseName =$("#courseNameIID").val();
+	var courseSpeaker=$("#courseSpeakerIID").val();
+	var courseIntro=$("#courseIntroIID").val();
+	var courseState=$("#courseStateIID").val();
+		$.ajax({
+			type : "POST",
+			url : "${basePath}course_updateCourse.action",
+			data:"course.courseId="+courseId+"&course.courseName="+courseName+
+			"&course.courseSpeaker="+courseSpeaker+"&course.courseIntro="+courseIntro+
+			"&course.courseState="+courseState,
+			dataType : "json",
+			success : function(json) {
+				mmg.load();
+			},
+			error : function() {
+				alert("操作失败,请重试!");
+				return false;
+			}
+			});
+	});
 });
 
-function deleteCourse(courseId)
+function updateCourse(courseId){
+	courseID=courseId;
+	$.ajax({
+			type : "POST",
+			url : "${basePath}course_getCourseById.action?course.courseId="+courseId,
+			dataType : "json",
+			success : function(json) {
+				if(json.course!=null)
+				{
+				var course1 =json.course;
+				setAttr(course1);
+				}
+			},
+			error : function() {
+				alert("操作失败,请重试!");
+				return false;
+			}
+			});
+	
+}
+
+function setAttr(course)
+{
+	$("#courseIdIID").val(course.courseId);
+	$("#courseNameIID").val(course.courseName);
+	$("#courseSpeakerIID").val(course.courseSpeaker);
+	$("#courseIntroIID").val(course.courseIntro);
+}
+
+function clickCourse(courseId)
 	{
-	 $.ajax({
-						type : "POST",
-						url : "${basePath}course_deleteCourse.action?courseId="+courseId,
-						dataType : "json",
-						success : function(json) {
-						mmg.load({page:1});
-						},
-						error : function() {
-							alert("操作失败,请重试!");
-							return false;
-						}
-					});
+	courseID=courseId;
 	}
 </script>
 <div class="row-fluid">
 	<form id="condition" class="span12 form-inline no-margin" action="javascript:void(0)"
 		method="post">
-		<div class="row-fluid line-margin"><button class="btn" onclick="loadHTML('${basePath}course_addCourse.action')"><i class="icon-ok"></i>添加</button></div>
+		<div class="row-fluid line-margin"><button class="btn" onclick="loadHTML('${basePath}course_intoAddcoursePage.action')"><i class="icon-ok"></i>添加</button></div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline"><b>查询过滤：</b>课程</span> <input type="text"
 				class="span2" placeholder="输入课程名" id="courseName_input" /> <span class="help-inline">姓名</span>
@@ -102,5 +163,46 @@ function deleteCourse(courseId)
 	<div class="span12">
 		<table id="grid"></table>
 		<div id="page" class="pull-right"></div>
+	</div>
+</div>
+
+
+<div id="myModal0" style="width:350px;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">修改!</h3>
+</div>
+	<div class="modal-body">
+		 <label>课程ID</label>
+		 <input type="text" id="courseIdIID" disabled="true">
+		  <label>课程名</label>
+		 <input type="text"  id="courseNameIID" name="courseName">
+		  <label >讲师</label>
+		 <input type="text" id="courseSpeakerIID" name="courseSpeaker">
+		  <label>课程内容描述</label>
+		 <textarea rows="3" cols="5" id="courseIntroIID" name="courseIntro"></textarea>
+		  <label>是否开卷</label>
+		  <select name="courseState" id="courseStateIID">
+		 <option value="1">开卷</option>
+		  <option value="0">闭卷</option>
+		 </select>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		<button class="btn btn-primary" id="updateBtn">修改</button>
+	</div>
+</div>
+
+<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">温馨提示</h3>
+</div>
+	<div class="modal-body">
+		<p>确定删除吗？</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		<button class="btn btn-primary" id="sureDeleteBtn">确定</button>
 	</div>
 </div>

@@ -10,12 +10,17 @@
             <column name="trainingClassId" />
             <generator class="native" />
         </id>
-        <many-to-one name="classcase" class="cn.com.model.Classcase" fetch="select">
+  <!--   
+  <many-to-one name="classcase" class="cn.com.model.Classcase" fetch="select">
             <column name="ClassCaseId" />
         </many-to-one>
+         
         <many-to-one name="credential" class="cn.com.model.Credential" fetch="select">
             <column name="credentialId" />
-        </many-to-one>
+        </many-to-one>--> 
+         <property name="credentialId" type="java.lang.Integer">
+            <column name="credentialId" />
+        </property>
         <property name="trainingClassName" type="java.lang.String">
             <column name="trainingClassName" length="50" />
         </property>

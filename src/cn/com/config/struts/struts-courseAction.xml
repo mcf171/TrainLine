@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+<constant name = "struts.multipart.maxSize" value = "100000000" />
+
 	<package name="course" namespace="/" extends="json-default">
 		<action name="course_*" class="courseAction" method="{1}">
 		<result type="json" name="success">
 		<param name="root">dataMap</param>
 		</result>
+		<result name="intoaddChapterPage">/WEB-INF/jsp/backend/study/addCourseChapter.jsp</result>
+		<result type="json" name="json"></result>
 		<result name="intoCoursePage">/WEB-INF/jsp/backend/study/class-system.jsp</result>
-		<result name="addCourse">/WEB-INF/jsp/backend/study/addCourse.html</result>
+		<result name="addCourse">/WEB-INF/jsp/backend/study/addCourse.jsp</result>
+		<param name="savePath">/upload</param>
 		</action>
 	</package>
 </struts>    

@@ -6,13 +6,15 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.com.model.Catalogue;
+import cn.com.model.Resource;
 import cn.com.model.Resourseandcatelogue;
+import cn.com.model.ResourseandcatelogueId;
 
-
-import cn.com.model.Resourseandcatelogue;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -35,16 +37,7 @@ public class ResourseandcatelogueDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
-	public void save(Resourseandcatelogue transientInstance) {
-		log.debug("saving Resourseandcatelogue instance");
-		try {
-			getHibernateTemplate().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
-	}
+
 
 	public void delete(Resourseandcatelogue persistentInstance) {
 		log.debug("deleting Resourseandcatelogue instance");
@@ -144,5 +137,13 @@ public class ResourseandcatelogueDAO extends HibernateDaoSupport {
 	public static ResourseandcatelogueDAO getFromApplicationContext(
 			ApplicationContext ctx) {
 		return (ResourseandcatelogueDAO) ctx.getBean("ResourseandcatelogueDAO");
+	}
+
+
+
+	public void save(Resource r) {
+	 Session session =getHibernateTemplate().getSessionFactory().openSession();
+	 session.save(r);
+	 session.flush();
 	}
 }

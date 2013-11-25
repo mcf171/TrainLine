@@ -19,13 +19,9 @@ public class QuestionnaireService {
 	
 	public void update(Questionnaire questionnaire)
 	{
+		questionnaireDAO.update(questionnaire);
 	}
 
-	public Questionnaire getQuestionnaire()
-	{
-		
-		return null;
-	}
 	
 	public List<Questionnaire> findAll(){
 		return questionnaireDAO.findAll();
@@ -38,5 +34,14 @@ public class QuestionnaireService {
 
 	public void setQuestionnaireDAO(QuestionnaireDAO questionnaireDAO) {
 		this.questionnaireDAO = questionnaireDAO;
+	}
+
+	public List<Questionnaire> findByConditions(Questionnaire questionnaire) {
+		return questionnaireDAO.findByConditions(questionnaire);
+	}
+
+	public Questionnaire getQuestionnaire(Questionnaire questionnaire) {
+		return questionnaireDAO.findById(questionnaire.getQuestionnaireId());
+		
 	}
 }

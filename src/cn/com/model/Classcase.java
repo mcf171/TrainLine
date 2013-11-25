@@ -13,7 +13,7 @@ public class Classcase implements java.io.Serializable {
 	// Fields
 
 	private Integer classCaseId;
-	private Trainingclass trainingclass;
+	private Integer trainingClassId;
 	private Integer personOfHierarchy;
 	private Integer personOfSum;
 	private Timestamp classStartTime;
@@ -37,7 +37,6 @@ public class Classcase implements java.io.Serializable {
 	private Float travelExpense;
 	private Float otherCost;
 	private String classCaseComment;
-	private Set trainingclasses = new HashSet(0);
 
 	// Constructors
 
@@ -46,7 +45,7 @@ public class Classcase implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Classcase(Trainingclass trainingclass, Integer personOfHierarchy,
+	public Classcase(Integer trainingClassId, Integer personOfHierarchy,
 			Integer personOfSum, Timestamp classStartTime,
 			Timestamp classEndtTime, String classContent, Integer trainHour,
 			String trainChannel, String trainWay, String trainAgreementNunber,
@@ -54,8 +53,8 @@ public class Classcase implements java.io.Serializable {
 			String trainAddress, String trainUnit, String trainUnitType,
 			String awarding, String recognition, Integer exitCountry,
 			Float trainCost, Float accreditationFees, Float travelExpense,
-			Float otherCost, String classCaseComment, Set trainingclasses) {
-		this.trainingclass = trainingclass;
+			Float otherCost, String classCaseComment) {
+		this.trainingClassId = trainingClassId;
 		this.personOfHierarchy = personOfHierarchy;
 		this.personOfSum = personOfSum;
 		this.classStartTime = classStartTime;
@@ -79,7 +78,6 @@ public class Classcase implements java.io.Serializable {
 		this.travelExpense = travelExpense;
 		this.otherCost = otherCost;
 		this.classCaseComment = classCaseComment;
-		this.trainingclasses = trainingclasses;
 	}
 
 	// Property accessors
@@ -92,12 +90,12 @@ public class Classcase implements java.io.Serializable {
 		this.classCaseId = classCaseId;
 	}
 
-	public Trainingclass getTrainingclass() {
-		return this.trainingclass;
+	public Integer getTrainingClassId() {
+		return trainingClassId;
 	}
 
-	public void setTrainingclass(Trainingclass trainingclass) {
-		this.trainingclass = trainingclass;
+	public void setTrainingClassId(Integer trainingClassId) {
+		this.trainingClassId = trainingClassId;
 	}
 
 	public Integer getPersonOfHierarchy() {
@@ -282,14 +280,6 @@ public class Classcase implements java.io.Serializable {
 
 	public void setClassCaseComment(String classCaseComment) {
 		this.classCaseComment = classCaseComment;
-	}
-
-	public Set getTrainingclasses() {
-		return this.trainingclasses;
-	}
-
-	public void setTrainingclasses(Set trainingclasses) {
-		this.trainingclasses = trainingclasses;
 	}
 
 }

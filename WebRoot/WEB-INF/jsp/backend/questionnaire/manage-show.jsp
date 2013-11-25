@@ -8,31 +8,36 @@
     <script type="text/javascript" src="${basePath}scripts/datepicker.js"></script>
 
 <script type="text/javascript">
+var mmg;
+var questionnaireID;
+
 $(document).ready(function ()
 {
 	$('#time-to').css('background', 'none').datepicker();
 	$('#time-from').css('background', 'none').datepicker();
 
-	$('#grid').mmGrid({
-		url:'http://127.0.0.1:8080/TrainLine/questionnaire_findAllQuestionnare.action',
+	mmg = $('#grid').mmGrid({
+		url:'${basePath}questionnaire_findAllQuestionnare.action',
 		height: 410,
 		autoLoad: true,
 		root:'qList',
 		fullWithRows: true,
 		cols: [
-     { title: 'ID', sortable: true, width: 100, name: 'questionnaireId' },  
-     { title: '问卷标题', sortable: true, width: 100, name:'questionnaireTitle' },
-     { title: '发起人', sortable: true, width: 110, name:'questionnaireAuthor' },
+     { title: 'ID', sortable: true, width: 40, name: 'questionnaireId' },  
+     { title: '问卷标题', sortable: true, width: 110, name:'questionnaireTitle' },
+     { title: '发起人', sortable: true, width: 100, name:'questionnaireAuthor' },
      { title: '问卷编号', sortable: true, width: 110, name:'questionnaireNumber' },
      { title: '是否公开', sortable: true, width: 110, 
        renderer: function (val, item, row) {
-       return item.open=1? '公开':'不公开';
+       return item.open==1? '开卷':'闭卷';
        }
      },
      {
-     title: '操作',width: 100,renderer: function (val, item, row) 
+     title: '操作',width: 150,renderer: function (val, item, row) 
        {        
-        return '<input type="hidden" value="' + item.questionnaireId + '" /><a href="read.jsp" target="_blank">阅读</a> ';
+        return '<input type="hidden" value="' + item.questionnaireId + '" /><a href="read.jsp" target="_blank">阅读</a> '+
+        '<a href="#myModal0" onclick="updateQ('+item.questionnaireId+')" role="button" class="btn" data-toggle="modal">修改</a>'+
+        '<a href="#myModal1" onclick="deleteQ('+item.questionnaireId+')" role="button" class="btn" data-toggle="modal">删除</a>';
        }
        }
        ],
@@ -41,7 +46,91 @@ $(document).ready(function ()
 		]
 	});
 	
+	$("#searchQuestionaireBtn").click(function(){
+		mmg.load({page:1,"questionnaire.questionnaireTitle":$("#questionnaireTitleID").val(),
+		"questionnaire.questionnaireAuthor":$("#questionnaireAuthorID").val(),
+		"questionnaire.questionnaireNumber":$("#questionnaireNumberID").val(),
+		"questionnaire.open":$("#openID").val()});
+	});
+	
+	$("#sureDeleteBtn").click(function(){
+	$("#myModal1").modal('hide');
+	$.ajax({
+		type : "POST",
+		url : "${basePath}questionnaire_deleteQuestionaire.action?questionnaire.questionnaireId="+questionnaireID,
+		dataType : "json",
+		success : function(json) {
+		mmg.load({page:1});
+		},
+		error : function() {
+			alert("操作失败,请重试!");
+			return false;
+		}
+	});
+	});
+	
+	$("#updateqBtn").click(function(){
+	$("#myModal0").modal('hide');
+	var questionnaireId= $("#questionnaireIdIID").val();
+	var questionnaireTitle =$("#questionnaireTitleIID").val();
+	var questionnaireAuthor=$("#questionnaireAuthorIID").val();
+	var questionnaireNumber=$("#questionnaireNumberIID").val();
+	var open = $("#openIID").val();
+	$.ajax({
+			type : "POST",
+			url : "${basePath}questionnaire_updateQuestion.action",
+			data:"questionnaire.questionnaireId="+questionnaireId+
+			"&questionnaire.questionnaireTitle="+questionnaireTitle+
+			"&questionnaire.questionnaireAuthor="+questionnaireAuthor+
+			"&questionnaire.questionnaireNumber="+questionnaireNumber+
+			"&questionnaire.open="+open,
+			dataType : "json",
+			success : function(json) {
+				mmg.load();
+			},
+			error : function() {
+				alert("操作失败,请重试!");
+				return false;
+			}
+			});
+	});
+	
 });
+
+function updateQ(questionnaireId){
+questionnaireID = questionnaireId;
+$.ajax({
+			type : "POST",
+			url : "${basePath}questionnaire_getQuestionnaireById.action?questionnaire.questionnaireId="+questionnaireId,
+			dataType : "json",
+			success : function(json) {
+				if(json.questionnaire!=null)
+				{
+				var questionnaire =json.questionnaire;
+				setAttr(questionnaire);
+				}
+			},
+			error : function() {
+				alert("操作失败,请重试!");
+				return false;
+			}
+			});
+}
+
+function setAttr(questionnaire)
+{
+	$("#questionnaireIdIID").val(questionnaire.questionnaireId);
+	$("#questionnaireTitleIID").val(questionnaire.questionnaireTitle);
+	$("#questionnaireAuthorIID").val(questionnaire.questionnaireAuthor);
+	$("#questionnaireNumberIID").val(questionnaire.questionnaireNumber);
+}
+
+function deleteQ(questionnaireId){
+//为全局变量赋值
+questionnaireID = questionnaireId;
+}
+
+
 </script>
 	
             <div class="row-fluid ">
@@ -49,46 +138,24 @@ $(document).ready(function ()
             </div>
             <div class="row-fluid">
             	<div class="span12">
-            		<form id="condition" class="span12 form-inline no-margin">
+            		<form id="condition" class="span12 form-inline no-margin" action="javascript:void(0)">
             			<div class="row-fluid line-margin">
-			               <span class="help-inline"><b>基本过滤：</b>类型：</span>
-			               <select class="input-small">
-				               <option></option>
-				               <option></option>
-				               <option></option>
-				               <option></option>
-				               <option></option>
-				               <option></option>
-			                </select>
-			                <span class="help-inline">编号：</span>
-			                <select class="input-small">
-				               <option></option>
-				               <option></option>
-				               <option></option>
-				               <option></option>
-			                </select>
-			                <span class="help-inline">内容：</span>
-			                <input type="text" class="span2" placeholder="请输入相应内容" />
+			               <span class="help-inline"><b>基本过滤：</b>
+			                <span class="help-inline">标题：</span>
+			                <input type="text" style="width:150px;" class="span2" id="questionnaireTitleID" placeholder="请输入问卷标题" />
+			                 <span class="help-inline">发起人：</span>
+			                <input type="text" class="span2" style="width:150px;" id="questionnaireAuthorID" placeholder="请输入发起人名字" />
 		               </div>
 		               <div>
-		               		<div class="row-fluid line-margin">
-		               			<span class="help-inline"><b>高级过滤：</b></span>
-		               			<input 
-				                 	type="text"
-									id="time-from"
-									class="span2"
-									placeholder="开始时间"
-									data-date-format="yyyy-mm-dd"
-			                     />
-			                     <span class="help-inline">至</span>
-			                     <input 
-				                 	type="text"
-									id="time-to"
-									class="span2"
-									placeholder="结束时间"
-									data-date-format="yyyy-mm-dd"
-			                     />
-			                     <button class="btn "><i class="icon-search"></i>查询</button>
+		               		<div class="row-fluid line-margin"><b>高级过滤：</b>
+		               	    <span class="help-inline">问卷编号：</span>
+			                <input type="text" class="span2" id="questionnaireNumberID" placeholder="请输入问卷编号" />
+			                          状&nbsp;&nbsp;&nbsp;&nbsp;态：</span>
+			               <select class="input-small" style="width:150px;" id="openID">
+			               <option value="1">开卷</option>
+				           <option value="0">闭卷</option>
+			                </select>&nbsp;&nbsp;&nbsp;&nbsp;
+			                     <button class="btn " id="searchQuestionaireBtn"><i class="icon-search"></i>查询</button>&nbsp;&nbsp;
 			                     <button class="btn" type="reset"><i class="icon-remove"></i>清除</button>
 		               		</div>
 		               		<div class="row-fluid">
@@ -101,3 +168,43 @@ $(document).ready(function ()
 		            </form>
             	</div>
             </div>
+          
+<div id="myModal0" style="width:350px;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">修改!</h3>
+</div>
+	<div class="modal-body">
+		 <label>问卷ID</label>
+		 <input type="text" id="questionnaireIdIID" disabled="true">
+		  <label>问卷标题</label>
+		 <input type="text"  id="questionnaireTitleIID" name="questionnaireTitle">
+		  <label >问卷发起人</label>
+		 <input type="text" id="questionnaireAuthorIID" name="questionnaireAuthor">
+		  <label>问卷编号</label>
+		 <input type="text" id="questionnaireNumberIID" name="questionnaireNumber"></input>
+		  <label>是否开卷</label>
+		  <select name="open" id="openIID">
+		 <option value="1">开卷</option>
+		  <option value="0">闭卷</option>
+		 </select>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		<button class="btn btn-primary" id="updateqBtn">修改</button>
+	</div>
+</div>  
+            
+<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">温馨提示</h3>
+</div>
+	<div class="modal-body">
+		<p>确定删除吗？</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		<button class="btn btn-primary" id="sureDeleteBtn">确定</button>
+	</div>
+</div>

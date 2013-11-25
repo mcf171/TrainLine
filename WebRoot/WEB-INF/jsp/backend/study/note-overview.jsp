@@ -18,6 +18,7 @@
 <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
 <script type="text/javascript">
 var mmg;
+var noteID;
 
 	$(document).ready(function() {
 		
@@ -90,7 +91,8 @@ var mmg;
 										width : 120,
 										renderer : function(val, item, row) {
 											return '<input type="hidden" id="'+item.noteId+'" value="' + item.noteId + '" />'
-													+ '<a href="#">查看</a>&nbsp;&nbsp;<button onclick="deletenote('+item.noteId+')" class="btn" id="'+item.noteId+'">删除</button>';
+													+ '<a href="#">查看</a>&nbsp;&nbsp; '+
+													'<a href="#myModal" onclick="deleteN('+item.noteId+')" role="button" class="btn" data-toggle="modal">删除</a>';
 										}
 
 									} ],
@@ -99,23 +101,26 @@ var mmg;
 
 	};
 	
-
+	$("#sureDeleteBtn").click(function (){
+	$("#myModal").modal('hide');
+	$.ajax({
+				type : "POST",
+				url : "${basePath}note_deleteNote.action?noteId="+noteID,
+				dataType : "json",
+				success : function(json) {
+				mmg.load({page:1});
+				},
+				error : function() {
+					alert("操作失败,请重试!");
+					return false;
+				}
+			});
+	});
 	});
 	
 	//删除一条记录
-	function deletenote(noteid){
-	$.ajax({
-						type : "POST",
-						url : "${basePath}note_deleteNote.action?noteId="+noteid,
-						dataType : "json",
-						success : function(json) {
-						mmg.load({page:1});
-						},
-						error : function() {
-							alert("操作失败,请重试!");
-							return false;
-						}
-					});
+	function deleteN(noteid){
+	noteID = noteid;
 	}
 
 </script>
@@ -148,5 +153,20 @@ var mmg;
 	<div class="span12">
 		<table id="grid"></table>
 		<div id="page" class="pull-right"></div>
+	</div>
+</div>
+
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">温馨提示</h3>
+</div>
+	<div class="modal-body">
+		<p>确定删除吗？</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		<button class="btn btn-primary" id="sureDeleteBtn">确定</button>
 	</div>
 </div>

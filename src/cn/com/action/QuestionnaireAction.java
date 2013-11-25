@@ -11,6 +11,8 @@ public class QuestionnaireAction extends BaseActionSupport{
 	private QuestionnaireService questionnairerService;
 	private List<Questionnaire> qList;
 	private Map<Object,List> dataMap;
+	private Questionnaire questionnaire;
+	
 	
 	public QuestionnaireAction()
 	{
@@ -19,9 +21,37 @@ public class QuestionnaireAction extends BaseActionSupport{
 
 	
 	public String findAllQuestionnare()throws Exception{
-		qList = questionnairerService.findAll();
+		if(questionnaire!=null)
+		{
+			qList = questionnairerService.findByConditions(questionnaire);
+		}else {
+			qList = questionnairerService.findAll();
+		}
+		
 		dataMap.put("qList",qList);
-		//request.setAttribute("qList", qList);
+		return SUCCESS;
+	}
+	
+	public String getQuestionnaireById()
+	{
+		if(questionnaire!=null){
+			questionnaire =questionnairerService.getQuestionnaire(questionnaire);
+		}
+		return JSON;
+	}
+	
+	public String deleteQuestionaire()
+	{
+		questionnairerService.delete(questionnaire);
+		return JSON;
+	}
+	
+	public String updateQuestion()
+	{
+		if(questionnaire!=null)
+		{
+			questionnairerService.update(questionnaire);
+		}
 		return JSON;
 	}
 	
@@ -52,6 +82,16 @@ public class QuestionnaireAction extends BaseActionSupport{
 
 	public void setDataMap(Map<Object, List> dataMap) {
 		this.dataMap = dataMap;
+	}
+
+
+	public Questionnaire getQuestionnaire() {
+		return questionnaire;
+	}
+
+
+	public void setQuestionnaire(Questionnaire questionnaire) {
+		this.questionnaire = questionnaire;
 	}
 
 }

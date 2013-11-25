@@ -13,7 +13,7 @@ public class Catalogue implements java.io.Serializable {
 	// Fields
 
 	private Integer catalogueId;
-	private Course course;
+	private Integer courseId;
 	private String catalogueName;
 	private Integer catalogueNumber;
 	private Timestamp uploading;
@@ -29,11 +29,19 @@ public class Catalogue implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Catalogue(Course course, String catalogueName,
-			Integer catalogueNumber, Timestamp uploading,
+
+	// Property accessors
+
+	public Integer getCatalogueId() {
+		return this.catalogueId;
+	}
+
+	public Catalogue(Integer catalogueId, Integer courseId,
+			String catalogueName, Integer catalogueNumber, Timestamp uploading,
 			String uploadingPerson, Set notes, Set tcomments,
 			Set resourseandcatelogues) {
-		this.course = course;
+		this.catalogueId = catalogueId;
+		this.courseId = courseId;
 		this.catalogueName = catalogueName;
 		this.catalogueNumber = catalogueNumber;
 		this.uploading = uploading;
@@ -43,22 +51,17 @@ public class Catalogue implements java.io.Serializable {
 		this.resourseandcatelogues = resourseandcatelogues;
 	}
 
-	// Property accessors
-
-	public Integer getCatalogueId() {
-		return this.catalogueId;
-	}
-
 	public void setCatalogueId(Integer catalogueId) {
 		this.catalogueId = catalogueId;
 	}
 
-	public Course getCourse() {
-		return this.course;
+
+	public Integer getCourseId() {
+		return courseId;
 	}
 
-	public void setCourse(Course course) {
-		this.course = course;
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
 	}
 
 	public String getCatalogueName() {

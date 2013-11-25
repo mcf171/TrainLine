@@ -10,9 +10,10 @@
             <column name="ClassCaseId" />
             <generator class="native" />
         </id>
-        <many-to-one name="trainingclass" class="cn.com.model.Trainingclass" fetch="select">
-            <column name="trainingClassId" />
-        </many-to-one>
+       
+        <property name="trainingClassId" type="java.lang.Integer">
+        <column name="trainingClassId"></column>
+        </property>
         <property name="personOfHierarchy" type="java.lang.Integer">
             <column name="PersonOfHierarchy" />
         </property>
@@ -82,11 +83,11 @@
         <property name="classCaseComment" type="java.lang.String">
             <column name="ClassCaseComment" length="50" />
         </property>
-        <set name="trainingclasses" inverse="true">
+       <!-- <set name="trainingclasses" inverse="true">
             <key>
                 <column name="ClassCaseId" />
             </key>
             <one-to-many class="cn.com.model.Trainingclass" />
-        </set>
+        </set> --> 
     </class>
 </hibernate-mapping>

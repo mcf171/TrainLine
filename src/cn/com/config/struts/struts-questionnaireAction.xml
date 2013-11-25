@@ -3,9 +3,10 @@
 <struts>
 	<package name="questionnaire" namespace="/" extends="json-default">
 		<action name="questionnaire_*" class="questionnarieAction" method="{1}">
-		<result type="json" name="json">
+		<result type="json" name="success">
 		<param name="root">dataMap</param>
 		</result>
+		<result name="json" type="json"></result>
 		<result name="intoQuestionnairePage">/WEB-INF/jsp/backend/questionnaire/manage-show.jsp</result>
 		</action>
 	</package>

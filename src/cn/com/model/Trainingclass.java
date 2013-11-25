@@ -12,8 +12,8 @@ public class Trainingclass implements java.io.Serializable {
 	// Fields
 
 	private Integer trainingClassId;
-	private Classcase classcase;
-	private Credential credential;
+	//private Classcase classcase;
+	private Integer credentialId;
 	private String trainingClassName;
 	private Integer trainingClassStatus;
 	private Set testarrangements = new HashSet(0);
@@ -28,12 +28,20 @@ public class Trainingclass implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Trainingclass(Classcase classcase, Credential credential,
+
+
+	// Property accessors
+
+	public Integer getTrainingClassId() {
+		return this.trainingClassId;
+	}
+
+	public Trainingclass(Integer trainingClassId, Integer credentialId,
 			String trainingClassName, Integer trainingClassStatus,
 			Set testarrangements, Set classcases, Set classandusers,
 			Set classandcourses) {
-		this.classcase = classcase;
-		this.credential = credential;
+		this.trainingClassId = trainingClassId;
+		this.credentialId = credentialId;
 		this.trainingClassName = trainingClassName;
 		this.trainingClassStatus = trainingClassStatus;
 		this.testarrangements = testarrangements;
@@ -42,31 +50,20 @@ public class Trainingclass implements java.io.Serializable {
 		this.classandcourses = classandcourses;
 	}
 
-	// Property accessors
+	public Integer getCredentialId() {
+		return credentialId;
+	}
 
-	public Integer getTrainingClassId() {
-		return this.trainingClassId;
+	public void setCredentialId(Integer credentialId) {
+		this.credentialId = credentialId;
 	}
 
 	public void setTrainingClassId(Integer trainingClassId) {
 		this.trainingClassId = trainingClassId;
 	}
 
-	public Classcase getClasscase() {
-		return this.classcase;
-	}
 
-	public void setClasscase(Classcase classcase) {
-		this.classcase = classcase;
-	}
 
-	public Credential getCredential() {
-		return this.credential;
-	}
-
-	public void setCredential(Credential credential) {
-		this.credential = credential;
-	}
 
 	public String getTrainingClassName() {
 		return this.trainingClassName;

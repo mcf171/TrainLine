@@ -34,4 +34,12 @@ public class TestBookDAO extends TestCase{
 	}
 	*/
 	
+	
+	public void testBookTypeDAO(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		BooktypeDAO bookDAO = (BooktypeDAO)context.getBean("BookTypeDAO");
+		List list = bookDAO.findAll();
+	     Assert.assertNotNull(list.get(0));
+		
+	}
 }

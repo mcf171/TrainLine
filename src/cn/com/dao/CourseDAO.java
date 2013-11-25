@@ -35,15 +35,9 @@ public class CourseDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
-	public void save(Course transientInstance) {
-		log.debug("saving Course instance");
-		try {
-			getHibernateTemplate().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
+	public Integer save(Course transientInstance) {
+		Integer integer= (Integer) getHibernateTemplate().save(transientInstance);
+		return integer;
 	}
 
 	public void delete(Course persistentInstance) {
@@ -56,11 +50,16 @@ public class CourseDAO extends HibernateDaoSupport {
 		}
 	}
 
+	public void update(Course course){
+		getHibernateTemplate().saveOrUpdate(course);
+	}
+	
 	public Course findById(java.lang.Integer id) {
 		log.debug("getting Course instance with id: " + id);
 		try {
 			Course instance = (Course) getHibernateTemplate().get(
 					"cn.com.model.Course", id);
+			getHibernateTemplate().flush();
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

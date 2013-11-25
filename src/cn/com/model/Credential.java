@@ -19,7 +19,6 @@ public class Credential implements java.io.Serializable {
 	private Timestamp credentiaStartTime;
 	private String credentiaGrantUnit;
 	private String credentiaPath;
-	private Set trainingclasses = new HashSet(0);
 
 	// Constructors
 
@@ -30,14 +29,13 @@ public class Credential implements java.io.Serializable {
 	/** full constructor */
 	public Credential(Certificatetype certificatetype, String credentialName,
 			Integer credentialvalidity, Timestamp credentiaStartTime,
-			String credentiaGrantUnit, String credentiaPath, Set trainingclasses) {
+			String credentiaGrantUnit, String credentiaPath) {
 		this.certificatetype = certificatetype;
 		this.credentialName = credentialName;
 		this.credentialvalidity = credentialvalidity;
 		this.credentiaStartTime = credentiaStartTime;
 		this.credentiaGrantUnit = credentiaGrantUnit;
 		this.credentiaPath = credentiaPath;
-		this.trainingclasses = trainingclasses;
 	}
 
 	// Property accessors
@@ -97,13 +95,4 @@ public class Credential implements java.io.Serializable {
 	public void setCredentiaPath(String credentiaPath) {
 		this.credentiaPath = credentiaPath;
 	}
-
-	public Set getTrainingclasses() {
-		return this.trainingclasses;
-	}
-
-	public void setTrainingclasses(Set trainingclasses) {
-		this.trainingclasses = trainingclasses;
-	}
-
 }

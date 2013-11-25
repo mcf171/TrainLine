@@ -26,6 +26,8 @@
 
 	<bean id="courseService" class="cn.com.service.CourseService">
 		<property name="courseDAO" ref="CourseDAO"></property>
+		<property name="catalogueDAO" ref="CatalogueDAO"></property>
+		<property name="resourseandcatelogueDAO" ref="ResourseandcatelogueDAO"></property>
 	</bean>
 
 	<bean id="noteService" class="cn.com.service.NoteService">

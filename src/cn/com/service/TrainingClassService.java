@@ -20,6 +20,7 @@ public class TrainingClassService {
 	
 	public void update(Trainingclass trainingclass)
 	{
+		trainingclassDAO.update(trainingclass);
 	}
 
 	public Trainingclass getTrainingclass()
@@ -39,6 +40,10 @@ public class TrainingClassService {
 
 	public void setTrainingclassDAO(TrainingclassDAO trainingclassDAO) {
 		this.trainingclassDAO = trainingclassDAO;
+	}
+
+	public List<Trainingclass> findByConditions(Trainingclass trainingclass) {
+		return trainingclassDAO.findByConditions(trainingclass);
 	}
 	
 

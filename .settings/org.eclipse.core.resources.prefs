@@ -1,3 +1,8 @@
 eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/jsp/backend/classes.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/backend/classes/classes.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/backend/questionnaire/manage-show.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/backend/study/addCourse.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/backend/study/addCourseChapter.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/study/class-system.jsp=UTF-8
 encoding//src/cn/com/base/IHibernateTemplate.java=UTF-8

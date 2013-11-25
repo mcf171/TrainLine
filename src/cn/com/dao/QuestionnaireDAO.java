@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -45,7 +46,9 @@ public class QuestionnaireDAO extends HibernateDaoSupport {
 	public void delete(Questionnaire persistentInstance) {
 		log.debug("deleting Questionnaire instance");
 		try {
-			getHibernateTemplate().delete(persistentInstance);
+			Session session =getHibernateTemplate().getSessionFactory().openSession();
+			session.delete(persistentInstance);
+			session.flush();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
@@ -156,5 +159,32 @@ public class QuestionnaireDAO extends HibernateDaoSupport {
 	public static QuestionnaireDAO getFromApplicationContext(
 			ApplicationContext ctx) {
 		return (QuestionnaireDAO) ctx.getBean("QuestionnaireDAO");
+	}
+
+	public List<Questionnaire> findByConditions(Questionnaire questionnaire) {
+		String hql ="from Questionnaire where 1=1 ";
+		if(questionnaire.getQuestionnaireNumber()!=null){
+			hql+=" and questionnaireNumber like '%"+questionnaire.getQuestionnaireNumber()+"%' ";
+		}
+		if(questionnaire.getQuestionnaireTitle()!=null)
+		{
+			hql+=" and questionnaireTitle like '%"+questionnaire.getQuestionnaireTitle()+"%' ";
+		}
+		if(questionnaire.getQuestionnaireAuthor()!=null)
+		{
+			hql +=" and questionnaireAuthor like '%"+questionnaire.getQuestionnaireAuthor()+"%' ";
+		}
+		if(questionnaire.getOpen()!=null){
+			hql +=" and open = "+questionnaire.getOpen();
+		}
+		
+		List<Questionnaire> list = getHibernateTemplate().find(hql);
+		
+		return list;
+	}
+
+	public void update(Questionnaire questionnaire) {
+		getHibernateTemplate().saveOrUpdate(questionnaire);
+		getHibernateTemplate().flush();
 	}
 }

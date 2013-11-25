@@ -32,15 +32,9 @@ public class CatalogueDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
-	public void save(Catalogue transientInstance) {
-		log.debug("saving Catalogue instance");
-		try {
-			getHibernateTemplate().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
+	public Integer save(Catalogue transientInstance) {
+			return (Integer) getHibernateTemplate().save(transientInstance);
+	
 	}
 
 	public void delete(Catalogue persistentInstance) {

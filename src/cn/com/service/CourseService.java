@@ -1,16 +1,25 @@
 package cn.com.service;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import cn.com.dao.CatalogueDAO;
 import cn.com.dao.CourseDAO;
+import cn.com.dao.ResourseandcatelogueDAO;
+import cn.com.model.Catalogue;
 import cn.com.model.Course;
+import cn.com.model.Resource;
 
 public class CourseService {
 	private CourseDAO courseDAO;
+	private CatalogueDAO catalogueDAO;
+	private ResourseandcatelogueDAO resourseandcatelogueDAO;
 
-	public void insert(Course course) {
-		courseDAO.save(course);
+	public Integer insert(Course course) {
+		return courseDAO.save(course);
 	}
+	
 
 	public void delete(Course course)
 	{
@@ -19,12 +28,13 @@ public class CourseService {
 	
 	public void update(Course course)
 	{
+		courseDAO.update(course);
 	}
 
 	public Course getCourse(Course course)
 	{
 		
-		return null;
+		return courseDAO.findById(course.getCourseId());
 	}
 	
 	public List<Course> findAll(){
@@ -42,5 +52,34 @@ public class CourseService {
 
 	public List<Course> searchCourses(Course course) {
 		return courseDAO.searchCourses(course);
+	}
+
+	public CatalogueDAO getCatalogueDAO() {
+		return catalogueDAO;
+	}
+
+	public void setCatalogueDAO(CatalogueDAO catalogueDAO) {
+		this.catalogueDAO = catalogueDAO;
+	}
+
+	public void addChapterAndRescourse(Catalogue catalogue, Set<Resource> set) {
+		Integer catalogueId = catalogueDAO.save(catalogue);
+	    Iterator<Resource> i = set.iterator();
+		while(i.hasNext())
+		{
+			Resource r = i.next();
+			r.setCatalogueId(catalogueId);
+			resourseandcatelogueDAO.save(r);
+		}
+	}
+
+
+	public ResourseandcatelogueDAO getResourseandcatelogueDAO() {
+		return resourseandcatelogueDAO;
+	}
+
+
+	public void setResourseandcatelogueDAO(ResourseandcatelogueDAO resourseandcatelogueDAO) {
+		this.resourseandcatelogueDAO = resourseandcatelogueDAO;
 	}
 }

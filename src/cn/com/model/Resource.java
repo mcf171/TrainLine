@@ -12,6 +12,7 @@ public class Resource implements java.io.Serializable {
 	// Fields
 
 	private Integer resourceId;
+	private Integer catalogueId;
 	private String resourceName;
 	private String resourcePath;
 	private Integer resourceType;
@@ -24,18 +25,23 @@ public class Resource implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Resource(String resourceName, String resourcePath,
-			Integer resourceType, Set resourseandcatelogues) {
-		this.resourceName = resourceName;
-		this.resourcePath = resourcePath;
-		this.resourceType = resourceType;
-		this.resourseandcatelogues = resourseandcatelogues;
-	}
+	
 
 	// Property accessors
 
 	public Integer getResourceId() {
 		return this.resourceId;
+	}
+
+	public Resource(Integer resourceId, Integer catalogueId,
+			String resourceName, String resourcePath, Integer resourceType,
+			Set resourseandcatelogues) {
+		this.resourceId = resourceId;
+		this.catalogueId = catalogueId;
+		this.resourceName = resourceName;
+		this.resourcePath = resourcePath;
+		this.resourceType = resourceType;
+		this.resourseandcatelogues = resourseandcatelogues;
 	}
 
 	public void setResourceId(Integer resourceId) {
@@ -72,6 +78,14 @@ public class Resource implements java.io.Serializable {
 
 	public void setResourseandcatelogues(Set resourseandcatelogues) {
 		this.resourseandcatelogues = resourseandcatelogues;
+	}
+
+	public Integer getCatalogueId() {
+		return catalogueId;
+	}
+
+	public void setCatalogueId(Integer catalogueId) {
+		this.catalogueId = catalogueId;
 	}
 
 }

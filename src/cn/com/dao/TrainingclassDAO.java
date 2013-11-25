@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -49,7 +50,9 @@ public class TrainingclassDAO extends HibernateDaoSupport {
 	public void delete(Trainingclass persistentInstance) {
 		log.debug("deleting Trainingclass instance");
 		try {
-			getHibernateTemplate().delete(persistentInstance);
+			Session session = getHibernateTemplate().getSessionFactory().openSession();
+			session.delete(persistentInstance);
+			session.flush();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
@@ -131,6 +134,7 @@ public class TrainingclassDAO extends HibernateDaoSupport {
 		log.debug("attaching dirty Trainingclass instance");
 		try {
 			getHibernateTemplate().saveOrUpdate(instance);
+			getHibernateTemplate().flush();
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
 			log.error("attach failed", re);
@@ -152,5 +156,27 @@ public class TrainingclassDAO extends HibernateDaoSupport {
 	public static TrainingclassDAO getFromApplicationContext(
 			ApplicationContext ctx) {
 		return (TrainingclassDAO) ctx.getBean("TrainingclassDAO");
+	}
+
+	public List<Trainingclass> findByConditions(Trainingclass trainingclass) {
+		String hql ="from Trainingclass where 1=1 ";
+		if(trainingclass.getTrainingClassId()!=null)
+		{
+			hql+=" and trainingClassId = "+trainingclass.getTrainingClassId();
+		}
+		if(trainingclass.getTrainingClassName()!=null)
+		{
+			hql +=" and trainingClassName like '%"+trainingclass.getTrainingClassName()+"%' ";
+		}
+		if(trainingclass.getTrainingClassStatus()!=null){
+			hql +=" and trainingClassStatus = "+trainingclass.getTrainingClassStatus();
+		}
+		List<Trainingclass> list = getHibernateTemplate().find(hql);
+		getHibernateTemplate().flush();
+		return list;
+	}
+
+	public void update(Trainingclass trainingclass) {
+		attachDirty(trainingclass);
 	}
 }
