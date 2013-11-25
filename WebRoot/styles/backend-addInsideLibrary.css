@@ -1,0 +1,72 @@
+@CHARSET "UTF-8";
+
+.fixed-box
+{
+	height: 210px;
+	overflow: auto;
+}
+
+.red-number
+{
+	color: red;
+	font-weight: bold;
+}
+
+.tree-container
+{
+	height: auto;
+	overflow-x: auto;
+}
+
+input.ui-pg-input
+{
+	width: auto;
+	padding: 0px;
+	line-height: 13px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+select.ui-pg-selbox
+{
+	width: auto;
+	padding: 0px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.jstree-default
+{
+	background: none !important;
+}
+
+.jstree-open > a,
+.jstree-closed > a
+{
+	color: #228822;
+}
+
+.jstree-leaf > a,
+.jstree-open > a,
+.jstree-closed > a
+{
+	font-size: 0.8em;
+}
+
+.jstree-leaf > a > ins.jstree-icon
+{
+	background-image: url("../images/glyphicons-halflings.png");
+	background-position: -360px -48px;
+}
+
+.jstree-open > a > ins.jstree-icon
+{
+	background-image: url("../images/glyphicons-halflings.png");
+	background-position: -408px -120px;
+}
+
+.jstree-closed > a > ins.jstree-icon
+{
+	background-image: url("../images/glyphicons-halflings.png");
+	background-position: -384px -120px;
+}

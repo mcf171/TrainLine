@@ -1,15 +1,12 @@
 package cn.com.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import cn.com.model.Questionarrangement;
-
 
 import cn.com.model.Questionarrangement;
 
@@ -24,9 +21,10 @@ import cn.com.model.Questionarrangement;
  * @see cn.com.model.Questionarrangement
  * @author MyEclipse Persistence Tools
  */
+
 public class QuestionarrangementDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory
-			.getLog(QuestionarrangementDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(QuestionarrangementDAO.class);
 	// property constants
 	public static final String QUESTION_ARRANGEMENT_NAME = "questionArrangementName";
 	public static final String QUESTION_ARRANGEMENT_STATE = "questionArrangementState";

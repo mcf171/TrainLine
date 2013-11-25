@@ -20,5 +20,6 @@
 	<include file="cn/com/config/struts/struts-TrainingClassAction.xml"></include>
 	<include file="cn/com/config/struts/struts-credentialAction.xml"></include>
 	<include file="cn/com/config/struts/struts-user.xml"></include>
+	<include file="cn/com/config/struts/struts-upload.xml"></include>
 
 </struts>    

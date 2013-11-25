@@ -1,16 +1,12 @@
 package cn.com.dao;
 
-
+import java.sql.Timestamp;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import cn.com.model.Practisingcertificate;
-
 
 import cn.com.model.Practisingcertificate;
 
@@ -25,9 +21,10 @@ import cn.com.model.Practisingcertificate;
  * @see cn.com.model.Practisingcertificate
  * @author MyEclipse Persistence Tools
  */
+
 public class PractisingcertificateDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory
-			.getLog(PractisingcertificateDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(PractisingcertificateDAO.class);
 	// property constants
 	public static final String USER_ID = "userId";
 	public static final String PRACTISING_CERTIFICATE_NAME = "practisingCertificateName";

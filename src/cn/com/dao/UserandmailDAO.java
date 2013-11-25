@@ -1,17 +1,14 @@
 package cn.com.dao;
 
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.com.model.Userandmail;
-
-
-import cn.com.model.Userandmail;
+import cn.com.model.UserandmailId;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -24,8 +21,10 @@ import cn.com.model.Userandmail;
  * @see cn.com.model.Userandmail
  * @author MyEclipse Persistence Tools
  */
+
 public class UserandmailDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(UserandmailDAO.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(UserandmailDAO.class);
 
 	// property constants
 

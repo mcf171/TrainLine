@@ -1,16 +1,12 @@
 package cn.com.dao;
 
 import java.util.List;
-
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.Set;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import cn.com.model.Topic;
-
 
 import cn.com.model.Topic;
 
@@ -25,8 +21,9 @@ import cn.com.model.Topic;
  * @see cn.com.model.Topic
  * @author MyEclipse Persistence Tools
  */
+
 public class TopicDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(TopicDAO.class);
+	private static final Logger log = LoggerFactory.getLogger(TopicDAO.class);
 	// property constants
 	public static final String USER_ID = "userId";
 	public static final String TOPIC_NAME = "topicName";

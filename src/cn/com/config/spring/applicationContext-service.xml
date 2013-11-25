@@ -8,6 +8,8 @@
 
 	<bean id="liberaryService" class="cn.com.service.LiberaryService" scope="prototype">
 		<property name="bookDAO" ref="BookDAO"></property>
+		<property name="bookTypeDAO" ref="BooktypeDAO"></property>
+		<property name="uploadUtil" ref="uploadUtil"></property>
 	</bean>
 	
 	<bean id="userService" class="cn.com.service.UserService" scope="prototype">

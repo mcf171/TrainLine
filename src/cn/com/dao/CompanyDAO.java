@@ -1,10 +1,9 @@
 package cn.com.dao;
 
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -21,8 +20,9 @@ import cn.com.model.Company;
  * @see cn.com.model.Company
  * @author MyEclipse Persistence Tools
  */
+
 public class CompanyDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(CompanyDAO.class);
+	private static final Logger log = LoggerFactory.getLogger(CompanyDAO.class);
 	// property constants
 	public static final String COMPANY_NAME = "companyName";
 	public static final String COMPANYSTATUS = "companystatus";

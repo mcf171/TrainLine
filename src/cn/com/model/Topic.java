@@ -16,8 +16,8 @@ public class Topic implements java.io.Serializable {
 	private Integer userId;
 	private String topicName;
 	private String topicImgPath;
-	private Set topicaccessories = new HashSet(0);
 	private Set posts = new HashSet(0);
+	private Set tiezis = new HashSet(0);
 
 	// Constructors
 
@@ -27,13 +27,13 @@ public class Topic implements java.io.Serializable {
 
 	/** full constructor */
 	public Topic(Theme theme, Integer userId, String topicName,
-			String topicImgPath, Set topicaccessories, Set posts) {
+			String topicImgPath, Set posts, Set tiezis) {
 		this.theme = theme;
 		this.userId = userId;
 		this.topicName = topicName;
 		this.topicImgPath = topicImgPath;
-		this.topicaccessories = topicaccessories;
 		this.posts = posts;
+		this.tiezis = tiezis;
 	}
 
 	// Property accessors
@@ -78,20 +78,20 @@ public class Topic implements java.io.Serializable {
 		this.topicImgPath = topicImgPath;
 	}
 
-	public Set getTopicaccessories() {
-		return this.topicaccessories;
-	}
-
-	public void setTopicaccessories(Set topicaccessories) {
-		this.topicaccessories = topicaccessories;
-	}
-
 	public Set getPosts() {
 		return this.posts;
 	}
 
 	public void setPosts(Set posts) {
 		this.posts = posts;
+	}
+
+	public Set getTiezis() {
+		return this.tiezis;
+	}
+
+	public void setTiezis(Set tiezis) {
+		this.tiezis = tiezis;
 	}
 
 }

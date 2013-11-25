@@ -1,16 +1,12 @@
 package cn.com.dao;
 
-
+import java.sql.Timestamp;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import cn.com.model.Record;
-
 
 import cn.com.model.Record;
 
@@ -25,8 +21,9 @@ import cn.com.model.Record;
  * @see cn.com.model.Record
  * @author MyEclipse Persistence Tools
  */
+
 public class RecordDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(RecordDAO.class);
+	private static final Logger log = LoggerFactory.getLogger(RecordDAO.class);
 	// property constants
 	public static final String USER_ID = "userId";
 	public static final String IPADDRESS = "ipaddress";

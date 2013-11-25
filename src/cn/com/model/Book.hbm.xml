@@ -29,6 +29,6 @@
             <column name="bookURL" length="500" />
         </property>
         
-        <many-to-one name="bookType" column="bookTypeId" lazy="false" fetch="join" class="cn.com.model.Booktype"></many-to-one>
+        <many-to-one name="bookType" column="bookTypeId" lazy="false" fetch="join" class="cn.com.model.Booktype" ></many-to-one>
     </class>
 </hibernate-mapping>

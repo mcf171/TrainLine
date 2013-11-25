@@ -1,12 +1,13 @@
 package cn.com.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.List;
+import java.util.Set;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -23,8 +24,9 @@ import cn.com.model.Course;
  * @see cn.com.model.Course
  * @author MyEclipse Persistence Tools
  */
+
 public class CourseDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(CourseDAO.class);
+	private static final Logger log = LoggerFactory.getLogger(CourseDAO.class);
 	// property constants
 	public static final String COURSE_NAME = "courseName";
 	public static final String COURSE_SPEAKER = "courseSpeaker";

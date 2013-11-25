@@ -2,16 +2,13 @@ package cn.com.dao;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import cn.com.model.Note;
-
 
 import cn.com.model.Note;
 
@@ -26,8 +23,9 @@ import cn.com.model.Note;
  * @see cn.com.model.Note
  * @author MyEclipse Persistence Tools
  */
+
 public class NoteDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(NoteDAO.class);
+	private static final Logger log = LoggerFactory.getLogger(NoteDAO.class);
 	// property constants
 	public static final String USER_ID = "userId";
 	public static final String NOTE_CONTENT = "noteContent";
@@ -173,6 +171,5 @@ public class NoteDAO extends HibernateDaoSupport {
 
 	public static NoteDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (NoteDAO) ctx.getBean("NoteDAO");
-	}
-
+}
 }
