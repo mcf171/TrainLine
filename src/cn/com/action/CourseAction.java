@@ -25,6 +25,7 @@ import cn.com.model.Resourseandcatelogue;
 import cn.com.model.ResourseandcatelogueId;
 import cn.com.service.CourseService;
 
+/**/
 public class CourseAction extends BaseActionSupport {
 	private List<Course> cList;
 	private CourseService courseService;
