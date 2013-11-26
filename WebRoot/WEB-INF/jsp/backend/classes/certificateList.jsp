@@ -23,16 +23,17 @@ $(document).ready(function ()
 			mmg = $('#grid').mmGrid({
 				url: '${basePath}credential_findAllCredential.action',
 				height: 410,
+				width:800,
 				cache:true,
 				autoLoad: true,
 				root:'cList',
-				fullWithRows: false,
+				fullWithRows: true,
 				cols: [
-					{ title: '证书ID', sortable: true,  name: 'credentialId' },	
-					{ title: '证书名称', sortable: true,  name: 'credentialName' },
-					{ title: '证书期限', sortable: true,  name: 'credentialvalidity' },
-					{ title: '发放时间', sortable: true,  name: 'credentiaStartTime' },
-					{ title: '授予单位', sortable: true,  name: 'credentiaGrantUnit' },
+					{ title: '证书ID', sortable: true, name: 'credentialId' },	
+					{ title: '证书名称', sortable: true, name: 'credentialName' },
+					{ title: '证书期限', sortable: true, name: 'credentialvalidity' },
+					{ title: '发放时间', sortable: true, name: 'credentiaStartTime' },
+					{ title: '授予单位', sortable: true, name: 'credentiaGrantUnit' },
 					{
 						title: '操作',
 						width: 150,

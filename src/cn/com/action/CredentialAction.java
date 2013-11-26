@@ -26,7 +26,6 @@ public class CredentialAction extends BaseActionSupport {
 	
 	public String intoCertificatePage()
 	{
-		
 		return "intoCertificatePage";
 	}
 
