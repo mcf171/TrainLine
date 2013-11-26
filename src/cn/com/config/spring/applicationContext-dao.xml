@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -15,7 +13,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">
-			<ref bean="dataSource"/>
+			<ref bean="dataSource" />
 		</property>
 		<property name="hibernateProperties">
 			<props>
@@ -70,20 +68,12 @@
 				<value>cn/com/model/Certificatetype.hbm.xml</value>
 				<value>cn/com/model/Credential.hbm.xml</value>
 				<value>cn/com/model/Note.hbm.xml</value>
-<<<<<<< HEAD
 				<value>cn/com/model/Classandcourse.hbm.xml</value>
-				<value>cn/com/model/User.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
 
-	
-<bean id="BookDAO" class="cn.com.dao.BookDAO">
-=======
-				<value>cn/com/model/Classandcourse.hbm.xml</value></list>
-		</property></bean>
 	<bean id="CourseDAO" class="cn.com.dao.CourseDAO">
->>>>>>> refs/remotes/origin/TrainLine1.0
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -93,8 +83,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="TestarrangementDAO"
-		class="cn.com.dao.TestarrangementDAO">
+	<bean id="TestarrangementDAO" class="cn.com.dao.TestarrangementDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -104,14 +93,12 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="ResourseandcatelogueDAO"
-		class="cn.com.dao.ResourseandcatelogueDAO">
+	<bean id="ResourseandcatelogueDAO" class="cn.com.dao.ResourseandcatelogueDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="UserandquestionDAO"
-		class="cn.com.dao.UserandquestionDAO">
+	<bean id="UserandquestionDAO" class="cn.com.dao.UserandquestionDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -121,8 +108,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="PersonalinformationDAO"
-		class="cn.com.dao.PersonalinformationDAO">
+	<bean id="PersonalinformationDAO" class="cn.com.dao.PersonalinformationDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -137,14 +123,12 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="TieziaccessoryDAO"
-		class="cn.com.dao.TieziaccessoryDAO">
+	<bean id="TieziaccessoryDAO" class="cn.com.dao.TieziaccessoryDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="QuestionarrangementDAO"
-		class="cn.com.dao.QuestionarrangementDAO">
+	<bean id="QuestionarrangementDAO" class="cn.com.dao.QuestionarrangementDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -154,14 +138,12 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="JobtechnicalgradeDAO"
-		class="cn.com.dao.JobtechnicalgradeDAO">
+	<bean id="JobtechnicalgradeDAO" class="cn.com.dao.JobtechnicalgradeDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="QuestionnairerubricDAO"
-		class="cn.com.dao.QuestionnairerubricDAO">
+	<bean id="QuestionnairerubricDAO" class="cn.com.dao.QuestionnairerubricDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -176,14 +158,12 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="MajorqualificationDAO"
-		class="cn.com.dao.MajorqualificationDAO">
+	<bean id="MajorqualificationDAO" class="cn.com.dao.MajorqualificationDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="PractisingcertificateDAO"
-		class="cn.com.dao.PractisingcertificateDAO">
+	<bean id="PractisingcertificateDAO" class="cn.com.dao.PractisingcertificateDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -228,8 +208,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="EducationbackgroundDAO"
-		class="cn.com.dao.EducationbackgroundDAO">
+	<bean id="EducationbackgroundDAO" class="cn.com.dao.EducationbackgroundDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -279,8 +258,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="CertificatetypeDAO"
-		class="cn.com.dao.CertificatetypeDAO">
+	<bean id="CertificatetypeDAO" class="cn.com.dao.CertificatetypeDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -295,9 +273,9 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="ClassandcourseDAO"
-		class="cn.com.dao.ClassandcourseDAO">
+	<bean id="ClassandcourseDAO" class="cn.com.dao.ClassandcourseDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
-	</bean></beans>
+	</bean>
+</beans>
