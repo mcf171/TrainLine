@@ -23,6 +23,12 @@ public class CredentialAction extends BaseActionSupport {
 		dataMap.put("cList", cList);
 		return SUCCESS;
 	}
+	
+	public String intoCertificatePage()
+	{
+		
+		return "intoCertificatePage";
+	}
 
 	public List<Credential> getcList() {
 		return cList;

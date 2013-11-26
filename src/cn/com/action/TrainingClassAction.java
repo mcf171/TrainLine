@@ -59,11 +59,6 @@ public class TrainingClassAction extends BaseActionSupport {
 		return "classContent";
 	}
 	
-	public String intoCertificatePage()
-	{
-		
-		return "intoCertificatePage";
-	}
 	
 	
 	public List<Trainingclass> getTcList() {

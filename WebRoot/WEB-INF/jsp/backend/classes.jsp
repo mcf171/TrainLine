@@ -40,7 +40,7 @@ function loadHTML(name){
 				<li class="jstree-open">
 					<a href="#">证书管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="${basePath}trainingClass_intoCertificatePage.action">证书管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}credential_intoCertificatePage.action">证书管理</a></li>
 					</ul>
 				</li>
 			</ul>
