@@ -23,6 +23,7 @@ $(document).ready(function ()
 			mmg = $('#grid').mmGrid({
 				url: '${basePath}credential_findAllCredential.action',
 				height: 410,
+				width:800,
 				cache:true,
 				autoLoad: true,
 				checkCol: true,
@@ -31,16 +32,16 @@ $(document).ready(function ()
 				root:'cList',
 				fullWithRows: false,
 				cols: [
-					{ title: '证书ID', sortable: true, width: 50, name: 'credentialId' },	
-					{ title: '证书名称', sortable: true, width: 100, name: 'credentialName' },
-					{ title: '证书类型', sortable: true, width: 100, name: 'certificatetype.certificateTypeName' },
-					{ title: '证书期限', sortable: true, width: 80, name: 'credentialvalidity' },
+					{ title: '证书ID', sortable: true, width:30, name: 'credentialId' },	
+					{ title: '证书名称', sortable: true, width: 80, name: 'credentialName' },
+					{ title: '证书类型', sortable: true, width: 80, name: 'certificatetype.certificateTypeName' },
+					{ title: '证书期限', sortable: true, width: 50, name: 'credentialvalidity' },
 					{ title: '发放时间', sortable: true, width: 100, name: 'credentiaStartTime' },
 					{ title: '授予单位', sortable: true, width: 100, name: 'credentiaGrantUnit' },
 					{ title: '图片路径', sortable: true, width: 100, name: 'credentiaPath' },
 					{
 						title: '操作',
-						width: 210,
+						width: 150,
 						renderer: function (val, item, row)
 						{
 						return '<input type="hidden" value="' + item.credentialId + '" />'+
