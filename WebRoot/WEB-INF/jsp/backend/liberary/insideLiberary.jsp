@@ -28,7 +28,7 @@ $(document).ready(function ()
 		cols: [
 				{ title: '图书名称', sortable: true,  name: 'bookName' },
 				{ title: '图书简介', sortable: true, name: 'bookContent' },
-				{ title: '图书资源位置', sortable: true,  name: 'bookURL' },
+				{ title: '图书资源位置',sortable: true,  name: 'bookURL' },
 				{ title: '图书类别', sortable: true, 
 					renderer: function (val, item, row)
 					{

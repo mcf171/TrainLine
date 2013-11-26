@@ -29,7 +29,12 @@ import cn.com.service.CourseService;
  * 尼玛asdasdas
  * @author zongyulang
  *
+ /**
+ * ehheheweddeddewheheheh
+ * @author zongyulang
+ *
  */
+
 public class CourseAction extends BaseActionSupport {
 	private List<Course> cList;
 	private CourseService courseService;
