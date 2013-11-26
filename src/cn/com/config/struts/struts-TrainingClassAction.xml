@@ -9,7 +9,6 @@
 		<result type="json" name="json"></result>
 		<result name="intoClasspage">/WEB-INF/jsp/backend/classes.jsp</result>
 		<result name="classContent">/WEB-INF/jsp/backend/classes/classes.jsp</result>
-		<result name="intoCertificatePage">/WEB-INF/jsp/backend/classes/certificateList.html</result>
 		</action>
 	</package>
 </struts>    
