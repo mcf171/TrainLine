@@ -10,6 +10,15 @@
             <column name="userId" />
             <generator class="native" />
         </id>
+        <many-to-one name="majorqualification" class="cn.com.model.Majorqualification" fetch="select">
+            <column name="majorQualificationId" />
+        </many-to-one>
+        <many-to-one name="personalinformation" class="cn.com.model.Personalinformation" fetch="select">
+            <column name="personalInformationId" />
+        </many-to-one>
+        <many-to-one name="educationbackground" class="cn.com.model.Educationbackground" fetch="select">
+            <column name="educationBackgroundId" />
+        </many-to-one>
         <property name="userName" type="java.lang.String">
             <column name="userName" length="20" />
         </property>
@@ -19,5 +28,123 @@
         <property name="userState" type="java.lang.Integer">
             <column name="userState" />
         </property>
+        <set name="posts" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Post" />
+        </set>
+        <set name="jobcertificates" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Jobcertificate" />
+        </set>
+        <set name="testquestions" table="userandquestion" catalog="trainline">
+            <key>
+                <column name="userId" not-null="true" />
+            </key>
+            <many-to-many entity-name="cn.com.model.Testquestion">
+                <column name="testQuestionId" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="courses" table="userandcourse" catalog="trainline">
+            <key>
+                <column name="userId" not-null="true" />
+            </key>
+            <many-to-many entity-name="cn.com.model.Course">
+                <column name="courseId" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="records" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Record" />
+        </set>
+        <set name="notes" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Note" />
+        </set>
+        <set name="discusses" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Discuss" />
+        </set>
+        <set name="positions" table="userandpostion" catalog="trainline">
+            <key>
+                <column name="userId" not-null="true" />
+            </key>
+            <many-to-many entity-name="cn.com.model.Position">
+                <column name="positionId" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="trainingclasses" table="classanduser" catalog="trainline">
+            <key>
+                <column name="userId" not-null="true" />
+            </key>
+            <many-to-many entity-name="cn.com.model.Trainingclass">
+                <column name="trainingClassId" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="testarrangements" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Testarrangement" />
+        </set>
+        <set name="mails" table="userandmail" catalog="trainline">
+            <key>
+                <column name="userId" not-null="true" />
+            </key>
+            <many-to-many entity-name="cn.com.model.Mail">
+                <column name="mailId" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="topics" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Topic" />
+        </set>
+        <set name="tiezis" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Tiezi" />
+        </set>
+        <set name="educationbackgrounds" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Educationbackground" />
+        </set>
+        <set name="majorqualifications" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Majorqualification" />
+        </set>
+        <set name="practisingcertificates" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Practisingcertificate" />
+        </set>
+        <set name="jobtechnicalgrades" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Jobtechnicalgrade" />
+        </set>
+        <set name="personalinformations" inverse="true">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="cn.com.model.Personalinformation" />
+        </set>
     </class>
 </hibernate-mapping>
