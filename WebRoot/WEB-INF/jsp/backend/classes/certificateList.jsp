@@ -14,17 +14,16 @@
 
 <script type="text/javascript">
 var mmg;
+var credentialID;
 
 $(document).ready(function ()
 		{
-			$('#time-to').css('background', 'none').datepicker();
-			$('#time-from').css('background', 'none').datepicker();
-
+		 $('#credentiaStartTimeIID').css('background', 'none').datepicker();
+		
 			mmg = $('#grid').mmGrid({
 				url: '${basePath}credential_findAllCredential.action',
 				height: 410,
 				width:800,
-				cache:true,
 				autoLoad: true,
 				root:'cList',
 				fullWithRows: true,
@@ -32,7 +31,7 @@ $(document).ready(function ()
 					{ title: '证书ID', sortable: true, name: 'credentialId' },	
 					{ title: '证书名称', sortable: true, name: 'credentialName' },
 					{ title: '证书期限', sortable: true, name: 'credentialvalidity' },
-					{ title: '发放时间', sortable: true, name: 'credentiaStartTime' },
+					{ title: '发放时间', sortable: true, name: 'credentiaStartTime1' },
 					{ title: '授予单位', sortable: true, name: 'credentiaGrantUnit' },
 					{
 						title: '操作',
@@ -40,8 +39,8 @@ $(document).ready(function ()
 						renderer: function (val, item, row)
 						{
 						return '<input type="hidden" value="' + item.credentialId + '" />'+
-		        '<a href="#myModal0" onclick="updateClasss('+item.credentialId+')" role="button" class="btn" data-toggle="modal">修改</a>'+
-		        '<a href="#myModal1" onclick="deleteClasss('+item.credentialId+')" role="button" class="btn" data-toggle="modal">删除</a>';
+		        '<a href="#myModal0" onclick="updateCertificate('+item.credentialId+')" role="button" class="btn" data-toggle="modal">修改</a>'+
+		        '<a href="#myModal1" onclick="deleteCertificate('+item.credentialId+')" role="button" class="btn" data-toggle="modal">删除</a>';
 						}
 					}
 				],
@@ -49,8 +48,38 @@ $(document).ready(function ()
 					$('#page').mmPaginator({})
 				]
 			});
+			
+			$("#sureDeleteBtn").click(function(){
+			$("#myModal1").modal('hide');
+				$.ajax({
+					type : "POST",
+					url : "${basePath}credential_deleteCredential.action",
+					data:"credential.credentialId="+credentialID,
+					dataType : "json",
+					success : function(json) {
+					mmg.load();
+					},
+					error : function() {
+						alert("操作失败,请重试!");
+						return false;
+					}
+				});
+			});
+			
+			
+			$("#searchBtn").click(function(){
+			mmg.load({"credential.credentialId":$("#credentialIdIID").val(),
+			"credential.credentialName":$("#credentialNameIID").val(),
+			"credential.credentiaStartTime":$("#credentiaStartTimeIID").val(),
+			"credential.credentiaGrantUnit":$("#credentiaGrantUnitIID").val()
+			});
+			});
 		});	
 			
+		function deleteCertificate(credentialId)
+		{
+		 credentialID = credentialId;
+		}
 </script>
 </head>
 <style>
@@ -98,10 +127,14 @@ $(document).ready(function ()
 								style="width:100px;" placeholder="请输入证书ID">
 								 <b>证书名称</b>
 								<input type="text" id="credentialNameIID" class="span3 input-medium"
-								style="width:170px;" placeholder="请输入证书名称"> 
+								style="width:170px;" placeholder="请输入证书名称"> <br>
 								 <b>发放时间</b>
-								<input type="text" id="credentiaStartTimeIID" class="span3 input-medium"
-								style="width:170px;"> 
+								 <input  id="credentiaStartTimeIID"
+				                 	type="text"
+									class="span2"
+									placeholder="发行时间"
+									data-date-format="yyyy-mm-dd"
+			                     />
 								 <b>授予单位</b>
 								<input type="text" id="credentiaGrantUnitIID" class="span3 input-medium"
 								style="width:170px;" placeholder="请输入发行单位">

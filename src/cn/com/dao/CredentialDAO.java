@@ -1,9 +1,12 @@
 package cn.com.dao;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -48,14 +51,14 @@ public class CredentialDAO extends HibernateDaoSupport {
 	}
 
 	public void delete(Credential persistentInstance) {
-		log.debug("deleting Credential instance");
 		try {
-			getHibernateTemplate().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
+			Session session = getHibernateTemplate().getSessionFactory().openSession();
+			session.delete(persistentInstance);
+			session.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+			
 	}
 
 	public Credential findById(java.lang.Integer id) {
@@ -160,5 +163,32 @@ public class CredentialDAO extends HibernateDaoSupport {
 
 	public static CredentialDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (CredentialDAO) ctx.getBean("CredentialDAO");
+	}
+
+	public List<Credential> findConditions(Credential credential) {
+		String hql ="from Credential where 1=1 ";
+		if(credential.getCredentialId()!=null)
+		{
+			hql+=" and credentialId = "+credential.getCredentialId();
+		}
+		if(credential.getCredentialName()!=null)
+		{
+			hql+=" and credentialName like '%"+credential.getCredentialName()+"%' ";
+		}
+		if(credential.getCredentiaGrantUnit()!=null)
+		{
+			hql+=" and credentiaGrantUnit like '%"+credential.getCredentiaGrantUnit()+"%' ";
+		}
+		if(credential.getCredentiaStartTime()!=null)
+		{
+			Timestamp ts = credential.getCredentiaStartTime();  
+	        String tsStr = "";  
+	        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+	       String dateStr = sdf.format(ts);
+			hql+=" and   date_format(credentiaStartTime,'%Y-%m-%d')  like '"+dateStr+"%' ";
+		}
+		List<Credential> list = getHibernateTemplate().find(hql);
+		getHibernateTemplate().flush();
+		return list;
 	}
 }
