@@ -26,7 +26,7 @@ import cn.com.model.ResourseandcatelogueId;
 import cn.com.service.CourseService;
 
 /**
- * 尼玛
+ * ehheheheheheh
  * @author zongyulang
  *
  */
