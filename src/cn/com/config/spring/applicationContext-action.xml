@@ -10,6 +10,10 @@
 			
 		</bean>
 	
+	<bean id="forumAction" class="cn.com.action.ForumAction">
+	         <property name="forumService" ref="forumService"></property>
+	    </bean>
+	
 		<bean id="userAction" class="cn.com.action.UserAction" scope="prototype">
 			<property name="userService" ref="userService"></property>
 		</bean>
