@@ -32,8 +32,8 @@ $(document).ready(function ()
 					<a href="#">图书管理</a>
 					<ul>
 						<li class="jstree-leaf"><a href="${basePath}showBackendInsideLiberaryListPage.action">内部图书管理</a></li>
-						<li class="jstree-leaf"><a href="showBackendOutSideLiberaryListPage.action">外部图书管理</a></li>
-						<li class="jstree-leaf"><a href="showBackendDangkeLiberaryListPage.action">党课图书管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}showBackendOutSideLiberaryListPage.action">外部图书管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}showBackendDangkeLiberaryListPage.action">党课图书管理</a></li>
 					</ul>
 				</li>
 				

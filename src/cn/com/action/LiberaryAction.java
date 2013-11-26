@@ -48,7 +48,7 @@ public class LiberaryAction extends BaseActionSupport{
 		if(book !=null){
 			
 			book.setBookState(BookStateConstant.INISDELIBRARY);
-			list = liberaryService.searchInsideLibraryList(book);
+			list = liberaryService.searchBookList(book);
 		}else{
 			
 			list=  liberaryService.getInsideLiberaryList();
@@ -64,7 +64,15 @@ public class LiberaryAction extends BaseActionSupport{
 
 	public String getOutSideLiberaryList(){
 		
-		List<Book> list = liberaryService.getOutSideLiberaryList();
+		List<Book> list = null;
+		if(book !=null){
+			
+			book.setBookState(BookStateConstant.OUTSIDELIBRARY);
+			list = liberaryService.searchBookList(book);
+		}else{
+			
+			list=  liberaryService.getOutSideLiberaryList();
+		}
 		dataMap.put("liberary", list);
 		return this.SUCCESS;
 	}
@@ -74,7 +82,15 @@ public class LiberaryAction extends BaseActionSupport{
 
 	public String getDangkeLiberaryList(){
 		
-		List<Book> list = liberaryService.getDangkeLiberaryList();
+		List<Book> list = null;
+		if(book !=null){
+			
+			book.setBookState(BookStateConstant.DANGKELIBRARY);
+			list = liberaryService.searchBookList(book);
+		}else{
+			
+			list=  liberaryService.getDangkeLiberaryList();
+		}
 		dataMap.put("liberary", list);
 		return this.SUCCESS;
 	}

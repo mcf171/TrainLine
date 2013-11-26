@@ -2,6 +2,8 @@ package cn.com.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import cn.com.dao.CourseDAO;
 import cn.com.model.Course;
 

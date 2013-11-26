@@ -30,7 +30,7 @@ public class TestLiberaryService extends TestCase{
 		Book book = new Book();
 		book.setBookContent("test");
 		book.setBookName("内部");
-		List<Book> list = liberaryService.searchInsideLibraryList(book);
+		List<Book> list = liberaryService.searchBookList(book);
 		for(Book item : list){
 			System.out.println(item.getBookContent());
 		}
