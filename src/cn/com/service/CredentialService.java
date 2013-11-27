@@ -39,4 +39,9 @@ public class CredentialService {
 		this.credentialDAO = credentialDAO;
 	}
 
+	public List<Credential> findConditions(Credential credential) {
+		// TODO Auto-generated method stub
+		return credentialDAO.findConditions(credential);
+	}
+
 }

@@ -21,7 +21,7 @@ public class Credential implements java.io.Serializable {
 	private String credentiaPath;
 
 	// Constructors
-
+	private String credentiaStartTime1;
 	/** default constructor */
 	public Credential() {
 	}
@@ -94,5 +94,13 @@ public class Credential implements java.io.Serializable {
 
 	public void setCredentiaPath(String credentiaPath) {
 		this.credentiaPath = credentiaPath;
+	}
+
+	public String getCredentiaStartTime1() {
+		return credentiaStartTime1;
+	}
+
+	public void setCredentiaStartTime1(String credentiaStartTime1) {
+		this.credentiaStartTime1 = credentiaStartTime1;
 	}
 }
