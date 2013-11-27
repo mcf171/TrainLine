@@ -12,13 +12,15 @@ public class Testquestion implements java.io.Serializable {
 	// Fields
 
 	private Integer testQuestionId;
-	private Testpaper testpaper;
 	private Course course;
 	private String testQuestionName;
 	private Integer degreeOfDifficulty;
 	private Integer score;
 	private String testType;
-	private Set userandquestions = new HashSet(0);
+	private String testAnswerIntroduce;
+	private String standardAnswer;
+	private Set testpapers = new HashSet(0);
+	private Set users = new HashSet(0);
 
 	// Constructors
 
@@ -27,16 +29,19 @@ public class Testquestion implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Testquestion(Testpaper testpaper, Course course,
-			String testQuestionName, Integer degreeOfDifficulty, Integer score,
-			String testType, Set userandquestions) {
-		this.testpaper = testpaper;
+	public Testquestion(Course course, String testQuestionName,
+			Integer degreeOfDifficulty, Integer score, String testType,
+			String testAnswerIntroduce, String standardAnswer, Set testpapers,
+			Set users) {
 		this.course = course;
 		this.testQuestionName = testQuestionName;
 		this.degreeOfDifficulty = degreeOfDifficulty;
 		this.score = score;
 		this.testType = testType;
-		this.userandquestions = userandquestions;
+		this.testAnswerIntroduce = testAnswerIntroduce;
+		this.standardAnswer = standardAnswer;
+		this.testpapers = testpapers;
+		this.users = users;
 	}
 
 	// Property accessors
@@ -47,14 +52,6 @@ public class Testquestion implements java.io.Serializable {
 
 	public void setTestQuestionId(Integer testQuestionId) {
 		this.testQuestionId = testQuestionId;
-	}
-
-	public Testpaper getTestpaper() {
-		return this.testpaper;
-	}
-
-	public void setTestpaper(Testpaper testpaper) {
-		this.testpaper = testpaper;
 	}
 
 	public Course getCourse() {
@@ -97,12 +94,36 @@ public class Testquestion implements java.io.Serializable {
 		this.testType = testType;
 	}
 
-	public Set getUserandquestions() {
-		return this.userandquestions;
+	public String getTestAnswerIntroduce() {
+		return this.testAnswerIntroduce;
 	}
 
-	public void setUserandquestions(Set userandquestions) {
-		this.userandquestions = userandquestions;
+	public void setTestAnswerIntroduce(String testAnswerIntroduce) {
+		this.testAnswerIntroduce = testAnswerIntroduce;
+	}
+
+	public String getStandardAnswer() {
+		return this.standardAnswer;
+	}
+
+	public void setStandardAnswer(String standardAnswer) {
+		this.standardAnswer = standardAnswer;
+	}
+
+	public Set getTestpapers() {
+		return this.testpapers;
+	}
+
+	public void setTestpapers(Set testpapers) {
+		this.testpapers = testpapers;
+	}
+
+	public Set getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Set users) {
+		this.users = users;
 	}
 
 }

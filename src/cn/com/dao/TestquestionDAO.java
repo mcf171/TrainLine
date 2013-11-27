@@ -1,10 +1,10 @@
 package cn.com.dao;
 
 import java.util.List;
-import java.util.Set;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -18,18 +18,18 @@ import cn.com.model.Testquestion;
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
  * 
- * @see cn.com.model.Testquestion
+ * @see cn.com.dao1.Testquestion
  * @author MyEclipse Persistence Tools
  */
-
 public class TestquestionDAO extends HibernateDaoSupport {
-	private static final Logger log = LoggerFactory
-			.getLogger(TestquestionDAO.class);
+	private static final Log log = LogFactory.getLog(TestquestionDAO.class);
 	// property constants
 	public static final String TEST_QUESTION_NAME = "testQuestionName";
 	public static final String DEGREE_OF_DIFFICULTY = "degreeOfDifficulty";
 	public static final String SCORE = "score";
 	public static final String TEST_TYPE = "testType";
+	public static final String TEST_ANSWER_INTRODUCE = "testAnswerIntroduce";
+	public static final String STANDARD_ANSWER = "standardAnswer";
 
 	protected void initDao() {
 		// do nothing
@@ -61,7 +61,7 @@ public class TestquestionDAO extends HibernateDaoSupport {
 		log.debug("getting Testquestion instance with id: " + id);
 		try {
 			Testquestion instance = (Testquestion) getHibernateTemplate().get(
-					"cn.com.model.Testquestion", id);
+					"cn.com.dao1.Testquestion", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -109,6 +109,14 @@ public class TestquestionDAO extends HibernateDaoSupport {
 
 	public List findByTestType(Object testType) {
 		return findByProperty(TEST_TYPE, testType);
+	}
+
+	public List findByTestAnswerIntroduce(Object testAnswerIntroduce) {
+		return findByProperty(TEST_ANSWER_INTRODUCE, testAnswerIntroduce);
+	}
+
+	public List findByStandardAnswer(Object standardAnswer) {
+		return findByProperty(STANDARD_ANSWER, standardAnswer);
 	}
 
 	public List findAll() {
