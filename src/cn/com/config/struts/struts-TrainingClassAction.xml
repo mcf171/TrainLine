@@ -9,6 +9,8 @@
 		<result type="json" name="json"></result>
 		<result name="intoClasspage">/WEB-INF/jsp/backend/classes.jsp</result>
 		<result name="classContent">/WEB-INF/jsp/backend/classes/classes.jsp</result>
+		<result name="intoAddClassPage">/WEB-INF/jsp/backend/classes/addClass1.jsp</result>
+		<result name="intoAddClassPage2">/WEB-INF/jsp/backend/classes/addClass2.jsp</result>
 		</action>
 	</package>
 </struts>    
