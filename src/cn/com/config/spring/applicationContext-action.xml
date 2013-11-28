@@ -16,6 +16,7 @@
 	
 		<bean id="userAction" class="cn.com.action.UserAction" scope="prototype">
 			<property name="userService" ref="userService"></property>
+			<property name="recordService" ref="recordService"></property>
 		</bean>
 		
 		<bean id="questionnarieAction" class="cn.com.action.QuestionnaireAction" scope="prototype">

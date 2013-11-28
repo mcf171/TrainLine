@@ -96,7 +96,7 @@ $(document).ready(function ()
 			<a href="getBackendIndex.action" target="_blank">后台管理</a>
 			&nbsp;
 			</c:if>
-			<a href="userInfo.html" target="_blank">个人中心</a>
+			<a href="userInfo.action" target="_blank">个人中心</a>
 			&nbsp;
 			<a href="${basePath}email/index.html">收件箱</a>
 		</div>
