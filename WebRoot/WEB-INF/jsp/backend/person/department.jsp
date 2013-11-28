@@ -16,55 +16,71 @@
 
 <script type="text/javascript">
 	//         
+	var mmGirdTable;
 	$(document).ready(function() {
-		$('#grid').mmGrid({
-			url : '/api/peixunrenyuan',
+		test = "ready";
+		mmGirdTable = $('#grid').mmGrid({
+			url : '${basePath}getDepartmentList.action',
 			height : 410,
 			autoLoad : true,
 			checkCol : true,
 			multiSelect : true,
-			fullWithRows : true,
+			fullWidthRows : true,
+			root:'human',
 			cols : [ {
 				title : '部门ID',
 				sortable : true,
-				width : 100,
-				name : ''
+				name : 'departmentId'
 			}, {
 				title : '部门名',
 				sortable : true,
-				width : 100,
-				name : ''
+				name : 'departmentName'
 			}, {
 				title : '公司名',
 				sortable : true,
-				width : 100,
-				name : ''
+				renderer: function (val, item, row)
+				{
+					var temp = item.company;
+					console.log(item.company == null);
+					if(item.company == null){
+						return "缺乏所属公司名";
+					}else{
+						
+						return item.company.companyName;
+					}
+				
+				}
 			}, {
 				title : '部门等级',
 				sortable : true,
-				width : 100,
-				name : ''
+				name : 'departmentstatus'
 			}, {
 				title : '部门简称',
 				sortable : true,
-				width : 100,
-				name : ''
+				name : 'departmentShortName'
 			}, {
 				title : '业务板块',
 				sortable : true,
-				width : 100,
-				name : ''
+				name : 'businessUnits'
 			},{
 				title : '部门编码',
 				sortable : true,
-				width : 100,
-				name : ''
+				name : 'departmentCoding'
 			},{
 				title : '籍贯',
 				sortable : true,
-				width : 100,
-				name : ''
-			}],
+				name : 'country'
+			},{
+				title : '操作',
+				renderer : function(val, item, row) {
+					onclick = "#";
+					return '<a href="#">查看</a> '
+							+ '&nbsp'
+							+ '<a href="#" >修改</a> '
+							+ '&nbsp'
+							+ '<a href="#" >删除</a> ';
+				}
+			} ],
 			plugins : [ $('#page').mmPaginator({}) ]
 		});
 	});
@@ -73,7 +89,7 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<button class="btn" onclick="loadHTML('${basePath}addDepartment.jsp')">
+		<button class="btn" onclick="loadHTML('${basePath}addDepartmentPage.action')">
 			<i class="icon-plus"></i>新增
 		</button>
 	</div>

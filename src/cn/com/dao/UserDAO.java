@@ -109,7 +109,7 @@ public class UserDAO extends HibernateDaoSupport {
 		return findByProperty(USER_CLASS_INDEX, userClassIndex);
 	}
 
-	public List findAll() {
+	public List<User> findAll() {
 		log.debug("finding all User instances");
 		try {
 			String queryString = "from User";

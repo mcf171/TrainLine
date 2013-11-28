@@ -16,39 +16,47 @@
 
 <script type="text/javascript">
 	//         
+	var mmGirdTable;
 	$(document).ready(function() {
-		$('#grid').mmGrid({
-			url : '/api/peixunrenyuan',
+		test = "ready";
+	mmGirdTable = $('#grid').mmGrid({
+			url : '${basePath}getCompanyList.action',
 			height : 410,
 			autoLoad : true,
 			checkCol : true,
 			multiSelect : true,
-			fullWithRows : true,
+			fullWidthRows : true,
+			root:'human',
 			cols : [ {
 				title : '公司ID',
 				sortable : true,
-				width : 200,
-				name : ''
+				name : 'companyId'
 			}, {
 				title : '公司名',
 				sortable : true,
-				width : 200,
-				name : ''
+				name : 'companyName'
 			}, {
 				title : '公司等级',
 				sortable : true,
-				width : 200,
-				name : ''
+				name : 'companystatus'
 			}, {
 				title : '公司介绍',
 				sortable : true,
-				width : 200,
-				name : ''
+				name : 'companyIntro'
 			}, {
 				title : '公司简称',
 				sortable : true,
-				width : 200,
-				name : ''
+				name : 'companyShortName'
+			},{
+				title : '操作',
+				renderer : function(val, item, row) {
+					onclick = "#";
+					return '<a href="#">查看</a> '
+							+ '&nbsp'
+							+ '<a href="#" >修改</a> '
+							+ '&nbsp'
+							+ '<a href="#" >删除</a> ';
+				}
 			}],
 			plugins : [ $('#page').mmPaginator({}) ]
 		});
@@ -58,7 +66,7 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<button class="btn" onclick="loadHTML('${basePath}addCompany.jsp')">
+		<button class="btn" onclick="loadHTML('${basePath}addCompanyPage.action')">
 			<i class="icon-plus"></i>新增
 		</button>
 	</div>
