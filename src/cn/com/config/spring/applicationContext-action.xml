@@ -57,6 +57,7 @@
 	</bean>
 	
 	<bean id="humanAction" class="cn.com.action.HumanAction" scope="prototype"> 
+	<property name="humanService" ref="humanService"></property>
 	</bean>
 		
 	</beans>

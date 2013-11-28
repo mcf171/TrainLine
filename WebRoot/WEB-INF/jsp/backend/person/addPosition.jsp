@@ -3,20 +3,59 @@
 <link rel="stylesheet" href="${basePath}styles/edit.css" type="text/css"></link>
 <link href="${basePath}styles/font-awesome.css" rel="stylesheet"></link>
 
+<script type="text/javascript">
+//<!--
+$(document).ready(function(){
+	var optionString = "";
+	<c:forEach items="${allCompanyList}" var="item">
+			optionString += "<option name='companyName' value='" + ${item.companyId} + "'>" + "${item.companyName}" +"</option>";
+	</c:forEach>
+
+	$("#companyName").append(optionString);
+
+});
+
+
+$("#cancle").click(function(){
+	loadHTML('${basePath}showBackendInsideLiberaryListPage.action');
+});
+
+$("#companyName").change(function(){
+	
+	console.log(this.value);
+	$.ajax({
+		url:'getDepartmentList.action',
+		
+		data:'department.company.companyName=' + this.value,
+		
+		success:function(msg){	
+			alert(msg.departmentName);
+		}
+					
+	});
+});
+
+function showDepartmentName(){
+	
+}
+//-->
+</script>
+
+
 <div class="row-fluid">
-	<form action="#"  enctype="multipart/form-data" method="post">
+	<form action="addPosition.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin">
 			<span class="help-inline">职位名：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="" />
+			<input type="text" class=" span2" placeholder="请输入人员名称" name="position.positionName" />
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司名称：</span>
-			<select class="input-small " name="">
+			<select class="input-small " id="companyName" name="position.company.companyName" onblur="showDepartmentName()">
 			</select>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门名称：</span>
-			<select class="input-small " name="">
+			<select class="input-small " name="position.department.departmentName">
 			</select>
 		</div>
 		<div class="row-fluid line-margin">
