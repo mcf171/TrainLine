@@ -18,7 +18,7 @@ $(document).ready(function ()
 {
 	$('#time-to').css('background', 'none').datepicker();
 	$('#time-from').css('background', 'none').datepicker();
-	test="ready"
+	test="ready";
 	mmGirdTable = $('#grid').mmGrid({
 		url: '${basePath}getInsideLiberaryList.action',
 		height: 410,
@@ -41,7 +41,7 @@ $(document).ready(function ()
 					width: 100,
 					renderer: function (val, item, row)
 					{
-						onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
+						//onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
 						return '<a href="javascript:loadHTML(\'${basePath}modifyBookPage.action?book.bookId=' +item.bookId + '\')">修改</a> ' + '&nbsp' + '<a href="javascript:showConfirm(' +item.bookId + ',' +'\'${basePath}\''+')" >删除</a> ';
 					}
 				}

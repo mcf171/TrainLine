@@ -20,7 +20,11 @@
 	<include file="cn/com/config/struts/struts-netDangkeAction.xml"></include>
 	<include file="cn/com/config/struts/struts-TrainingClassAction.xml"></include>
 	<include file="cn/com/config/struts/struts-credentialAction.xml"></include>
+
 	<include file="cn/com/config/struts/struts-userAction.xml"></include>
 	<include file="cn/com/config/struts/struts-uploadAction.xml"></include>
+
+    <include file="cn/com/config/struts/struts-forumAction.xml"></include>
+	<include file="cn/com/config/struts/struts-humanAction.xml"></include>
 
 </struts>    

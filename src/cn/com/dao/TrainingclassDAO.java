@@ -36,13 +36,11 @@ public class TrainingclassDAO extends HibernateDaoSupport {
 	}
 
 	public void save(Trainingclass transientInstance) {
-		log.debug("saving Trainingclass instance");
 		try {
-			getHibernateTemplate().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
+			Session session  = getHibernateTemplate().getSessionFactory().openSession();
+			session.save(transientInstance);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

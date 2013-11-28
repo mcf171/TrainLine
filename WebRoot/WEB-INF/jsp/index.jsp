@@ -8,19 +8,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="styles/global.css" />
-<link rel="stylesheet" type="text/css" href="styles/index.css" />
-<script type="text/javascript" src="scripts/jquery.js"></script>
-<script type="text/javascript" src="scripts/bootstrap.js"></script>
-<script type="text/javascript" src="scripts/global.js"></script>
-<script type="text/javascript" src="scripts/global.js"></script>
+<link rel="stylesheet" type="text/css" href="${basePath}styles/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/global.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/index.css" />
+<script type="text/javascript" src="${basePath}scripts/jquery.js"></script>
+<script type="text/javascript" src="${basePath}scripts/bootstrap.js"></script>
+<script type="text/javascript" src="${basePath}scripts/global.js"></script>
+<script type="text/javascript" src="${basePath}scripts/global.js"></script>
 <title>主页</title>
 <script type="text/javascript">
 //<![CDATA[
 var PAGES = {
 	page_0: 'homeList.action',
-	page_1: 'course.jsp',
+	page_1: '${basePath}course_intoStudyCenter.action',
 	page_2:'exam.jsp',
 	page_3: '${basePath}showNetDangKePage.action',
 	page_4: 'education.jsp',
@@ -96,7 +96,7 @@ $(document).ready(function ()
 			<a href="getBackendIndex.action" target="_blank">后台管理</a>
 			&nbsp;
 			</c:if>
-			<a href="userInfo.html" target="_blank">个人中心</a>
+			<a href="userInfo.action" target="_blank">个人中心</a>
 			&nbsp;
 			<a href="${basePath}email/index.html">收件箱</a>
 		</div>

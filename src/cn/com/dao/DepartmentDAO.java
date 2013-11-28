@@ -95,6 +95,7 @@ public class DepartmentDAO extends HibernateDaoSupport {
 		}
 	}
 
+
 	public List findByDepartmentName(Object departmentName) {
 		return findByProperty(DEPARTMENT_NAME, departmentName);
 	}
@@ -119,7 +120,7 @@ public class DepartmentDAO extends HibernateDaoSupport {
 		return findByProperty(COUNTRY, country);
 	}
 
-	public List findAll() {
+	public List<Department> findAll() {
 		log.debug("finding all Department instances");
 		try {
 			String queryString = "from Department";

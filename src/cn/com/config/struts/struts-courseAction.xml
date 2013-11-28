@@ -8,6 +8,7 @@
 		<result type="json" name="success">
 		<param name="root">dataMap</param>
 		</result>
+		<result name="intoStudyCenter">/WEB-INF/jsp/course.jsp</result>
 		<result name="intoaddChapterPage">/WEB-INF/jsp/backend/study/addCourseChapter.jsp</result>
 		<result type="json" name="json"></result>
 		<result name="intoCoursePage">/WEB-INF/jsp/backend/study/class-system.jsp</result>

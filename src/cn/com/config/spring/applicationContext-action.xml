@@ -23,6 +23,7 @@
 	
 		<bean id="userAction" class="cn.com.action.UserAction" scope="prototype">
 			<property name="userService" ref="userService"></property>
+			<property name="recordService" ref="recordService"></property>
 		</bean>
 		
 		<bean id="questionnarieAction" class="cn.com.action.QuestionnaireAction" scope="prototype">
@@ -66,6 +67,7 @@
 	</bean>
 	
 	<bean id="humanAction" class="cn.com.action.HumanAction" scope="prototype"> 
+	<property name="humanService" ref="humanService"></property>
 	</bean>
 		
 	</beans>

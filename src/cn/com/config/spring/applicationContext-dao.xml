@@ -22,6 +22,7 @@
 		<property name="url" value="jdbc:mysql://localhost:3306/trainline"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="919294"></property>
+
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -30,10 +31,10 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">
-					org.hibernate.dialect.MySQLDialect
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
 				</prop>
 				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
@@ -290,6 +291,16 @@
 		</property>
 	</bean>
 	<bean id="ClassandcourseDAO" class="cn.com.dao.ClassandcourseDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="DepartmentDAO" class="cn.com.dao.DepartmentDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PositionDAO" class="cn.com.dao.PositionDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

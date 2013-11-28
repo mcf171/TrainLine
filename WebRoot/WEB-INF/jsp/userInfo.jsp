@@ -1,5 +1,13 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 	<head>
 
 		<title>个人资料</title>
@@ -7,7 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="styles/userInfo.css">	
 		<link rel="stylesheet" type="text/css" href="styles/common.css">
 	</head>
-
+    
 	<div id="center">
 		<div id="right">
 			<div class="img" style="margin-top: 32px; margin-left: 32px;">
@@ -15,7 +23,7 @@
 			</div>
 			<div>
 				<h2 class="xs2" style="padding-top: 10px; padding-left: 45px;">
-					<a href="#" style="color: white">张三</a>
+					<a href="#" style="color: white">张三    </a>
 				</h2>
 			</div>
 			<table>
@@ -51,7 +59,7 @@
 				<div id="zilt">
 					<div class="namea">
 						<h2 class="mbn">
-							张三<img class="vm" title="在线"
+							张三 <img class="vm" title="在线"
 								alt="online" src="image/ol.gif">
 							&nbsp;
 							<span class="xw0"> (UID: 2140014)</span>

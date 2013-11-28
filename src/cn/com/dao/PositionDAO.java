@@ -94,7 +94,7 @@ public class PositionDAO extends HibernateDaoSupport {
 		return findByProperty(POSITION_NAME, positionName);
 	}
 
-	public List findAll() {
+	public List<Position> findAll() {
 		log.debug("finding all Position instances");
 		try {
 			String queryString = "from Position";

@@ -2,18 +2,38 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="forum" extends="system">
-		<action name="showBackendforumListPage" class="forumAction" method="ShowBackenForumList">
-   			<result>/WEB-INF/jsp/backend/forum.jsp</result>
+		<action name="showBackendforumListPage" class="forumAction"
+			method="ShowBackenForumList">
+			<result>/WEB-INF/jsp/backend/forum.jsp</result>
+		</action>
+		<action name="showBackendforumTheamListPage" class="forumAction"
+			method="ShowBackenThemeList">
+			<result>/WEB-INF/jsp/backend/forum/themeManager.jsp</result>
+		</action>
+		<action name="getBackenThemeList" class="forumAction" method="getBackenThemeList">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="addTheme" class="forumAction" method="addTheme">
+			<result>/WEB-INF/jsp/backend/forum/addTheme.jsp</result>
+		</action>
+        <action name="modifyTheme" class="forumAction" method="modifyTheme">
+			<result>/WEB-INF/jsp/backend/forum/modify.jsp</result>
+		</action>
+       <action name="addThemeInto" class="forumAction" method="addThemeInto">
+   			<result type="redirectAction">
+   				<param name="actionName">showBackendforumListPage</param>
+   			</result>
    		</action>
-   		<action name="showBackendforumTheamListPage" class="forumAction" method="ShowBackenThemeList">
-   			<result>/WEB-INF/jsp/backend/forum/themeManager.jsp</result>
-   		</action>
-   		<action name="showBackendforumTpoicListPage" class="forumAction" method="ShowBackenTopicList">
-   			<result>/WEB-INF/jsp/backend/forum/topicManager.jsp</result>
-   		</action>
-   		<action name="showBackendforumTalkListPage" class="forumAction" method="ShowBackenTalkList">
-   			<result>/WEB-INF/jsp/backend/forum/talkManager.jsp</result>
-   		</action>
+		<action name="showBackendforumTopicListPage" class="forumAction"
+			method="ShowBackenTopicList">
+			<result>/WEB-INF/jsp/backend/forum/topicManager.jsp</result>
+		</action>
+		<action name="showBackendforumTalkListPage" class="forumAction"
+			method="ShowBackenTalkList">
+			<result>/WEB-INF/jsp/backend/forum/talkManager.jsp</result>
+		</action>
 	</package>
 </struts>    
 
