@@ -22,7 +22,7 @@ var PAGES = {
 	page_5: 'newsManager.jsp',
 	page_6: 'report.jsp',
 	page_7: 'system.jsp',
-	page_8: 'forum.jsp',
+	page_8: '${basePath}showBackendforumListPage.action',
 	page_9:'${basePath}showBackendLiberaryListPage.action'
 };
 
