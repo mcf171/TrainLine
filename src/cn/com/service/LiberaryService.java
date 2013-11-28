@@ -3,6 +3,8 @@ package cn.com.service;
 import java.io.File;
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import cn.com.dao.BookDAO;
 import cn.com.dao.BooktypeDAO;
 import cn.com.model.Book;
@@ -79,6 +81,7 @@ public class LiberaryService {
 	 * @param imageFileName
 	 * @return
 	 */
+
 	public boolean addBook(Book book , File image, String imageContentType, String imageFileName){
 		
 		boolean flag = false;
@@ -96,6 +99,7 @@ public class LiberaryService {
 			// TODO Auto-generated catch block
 			flag = false;
 			e.printStackTrace();
+			throw new RuntimeException();
 		}finally{
 			
 			

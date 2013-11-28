@@ -123,31 +123,35 @@ $(document).ready(function ()
             <div class="span12"> <b>过滤选项</b> </div>
           </div>
           <hr class="seperator" />
-          <div class="form-inline line-margin"> <span class="help-inline"><b>查询过滤：</b>班级状态</span>
-            <select class="input-small">
-              <option>所有</option>
-              <option>已完成</option>
-              <option>未完成</option>
-            </select>
-          </div>
-          <hr class="seperator top-margin" />
-          <div class="row-fluid">
-            <div class="span6 offset2">
-              <div class="row-fluid">
-                <input
+          
+          <div class="row-fluid line-margin">
+			               <span class="help-inline"><b>基本过滤：</b>图书名称：</span>
+			               <input
+			               			id="bookName"
 									type="text"
 									name="keyword"
-									class="span12 input-medium search-query"
-									placeholder="请输入关键字"
+									class="span2 "
+									placeholder="请输入内容"
 								/>
-              </div>
-            </div>
-            <div class="span2">
-              <div class="row-fluid">
-                <button class="span12 btn"> <i class="icon-search"></i>&nbsp;搜索 </button>
-              </div>
-            </div>
-          </div>
+			                <span class="help-inline">图书简介：</span> <input
+									id="bookContent"
+									type="text"
+									name="keyword"
+									class="span2 "
+									placeholder="请输入内容"
+								/>
+			                <span class="help-inline">图书类别：</span>
+			                <select class="input-small" id="bookType">
+				               
+			                </select>
+			                <span class="help-inline">图书编号：</span>
+			                <input id="bookClassIndex" type="text" class="span2" placeholder="请输入相应内容" />
+			                <div class="row-fluid line-margin">
+			                     <button class="btn " id="search"><i class="icon-search"></i>查询</button>
+			                     <button class="btn" type="reset"><i class="icon-remove"></i>清除</button>
+			                     <button class="btn " id="showAll"><i class="icon-align-justify"></i>显示所有</button>
+		               		</div>
+		               </div>
         </div>
       	  
         

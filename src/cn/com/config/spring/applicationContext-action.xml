@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 	
 	
 		<bean id="liberaryAction" class="cn.com.action.LiberaryAction" scope="prototype">
@@ -33,6 +39,10 @@
 	
 	<bean id="noteAction" class="cn.com.action.NoteAction" scope="prototype">
 	<property name="noteService" ref="noteService"></property>
+	</bean>
+	
+	<bean id="netDangkeAction" class="cn.com.action.NetDangKeAction">
+	
 	</bean>
 	
 	<bean id="testquestionAction" class="cn.com.action.TestquestionAction" scope="prototype">
