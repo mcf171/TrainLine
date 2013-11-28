@@ -22,4 +22,5 @@
 	<include file="cn/com/config/struts/struts-user.xml"></include>
 	<include file="cn/com/config/struts/struts-upload.xml"></include>
     <include file="cn/com/config/struts/struts-forumAction.xml"></include>
+	<include file="cn/com/config/struts/struts-humanAction.xml"></include>
 </struts>    

@@ -30,7 +30,7 @@ public class LiberaryService {
 	 * @param book
 	 * @return
 	 */
-	public List<Book> searchInsideLibraryList(Book book ){
+	public List<Book> searchLibraryList(Book book ){
 		
 		return bookDAO.findByExampleFuzzy(book);
 	}

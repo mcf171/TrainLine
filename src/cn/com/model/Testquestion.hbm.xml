@@ -10,9 +10,6 @@
             <column name="testQuestionId" />
             <generator class="native" />
         </id>
-        <many-to-one name="testpaper" class="cn.com.model.Testpaper" fetch="select">
-            <column name="testPaperId" />
-        </many-to-one>
         <many-to-one name="course" class="cn.com.model.Course" fetch="select">
             <column name="courseId" />
         </many-to-one>
@@ -28,11 +25,27 @@
         <property name="testType" type="java.lang.String">
             <column name="testType" length="50" />
         </property>
-        <set name="userandquestions" inverse="true">
+        <property name="testAnswerIntroduce" type="java.lang.String">
+            <column name="testAnswerIntroduce" length="50" />
+        </property>
+        <property name="standardAnswer" type="java.lang.String">
+            <column name="standardAnswer" length="50" />
+        </property>
+        <set name="testpapers" table="testandquestion" catalog="trainline">
             <key>
                 <column name="testQuestionId" not-null="true" />
             </key>
-            <one-to-many class="cn.com.model.Userandquestion" />
+            <many-to-many entity-name="cn.com.model.Testpaper">
+                <column name="testPaperId" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="users" inverse="true" table="userandquestion" catalog="trainline">
+            <key>
+                <column name="testQuestionId" not-null="true" />
+            </key>
+            <many-to-many entity-name="cn.com.model.User">
+                <column name="userId" not-null="true" />
+            </many-to-many>
         </set>
     </class>
 </hibernate-mapping>

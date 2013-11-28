@@ -191,6 +191,11 @@ public class CourseAction extends BaseActionSupport {
 		return "intoCoursePage";
 	}
 
+	public String intoStudyCenter()
+	{
+		return "intoStudyCenter";
+	}
+	
 	public List<Course> getcList() {
 		return cList;
 	}
