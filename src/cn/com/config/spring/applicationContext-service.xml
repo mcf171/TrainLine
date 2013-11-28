@@ -12,6 +12,7 @@
 		<property name="uploadUtil" ref="uploadUtil"></property>
 	</bean>
 	
+	
 	<bean id="forumService" class="cn.com.service.ForumService" scope="prototype">
 	   <property name="themeDAO" ref="ThemeDAO"></property>
 	</bean>
