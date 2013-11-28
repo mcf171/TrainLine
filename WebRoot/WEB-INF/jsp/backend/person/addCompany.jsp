@@ -4,14 +4,14 @@
 <link href="${basePath}styles/font-awesome.css" rel="stylesheet"></link>
 
 <div class="row-fluid">
-	<form action="#"  enctype="multipart/form-data" method="post">
+	<form action="addCompany.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司名称：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="" />
+			<input type="text" class=" span2" placeholder="请输入人员名称" name="company.companyName" />
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司等级：</span>
-			<select class="input-small " name="">
+			<select class="input-small " name="company.companystatus">
 				<option>0</option>
 				<option>1</option>
 				<option>2</option>
@@ -21,11 +21,11 @@
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司介绍：</span>
-			<textarea class=" span2" placeholder="请输入内容" name=""/>
+			<textarea class=" span2" placeholder="请输入内容" name="company.companyIntro"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司简称：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="" />
+			<input type="text" class=" span2" placeholder="请输入人员名称" name="company.companyShortName" />
 		</div>
 		<div class="row-fluid line-margin">
 			<button class="btn span1 offset1 " type="submit">

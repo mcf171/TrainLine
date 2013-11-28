@@ -16,30 +16,66 @@
 
 <script type="text/javascript">
 	//         
+	var mmGridTable;
 	$(document).ready(function() {
-		$('#grid').mmGrid({
-			url : '/api/peixunrenyuan',
+		test = "ready";
+		mmGridTable = $('#grid').mmGrid({
+			url : '${basePath}getPositionList.action',
 			height : 410,
 			autoLoad : true,
 			checkCol : true,
 			multiSelect : true,
-			fullWithRows : true,
+			fullWidthRows : true,
+			root:'human',
 			cols : [ {
 				title : '职位ID',
 				sortable : true,
-				width : 260,
-				name : ''
+				name : 'positionId'
 			}, {
 				title : '职位名',
 				sortable : true,
-				width : 2560,
-				name : ''
+				name : 'positionName'
 			}, {
 				title : '部门名',
 				sortable : true,
-				width : 270,
-				name : ''
-			}],
+				renderer: function (val, item, row)
+				{
+					var temp = item.department;
+					console.log(item.department == null);
+					if(item.department == null){
+						return "缺失所属部门名";
+					}else{
+						
+						return item.department.departmentName;
+					}
+				
+				}
+			},{
+				title : '公司名',
+				sortable : true,
+				renderer: function (val, item, row)
+				{
+					var temp = item.department.company;
+					console.log(item.department.company == null);
+					if(item.department == null){
+						return "缺失所属公司名";
+					}else{
+						
+						return item.department.company.companyName;
+					}
+				
+				}
+			},{
+				title : '操作',
+				renderer : function(val, item, row) {
+					onclick = "#";
+					return '<a href="#">查看</a> '
+							+ '&nbsp'
+							+ '<a href="#" >修改</a> '
+							+ '&nbsp'
+							+ '<a href="#" >删除</a> ';
+				}
+			} ],
 			plugins : [ $('#page').mmPaginator({}) ]
 		});
 	});
@@ -48,7 +84,7 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<button class="btn" onclick="loadHTML('${basePath}addPosition.action')">
+		<button class="btn" onclick="loadHTML('${basePath}addPositionPage.action')">
 			<i class="icon-plus"></i>新增
 		</button>
 	</div>

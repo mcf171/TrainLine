@@ -60,5 +60,12 @@
 		<property name="credentialDAO" ref="CredentialDAO"></property>
 	</bean>
 	
+	<bean id="humanService" class="cn.com.service.HumanService">
+		<property name="userDAO" ref="UserDAO"></property>
+		<property name="companyDAO" ref="CompanyDAO"></property>
+		<property name="departmentDAO" ref="DepartmentDAO"></property>
+		<property name="positionDAO" ref="PositionDAO"></property>
+	</bean>
+	
 
 	</beans>

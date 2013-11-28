@@ -21,7 +21,6 @@ public class LiberaryService {
 	 * @return
 	 */
 	public List<Booktype> getBookTypeList(){
-		
 		return bookTypeDAO.findAll();
 	}
 	
