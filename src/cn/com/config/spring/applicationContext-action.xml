@@ -5,6 +5,7 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
+	
 		<bean id="liberaryAction" class="cn.com.action.LiberaryAction" scope="prototype">
 			<property name="liberaryService" ref="liberaryService"></property>
 			
@@ -55,6 +56,7 @@
 	<property name="credentialService" ref="credentialService"></property>
 	</bean>
 	
-	
+	<bean id="humanAction" class="cn.com.action.HumanAction" scope="prototype"> 
+	</bean>
 		
 	</beans>

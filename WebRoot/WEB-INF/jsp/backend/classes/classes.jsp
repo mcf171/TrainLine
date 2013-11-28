@@ -135,7 +135,7 @@ $(document).ready(function ()
 			<div id="content" class="span10">
 				<div class="row-fluid " style="margin-left: -13px">
 					<button class="btn" type="button"
-						onclick="loadHTML('classes/addClass1.html')">
+						onclick="loadHTML('${basePath}trainingClass_intoAddClassPage.action')">
 						<i class="icon-plus"></i>添加
 					</button>
 					<button class="btn" type="button">

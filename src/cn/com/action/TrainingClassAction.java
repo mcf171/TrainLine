@@ -13,54 +13,61 @@ public class TrainingClassAction extends BaseActionSupport {
 	private TrainingClassService trainingClassService;
 	private Map<String, List> dataMap;
 	private Trainingclass trainingclass;
-	
 
 	public TrainingClassAction() {
 		dataMap = new HashMap<String, List>();
 	}
 
-	public String findAllTrainingClass()
-	{
-		if(trainingclass==null){
+	public String findAllTrainingClass() {
+		if (trainingclass == null) {
 			tcList = trainingClassService.findAll();
-		}else {
+		} else {
 			tcList = trainingClassService.findByConditions(trainingclass);
 		}
-		
+
 		dataMap.put("tcList", tcList);
 		return SUCCESS;
-		
+
 	}
-	
-	public String deleteClass()
-	{
-		if(trainingclass.getTrainingClassId()!=null)
-		{
+
+	public String deleteClass() {
+		if (trainingclass.getTrainingClassId() != null) {
 			trainingClassService.delete(trainingclass);
 		}
 		return JSON;
 	}
-	
-	public String updateClass()
-	{
-		if(trainingclass!=null)
-		{
+
+	public String addClass() {
+		if (trainingclass != null) {
+			trainingclass.setTrainingClassStatus(new Integer(1));
+			trainingClassService.insert(trainingclass);
+		}
+		return JSON;
+	}
+
+	public String updateClass() {
+		if (trainingclass != null) {
 			trainingClassService.update(trainingclass);
 		}
 		return JSON;
 	}
-	public String intoClasspage()
-	{
+
+	public String intoClasspage() {
 		return "intoClasspage";
 	}
-	
-	public String classContent()
-	{
+
+	public String classContent() {
 		return "classContent";
 	}
-	
-	
-	
+
+	public String intoAddClassPage() {
+		return "intoAddClassPage";
+	}
+
+	public String intoAddClassPage2() {
+		return "intoAddClassPage2";
+	}
+
 	public List<Trainingclass> getTcList() {
 		return tcList;
 	}
@@ -68,7 +75,6 @@ public class TrainingClassAction extends BaseActionSupport {
 	public void setTcList(List<Trainingclass> tcList) {
 		this.tcList = tcList;
 	}
-
 
 	public void setTrainingClassService(
 			TrainingClassService trainingClassService) {

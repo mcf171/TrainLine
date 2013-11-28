@@ -8,7 +8,7 @@
 		</property>
 		<property name="url" value="jdbc:mysql://localhost:3306/trainline"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="123456"></property>
+		<property name="password" value="jing"></property>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -69,6 +69,9 @@
 				<value>cn/com/model/Credential.hbm.xml</value>
 				<value>cn/com/model/Note.hbm.xml</value>
 				<value>cn/com/model/Classandcourse.hbm.xml</value>
+				<value>cn/com/model/Jobcertificate.hbm.xml</value>
+				<value>cn/com/model/Position.hbm.xml</value>
+				<value>cn/com/model/Department.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
