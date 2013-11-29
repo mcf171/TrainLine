@@ -1,5 +1,6 @@
 package cn.com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.LockMode;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.com.model.Book;
 import cn.com.model.Topic;
 
 /**
@@ -150,7 +152,46 @@ public class TopicDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
-
+	
+	public  List findByExampleFuzzy(Topic topic) {
+		
+		String queryString = "from Topic where 1=1 ";
+		
+		List<Object> params = new ArrayList<Object>();
+		
+		if(topic.getTopicId()!=null){
+				
+			queryString += "and topicId = ? ";
+			params.add(topic.getTopicId());
+		}
+		if(topic.getTopicName()!=null){
+			
+			queryString +="and topicName like ? ";
+			params.add("%"+topic.getTopicName() + "%");
+		}
+		
+		if(topic.getTheme()!=null){
+			if(topic.getTheme().getThemeId() !=null){
+				
+				queryString +="and themeId = ? ";
+				params.add(topic.getTheme().getThemeId());
+			}
+		}
+		
+		if(topic.getUser() != null){
+			
+			if(topic.getUser().getUserId() !=null){
+				
+				queryString +="and userId = ? ";
+				params.add(topic.getUser().getUserId());
+			}
+		}
+		
+		List<Book> list = getHibernateTemplate().find(queryString, params.toArray());
+		
+		return list;
+	}
+	
 	public static TopicDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (TopicDAO) ctx.getBean("TopicDAO");
 	}

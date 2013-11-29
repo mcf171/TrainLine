@@ -34,6 +34,19 @@
 			method="ShowBackenTalkList">
 			<result>/WEB-INF/jsp/backend/forum/talkManager.jsp</result>
 		</action>
+		<action name="showBackendforumTopicList" class="forumAction"
+			method="showBackendforumTopicList">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="showBackendforumTalkList" class="forumAction"
+			method="showBackendforumTalkList">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
 	</package>
 </struts>    
 

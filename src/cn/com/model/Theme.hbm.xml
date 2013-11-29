@@ -13,11 +13,6 @@
         <property name="themeName" type="java.lang.String">
             <column name="themeName" length="50" />
         </property>
-        <set name="topics" inverse="true">
-            <key>
-                <column name="themeId" />
-            </key>
-            <one-to-many class="cn.com.model.Topic" />
-        </set>
+        
     </class>
 </hibernate-mapping>

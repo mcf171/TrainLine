@@ -26,8 +26,8 @@ $(document).ready(function ()
 		fullWidthRows: true,
 		root:'themelist',
 		cols: [
-				{ title: '话题名称', sortable: true,  name: 'themeName' },
-				{ title: '话题编号', sortable: true, name: 'themeId' },
+				{ title: '主题名称', sortable: true,  name: 'themeName' },
+				{ title: '主题编号', sortable: true, name: 'themeId' },
 				{
 					title: '操作',
 					width: 100,

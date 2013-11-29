@@ -1,8 +1,6 @@
 package cn.com.model;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Tiezi entity. @author MyEclipse Persistence Tools
@@ -14,12 +12,11 @@ public class Tiezi implements java.io.Serializable {
 
 	private Integer tieziId;
 	private Topic topic;
-	private Integer userId;
+	private User user;
 	private String tieziContent;
 	private String tieziTitle;
 	private Timestamp tieziTime;
-	private Set tieziaccessories = new HashSet(0);
-	private Set discusses = new HashSet(0);
+
 
 	// Constructors
 
@@ -27,18 +24,6 @@ public class Tiezi implements java.io.Serializable {
 	public Tiezi() {
 	}
 
-	/** full constructor */
-	public Tiezi(Topic topic, Integer userId, String tieziContent,
-			String tieziTitle, Timestamp tieziTime, Set tieziaccessories,
-			Set discusses) {
-		this.topic = topic;
-		this.userId = userId;
-		this.tieziContent = tieziContent;
-		this.tieziTitle = tieziTitle;
-		this.tieziTime = tieziTime;
-		this.tieziaccessories = tieziaccessories;
-		this.discusses = discusses;
-	}
 
 	// Property accessors
 
@@ -58,13 +43,17 @@ public class Tiezi implements java.io.Serializable {
 		this.topic = topic;
 	}
 
-	public Integer getUserId() {
-		return this.userId;
+	
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
+
 
 	public String getTieziContent() {
 		return this.tieziContent;
@@ -88,22 +77,6 @@ public class Tiezi implements java.io.Serializable {
 
 	public void setTieziTime(Timestamp tieziTime) {
 		this.tieziTime = tieziTime;
-	}
-
-	public Set getTieziaccessories() {
-		return this.tieziaccessories;
-	}
-
-	public void setTieziaccessories(Set tieziaccessories) {
-		this.tieziaccessories = tieziaccessories;
-	}
-
-	public Set getDiscusses() {
-		return this.discusses;
-	}
-
-	public void setDiscusses(Set discusses) {
-		this.discusses = discusses;
 	}
 
 }

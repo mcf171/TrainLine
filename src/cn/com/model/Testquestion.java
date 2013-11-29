@@ -19,30 +19,17 @@ public class Testquestion implements java.io.Serializable {
 	private String testType;
 	private String testAnswerIntroduce;
 	private String standardAnswer;
+	/**
 	private Set testpapers = new HashSet(0);
 	private Set users = new HashSet(0);
-
+*/
 	// Constructors
 
 	/** default constructor */
 	public Testquestion() {
 	}
 
-	/** full constructor */
-	public Testquestion(Course course, String testQuestionName,
-			Integer degreeOfDifficulty, Integer score, String testType,
-			String testAnswerIntroduce, String standardAnswer, Set testpapers,
-			Set users) {
-		this.course = course;
-		this.testQuestionName = testQuestionName;
-		this.degreeOfDifficulty = degreeOfDifficulty;
-		this.score = score;
-		this.testType = testType;
-		this.testAnswerIntroduce = testAnswerIntroduce;
-		this.standardAnswer = standardAnswer;
-		this.testpapers = testpapers;
-		this.users = users;
-	}
+
 
 	// Property accessors
 
@@ -110,20 +97,5 @@ public class Testquestion implements java.io.Serializable {
 		this.standardAnswer = standardAnswer;
 	}
 
-	public Set getTestpapers() {
-		return this.testpapers;
-	}
-
-	public void setTestpapers(Set testpapers) {
-		this.testpapers = testpapers;
-	}
-
-	public Set getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Set users) {
-		this.users = users;
-	}
 
 }

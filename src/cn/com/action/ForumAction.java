@@ -6,12 +6,16 @@ import java.util.Map;
 
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Theme;
+import cn.com.model.Tiezi;
+import cn.com.model.Topic;
 import cn.com.service.ForumService;
 
 public class ForumAction extends BaseActionSupport{
   
 	private ForumService forumService; 
 	private Theme them;
+	private Topic topic;
+	private Tiezi tiezi;
 	private Map<String, Object> dataMap;
 	public Map<String, Object> getDataMap() {
 		return dataMap;
@@ -76,10 +80,36 @@ public class ForumAction extends BaseActionSupport{
 	public String ShowBackenTopicList(){
 		return this.SUCCESS;
 	}
+	
+	public String showBackendforumTopicList(){
+		
+		if(topic==null){
+			
+			List<Topic> list = forumService.getTopicList();
+			dataMap.put("topicList", list);
+		}else{
+			
+			List<Topic>list = forumService.searchTopics(topic);
+			dataMap.put("topicList", list);
+		}
+		
+		return this.SUCCESS;
+	}
+	
+	
 	/*
 	 * 显示发帖管理
 	 */
 	public String ShowBackenTalkList(){
+		
+		return this.SUCCESS;
+	}
+
+	public String showBackendforumTalkList(){
+		
+		List<Tiezi>list = forumService.getTieziList();
+		dataMap.put("tieziList", list);
+		
 		return this.SUCCESS;
 	}
 
@@ -90,5 +120,22 @@ public class ForumAction extends BaseActionSupport{
 	public void setThem(Theme them) {
 		this.them = them;
 	}
+
+	public Topic getTopic() {
+		return topic;
+	}
+
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
+
+	public Tiezi getTiezi() {
+		return tiezi;
+	}
+
+	public void setTiezi(Tiezi tiezi) {
+		this.tiezi = tiezi;
+	}
+	
 	
 }

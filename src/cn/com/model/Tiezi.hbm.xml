@@ -10,12 +10,13 @@
             <column name="tieziId" />
             <generator class="native" />
         </id>
-        <many-to-one name="topic" class="cn.com.model.Topic" fetch="select">
+        <many-to-one name="topic" class="cn.com.model.Topic" lazy="false" fetch="join">
             <column name="topicId" />
         </many-to-one>
-        <property name="userId" type="java.lang.Integer">
+        <many-to-one name="user" class="cn.com.model.User" lazy="false" fetch="join">
             <column name="userId" />
-        </property>
+        </many-to-one>
+        
         <property name="tieziContent" type="java.lang.String">
             <column name="tieziContent" length="500" />
         </property>
@@ -25,17 +26,6 @@
         <property name="tieziTime" type="java.sql.Timestamp">
             <column name="tieziTime" length="19" />
         </property>
-        <set name="tieziaccessories" inverse="true">
-            <key>
-                <column name="tieziId" />
-            </key>
-            <one-to-many class="cn.com.model.Tieziaccessory" />
-        </set>
-        <set name="discusses" inverse="true">
-            <key>
-                <column name="tieziId" />
-            </key>
-            <one-to-many class="cn.com.model.Discuss" />
-        </set>
+        
     </class>
 </hibernate-mapping>

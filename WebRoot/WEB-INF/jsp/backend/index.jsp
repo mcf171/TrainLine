@@ -15,7 +15,7 @@
 //<![CDATA[
 var PAGES = {
 	page_0: '${basePath}note_intoStudy.action',
-	page_1: 'examinations.jsp',
+	page_1: '${basePath}getExaminations.action',
 	page_2: '${basePath}trainingClass_intoClasspage.action',
 	page_3: 'resource.jsp',
 	page_4: '${basePath}showBackendHumanPage.action',
