@@ -69,6 +69,7 @@ $(document).ready(function ()
 		mmGirdTable.load(
 				{"book.bookName":bookName,
 				"book.bookContent":bookContent,
+				"book.bookState":1,
 				"book.bookType.bookTypeId":bookType,
 				"book.bookClassIndex":bookClassIndex
 				}

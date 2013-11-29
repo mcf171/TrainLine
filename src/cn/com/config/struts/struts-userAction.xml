@@ -12,9 +12,6 @@
    		<action name="getBackendIndex" class="userAction" method="getBackendIndex">
    			<result>/WEB-INF/jsp/backend/index.jsp</result>
    		</action>
-   		<action name="userInfo" class="userAction" method="show">
-   			<result>/WEB-INF/jsp/userInfo.jsp</result>
-   			<result name="input">index.jsp</result>
-   		</action>
+   		
    	</package>
 </struts>    
