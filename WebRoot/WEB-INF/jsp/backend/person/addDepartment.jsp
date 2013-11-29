@@ -19,7 +19,7 @@ $(document).ready(function(){
 
 
 $("#cancle").click(function(){
-	loadHTML('${basePath}showBackendInsideLiberaryListPage.action');
+	loadHTML('${basePath}showBackendDepartmentPage.action');
 })
 //-->
 </script>
@@ -28,7 +28,7 @@ $("#cancle").click(function(){
 	<form action="${basePath}addDepartment.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门名称：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.departmentName" />
+			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.departmentName"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门等级：</span>
@@ -58,7 +58,7 @@ $("#cancle").click(function(){
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司名称：</span>
-			<select class="input-small " id="companyName" name="department.company.companyName">
+			<select class="input-small " id="companyName" name="department.company.companyId">
 			</select>
 		</div>
 		<div class="row-fluid line-margin">

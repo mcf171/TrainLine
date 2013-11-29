@@ -20,7 +20,7 @@
 				</result>
 	   	</action>
 	   	
-	   	  	<action name="getPositionList" class="humanAction" method="getPositionList">
+	   <action name="getPositionList" class="humanAction" method="getPositionList">
 				<result type="json">
 				<param name="root">dataMap</param>
 				</result>
@@ -72,6 +72,20 @@
 		
 		<action name="addPositionPage" class="humanAction" method="addPositionPage">
 			<result>/WEB-INF/jsp/backend/person/addPosition.jsp</result>
+		</action>
+		
+		<action name="addPosition" class="humanAction" method="addPosition">
+			<result type="redirectAction">
+   				<param name="actionName">showBackendHumanPage</param>
+   			</result>
+		</action>
+		
+		<action name="modifyCompanyPage" class="humanAction" method="modifyCompanyPage">
+			<result>/WEB-INF/jsp/backend/person/modifyCompany.jsp</result>
+		</action>
+		
+		<action name="modifyCompany" class="humanAction" method="modifyCompany">
+			<result>/WEB-INF/jsp/backend/person/company.jsp</result>
 		</action>
 	</package>
 </struts>    

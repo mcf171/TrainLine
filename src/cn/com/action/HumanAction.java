@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.json.JSONObject;
+
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Company;
 import cn.com.model.Department;
@@ -22,6 +24,8 @@ public class HumanAction extends BaseActionSupport {
 	private Map<String, Object> dataMap;
 	private Company company;
 	private Department department;
+	private Position position;
+	
 
 	public HumanAction() {
 		super();
@@ -67,7 +71,21 @@ public class HumanAction extends BaseActionSupport {
 		String path = flag == true? SUCCESS : FAIL;
 		return path;
 	}
-
+	
+	public String modifyCompanyPage(){
+		System.out.println("进入这里");
+		company = humanService.getCompanyById(company.getCompanyId());
+		request.setAttribute("company", company);
+		System.out.println("为什么不回去");
+		return SUCCESS;
+	}
+	
+	public String modifyCompany(){
+		boolean flag = humanService.modifyCompany(company);
+		String path = flag == true? SUCCESS:FAIL;
+		return path;
+	}
+	
 	//department部分
 	public String showBackendDepartmentPage() {
 		return SUCCESS;
@@ -81,16 +99,12 @@ public class HumanAction extends BaseActionSupport {
 		}
 		else{
 			if(department.getCompany()!=null){
-				departmentList = humanService.getDepartmentListByCompanyName(department.getCompany().getCompanyName());
-				System.out.println(departmentList.size());
-				System.out.println(departmentList.get(0).getDepartmentName());
+				departmentList = humanService.getDepartmentListByCompanyId(department.getCompany().getCompanyId());
 			}
 		}
 		dataMap.put("human", departmentList);
 		return SUCCESS;
 	}
-	
-	
 	
 	public String addDepartmentPage() {
 		List<Company> allCompanyList = humanService.getCompanyList();
@@ -99,9 +113,9 @@ public class HumanAction extends BaseActionSupport {
 	}
 	
 	public String addDepartment(){
-		String companyName = department.getCompany().getCompanyName();
+		/*String companyName = department.getCompany().getCompanyName();
 		Company company = humanService.getCompanyByName(companyName);
-		department.getCompany().setCompanyId(company.getCompanyId());
+		department.getCompany().setCompanyId(company.getCompanyId());*/
 		boolean flag = humanService.addDepartment(department);
 		String path = flag == true? SUCCESS:FAIL;
 		return path;
@@ -123,6 +137,13 @@ public class HumanAction extends BaseActionSupport {
 		return SUCCESS;
 	}
 
+	public String addPosition(){
+		System.out.println("departmentName" + position.getDepartment().getDepartmentName());
+		boolean flag = humanService.addPosition(position);
+		String path = flag == true? SUCCESS:FAIL;
+		return path;
+	}
+	
 	public Map<String, Object> getDataMap() {
 		return dataMap;
 	}
@@ -153,5 +174,13 @@ public class HumanAction extends BaseActionSupport {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
 	}
 }

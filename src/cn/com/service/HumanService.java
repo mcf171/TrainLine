@@ -3,6 +3,8 @@ package cn.com.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.runner.Request;
+
 import cn.com.dao.CompanyDAO;
 import cn.com.dao.DepartmentDAO;
 import cn.com.dao.PersonalinformationDAO;
@@ -29,6 +31,14 @@ public class HumanService {
 		return companyDAO.findAll();
 	}
 	
+	public Company getCompanyByName(Object companyName){
+		return (Company) companyDAO.findByCompanyName(companyName).get(0);
+	}
+	
+	public Company getCompanyById(int companyId){
+		return companyDAO.findById(companyId);
+	}
+	
 	public boolean addCompany(Company company){
 		boolean flag = false;
 		try{
@@ -38,23 +48,40 @@ public class HumanService {
 			// TODO: handle exception
 			flag = false;
 			e.printStackTrace();
+		}finally{
+			flag = false;
 		}
 		return flag;
 	}
 	
-	public Company getCompanyByName(Object companyName){
-		return (Company) companyDAO.findByCompanyName(companyName).get(0);
+	
+	public boolean modifyCompany(Company company){
+		boolean flag = false;
+		try{
+			companyDAO.merge(company);
+			flag = true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			flag = false;
+			e.printStackTrace();
+		}finally{
+			flag = false;
+		}
+		return flag;
 	}
 	
 	public List<Department> getDepartmentList(){
 		return departmentDAO.findAll();
 	}
 	
-	public List<Department> getDepartmentListByCompanyName(String companyName){
-		List<Company> companyList = companyDAO.findByCompanyName(companyName);
-		List departmentList = departmentDAO.findByProperty("company.companyId", companyList.get(0).getCompanyId());
+	public List<Department> getDepartmentListByCompanyId(int companyId){
+		System.out.println(companyId);
+		Company company = companyDAO.findById(companyId);
+		List<Department> departmentList = departmentDAO.findByProperty("company.companyId", company.getCompanyId());
+		for(int i=0; i<departmentList.size(); i++){
+			System.out.println("DepartmentName:" + departmentList.get(i).getDepartmentName());
+		}
 		return departmentList;
-		
 	}
 	
 	public boolean addDepartment(Department department){
@@ -73,6 +100,19 @@ public class HumanService {
 		return positionDAO.findAll();
 	}
 
+	public boolean addPosition(Position position){
+		boolean flag = false;
+		try{
+			positionDAO.save(position);
+			flag = true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
 	public UserDAO getUserDAO() {
 		return userDAO;
 	}

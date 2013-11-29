@@ -40,12 +40,9 @@
 				sortable : true,
 				renderer: function (val, item, row)
 				{
-					var temp = item.department;
-					console.log(item.department == null);
 					if(item.department == null){
 						return "缺失所属部门名";
 					}else{
-						
 						return item.department.departmentName;
 					}
 				
@@ -55,8 +52,6 @@
 				sortable : true,
 				renderer: function (val, item, row)
 				{
-					var temp = item.department.company;
-					console.log(item.department.company == null);
 					if(item.department == null){
 						return "缺失所属公司名";
 					}else{
