@@ -27,14 +27,23 @@ $(document).ready(function ()
 	$('#course-switcher a[href="#selected"]').click(function ()
 	{
 		$('#list-selected, #filter-selected, #button-remove').removeClass('hidden');
+		$('#list-jiangzuo, #filter-jiangzuo, #button-jiangzuo').addClass('hidden');
 		$('#list-available, #filter-available, #button-select').addClass('hidden');
 	});
 
 	$('#course-switcher a[href="#available"]').click(function ()
 	{
 		$('#list-selected, #filter-selected, #button-remove').addClass('hidden');
+		$('#list-jiangzuo, #filter-jiangzuo, #button-jiangzuo').addClass('hidden');
 		$('#list-available, #filter-available, #button-select').removeClass('hidden');
 	});
+	
+	$('#course-switcher a[href="#jiangzuo"]').click(function ()
+			{
+				$('#list-selected, #filter-selected, #button-remove').addClass('hidden');
+				$('#list-available, #filter-available, #button-select').addClass('hidden');
+				$('#list-jiangzuo, #filter-jiangzuo, #button-jiangzuo').removeClass('hidden');
+			});
 
 	$('#grid-available').mmGrid({
 		url: '${basePath}courseList.action',
@@ -82,50 +91,67 @@ $(document).ready(function ()
 	});
 
 	$('#grid-selected').mmGrid({
-		url: '${basePath}courseList.action',
-		height: 230,
-		root:'courseList',
+		url: '${basePath}getDangkeLiberaryList.action',
+		height: 410,
 		autoLoad: true,
-		checkCol: true,
-		multiSelect: true,
 		fullWithRows: true,
+		root:'liberary',
 		cols: [
-			{ title: '课程编号', sortable: true, width: 100, name: 'courseId' },
-			{ title: '课程名称', sortable: true, width: 370, name: 'courseName' },
-			{
-				width: 160,
-				title: '保密级别',
-				sortable: true,
-				renderer: function (val, item, row)
+				{ title: '图书名称', sortable: true, width: 210, name: 'bookName' },
+				{ title: '图书简介', sortable: true, width: 250, name: 'bookContent' },
+				{ title: '图书类别', sortable: true, width: 210, 
+					renderer: function (val, item, row)
+					{
+					return item.bookType.bookTypeName;
+					}
+				},	
+				{ title: '图书编号', sortable: true, width: 210, name: 'bookClassIndex' },
 				{
-					return item['keepsecret']==1 ? '保密' : '公开';
+					title: '操作',
+					width: 100,
+					renderer: function (val, item, row)
+					{
+						return '<a href="readBook.action?book.bookId=' + item.bookId + '"  target="_blank">阅读</a> '; 
+					}
 				}
-			},
-			{
-				width: 160,
-				title: '课程状态',
-				sortable: true,
-				renderer: function (val, item, row)
-				{
-					return item.select ? '已选' : '未选';
-				}
-			},
-			{
-				title: '操作',
-				width: 170,
-				renderer: function (val, item, row)
-				{
-					return '<input type="hidden" value="' + item.id + '" />' +
-						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
-						(item.select ? '' : (item.public ? '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>'));
-				}
-			}
-		],
+			],
 		plugins: [
 			$('#page-selected').mmPaginator({})
 		]
 	});
+	
+	$('#grid-jiangzuo').mmGrid({
+		url: '${basePath}getDangkeLiberaryList.action',
+		height: 410,
+		autoLoad: true,
+		fullWithRows: true,
+		root:'liberary',
+		cols: [
+				{ title: '图书名称', sortable: true, width: 210, name: 'bookName' },
+				{ title: '图书简介', sortable: true, width: 250, name: 'bookContent' },
+				{ title: '图书类别', sortable: true, width: 210, 
+					renderer: function (val, item, row)
+					{
+					return item.bookType.bookTypeName;
+					}
+				},	
+				{ title: '图书编号', sortable: true, width: 210, name: 'bookClassIndex' },
+				{
+					title: '操作',
+					width: 100,
+					renderer: function (val, item, row)
+					{
+						return '<a href="readBook.action?book.bookId=' + item.bookId + '"  target="_blank">阅读</a> '; 
+					}
+				}
+			],
+		plugins: [
+			$('#page-selected').mmPaginator({})
+		]
+	});
+	
 });
+
 //]]>
 </script>
 </head>
@@ -138,7 +164,7 @@ $(document).ready(function ()
 					<ul id="course-switcher" class="row-fluid nav nav-pills line-margin">
 						<li class="active"><a href="#available" data-toggle="tab">党建课程</a></li>
 						<li><a href="#selected" data-toggle="tab">党建图书</a></li>
-						<li><a href="#selected" data-toggle="tab">党建讲座</a></li>
+						<li><a href="#jiangzuo" data-toggle="tab">党建讲座</a></li>
 					</ul>
 					<hr class="seperator" />
 					<div id="filter-available">
@@ -173,57 +199,67 @@ $(document).ready(function ()
 						</div>
 					</div>
 					<div id="filter-selected" class="hidden">
-						<div class="row-fluid">
-							<div class="span2">我的课程</div>
-							<div class="span10 form-inline">
-								<label class="checkbox"><input type="checkbox" name="required" checked="checked" />已选</label>
-								&#12288;&nbsp;
-								<label class="checkbox"><input type="checkbox" name="optional" checked="checked" />可选</label>
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="span2">课程类型</div>
-							<div class="span10 form-inline">
-								<label class="checkbox"><input type="checkbox" name="required" checked="checked" />必修课</label>
-								&nbsp;
-								<label class="checkbox"><input type="checkbox" name="optional" checked="checked" />选修课</label>
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="span2">课程状态</div>
-							<div class="span10 form-inline">
-								<label class="checkbox"><input type="checkbox" name="finished" checked="checked" />学习中</label>
-								&nbsp;
-								<label class="checkbox"><input type="checkbox" name="pending" checked="checked" />已完成</label>
-							</div>
-						</div>
-					</div>
-					<hr class="seperator top-margin" />
-					<div class="row-fluid">
-						<div id="button-select" class="span2 first-button">
-							<button class="btn"><i class="icon-ok"></i>&nbsp;批量提交</button>
-						</div>
-						<div id="button-remove" class="span2 first-button hidden">
-							<button class="btn"><i class="icon-remove"></i>&nbsp;批量退选</button>
-						</div>
-						<div id="search-keyword" class="span6">
-							<div class="row-fluid">
-								<input
+						<div class="row-fluid line-margin">
+			               <span class="help-inline"><b>基本过滤：</b>图书名称：</span>
+			               <input
+			               			id="bookName"
 									type="text"
 									name="keyword"
-									class="span12 input-medium search-query"
-									placeholder="请输入关键字"
+									class="span2 "
+									placeholder="请输入内容"
 								/>
-							</div>
-						</div>
-						<div class="span2">
-							<div class="row-fluid">
-								<button class="span12 btn">
-									<i class="icon-search"></i>&nbsp;搜索
-								</button>
-							</div>
-						</div>
+			                <span class="help-inline">图书简介：</span> <input
+									id="bookContent"
+									type="text"
+									name="keyword"
+									class="span2 "
+									placeholder="请输入内容"
+								/>
+			                <span class="help-inline">图书类别：</span>
+			                <select class="input-small" id="bookType">
+				               
+			                </select>
+			                <span class="help-inline">图书编号：</span>
+			                <input id="bookClassIndex" type="text" class="span2" placeholder="请输入相应内容" />
+			                <div class="row-fluid line-margin">
+			                     <button class="btn " id="search"><i class="icon-search"></i>查询</button>
+			                     <button class="btn" type="reset"><i class="icon-remove"></i>清除</button>
+			                     <button class="btn " id="showAll"><i class="icon-align-justify"></i>显示所有</button>
+		               		</div>
+		               </div>
 					</div>
+					
+					<div id="filter-jiangzuo" class="hidden">
+						<div class="row-fluid line-margin">
+			               <span class="help-inline"><b>基本过滤：</b>图书名称：</span>
+			               <input
+			               			id="bookName"
+									type="text"
+									name="keyword"
+									class="span2 "
+									placeholder="请输入内容"
+								/>
+			                <span class="help-inline">图书简介：</span> <input
+									id="bookContent"
+									type="text"
+									name="keyword"
+									class="span2 "
+									placeholder="请输入内容"
+								/>
+			                <span class="help-inline">图书类别：</span>
+			                <select class="input-small" id="bookType">
+				               
+			                </select>
+			                <span class="help-inline">图书编号：</span>
+			                <input id="bookClassIndex" type="text" class="span2" placeholder="请输入相应内容" />
+			                <div class="row-fluid line-margin">
+			                     <button class="btn " id="search"><i class="icon-search"></i>查询</button>
+			                     <button class="btn" type="reset"><i class="icon-remove"></i>清除</button>
+			                     <button class="btn " id="showAll"><i class="icon-align-justify"></i>显示所有</button>
+		               		</div>
+		               </div>
+					</div>
+					
 				</form>
 			</div>
 			<div id="list-available" class="row-fluid">
@@ -235,6 +271,12 @@ $(document).ready(function ()
 			<div id="list-selected" class="row-fluid hidden">
 				<div class="span12">
 					<table id="grid-selected"></table>
+					<div id="page-selected" class="pull-right"></div>
+				</div>
+			</div>
+			<div id="list-jiangzuo" class="row-fluid hidden">
+				<div class="span12">
+					<table id="grid-jiangzuo"></table>
 					<div id="page-selected" class="pull-right"></div>
 				</div>
 			</div>

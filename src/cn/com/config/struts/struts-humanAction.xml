@@ -2,6 +2,30 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="human" extends="system">
+		<action name="getPersonList" class="humanAction" method="getPersonList">
+				<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+	   	</action>
+	   	
+	   	<action name="getCompanyList" class="humanAction" method="getCompanyList">
+				<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+	   	</action>
+	   	
+	   	<action name="getDepartmentList" class="humanAction" method="getDepartmentList">
+				<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+	   	</action>
+	   	
+	   <action name="getPositionList" class="humanAction" method="getPositionList">
+				<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+	   	</action>
+	
 		<action name="showBackendHumanPage" class="humanAction" method="showBackendHumanPage">
 			<result>/WEB-INF/jsp/backend/human.jsp</result>
 		</action>
@@ -30,12 +54,38 @@
 			<result>/WEB-INF/jsp/backend/person/addCompany.jsp</result>
 		</action>
 		
+		<action name="addCompany" class="humanAction" method="addCompany">
+			<result type="redirectAction">
+   				<param name="actionName">showBackendHumanPage</param>
+   			</result>
+		</action>
+		
 		<action name="addDepartmentPage" class="humanAction" method="addDepartmentPage">
 			<result>/WEB-INF/jsp/backend/person/addDepartment.jsp</result>
 		</action>
 		
+		<action name="addDepartment" class="humanAction" method="addDepartment">
+			<result type="redirectAction">
+   				<param name="actionName">showBackendHumanPage</param>
+   			</result>
+		</action>
+		
 		<action name="addPositionPage" class="humanAction" method="addPositionPage">
 			<result>/WEB-INF/jsp/backend/person/addPosition.jsp</result>
+		</action>
+		
+		<action name="addPosition" class="humanAction" method="addPosition">
+			<result type="redirectAction">
+   				<param name="actionName">showBackendHumanPage</param>
+   			</result>
+		</action>
+		
+		<action name="modifyCompanyPage" class="humanAction" method="modifyCompanyPage">
+			<result>/WEB-INF/jsp/backend/person/modifyCompany.jsp</result>
+		</action>
+		
+		<action name="modifyCompany" class="humanAction" method="modifyCompany">
+			<result>/WEB-INF/jsp/backend/person/company.jsp</result>
 		</action>
 	</package>
 </struts>    

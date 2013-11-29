@@ -109,7 +109,7 @@ public class CompanyDAO extends HibernateDaoSupport {
 		return findByProperty(COMPANY_SHORT_NAME, companyShortName);
 	}
 
-	public List findAll() {
+	public List<Company> findAll() {
 		log.debug("finding all Company instances");
 		try {
 			String queryString = "from Company";

@@ -15,7 +15,18 @@ public class ForumService {
      public List<Theme> getThemeList(){
     	 return themeDAO.findAll();
      }
+     
+     /*
+      * 添加主题
+      */
 
+     public boolean addTheme(Theme themeName){
+    	 boolean flag=true;
+    	 themeDAO.save(themeName);
+    	 
+    	 return flag;
+    	 
+     }
 	public ThemeDAO getThemeDAO() {
 		return themeDAO;
 	}

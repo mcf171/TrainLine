@@ -22,9 +22,9 @@ var PAGES = {
 	page_0: 'homeList.action',
 	page_1: '${basePath}course_intoStudyCenter.action',
 	page_2:'exam.jsp',
-	page_3: 'dangjian.jsp',
+	page_3: '${basePath}showNetDangKePage.action',
 	page_4: 'education.jsp',
-	page_5: 'showNormalLiberaryListPage.action'
+	page_5: '${basePath}showNormalLiberaryListPage.action'
 };
 
 function load_page(page)
@@ -70,8 +70,8 @@ $(document).ready(function ()
 				<li id="page_0" class="span1 header-menu-item active"><a href="#">首页</a></li>
 				<li id="page_1" class="span2 header-menu-item"><a href="#">学习中心</a></li>
 				<li id="page_2" class="span2 header-menu-item"><a href="#">考试中心</a></li>
-				<li id="page_3" class="span2 header-menu-item"><a href="#">网上党校</a></li>
 				<li id="page_4" class="span2 header-menu-item"><a href="#">培训班</a></li>
+				<li id="page_3" class="span2 header-menu-item"><a href="#">网上党校</a></li>
 				<li id="page_5" class="span2 header-menu-item"><a href="#">图书馆</a></li>
 				<li id="page_6" class="span1 header-menu-item"><a href="forum/index.html" target="_blank">社区</a></li>
 			</ul>
@@ -96,7 +96,7 @@ $(document).ready(function ()
 			<a href="getBackendIndex.action" target="_blank">后台管理</a>
 			&nbsp;
 			</c:if>
-			<a href="userInfo.html" target="_blank">个人中心</a>
+			<a href="userInfo.action" target="_blank">个人中心</a>
 			&nbsp;
 			<a href="${basePath}email/index.html">收件箱</a>
 		</div>

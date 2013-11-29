@@ -28,6 +28,7 @@
         <property name="userState" type="java.lang.Integer">
             <column name="userState" />
         </property>
+        <!-- 
         <set name="posts" inverse="true">
             <key>
                 <column name="userId" />
@@ -146,5 +147,6 @@
             </key>
             <one-to-many class="cn.com.model.Personalinformation" />
         </set>
+         -->
     </class>
 </hibernate-mapping>
