@@ -22,7 +22,7 @@ public class Course implements java.io.Serializable {
 	private Set testquestions = new HashSet(0);
 
 	// Constructors
-
+	private Integer isSelect =0;
 	/** default constructor */
 	public Course() {
 	}
@@ -113,6 +113,14 @@ public class Course implements java.io.Serializable {
 
 	public void setTestquestions(Set testquestions) {
 		this.testquestions = testquestions;
+	}
+
+	public Integer getIsSelect() {
+		return isSelect;
+	}
+
+	public void setIsSelect(Integer isSelect) {
+		this.isSelect = isSelect;
 	}
 
 }

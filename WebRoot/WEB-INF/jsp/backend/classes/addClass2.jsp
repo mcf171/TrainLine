@@ -20,6 +20,23 @@ $(document).ready(function ()
 	$('#time-to').css('background', 'none').datepicker();
 	$('#time-from').css('background', 'none').datepicker();
 
+	$.ajax({
+				type : "POST",
+				url : "${basePath}trainingClass_geTrainClass.action",
+				dataType : "json",
+				success : function(json) {
+				var trainingclass =json.trainingclass;
+				if(trainingclass!=null)
+				{
+				var span = "<h3 align='center'>"+trainingclass.trainingClassName+"</h3><hr>";
+				$("#trainClassname").append(span);
+				}
+				
+				},
+				error : function() {
+					return false;
+				}
+				});
 //按条件查询
 	$("#searchBtn").click(function(){
 	mmg.load({page:1,"course.courseName":$("#courseName_input").val(),
@@ -44,7 +61,7 @@ $(document).ready(function ()
          renderer: function (val, item, row)
          {
          return '<input type="hidden" id="'+item.courseId+'" value="' + item.courseId + '" />' +
-             '<a href="#" onclick="addToClass('+item.courseId+')" role="button" class="btn" data-toggle="modal">添加</a>';
+             '<a href="#" onclick="addToClass('+item.courseId+')" role="button" class="btn">添加</a>';
          }
 
        }
@@ -55,13 +72,14 @@ $(document).ready(function ()
 	});
 	
 	
+	
 	mmg1 = $('#grid1').mmGrid({
-		url: '${basePath}course_findAllCourse.action',
+		url: '${basePath}trainingClass_getCourseByClassId.action',
 		height: 410,
 		autoLoad: true,
 		checkCol: true,
 		indexCol:true,
-		root:'cList',
+		root:'courseList',
 		fullWithRows: true,
 		cols: [
      { title: '课程名', sortable: true, width: 100, name:'courseName' },
@@ -83,6 +101,39 @@ $(document).ready(function ()
 		]
 	});
 });
+
+function addToClass(courseId)
+	{
+	 	$.ajax({
+					type : "POST",
+					url : "${basePath}trainingClass_addClassAndCourse.action",
+					data:"courseId="+courseId,
+					dataType : "json",
+					success : function(json) {
+					mmg1.load();
+					},
+					error : function() {
+						return false;
+					}
+				});
+	}
+	
+	//删除已选课程
+	function deleteFromClass(courseId)
+	{
+	$.ajax({
+				type : "POST",
+				url : "${basePath}trainingClass_delCourseFrClass.action",
+				data:"courseId="+courseId,
+				dataType : "json",
+				success : function(json) {
+				mmg1.load();
+				},
+				error : function() {
+					return false;
+				}
+				});
+	}
 </script>
 </head>
 <style>
@@ -112,6 +163,8 @@ $(document).ready(function ()
 </style>
 <body>
 	<div class="container-fluid">
+		<div class="row word_style" id="trainClassname">
+		</div>
 		<div class="row-fluid">
 			<div id="content" class="span10">
 				<div class="row word_style">可增加课程</div>
@@ -156,19 +209,7 @@ $(document).ready(function ()
 		<div class="row-fluid" style="margin-top: 40px">
 			<div id="content" class="span10">
 				<div class="row word_style">已增加课程</div>
-				<div class="row word_style">
-					<div class="row-fluid line-margin">
-						<span class="help-inline"> <b>过滤：</b> </span> <select
-							class="input-medium">
-							<option>所有</option>
-							<option>类型1</option>
-							<option>类型2</option>
-							<option>类型3</option>
-						</select> 内容： <input type="text" class="span4 input-medium"
-							placeholder="请输入关键字">
-						<button type="submit" class="btn">查询</button>
-					</div>
-				</div>
+			
 				<div class="row word_style">
 					<div class="row-fluid ">
 						<table id="grid1"></table>
