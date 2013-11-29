@@ -11,7 +11,15 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 	
-	
+    <bean id="newMessageAction" class="cn.com.action.NewManageAction" scope="prototype">
+	   <property name="noticeService" ref="noticeService"></property>
+	</bean>
+	<bean id="systemAction" class="cn.com.action.GetSysImfoAction" scope="prototype">
+
+	</bean>
+	<bean id="recordAction" class="cn.com.action.RecordAction" scope="prototype">
+        <property name="recordService" ref="recordService"></property>
+    </bean>
 		<bean id="liberaryAction" class="cn.com.action.LiberaryAction" scope="prototype">
 			<property name="liberaryService" ref="liberaryService"></property>
 			

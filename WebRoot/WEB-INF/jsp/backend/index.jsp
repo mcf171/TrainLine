@@ -19,9 +19,9 @@ var PAGES = {
 	page_2: '${basePath}trainingClass_intoClasspage.action',
 	page_3: 'resource.jsp',
 	page_4: '${basePath}showBackendHumanPage.action',
-	page_5: 'newsManager.jsp',
+	page_5: '${basePath}newMessageAction.action',
 	page_6: 'report.jsp',
-	page_7: 'system.jsp',
+	page_7: '${basePath}conductSystemaction.action',
 	page_8: '${basePath}showBackendforumListPage.action',
 	page_9:'${basePath}showBackendLiberaryListPage.action'
 };
