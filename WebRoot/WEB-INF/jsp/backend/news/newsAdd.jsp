@@ -1,19 +1,35 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="../styles/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../styles/global.css" />
-<link rel="stylesheet" type="text/css" href="../styles/backend.css" />
-<script type="text/javascript" src="../scripts/jquery.js"></script>
-<script type="text/javascript" src="../scripts/jstree.js"></script>
-<script type="text/javascript" src="../scripts/bootstrap.js"></script>
-<script type="text/javascript" src="../scripts/mousewheel.js"></script>
-<script type="text/javascript" src="../scripts/global.js"></script>
-<script type="text/javascript" src="../scripts/backend.js"></script>
-<title>消息添加</title>
-</head>
-<style>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'newsAdd.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<link rel="stylesheet" type="text/css" href="${basePath}styles/mmgrid.css" />
+    <link rel="stylesheet" type="text/css" href="${basePath}styles/mmpaginator.css" />
+    <link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmgrid.css" />
+    <link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmpaginator.css" />
+    
+    <script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
+    <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
+    <script type="text/javascript" src="${basePath}scripts/datepicker.js"></script>
+
+  </head>
+ <style>
  
   .edit{
       
@@ -38,7 +54,7 @@
 }
 </style>
 <body>
-<div class="container-fluid">
+  <div class="container-fluid">
 	<div class="row-fluid">
 
 		<div id="content" class="span10">
@@ -133,6 +149,7 @@
              <button class="btn btn-large btn-primary offset1">重置</button>
            </div> 					
 		</div>
+						</div>
 						</div>
 
 </body>

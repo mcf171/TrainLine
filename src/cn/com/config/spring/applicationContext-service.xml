@@ -30,6 +30,12 @@
     </tx:attributes>
   </tx:advice>
 
+    <bean id="noticeService" class="cn.com.service.NoticeService">
+        <property name="noticeDAO" ref="noticeDAO"></property>
+    </bean>
+    <bean id="recordService" class="cn.com.service.RecordService" scope="prototype">
+		<property name="recordDAO" ref="RecordDAO"></property>
+	</bean>
 	<bean id="liberaryService" class="cn.com.service.LiberaryService" scope="prototype">
 		<property name="bookDAO" ref="BookDAO"></property>
 		<property name="bookTypeDAO" ref="BooktypeDAO"></property>
@@ -92,9 +98,4 @@
 		<property name="positionDAO" ref="PositionDAO"></property>
 	</bean>
 	
-	<bean id="recordService" class="cn.com.service.RecordService">
-		<property name="recordDAO" ref="RecordDAO"></property>
-	</bean>
-
-
 	</beans>

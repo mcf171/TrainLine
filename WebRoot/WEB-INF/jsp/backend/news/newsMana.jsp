@@ -1,12 +1,31 @@
-	
-    <link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
-    <link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
-    <link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
-    <link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
     
-    <script type="text/javascript" src="../scripts/mmgrid.js"></script>
-    <script type="text/javascript" src="../scripts/mmpaginator.js"></script>
-    <script type="text/javascript" src="../scripts/datepicker.js"></script>
+    <title>My JSP 'newsMana.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+
+
+   <link rel="stylesheet" type="text/css" href="${basePath}styles/mmgrid.css" />
+    <link rel="stylesheet" type="text/css" href="${basePath}styles/mmpaginator.css" />
+    <link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmgrid.css" />
+    <link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmpaginator.css" />
+    
+    <script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
+    <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
+    <script type="text/javascript" src="${basePath}scripts/datepicker.js"></script>
 
 	<script type="text/javascript">
 //<![CDATA[
@@ -16,20 +35,30 @@ $(document).ready(function ()
 	$('#time-from').css('background', 'none').datepicker();
 
 	$('#grid').mmGrid({
-		url: '/api/questionnaire',
+		url:'${basePath}showNoticeAction.action',
 		height: 410,
 		autoLoad: true,
 		fullWithRows: true,
+		root:'noticeList',
 		cols: [
-			{ title: '名字', sortable: true, width: 100, name: 'name' },	
-			{ title: '课程', sortable: true, width: 100, name: 'course' },
-			{ title: '', sortable: true, width: 110, name: '' },
-			{ title: '', sortable: true, width: 110, name: '' },
-			{ title: '', sortable: true, width: 110, name: '' },
-			{ title: '', sortable: true, width: 110, name: '' },
-			{ title: '', sortable: true, width: 100, name: '' },
-			{ title: '是否置顶 ', sortable: true, width: 100, name: '' },
-			{ title: '操作 ', sortable: true, width: 100, name: '' }
+			{ title: '消息编号', sortable: true, name: 'noticeId' },	
+			{ 
+			  title: '公告类型', 
+			  renderer:function(val,item,row){
+			    return item.noticetype.noticeTypeName;
+			  }
+			  },
+			{ title: '公告标题', sortable: true, name: 'noticeTitle' },
+			{ title: '公告时间', sortable: true, name: 'noticeTime' },
+			{ title: '发布人', sortable: true,  name: 'noticeAuthor' },
+			{ title: '公告内容', sortable: true, name: 'noticeContent' },
+			{ 
+			    title: '操作',sortable: true, 
+			    renderer: function (val, item, row)
+					{
+					return item.noticeType.noticeTypeName;	
+					}
+			     }
 		],
 		plugins: [
 			$('#page').mmPaginator({})
@@ -38,8 +67,8 @@ $(document).ready(function ()
 });
 //]]>
 </script>
-</head>
-<style>
+  </head>
+  <style>
  
   .edit{
       

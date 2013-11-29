@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="news" extends="json-default">
+
+	<action name="newMessageAction" class="newMessageAction" method="show">
+		<result  name="message">
+		  WEB-INF/jsp/backend/newMessage.jsp
+		</result>
+	</action>
+	<action name="manageMessageAction" class="newMessageAction" method="show">
+		<result name="message">
+		  WEB-INF/jsp/backend/news/newsMana.jsp
+		</result>
+	</action>
+	<action name="addMessageAction" class="newMessageAction" method="show">
+		<result  name="message">
+		  WEB-INF/jsp/backend/news/newsAdd.jsp
+		</result>
+	</action>
+    <action name="showNoticeAction" class="newMessageAction" method="getAllNotice">
+		<result  type="json">
+		  <param name="root">dataMap</param>
+		</result>
+	</action>
+</package>
+</struts>    
