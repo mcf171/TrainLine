@@ -21,7 +21,7 @@
 		</property>
 		<property name="url" value="jdbc:mysql://localhost:3306/trainline"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="919294"></property>
+		<property name="password" value="123456"></property>
 
 	</bean>
 	<bean id="sessionFactory"
@@ -89,7 +89,6 @@
 			</list>
 		</property>
 	</bean>
-
 	<bean id="CourseDAO" class="cn.com.dao.CourseDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -205,7 +204,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="NoticeDAO" class="cn.com.dao.NoticeDAO">
+	<bean id="noticeDAO" class="cn.com.dao.NoticeDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

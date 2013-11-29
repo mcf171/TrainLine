@@ -7,6 +7,10 @@
 		<param name="root">dataMap</param>
 		</result>
 		<result type="json" name="json"></result>
+		<result name="getCourseByClassId" type="json">
+		<param name="root">dataMap</param>
+		</result>
+		<result name="intoClassInfoPage">/WEB-INF/jsp/backend/classes/ClassInfo.jsp</result>
 		<result name="intoClasspage">/WEB-INF/jsp/backend/classes.jsp</result>
 		<result name="classContent">/WEB-INF/jsp/backend/classes/classes.jsp</result>
 		<result name="intoAddClassPage">/WEB-INF/jsp/backend/classes/addClass1.jsp</result>

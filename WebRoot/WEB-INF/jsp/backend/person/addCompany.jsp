@@ -3,11 +3,19 @@
 <link rel="stylesheet" href="${basePath}styles/edit.css" type="text/css"></link>
 <link href="${basePath}styles/font-awesome.css" rel="stylesheet"></link>
 
+<script type="text/javascript">
+//<!--
+$("#cancle").click(function(){
+	loadHTML('${basePath}showBackendCompanyPage.action');
+})
+//-->
+</script>
+
 <div class="row-fluid">
 	<form action="addCompany.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司名称：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="company.companyName" />
+			<input type="text" class=" span2" placeholder="请输入公司名称" name="company.companyName" />
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司等级：</span>
@@ -25,13 +33,13 @@
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司简称：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="company.companyShortName" />
+			<input type="text" class=" span2" placeholder="请输入公司简称" name="company.companyShortName" />
 		</div>
 		<div class="row-fluid line-margin">
-			<button class="btn span1 offset1 " type="submit">
+			<button class="btn span1" type="submit">
 				确定
 			</button>
-			<button class="btn span1 offset1" type="button" id="cancle">
+			<button class="btn span1" type="button" id="cancle">
 				取消
 			</button>
 		</div>

@@ -51,9 +51,7 @@
 				title : '操作',
 				renderer : function(val, item, row) {
 					onclick = "#";
-					return '<a href="#">查看</a> '
-							+ '&nbsp'
-							+ '<a href="#" >修改</a> '
+					return '<a href="javascript:loadHTML(\'${basePath}modifyCompanyPage.action?company.companyId=' +item.companyId + '\')")">修改</a> '
 							+ '&nbsp'
 							+ '<a href="#" >删除</a> ';
 				}

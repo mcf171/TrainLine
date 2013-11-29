@@ -36,88 +36,77 @@ $(document).ready(function ()
 		$('#list-available, #filter-available, #button-select').removeClass('hidden');
 	});
 
+	
+
 	$('#grid-available').mmGrid({
-		url: '${basePath}courseList.action',
+		url: '${basePath}course_fbfindCourse.action',
 		height: 230,
-		root:'courseList',
+		root:'cList',
 		autoLoad: true,
 		checkCol: true,
 		multiSelect: true,
 		fullWithRows: true,
 		cols: [
 			{ title: '课程编号', sortable: true, width: 100, name: 'courseId' },
-			{ title: '课程名称', sortable: true, width: 370, name: 'courseName' },
+			{ title: '课程名称', sortable: true, width: 100, name: 'courseName' },
+			{ title: '讲师', sortable: true, width: 100, name: 'courseSpeaker' },
+			{ title: '课程介绍', sortable: true, width: 100, name: 'courseIntro' },
 			{
-				width: 160,
-				title: '保密级别',
-				sortable: true,
-				renderer: function (val, item, row)
-				{
-					return item['keepsecret']==1 ? '保密' : '公开';
-				}
-			},
-			{
-				width: 160,
 				title: '课程状态',
 				sortable: true,
-				renderer: function (val, item, row)
+				width: 100,
+				renderer: function (val,item,row)
 				{
-					return item.select ? '已选' : '未选';
+					return item.isSelect==1 ? '已选' : '未选';
 				}
 			},
 			{
 				title: '操作',
-				width: 170,
+				width: 100,
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.id + '" />' +
-						'<a href="studyContent.jsp">详细信息</a>&nbsp;&nbsp;' +
-						(item.select ? '' : (item.public ? '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>'));
+					return '<input type="hidden" value="' + item.courseId + '" />' +
+						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
+						(item.isSelect==0 ?  '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>');
 				}
 			}
 		],
 		plugins: [
-			$('#page-available').mmPaginator({})
+			$('#page-selected').mmPaginator({})
 		]
 	});
-
-	$('#grid-selected').mmGrid({
-		url: '${basePath}courseList.action',
+	
+	
+	$('#list-selected').mmGrid({
+		url: '${basePath}course_fbfindCourse.action',
 		height: 230,
-		root:'courseList',
+		root:'cList',
 		autoLoad: true,
 		checkCol: true,
 		multiSelect: true,
 		fullWithRows: true,
 		cols: [
 			{ title: '课程编号', sortable: true, width: 100, name: 'courseId' },
-			{ title: '课程名称', sortable: true, width: 370, name: 'courseName' },
+			{ title: '课程名称', sortable: true, width: 100, name: 'courseName' },
+			{ title: '讲师', sortable: true, width: 100, name: 'courseSpeaker' },
+			{ title: '课程介绍', sortable: true, width: 100, name: 'courseIntro' },
 			{
-				width: 160,
-				title: '保密级别',
-				sortable: true,
-				renderer: function (val, item, row)
-				{
-					return item['keepsecret']==1 ? '保密' : '公开';
-				}
-			},
-			{
-				width: 160,
 				title: '课程状态',
 				sortable: true,
-				renderer: function (val, item, row)
+				width: 100,
+				renderer: function (val,item,row)
 				{
-					return item.select ? '已选' : '未选';
+					return item.isSelect==1 ? '已选' : '未选';
 				}
 			},
 			{
 				title: '操作',
-				width: 170,
+				width: 100,
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.id + '" />' +
+					return '<input type="hidden" value="' + item.courseId + '" />' +
 						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
-						(item.select ? '' : (item.public ? '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>'));
+						(item.isSelect==0 ?  '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>');
 				}
 			}
 		],
@@ -163,13 +152,7 @@ $(document).ready(function ()
 							<select class="input-medium">
 								<option>所有</option>
 								<option>财务类</option>
-								<option>工程经济类</option>
-							</select>
-							<span class="help-inline">课程状态</span>
-							<select class="input-medium">
-								<option>所有</option>
-								<option>已选</option>
-								<option>未选</option>
+								<option>经济类</option>
 							</select>
 						</div>
 					</div>
@@ -205,6 +188,7 @@ $(document).ready(function ()
 							<button class="btn"><i class="icon-ok"></i>&nbsp;批量提交</button>
 						</div>
 						<div id="button-remove" class="span2 first-button hidden">
+						
 							<button class="btn"><i class="icon-remove"></i>&nbsp;批量退选</button>
 						</div>
 						<div id="search-keyword" class="span6">
@@ -227,18 +211,20 @@ $(document).ready(function ()
 					</div>
 				</form>
 			</div>
+			<div id="list-selected" class="row-fluid hidden">
+				     <div class="span12">
+					<table id="grid-selected"></table>
+					
+					<div id="page-selected" class="pull-right"></div>
+					</div>
+			 </div>
 			<div id="list-available" class="row-fluid">
 				<div class="span12">
 					<table id="grid-available"></table>
 					<div id="page-available" class="pull-right"></div>
 				</div>
 			</div>
-			<div id="list-selected" class="row-fluid hidden">
-				<div class="span12">
-					<table id="grid-selected"></table>
-					<div id="page-selected" class="pull-right"></div>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 </div>

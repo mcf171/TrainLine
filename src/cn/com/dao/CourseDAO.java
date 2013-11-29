@@ -185,4 +185,14 @@ public class CourseDAO extends HibernateDaoSupport {
 			System.out.println(list.size());
 		return list;
 	}
+
+	public List<Course> fgFindAll() {
+		String hql="from Course where courseState = 1";
+	    List<Course> list = getHibernateTemplate().find(hql);
+		return list;
+	}
+
+	public List<Course> fgSearchCourses(Course course) {
+		return null;
+	}
 }

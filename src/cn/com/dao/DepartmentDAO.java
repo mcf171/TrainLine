@@ -82,7 +82,7 @@ public class DepartmentDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByProperty(String propertyName, Object value) {
+	public List<Department> findByProperty(String propertyName, Object value) {
 		log.debug("finding Department instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
@@ -96,27 +96,27 @@ public class DepartmentDAO extends HibernateDaoSupport {
 	}
 
 
-	public List findByDepartmentName(Object departmentName) {
+	public List<Department> findByDepartmentName(Object departmentName) {
 		return findByProperty(DEPARTMENT_NAME, departmentName);
 	}
 
-	public List findByDepartmentstatus(Object departmentstatus) {
+	public List<Department> findByDepartmentstatus(Object departmentstatus) {
 		return findByProperty(DEPARTMENTSTATUS, departmentstatus);
 	}
 
-	public List findByDepartmentShortName(Object departmentShortName) {
+	public List<Department> findByDepartmentShortName(Object departmentShortName) {
 		return findByProperty(DEPARTMENT_SHORT_NAME, departmentShortName);
 	}
 
-	public List findByBusinessUnits(Object businessUnits) {
+	public List<Department> findByBusinessUnits(Object businessUnits) {
 		return findByProperty(BUSINESS_UNITS, businessUnits);
 	}
 
-	public List findByDepartmentCoding(Object departmentCoding) {
+	public List<Department> findByDepartmentCoding(Object departmentCoding) {
 		return findByProperty(DEPARTMENT_CODING, departmentCoding);
 	}
 
-	public List findByCountry(Object country) {
+	public List<Department> findByCountry(Object country) {
 		return findByProperty(COUNTRY, country);
 	}
 

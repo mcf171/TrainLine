@@ -28,5 +28,9 @@
 	<include file="cn/com/config/struts/struts-humanAction.xml"></include>
 	
 	<include file="cn/com/config/struts/struts-testPaperAction.xml"></include>
+	<include file="cn/com/config/struts/struts-systemAction.xml"></include>
+	<include file="cn/com/config/struts/struts-recordAction.xml"></include>
+	<include file="cn/com/config/struts/struts-newsManageAction.xml"></include>
+	
 
 </struts>    
