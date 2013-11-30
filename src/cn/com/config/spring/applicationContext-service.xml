@@ -30,7 +30,7 @@
     </tx:attributes>
   </tx:advice>
 
-    <bean id="noticeService" class="cn.com.service.NoticeService">
+    <bean id="noticeService" class="cn.com.service.NoticeService" scope="prototype">
         <property name="noticeDAO" ref="noticeDAO"></property>
     </bean>
     <bean id="recordService" class="cn.com.service.RecordService" scope="prototype">
@@ -51,7 +51,7 @@
 		<property name="userDAO" ref="UserDAO"></property>
 	</bean>
 	
-	<bean id="questionnairerService" class="cn.com.service.QuestionnaireService">
+	<bean id="questionnairerService" class="cn.com.service.QuestionnaireService" scope="prototype">
 		<property name="questionnaireDAO" ref="QuestionnaireDAO"></property>
 	</bean>
 	
