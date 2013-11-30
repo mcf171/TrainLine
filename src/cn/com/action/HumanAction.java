@@ -73,10 +73,8 @@ public class HumanAction extends BaseActionSupport {
 	}
 	
 	public String modifyCompanyPage(){
-		System.out.println("进入这里");
 		company = humanService.getCompanyById(company.getCompanyId());
 		request.setAttribute("company", company);
-		System.out.println("为什么不回去");
 		return SUCCESS;
 	}
 	

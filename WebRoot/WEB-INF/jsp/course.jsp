@@ -21,7 +21,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="scripts/mmpaginator.js"></script>
 <title>学习中心</title>
 <script type="text/javascript">
-//<![CDATA[
+var tapNumber =1;
+var mmg1;
 $(document).ready(function ()
 {
 	$('#course-switcher a[href="#kecheng"]').click(function ()
@@ -57,7 +58,7 @@ $(document).ready(function ()
 			});
 	
 
-	$('#grid-available').mmGrid({
+	mmg1 = $('#grid-available').mmGrid({
 		url: '${basePath}course_fbfindCourse.action',
 		height: 230,
 		root:'cList',
@@ -209,8 +210,40 @@ $(document).ready(function ()
 			$('#page-selected').mmPaginator({})
 		]
 	});
+	
+	
+	$("#selectCourseCeneterIID").click(function ()
+	{
+	 tapNumber = 1;
+	});
+	$("#myCoyurseIID").click(function ()
+	{
+	tapNumber = 2;
+	});
+	$("#exampleTeachIID").click(function ()
+	{
+	tapNumber = 3;
+	});
+	$("#wrongQuestionIID").click(function ()
+	{
+	tapNumber = 4;
+	});
+	
+	$("#searchbtn").click(function (){
+	var keyWords = $("#searchKey").val();
+	
+	if(tapNumber==1)
+	{
+	 	var positionName = $("#positionIID").val();
+	    var courseType =  $("#courseTypeIID").val();
+	    //alert(positionName+":"+courseType);
+	    mmg1.load({keyWords:keyWords,positionName:positionName,courseType:courseType});
+	}
+	
+	});
 });
-//]]>
+
+
 </script>
 </head>
 <body>
@@ -220,16 +253,16 @@ $(document).ready(function ()
 			<div class="row-fluid resources">
 				<form class="span12 form-inline no-margin">
 					<ul id="course-switcher" class="row-fluid nav nav-pills line-margin">
-						<li class="active"><a href="#available" data-toggle="tab">选课中心</a></li>
-						<li><a href="#kecheng" data-toggle="tab">我的课程</a></li>
-						<li><a href="#jiaoxue" data-toggle="tab">案例教学</a></li>
-						<li><a href="#cuotiji" data-toggle="tab">错题集</a></li>
+						<li class="active"><a href="#available" data-toggle="tab" id="selectCourseCeneterIID">选课中心</a></li>
+						<li><a href="#kecheng" data-toggle="tab" id="myCoyurseIID">我的课程</a></li>
+						<li><a href="#jiaoxue" data-toggle="tab" id="exampleTeachIID">案例教学</a></li>
+						<li><a href="#cuotiji" data-toggle="tab" id="wrongQuestionIID">错题集</a></li>
 					</ul>
 					<hr class="seperator" />
 					<div id="filter-available">
 						<div class="row-fluid line-margin">
 							<span class="help-inline"><b>岗位过滤：</b>我的岗位</span>
-							<select class="input-medium">
+							<select class="input-medium" id="positionIID">
 								<option>项目经理</option>
 								<option>项目书记</option>
 								<option>工程部长</option>
@@ -244,7 +277,7 @@ $(document).ready(function ()
 						</div>
 						<div class="row-fluid line-margin">
 							<span class="help-inline"><b>课程过滤：</b>课程类型</span>
-							<select class="input-medium">
+							<select class="input-medium" id="courseTypeIID">
 								<option>所有</option>
 								<option>财务类</option>
 								<option>经济类</option>
@@ -344,13 +377,14 @@ $(document).ready(function ()
 									type="text"
 									name="keyword"
 									class="span12 input-medium search-query"
+									id ="searchKey"
 									placeholder="请输入关键字"
 								/>
 							</div>
 						</div>
 						<div class="span2">
 							<div class="row-fluid">
-								<button class="span12 btn">
+								<button class="span12 btn" id="searchbtn" type="button"> 
 									<i class="icon-search"></i>&nbsp;搜索
 								</button>
 							</div>

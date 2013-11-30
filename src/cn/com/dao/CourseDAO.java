@@ -12,6 +12,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.com.model.Course;
+import cn.com.model.Coursetype;
+import cn.com.model.Position;
+import cn.com.model.Positionandcourse;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -38,13 +41,15 @@ public class CourseDAO extends HibernateDaoSupport {
 	}
 
 	public Integer save(Course transientInstance) {
-		Integer integer= (Integer) getHibernateTemplate().save(transientInstance);
+		Integer integer = (Integer) getHibernateTemplate().save(
+				transientInstance);
 		return integer;
 	}
 
 	public void delete(Course persistentInstance) {
 		try {
-			Session session = getHibernateTemplate().getSessionFactory().openSession();
+			Session session = getHibernateTemplate().getSessionFactory()
+					.openSession();
 			session.delete(persistentInstance);
 			session.flush();
 		} catch (Exception e) {
@@ -52,10 +57,10 @@ public class CourseDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void update(Course course){
+	public void update(Course course) {
 		getHibernateTemplate().saveOrUpdate(course);
 	}
-	
+
 	public Course findById(java.lang.Integer id) {
 		log.debug("getting Course instance with id: " + id);
 		try {
@@ -162,37 +167,87 @@ public class CourseDAO extends HibernateDaoSupport {
 	}
 
 	public List<Course> searchCourses(Course course) {
-		String hql ="from Course where 1=1 ";
-		if(course.getCourseName()!=null)
-		{
-			hql +=" and courseName like '%"+course.getCourseName()+"%'";
+		String hql = "from Course where 1=1 ";
+		if (course.getCourseName() != null) {
+			hql += " and courseName like '%" + course.getCourseName() + "%'";
 		}
-		if(course.getCourseSpeaker()!=null && !course.getCourseSpeaker().equals(""))
-		{
-			hql +=" and courseSpeaker = '"+course.getCourseSpeaker()+"' ";
+		if (course.getCourseSpeaker() != null
+				&& !course.getCourseSpeaker().equals("")) {
+			hql += " and courseSpeaker = '" + course.getCourseSpeaker() + "' ";
 		}
-		if(course.getCourseIntro()!=null)
-		{
-			hql += " and courseIntro like  '%"+course.getCourseIntro()+"%'";
+		if (course.getCourseIntro() != null) {
+			hql += " and courseIntro like  '%" + course.getCourseIntro() + "%'";
 		}
 
-		List list=null;
-		try{
-		list = getHibernateTemplate().find(hql);
-		}catch (Exception e) {
+		List list = null;
+		try {
+			list = getHibernateTemplate().find(hql);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			System.out.println(list.size());
+		System.out.println(list.size());
 		return list;
 	}
 
 	public List<Course> fgFindAll() {
-		String hql="from Course where courseState = 1";
-	    List<Course> list = getHibernateTemplate().find(hql);
+		String hql = "from Course where courseState = 1";
+		List<Course> list = getHibernateTemplate().find(hql);
 		return list;
 	}
 
-	public List<Course> fgSearchCourses(Course course) {
-		return null;
+	public List<Course> findCourseToCenter(String keyWords, String courseType,
+			String positionName) {
+		List<Course> courses = new ArrayList<Course>();
+
+		String hql = "from Position where positionName = '"
+				+ positionName.trim() + "'";
+		List<Position> pList = getHibernateTemplate().find(hql);
+
+		if (pList.size() == 1) {
+			Integer positionID = pList.get(0).getPositionId();
+
+			if (positionID != null) {
+				String hString0 = " ";
+				if (courseType.trim().equals("所有")) {
+					String hString1 = "from Positionandcourse  where positionId = "
+							+ positionID;
+					List<Positionandcourse> pList2 = getHibernateTemplate()
+							.find(hString1);
+					for (int i = 0; i < pList2.size(); i++) {
+						String hql2 = "from Course where courseId = "
+								+ pList2.get(i).getId().getCourseId()
+								+ " and   courseIntro like '%" + keyWords + "%' ";
+						List<Course> cs = getHibernateTemplate().find(hql2);
+						for (int j = 0; j < cs.size(); j++) {
+							courses.add(cs.get(j));
+						}
+					}
+				} else {
+					hString0 = "from Coursetype where coursetypeName = '"
+							+ courseType + "' ";
+					List<Coursetype> cList = getHibernateTemplate().find(
+							hString0);
+					if (cList.size() == 1) {
+						Integer courseTypeId = cList.get(0).getCourseTypeId();
+						String hString1 = "from Positionandcourse  where positionId = "
+								+ positionID;
+						List<Positionandcourse> pList2 = getHibernateTemplate()
+								.find(hString1);
+						for (int i = 0; i < pList2.size(); i++) {
+							String hql2 = "from Course where courseId = "
+									+ pList2.get(i).getId().getCourseId()
+									+ " and  courseTypeId = " + courseTypeId
+									+ " and courseIntro like '%" + keyWords
+									+ "%' ";
+							List<Course> cs = getHibernateTemplate().find(hql2);
+							for (int j = 0; j < cs.size(); j++) {
+								courses.add(cs.get(j));
+							}
+						}
+					}
+				}
+			}
+		}
+		return courses;
 	}
 }
