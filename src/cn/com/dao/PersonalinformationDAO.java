@@ -115,19 +115,19 @@ public class PersonalinformationDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByUserId(Object userId) {
+	public List<Personalinformation> findByUserId(Object userId) {
 		return findByProperty(USER_ID, userId);
 	}
 
-	public List findByRealName(Object realName) {
+	public List<Personalinformation> findByRealName(Object realName) {
 		return findByProperty(REAL_NAME, realName);
 	}
 
-	public List findByPicturePath(Object picturePath) {
+	public List<Personalinformation> findByPicturePath(Object picturePath) {
 		return findByProperty(PICTURE_PATH, picturePath);
 	}
 
-	public List findByIdnumber(Object idnumber) {
+	public List<Personalinformation> findByIdnumber(Object idnumber) {
 		return findByProperty(IDNUMBER, idnumber);
 	}
 

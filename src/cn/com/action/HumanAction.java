@@ -21,6 +21,7 @@ public class HumanAction extends BaseActionSupport {
 
 	private HumanService humanService;
 	private Map<String, Object> dataMap;
+	private User user;
 	private Company company;
 	private Department department;
 	private Position position;
@@ -40,7 +41,12 @@ public class HumanAction extends BaseActionSupport {
 	}
 
 	public String getPersonList() {
-		List<User> userList = humanService.getUserList();
+		List<User> userList = null;
+		if(user == null){
+			userList = humanService.getUserList();
+		}else{
+			userList = humanService.searchUserList(user);
+		}
 		dataMap.put("human", userList);
 		return SUCCESS;
 	}
@@ -48,6 +54,51 @@ public class HumanAction extends BaseActionSupport {
 	public String addPersonPage() {
 		List<Company> allCompanyList = humanService.getCompanyList();
 		request.setAttribute("allCompanyList", allCompanyList);
+		return SUCCESS;
+	}
+	
+	public String addPerson(){
+		if(user.getPersonalinformation() != null){
+			humanService.addPersonalinformation(user.getPersonalinformation());
+		}
+		if(user.getMajorqualification() != null){
+			humanService.addMajorqualification(user.getMajorqualification());
+		}
+		if(user.getEducationbackground() != null){
+			humanService.addEducationbackground(user.getEducationbackground());
+		}
+		boolean flag = humanService.addUser(user);
+		String path = flag == true? SUCCESS : FAIL;
+		return path;
+	}
+	
+	public String modifyPersonPage(){
+		List<Company> allCompanyList = humanService.getCompanyList();
+		user = humanService.getUserById(user.getUserId());
+		request.setAttribute("allCompanyList", allCompanyList);
+		request.setAttribute("user", user);
+		return SUCCESS;
+	}
+	
+	public String modifyPerson(){
+		if(user.getPersonalinformation() != null){
+			humanService.modifyPersonalinformation(user.getPersonalinformation());
+		}
+		if(user.getMajorqualification() != null){
+			humanService.modifyMajorqualification(user.getMajorqualification());
+		}
+		if(user.getEducationbackground() != null){
+			humanService.modifyEducationbackground(user.getEducationbackground());
+		}
+		boolean flag = humanService.modifyUser(user);
+		String path = flag == true? SUCCESS : FAIL;
+		return path;
+	}
+	
+	public String deletePerson(){
+		user = humanService.getUserByExample(user).get(0);
+		humanService.deleteUser(user);
+		dataMap.put("success", "success");
 		return SUCCESS;
 	}
 	
@@ -194,14 +245,12 @@ public class HumanAction extends BaseActionSupport {
 	}
 	
 	public String modifyPosition(){
-		System.out.println(position.getPositionId());
 		boolean flag = humanService.modifyPosition(position);
 		String path = flag == true? SUCCESS:FAIL;
 		return path;
 	}
 	
 	public String deletePosition() {
-		System.out.println(position.getPositionId());
 		humanService.deletePosition(position);
 		dataMap.put("success", "success");
 		return SUCCESS;
@@ -221,6 +270,14 @@ public class HumanAction extends BaseActionSupport {
 
 	public void setHumanService(HumanService humanService) {
 		this.humanService = humanService;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Company getCompany() {

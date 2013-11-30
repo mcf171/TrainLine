@@ -28,7 +28,7 @@ $("#cancle").click(function(){
 	<form action="${basePath}addDepartment.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门名称：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.departmentName"/>
+			<input type="text" class=" span2" placeholder="请输入内容" name="department.departmentName"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门等级：</span>
@@ -42,19 +42,19 @@ $("#cancle").click(function(){
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门简称：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.departmentShortName" />
+			<input type="text" class=" span2" placeholder="请输入内容" name="department.departmentShortName" />
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">业务板块：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.businessUnits" />
+			<input type="text" class=" span2" placeholder="请输入内容" name="department.businessUnits" />
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门编码：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.departmentCoding" />
+			<input type="text" class=" span2" placeholder="请输入内容" name="department.departmentCoding" />
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">籍贯：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.country" />
+			<input type="text" class=" span2" placeholder="请输入内容" name="department.country" />
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司名称：</span>

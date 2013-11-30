@@ -1,14 +1,21 @@
 package cn.com.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 import cn.com.dao.CompanyDAO;
 import cn.com.dao.DepartmentDAO;
+import cn.com.dao.EducationbackgroundDAO;
+import cn.com.dao.MajorqualificationDAO;
+import cn.com.dao.PersonalinformationDAO;
 import cn.com.dao.PositionDAO;
 import cn.com.dao.UserDAO;
 import cn.com.model.Company;
 import cn.com.model.Department;
+import cn.com.model.Educationbackground;
+import cn.com.model.Majorqualification;
+import cn.com.model.Personalinformation;
 import cn.com.model.Position;
 import cn.com.model.User;
 
@@ -17,9 +24,74 @@ public class HumanService {
 	private CompanyDAO companyDAO;
 	private DepartmentDAO departmentDAO;
 	private PositionDAO positionDAO;
+	private PersonalinformationDAO personalinformationDAO;
+	private MajorqualificationDAO majorqualificationDAO;
+	private EducationbackgroundDAO educationbackgroundDAO;
 	
 	public List<User> getUserList(){
+		List<User> list = userDAO.findAll();
 		return userDAO.findAll();
+	}
+	
+	public List<User> getUserByExample(User user){
+		return userDAO.findByExample(user);
+	}
+	
+	public User getUserById(int id){
+		return userDAO.findById(id);
+	}
+	
+	public List<User> searchUserList(User user){
+		String realName = user.getPersonalinformation().getRealName();
+		List<User> userList = new ArrayList<User>();
+		if(realName.equals("") || realName == null){
+			userList = userDAO.findByExampleFuzzy(user);
+		}else{
+			List<Personalinformation> list =  personalinformationDAO.findByRealName(realName);
+			for(int i=0; i<list.size(); i++){
+				user.getPersonalinformation().setPersonalInformationId(list.get(i).getPersonalInformationId());
+			    List userListParam = userDAO.findByExampleFuzzy(user);
+			    userList.addAll(userListParam);
+			}
+		}
+		return userList;
+	}
+	
+	public boolean addUser(User user){
+		boolean flag = false;
+		try{
+			userDAO.save(user);
+			flag = true;
+		}catch (Exception e) {
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public boolean modifyUser(User user){
+		boolean flag = false;
+		try{
+			userDAO.merge(user);
+			flag = true;
+		}catch (Exception e) {
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public void deleteUser(User user){
+		if(user.getPersonalinformation().getPersonalInformationId() != null){
+			personalinformationDAO.delete(user.getPersonalinformation());
+		}
+		if(user.getMajorqualification() != null){
+			majorqualificationDAO.delete(user.getMajorqualification());
+		}
+		if(user.getEducationbackground() != null){
+			educationbackgroundDAO.delete(user.getEducationbackground());
+		}
+		userDAO.delete(user);
 	}
 	
 	public List<Company> getCompanyList(){
@@ -169,6 +241,129 @@ public class HumanService {
 		positionDAO.delete(position);
 	}
 	
+	public Personalinformation getPersonalinformationById(int id){
+		return personalinformationDAO.findById(id);
+	}
+	
+	public Majorqualification getMajorqualificationById(int id){
+		return majorqualificationDAO.findById(id);
+	}
+	
+	public Educationbackground getEducationbackgroundById(int id){
+		return educationbackgroundDAO.findById(id);
+	}
+	
+	public boolean deletePersonalinformation(Personalinformation personalinformation) {
+		boolean flag = false;
+		try {
+			personalinformationDAO.delete(personalinformation);
+			flag = true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public boolean deleteMajorqualification(Majorqualification majorqualification) {
+		boolean flag = false;
+		try {
+			majorqualificationDAO.delete(majorqualification);
+			flag = true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public boolean deleteEducationbackground(Educationbackground educationbackground) {
+		boolean flag = false;
+		try {
+			educationbackgroundDAO.delete(educationbackground);
+			flag = true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public boolean addPersonalinformation(Personalinformation personalinformation){
+		boolean flag = false;
+		try{
+			personalinformationDAO.save(personalinformation);
+			flag = true;
+		}catch (Exception e) {
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public boolean addMajorqualification(Majorqualification majorqualification){
+		boolean flag = false;
+		try{
+			majorqualificationDAO.save(majorqualification);
+			flag = true;
+		}catch (Exception e) {
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public boolean addEducationbackground(Educationbackground educationbackground){
+		boolean flag = false;
+		try{
+			educationbackgroundDAO.save(educationbackground);
+			flag = true;
+		}catch (Exception e) {
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public boolean modifyPersonalinformation(Personalinformation personalinformation){
+		boolean flag = false;
+		try{
+			personalinformationDAO.merge(personalinformation);
+			flag = true;
+		}catch (Exception e) {
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public boolean modifyEducationbackground(Educationbackground educationbackground){
+		boolean flag = false;
+		try{
+			educationbackgroundDAO.merge(educationbackground);
+			flag = true;
+		}catch (Exception e) {
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public boolean modifyMajorqualification(Majorqualification majorqualification){
+		boolean flag = false;
+		try{
+			majorqualificationDAO.merge(majorqualification);
+			flag = true;
+		}catch (Exception e) {
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
 	public UserDAO getUserDAO() {
 		return userDAO;
 	}
@@ -199,5 +394,31 @@ public class HumanService {
 
 	public void setPositionDAO(PositionDAO positionDAO) {
 		this.positionDAO = positionDAO;
+	}
+
+	public PersonalinformationDAO getPersonalinformationDAO() {
+		return personalinformationDAO;
+	}
+
+	public void setPersonalinformationDAO(
+			PersonalinformationDAO personalinformationDAO) {
+		this.personalinformationDAO = personalinformationDAO;
+	}
+
+	public MajorqualificationDAO getMajorqualificationDAO() {
+		return majorqualificationDAO;
+	}
+
+	public void setMajorqualificationDAO(MajorqualificationDAO majorqualificationDAO) {
+		this.majorqualificationDAO = majorqualificationDAO;
+	}
+
+	public EducationbackgroundDAO getEducationbackgroundDAO() {
+		return educationbackgroundDAO;
+	}
+
+	public void setEducationbackgroundDAO(
+			EducationbackgroundDAO educationbackgroundDAO) {
+		this.educationbackgroundDAO = educationbackgroundDAO;
 	}
 }

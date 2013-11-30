@@ -76,11 +76,11 @@ function getDepartmentNameByCompanyId() {
 	<form action="modifyPosition.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin">
 			<span class="help-inline">职位ID：</span>
-			<input type="text" class=" span2" placeholder="请输入职位名称" name="position.positionId" value="${position.positionId}"/>
+			<input type="text" class=" span2" placeholder="请输入内容" name="position.positionId" value="${position.positionId}"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">职位名：</span>
-			<input type="text" class=" span2" placeholder="请输入职位名称" name="position.positionName" value="${position.positionName}"/>
+			<input type="text" class=" span2" placeholder="请输入内容" name="position.positionName" value="${position.positionName}"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司名称：</span>

@@ -44,14 +44,14 @@
 		});
 		
 		var optionString = "";
+		$("#companyName").find("option").remove();
 		<c:forEach items="${allCompanyList}" var="item">			
 			optionString += "<option name='companyName' value='" + ${item.companyId} + "'>" + "${item.companyName}" +"</option>";
 		</c:forEach>
 
 		$("#companyName").append(optionString);
 		
-		getDepartmentNameByCompanyId();	
-		
+		getDepartmentNameByCompanyId();
 		
 	});
 	
@@ -70,11 +70,28 @@
 						$("#departmentName").append(optionString);
 					}
 			});
+			
+			setTimeout(function(){
+				var departmentId = $("#departmentName").val();
+				$("#positionName").find("option").remove();
+				$.ajax({
+					 url : 'getPositionList.action',
+					data : 'position.department.departmentId=' + departmentId,
+					success : function(msg) {
+						var optionString = "";
+						for ( var i = 0; i < msg.human.length; i++) {	
+							optionString += "<option name='positionName' value='" + msg.human[i].positionId + "'>"
+								+ msg.human[i].positionName + "</option>";
+						}
+						$("#positionName").append(optionString);
+					}
+			});
+		}, 600);
 	}
 	
 	function getPositionNameByDepartmentId(){
 		var departmentId = $("#departmentName").val();
-		alert(departmentId);
+		$("#positionName").find("option").remove();
 		$.ajax({
 			 url : 'getPositionList.action',
 			data : 'position.department.departmentId=' + departmentId,
@@ -92,21 +109,21 @@
 </script>
 
 <div class="row-fluid">
-	<form action="#"  enctype="multipart/form-data" method="post">
+	<form action="addPerson.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin">
 			<span class="help-inline"><b>基本信息：</b></span>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">人员名称：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="user.userName" />
+			<input type="text" class=" span2" placeholder="请输入内容" name="user.userName" />
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">密码：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="user.userPassword" value="1" />
+			<input type="text" class=" span2" placeholder="请输入内容" name="user.userPassword" value="1" />
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">真实姓名：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="user.personalinformation。realName"/>
+			<input type="text" class=" span2" placeholder="请输入内容" name="user.personalinformation.realName"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">人员性别：</span>
@@ -120,17 +137,17 @@
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司：</span>
-			<select class="input-small " id="companyName" name="" onchange="getDepartmentNameByCompanyId()">
+			<select class="input-small " id="companyName" onchange="getDepartmentNameByCompanyId() , getPositionNameByDepartmentId()">
 			</select>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门：</span>
-			<select class="input-small " id="departmentName" name="" onchange="getPositionNameByDepartmentId()">
+			<select class="input-small " id="departmentName" onchange="getPositionNameByDepartmentId()">
 			</select>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">职位：</span>
-			<select class="input-small " name="positionName" name="">
+			<select class="input-small " id="positionName" >
 			</select>
 		</div>
 		<div class="row-fluid line-margin">
