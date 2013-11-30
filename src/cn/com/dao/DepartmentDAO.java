@@ -18,7 +18,7 @@ import cn.com.model.Department;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see cn.com.dao1.Department
+ * @see cn.com.model.Department
  * @author MyEclipse Persistence Tools
  */
 public class DepartmentDAO extends HibernateDaoSupport {
@@ -50,8 +50,10 @@ public class DepartmentDAO extends HibernateDaoSupport {
 		log.debug("deleting Department instance");
 		try {
 			getHibernateTemplate().delete(persistentInstance);
+			getHibernateTemplate().flush();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
+			
 			log.error("delete failed", re);
 			throw re;
 		}
@@ -61,7 +63,7 @@ public class DepartmentDAO extends HibernateDaoSupport {
 		log.debug("getting Department instance with id: " + id);
 		try {
 			Department instance = (Department) getHibernateTemplate().get(
-					"cn.com.dao1.Department", id);
+					"cn.com.model.Department", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

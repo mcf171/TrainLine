@@ -11,8 +11,7 @@
 	href="${basePath}themes/mmgrid/mmpaginator.css" />
 <script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
 <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
-
-
+<script type="text/javascript" src="${basePath}scripts/human.js"></script>
 
 <script type="text/javascript">
 	//         
@@ -64,11 +63,9 @@
 				title : '操作',
 				renderer : function(val, item, row) {
 					onclick = "#";
-					return '<a href="#">查看</a> '
-							+ '&nbsp'
-							+ '<a href="#" >修改</a> '
-							+ '&nbsp'
-							+ '<a href="#" >删除</a> ';
+					return '<a href="javascript:loadHTML(\'${basePath}modifyPositionPage.action?position.positionId=' +item.positionId + '\')")">修改</a> '
+					+ '&nbsp'
+					+ '<a href="javascript:showConfirm(' +item.positionId + ',' +'\'${basePath}\''+')" >删除</a>  ';
 				}
 			} ],
 			plugins : [ $('#page').mmPaginator({}) ]
@@ -121,5 +118,19 @@
 				</div>
 			</form>
 		</div>
+	</div>
+</div>
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">确认删除</h3>
+	</div>
+	<div class="modal-body">
+		<p>是否真的删除？</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		<button class="btn btn-primary" onclick="deletePosition()">确认</button>
 	</div>
 </div>

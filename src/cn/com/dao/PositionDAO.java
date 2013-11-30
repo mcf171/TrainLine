@@ -56,7 +56,7 @@ public class PositionDAO extends HibernateDaoSupport {
 		log.debug("getting Position instance with id: " + id);
 		try {
 			Position instance = (Position) getHibernateTemplate().get(
-					"cn.com.dao1.Position", id);
+					"cn.com.model.Position", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -77,7 +77,7 @@ public class PositionDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByProperty(String propertyName, Object value) {
+	public List<Position> findByProperty(String propertyName, Object value) {
 		log.debug("finding Position instance with property: " + propertyName
 				+ ", value: " + value);
 		try {

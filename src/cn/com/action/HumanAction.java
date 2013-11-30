@@ -1,6 +1,5 @@
 package cn.com.action;
 
-//shiyixia
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +28,6 @@ public class HumanAction extends BaseActionSupport {
 
 	public HumanAction() {
 		super();
-		// TODO Auto-generated constructor stub
 		dataMap = new HashMap<String, Object>();
 	}
 
@@ -73,17 +71,22 @@ public class HumanAction extends BaseActionSupport {
 	}
 	
 	public String modifyCompanyPage(){
-		System.out.println("进入这里");
 		company = humanService.getCompanyById(company.getCompanyId());
 		request.setAttribute("company", company);
-		System.out.println("为什么不回去");
 		return SUCCESS;
 	}
 	
 	public String modifyCompany(){
 		boolean flag = humanService.modifyCompany(company);
+		System.out.println("modifyCompany:" + flag);
 		String path = flag == true? SUCCESS:FAIL;
 		return path;
+	}
+	
+	public String deleteCompany() {
+		humanService.deleteCompany(company);
+		dataMap.put("success", "success");
+		return SUCCESS;
 	}
 	
 	//department部分
@@ -113,14 +116,33 @@ public class HumanAction extends BaseActionSupport {
 	}
 	
 	public String addDepartment(){
-		/*String companyName = department.getCompany().getCompanyName();
-		Company company = humanService.getCompanyByName(companyName);
-		department.getCompany().setCompanyId(company.getCompanyId());*/
 		boolean flag = humanService.addDepartment(department);
 		String path = flag == true? SUCCESS:FAIL;
 		return path;
 	}
+	
+	public String modifyDepartmentPage(){
+		List<Company> allCompanyList = humanService.getCompanyList();
+		department = humanService.getDepartmentById(department.getDepartmentId());
+		request.setAttribute("allCompanyList", allCompanyList);
+		request.setAttribute("department", department);
+		return SUCCESS;
+	}
+	
+	public String modifyDepartment(){
+		boolean flag = humanService.modifyDepartment(department);
+		String path = flag == true? SUCCESS:FAIL;
+		return path;
+	}
 
+	public String deleteDepartment() {
+		System.out.println(department.getDepartmentId());
+		humanService.deleteDepartment(department);
+		dataMap.put("success", "success");
+		return SUCCESS;
+	}
+	
+	
 	public String showBackendPositionPage() {
 		return SUCCESS;
 	}
@@ -142,6 +164,27 @@ public class HumanAction extends BaseActionSupport {
 		boolean flag = humanService.addPosition(position);
 		String path = flag == true? SUCCESS:FAIL;
 		return path;
+	}
+	
+	public String modifyPositionPage(){
+		List<Company> allCompanyList = humanService.getCompanyList();
+		position = humanService.getPositionById(position.getPositionId());
+		request.setAttribute("allCompanyList", allCompanyList);
+		request.setAttribute("position", position);
+		return SUCCESS;
+	}
+	
+	public String modifyPosition(){
+		System.out.println(position.getPositionId());
+		boolean flag = humanService.modifyPosition(position);
+		String path = flag == true? SUCCESS:FAIL;
+		return path;
+	}
+	
+	public String deletePosition() {
+		humanService.deletePosition(position);
+		dataMap.put("success", "success");
+		return SUCCESS;
 	}
 	
 	public Map<String, Object> getDataMap() {

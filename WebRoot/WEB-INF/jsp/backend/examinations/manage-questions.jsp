@@ -21,7 +21,7 @@ $(document).ready(function ()
 	$('#time-from').css('background', 'none').datepicker();
 
 	$('#grid').mmGrid({
-		url: '${basePath}getQuestions.action',
+		url: '${basePath}admin/getQuestions.action',
 		height: 410,
 		autoLoad: true,
 		checkCol: true,
@@ -34,10 +34,10 @@ $(document).ready(function ()
 				renderer: function (val, item, row)
 				{
 					//onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
-					return item.course.courseID;
+					return item.course.courseId;
 				}
 			},
-			{ title: '课程ID', sortable: true,
+			{ title: '课程名称', sortable: true,
 				renderer: function (val, item, row)
 				{
 					//onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
@@ -63,7 +63,14 @@ $(document).ready(function ()
 					
 				}
 			},
-			{ title: '操作 ', sortable: true, name: '' }
+			{ title: '操作 ', sortable: true, 
+				
+				renderer: function (val, item, row)
+				{
+					//onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
+					return '<a href="javascript:loadHTML(\'${basePath}admin/getTestquestionById.action?testquestion.testQuestionId=' + item.testQuestionId + '\')" > 查看</a> <a href="javascript:loadHTML(\'${basePath}admin/getTestquestionModifyPage.action?testquestion.testQuestionId=' + item.testQuestionId + '\')" > 修改</a> <a href="#" > 删除</a>';
+				}
+			}
 		],
 		plugins: [
 			$('#page').mmPaginator({})
@@ -79,7 +86,7 @@ $(document).ready(function ()
 	<div class="row-fluid">
 	<div id="content" class="span12">
 		   	 <div class="row-fluid " style="margin-left: -13px" >
-              <button class="btn" type="button" onclick="loadHTML('classes/addClass1.html')"><i class="icon-plus"></i>添加</button>  
+              <button class="btn" type="button" onclick="loadHTML('${basePath}admin/getAddQuestionPage.action')"><i class="icon-plus"></i>添加</button>  
               <button class="btn" type="button"><i class="icon-arrow-up"></i>批量导入</button>                
              </div>
            <div class="row word_style"> 
