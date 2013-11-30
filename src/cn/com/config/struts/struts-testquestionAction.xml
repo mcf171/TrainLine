@@ -37,5 +37,6 @@
 			<result>/WEB-INF/jsp/backend/examinations/manage-questionItemModify.jsp</result>
 		</action>
 		
+		
 	</package>
 </struts>    

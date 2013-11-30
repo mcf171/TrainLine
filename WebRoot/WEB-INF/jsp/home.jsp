@@ -28,15 +28,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<hr class="seperator" />
-					<c:forEach items="${courceList }" var="item">
-					<div class="row-fluid">
-						<div class="span12">
-							<i class="icon-tasks"></i>
-							<a  href="content.jsp">${item.announcementName }</a>
-							<span class="time muted">${item.announcementTime }</span>
-						</div>
-					</div>
-					</c:forEach>
+				<c:if test="${noticeList4!=null }">				 
+							  <c:forEach var="item" items="${noticeList4 }">
+							   <div class="row-fluid">
+								<div class="span12">
+									<i class="icon-info-sign"></i>
+									${item.noticeContent}
+								</div>
+							</div>
+							  </c:forEach>
+							</c:if>			
 				</div>
 			</div>
 			<div class="row-fluid resources">
@@ -48,15 +49,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					<hr class="seperator" />
-					<c:forEach items="${examList }" var="item">
-					<div class="row-fluid">
-						<div class="span12">
-							<i class="icon-tasks"></i>
-							<a  href="content.jsp">${item.announcementName }</a>
-							<span class="time muted">${item.announcementTime }</span>
-						</div>
-					</div>
-					</c:forEach>
+					<c:if test="${noticeList5!=null }">
+							  <c:forEach var="item" items="${noticeList5 }">
+							   <div class="row-fluid">
+								<div class="span12">
+									<i class="icon-info-sign"></i>
+									${item.noticeContent}
+								</div>
+							</div>
+							  </c:forEach>
+							</c:if>			
 					
 				</div>
 			</div>

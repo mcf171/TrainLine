@@ -14,10 +14,11 @@
 <script type="text/javascript">
 //<![CDATA[
 var PAGES = {
-	page_0: '${basePath}note_intoStudy.action',
+	page_0: '${basePath}note_getNoticeList.action',
 	page_1: '${basePath}admin/getExaminations.action',
 	page_2: '${basePath}trainingClass_intoClasspage.action',
-	page_3: 'resource.jsp',
+	page_3: '${basePath}showBackendResourceListPage.action',
+
 	page_4: '${basePath}showBackendHumanPage.action',
 	page_5: '${basePath}newMessageAction.action',
 	page_6: 'report.jsp',

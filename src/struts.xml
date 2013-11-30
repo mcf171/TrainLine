@@ -26,6 +26,7 @@
 
     <include file="cn/com/config/struts/struts-forumAction.xml"></include>
 	<include file="cn/com/config/struts/struts-humanAction.xml"></include>
+	<include file="cn/com/config/struts/struts-resource.xml"></include>
 	
 	<include file="cn/com/config/struts/struts-testPaperAction.xml"></include>
 	<include file="cn/com/config/struts/struts-testquestionAction.xml"></include>

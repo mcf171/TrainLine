@@ -1,5 +1,6 @@
 package cn.com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.com.model.Book;
 import cn.com.model.Company;
 
 /**
@@ -93,19 +95,19 @@ public class CompanyDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByCompanyName(Object companyName) {
+	public List<Company> findByCompanyName(Object companyName) {
 		return findByProperty(COMPANY_NAME, companyName);
 	}
 
-	public List findByCompanystatus(Object companystatus) {
+	public List<Company> findByCompanystatus(Object companystatus) {
 		return findByProperty(COMPANYSTATUS, companystatus);
 	}
 
-	public List findByCompanyIntro(Object companyIntro) {
+	public List<Company> findByCompanyIntro(Object companyIntro) {
 		return findByProperty(COMPANY_INTRO, companyIntro);
 	}
 
-	public List findByCompanyShortName(Object companyShortName) {
+	public List<Company> findByCompanyShortName(Object companyShortName) {
 		return findByProperty(COMPANY_SHORT_NAME, companyShortName);
 	}
 
@@ -157,5 +159,45 @@ public class CompanyDAO extends HibernateDaoSupport {
 
 	public static CompanyDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (CompanyDAO) ctx.getBean("CompanyDAO");
+	}
+	
+	public List<Company> findByExampleFuzzy(Company company){
+		String queryString = "from Company where 1=1 ";
+		
+		List<Object> params = new ArrayList<Object>();
+		
+		if (company.getCompanyId() != null) {
+			
+			queryString += "and companyId = ?";
+			params.add(company.getCompanyId());
+		}
+		
+		if (company.getCompanyIntro() != null) {
+
+			queryString += "and companyIntro like ?";
+			params.add("%" + company.getCompanyIntro() + "%");
+		}
+		
+		if (company.getCompanyName() != null) {
+
+			queryString += "and companyName like ?";
+			params.add("%" + company.getCompanyName() + "%");
+		}
+		
+		if (company.getCompanyShortName() != null) {
+
+			queryString += "and companyShortName like ?";
+			params.add("%" + company.getCompanyShortName() + "%");
+		}
+		
+		if (company.getCompanystatus() != null && company.getCompanystatus() != -1) {
+
+			queryString += "and companystatus like ?";
+			params.add(company.getCompanystatus());
+		}
+		
+		List<Company> companyList = getHibernateTemplate().find(queryString,params.toArray());
+		
+		return companyList;
 	}
 }

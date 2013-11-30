@@ -30,8 +30,9 @@
     </tx:attributes>
   </tx:advice>
 
-    <bean id="noticeService" class="cn.com.service.NoticeService">
+    <bean id="noticeService" class="cn.com.service.NoticeService" scope="prototype">
         <property name="noticeDAO" ref="noticeDAO"></property>
+        <property name="noticeTypeDAO" ref="NoticetypeDAO"></property>
     </bean>
     <bean id="recordService" class="cn.com.service.RecordService" scope="prototype">
 		<property name="recordDAO" ref="RecordDAO"></property>
@@ -53,7 +54,7 @@
 		<property name="userDAO" ref="UserDAO"></property>
 	</bean>
 	
-	<bean id="questionnairerService" class="cn.com.service.QuestionnaireService">
+	<bean id="questionnairerService" class="cn.com.service.QuestionnaireService" scope="prototype">
 		<property name="questionnaireDAO" ref="QuestionnaireDAO"></property>
 	</bean>
 	
@@ -99,6 +100,9 @@
 		<property name="companyDAO" ref="CompanyDAO"></property>
 		<property name="departmentDAO" ref="DepartmentDAO"></property>
 		<property name="positionDAO" ref="PositionDAO"></property>
+	</bean>
+    <bean id="resourceService" class="cn.com.service.ResourceService">
+		<property name="resourceDAO" ref="ResourceDAO"></property>
 	</bean>
 	
 	</beans>

@@ -21,7 +21,7 @@
 		</property>
 		<property name="url" value="jdbc:mysql://localhost:3306/trainline"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="919294"></property>
+		<property name="password" value="root"></property>
 
 	</bean>
 	<bean id="sessionFactory"
@@ -296,6 +296,8 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	
 	<bean id="DepartmentDAO" class="cn.com.dao.DepartmentDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />

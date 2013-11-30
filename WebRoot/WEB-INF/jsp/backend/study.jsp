@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -54,18 +55,16 @@
 								</div>
 							</div>
 							<hr class="seperator" />
-							<div class="row-fluid">
+							<c:if test="${noticeList1!=null }">
+							  <c:forEach var="item" items="${noticeList1 }">
+							   <div class="row-fluid">
 								<div class="span12">
 									<i class="icon-info-sign"></i>
-									现有 <span class="red-number">0</span> 门考试进行中
+									${item.noticeContent}
 								</div>
 							</div>
-							<div class="row-fluid">
-								<div class="span12">
-									<i class="icon-info-sign"></i>
-									共有 <span class="red-number">0</span> 份试卷待审批
-								</div>
-							</div>
+							  </c:forEach>
+							</c:if>												
 							
 						</div>
 					</div>
@@ -80,41 +79,16 @@
 								</div>
 							</div>
 							<hr class="seperator" />
-							<div class="row-fluid">
+							<c:if test="${noticeList2!=null }">
+							  <c:forEach var="item" items="${noticeList2 }">
+							   <div class="row-fluid">
 								<div class="span12">
-									<i class="icon-tasks"></i>
-									<a target="_blank" href="#">撒看见地方和阿斯顿发还算监控废话</a>
-									<span class="time muted">2013-08-13 23:55:19</span>
+									<i class="icon-info-sign"></i>
+									${item.noticeContent}
 								</div>
 							</div>
-							<div class="row-fluid">
-								<div class="span12">
-									<i class="icon-tasks"></i>
-									<a target="_blank" href="#">三剑客地方思考龙姐阿斯来快递费就算了</a>
-									<span class="time muted">2013-08-13 23:55:19</span>
-								</div>
-							</div>
-							<div class="row-fluid">
-								<div class="span12">
-									<i class="icon-tasks"></i>
-									<a target="_blank" href="#">放到窝各个恶搞第三方个地方滚动送风格方</a>
-									<span class="time muted">2013-08-13 23:55:19</span>
-								</div>
-							</div>
-							<div class="row-fluid">
-								<div class="span12">
-									<i class="icon-tasks"></i>
-									<a target="_blank" href="#">他各位让他改好的风格饿死如果打算</a>
-									<span class="time muted">2013-08-13 23:55:19</span>
-								</div>
-							</div>
-							<div class="row-fluid">
-								<div class="span12">
-									<i class="icon-tasks"></i>
-									<a target="_blank" href="#">热饮就让他和大概第三方个阿动送风格的</a>
-									<span class="time muted">2013-08-13 23:55:19</span>
-								</div>
-							</div>
+							  </c:forEach>
+							</c:if>																	
 						</div>
 					</div>
 				</div>
@@ -130,36 +104,16 @@
 								</div>
 							</div>
 							<hr class="seperator" />
-							<div class="row-fluid">
+							<c:if test="${noticeList3!=null }">
+							  <c:forEach var="item" items="${noticeList3 }">
+							   <div class="row-fluid">
 								<div class="span12">
-									<i class="icon-tasks"></i>
-									<a target="_blank" href="#">撒看见地方和阿斯顿发还算监控废话</a>
+									<i class="icon-info-sign"></i>
+									${item.noticeContent}
 								</div>
 							</div>
-							<div class="row-fluid">
-								<div class="span12">
-									<i class="icon-tasks"></i>
-									<a target="_blank" href="#">三剑客地方思考龙姐阿斯来快递费就算了</a>
-								</div>
-							</div>
-							<div class="row-fluid">
-								<div class="span12">
-									<i class="icon-tasks"></i>
-									<a target="_blank" href="#">放到窝各个恶搞第三方个地方滚动送风格方</a>
-								</div>
-							</div>
-							<div class="row-fluid">
-								<div class="span12">
-									<i class="icon-tasks"></i>
-									<a target="_blank" href="#">他各位让他改好的风格饿死如果打算</a>
-								</div>
-							</div>
-							<div class="row-fluid">
-								<div class="span12">
-									<i class="icon-tasks"></i>
-									<a target="_blank" href="#">热饮就让他和大概第三方个阿动送风格的</a>
-								</div>
-							</div>
+							  </c:forEach>
+							</c:if>																													
 						</div>
 					</div>
 				</div>

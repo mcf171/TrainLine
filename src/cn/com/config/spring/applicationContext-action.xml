@@ -48,6 +48,7 @@
 	
 	<bean id="noteAction" class="cn.com.action.NoteAction" scope="prototype">
 	<property name="noteService" ref="noteService"></property>
+	<property name="noticeService" ref="noticeService"></property>
 	</bean>
 	
 	<bean id="netDangkeAction" class="cn.com.action.NetDangKeAction" scope="prototype">
@@ -74,6 +75,11 @@
 	<property name="credentialService" ref="credentialService"></property>
 	</bean>
 	
+	
+	
+	<bean id="resourceAction" class="cn.com.action.ResourceAction" scope="prototype"> 
+	<property name="resourceService" ref="resourceService"></property>
+	</bean>
 	<bean id="humanAction" class="cn.com.action.HumanAction" scope="prototype"> 
 	<property name="humanService" ref="humanService"></property>
 	</bean>

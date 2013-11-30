@@ -8,13 +8,13 @@
 		  WEB-INF/jsp/backend/newMessage.jsp
 		</result>
 	</action>
-	<action name="manageMessageAction" class="newMessageAction" method="show">
-		<result name="message">
+	<action name="manageMessageAction" class="newMessageAction" method="getAllNoticeType">
+		<result name="success">
 		  WEB-INF/jsp/backend/news/newsMana.jsp
 		</result>
 	</action>
-	<action name="addMessageAction" class="newMessageAction" method="show">
-		<result  name="message">
+	<action name="addMessageAction" class="newMessageAction" method="getType">
+		<result  name="success">
 		  WEB-INF/jsp/backend/news/newsAdd.jsp
 		</result>
 	</action>
@@ -22,6 +22,11 @@
 		<result  type="json">
 		  <param name="root">dataMap</param>
 		</result>
+	</action>
+	<action name="addNewsAction" class="newMessageAction" method="addNews">
+	    <result name="success" type="redirectAction">
+   		   <param name="actionName">newMessageAction</param>
+   		</result>
 	</action>
 </package>
 </struts>    

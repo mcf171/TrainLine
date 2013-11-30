@@ -46,6 +46,8 @@ public class HumanAction extends BaseActionSupport {
 	}
 	
 	public String addPersonPage() {
+		List<Company> allCompanyList = humanService.getCompanyList();
+		request.setAttribute("allCompanyList", allCompanyList);
 		return SUCCESS;
 	}
 	
@@ -55,7 +57,13 @@ public class HumanAction extends BaseActionSupport {
 	}
 
 	public String getCompanyList() {
-		List<Company> companyList = humanService.getCompanyList();
+		List<Company> companyList = null;
+		if(company == null){
+			companyList = humanService.getCompanyList();
+		}else{
+			System.out.println(company.getCompanyId());
+			companyList = humanService.searchCompanyList(company);
+		}
 		dataMap.put("human", companyList);
 		return SUCCESS;
 	}
@@ -78,7 +86,6 @@ public class HumanAction extends BaseActionSupport {
 	
 	public String modifyCompany(){
 		boolean flag = humanService.modifyCompany(company);
-		System.out.println("modifyCompany:" + flag);
 		String path = flag == true? SUCCESS:FAIL;
 		return path;
 	}
@@ -101,9 +108,16 @@ public class HumanAction extends BaseActionSupport {
 			departmentList = humanService.getDepartmentList();
 		}
 		else{
-			if(department.getCompany()!=null){
-				departmentList = humanService.getDepartmentListByCompanyId(department.getCompany().getCompanyId());
-			}
+			departmentList = humanService.searchDepartmentList(department);
+		}
+		dataMap.put("human", departmentList);
+		return SUCCESS;
+	}
+	
+	public String getDepartmentListByCompanyId(){
+		List<Department> departmentList = null;
+		if(department.getCompany()!=null){
+			departmentList = humanService.getDepartmentListByCompanyId(department.getCompany().getCompanyId());
 		}
 		dataMap.put("human", departmentList);
 		return SUCCESS;
@@ -148,7 +162,12 @@ public class HumanAction extends BaseActionSupport {
 	}
 
 	public String getPositionList() {
-		List<Position> positionList = humanService.getPositionList();
+		List<Position> positionList = null;
+		if(position == null){
+			positionList = humanService.getPositionList();
+		}else{
+			positionList = humanService.searchPositionList(position);
+		}
 		dataMap.put("human", positionList);
 		return SUCCESS;
 	}
@@ -182,6 +201,7 @@ public class HumanAction extends BaseActionSupport {
 	}
 	
 	public String deletePosition() {
+		System.out.println(position.getPositionId());
 		humanService.deletePosition(position);
 		dataMap.put("success", "success");
 		return SUCCESS;

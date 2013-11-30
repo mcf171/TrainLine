@@ -14,6 +14,7 @@ $(document).ready(function(){
 
 	$("#companyName").append(optionString);
 
+	getDepartmentNameByCompanyId();
 });
 
 
@@ -36,6 +37,23 @@ $("#companyName").change(function(){
 			$("#departmentName").append(optionString);
 		}					
 	});
+	
+	function getDepartmentNameByCompanyId() {
+		var value = $("#companyName").val();
+		$("#departmentName").find("option").remove();
+			$.ajax({
+					 url : 'getDepartmentList.action',
+					data : 'department.company.companyId=' + value,
+					success : function(msg) {
+						var optionString = "";
+						for ( var i = 0; i < msg.human.length; i++) {	
+							optionString += "<option name='departmentName' value='" + msg.human[i].departmentId + "'>"
+								+ msg.human[i].departmentName + "</option>";
+						}
+						$("#departmentName").append(optionString);
+					}
+			});
+	}
 });
 
 //-->
@@ -50,7 +68,7 @@ $("#companyName").change(function(){
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司名称：</span>
-			<select class="input-small " id="companyName" >
+			<select class="input-small " id="companyName" onchange="getDepartmentNameByCompanyId()">
 			</select>
 		</div>
 		<div class="row-fluid line-margin">

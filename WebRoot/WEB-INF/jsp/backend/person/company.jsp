@@ -59,7 +59,23 @@
 			}],
 			plugins : [ $('#page').mmPaginator({}) ]
 		});
+	
+	$("#showAll").click(function(){
+		mmGirdTable.load();
 	});
+	
+	$("#search").click(function(){
+		var companyId = $("#companyId").val();
+		var companyName = $("#companyName").val();
+		var companystatus = $("#companystatus").val();
+		
+		mmGirdTable.load({
+				"company.companyId" : companyId,
+				"company.companyName" : companyName,
+				"company.companystatus" : companystatus
+			});
+	});
+});
 	//
 </script>
 
@@ -74,27 +90,28 @@
 			<form id="condition" class="span12 form-inline no-margin">
 				<div class="row-fluid line-margin">
 					<span class="help-inline"><b>基本过滤：</b>公司ID：</span> 
-					<input type="text" class="span2" placeholder="请输入相应内容" />
+					<input type="text" class="span2" id="companyId" placeholder="请输入相应内容" />
 					 <span class="help-inline">公司名：</span> 
-					 <input type="text" class="span2" placeholder="请输入相应内容" />
+					 <input type="text" class="span2" id="companyName" placeholder="请输入相应内容" />
 					 <span class="help-inline">公司等级：</span> 
-					 <select class="input-small">
-						<option>0</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
+					 <select class="input-small" id="companystatus">
+					 	<option value="-1">-1</option>
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
 					</select>
 				</div>
 				<div>
 					<div class="row-fluid line-margin">
-							<button class="btn ">
+							<button class="btn" id="search" type="button">
 								<i class="icon-search"></i>查询
 							</button>
 							<button class="btn" type="reset">
 								<i class="icon-remove"></i>清除条件
 							</button>
-							<button class="btn " id="showAll">
+							<button class="btn " id="showAll" type="button">
 								<i class="icon-align-justify"></i>显示所有
 							</button>
 					</div>
