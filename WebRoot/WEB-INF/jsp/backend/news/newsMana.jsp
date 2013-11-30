@@ -3,6 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -29,16 +30,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<script type="text/javascript">
 //<![CDATA[
+var mmGirdTable;
 $(document).ready(function ()
-{
+{ 
 	$('#time-to').css('background', 'none').datepicker();
 	$('#time-from').css('background', 'none').datepicker();
 
-	$('#grid').mmGrid({
+	mmGirdTable=$('#grid').mmGrid({
 		url:'${basePath}showNoticeAction.action',
-		height: 410,
+		height: 'auto',
 		autoLoad: true,
-		fullWithRows: true,
+		nowrap:true,
+		fullWidthRows: true,
 		root:'noticeList',
 		cols: [
 			{ title: '消息编号', sortable: true, name: 'noticeId' },	
@@ -56,7 +59,7 @@ $(document).ready(function ()
 			    title: '操作',sortable: true, 
 			    renderer: function (val, item, row)
 					{
-					return item.noticeType.noticeTypeName;	
+					return item.noticetype.noticeTypeName;	
 					}
 			     }
 		],
@@ -64,6 +67,52 @@ $(document).ready(function ()
 			$('#page').mmPaginator({})
 		]
 	});
+});
+$("#checkAll").click(function(){
+   $("#noticeTypeSearch").val(-1);
+   $("#noticeIdSearch").val("");
+   $("#noticeContent").val("");	
+   $("#time-from").val("");	
+   $("#time-to").val("");	
+});
+$("#baseCheck").click(function(){
+    var noticeType =  parseInt($("#noticeTypeSearch").val());
+    var noticeId =parseInt($("#noticeIdSearch").val());
+    var noticeContent = $("#noticeContent").val();
+    if(isNaN(noticeId)){
+        noticeId=0;
+    }
+    if(isNaN(noticeType)){
+       noticeType=0;
+    }
+    if(noticeType==-1){
+       noticeType=0;
+    }
+    mmGirdTable.load(
+    {
+       "notice.noticeId":noticeId,
+       "notice.noticetype.noticeTypeId":noticeType,
+       "notice.noticeContent":noticeContent
+    }
+    );
+    
+});
+var flag = 0;
+$("#timeCheck").click(function(){
+var fromTime = $("#time-from").val();
+alert(fromTime);
+var toTime = $("#time-to").val();
+alert(toTime);
+if((fromTime!="")&&(toTime!="")){
+   flag=1;
+   mmGirdTable.load(
+    {
+       "fromTime":fromTime,
+       "toTime":toTime,
+       "flag":flag
+    }
+    );
+}
 });
 //]]>
 </script>
@@ -100,31 +149,31 @@ $(document).ready(function ()
            <div class="row word_style"> 
               <div class="row-fluid line-margin">
 					    <span class="help-inline">
-					      <b>基本过滤：</b>
+					      <b>类型过滤：</b>
 					    </span>
-					    <select class="input-medium">
-					    <option>类型1</option>
-					    <option>类型2</option>
-					    <option>类型3</option>
-					    <option>类型4</option>
+					    <select class="input-medium" id="noticeTypeSearch">
+					    <option value="-1">所有</option>	
+					    <c:if test="${noticeTypeList!=null}">
+					      <c:forEach var="noticeType" items="${noticeTypeList}">
+					         <option value="${noticeType.noticeTypeId}">${noticeType.noticeTypeName}</option>
+					      </c:forEach>
+					    </c:if>
 					    </select>
-					    <select class="input-medium">
-					    <option>编号1</option>
-					    <option>编号 2</option>
-					    <option>编号3</option>
-					    <option>编号4</option>				
-					    </select>
-					    <input type="text" class="span4 input-medium" placeholder="请输入关键字">
+					    <b>编号过滤：</b>
+					    <input id="noticeIdSearch" class="span2 " type="text" placeholder="请输入内容" name="keyword">
+					    <b>内容过滤：</b>
+					    <input id="noticeContent" class="span2 " type="text" placeholder="请输入内容" name="keyword">
+					    <button type="submit" class="btn" id="baseCheck">查询</button>
 			    </div>            
 			    <div style="margin-top:10px">
 					     <span class="help-inline">
 					     <b>高级过滤：</b>					 
 					     </span>
-					     <input type="text" class="span2 input-medium" placeholder="开始时间">
+					     <input type="text" id="time-from" name="fromTime" class="span2" readonly="readonly" placeholder="开始时间">
 					     <span class="help-inline">至</span>
-					     <input type="text" class="span2  input-medium" placeholder="结束时间">
-					     <button type="submit" class="btn">查询</button>
-					     <button type="submit" class="btn">清楚条件</button>
+					     <input type="text" id="time-to" name="toTime" class="span2" readonly="readonly" placeholder="结束时间">
+					     <button type="submit" class="btn" id="timeCheck">查询</button>
+					     <button type="submit" id="checkAll" class="btn">清楚条件</button>
 			    </div>                     
            </div>
           <div class="row word_style">
