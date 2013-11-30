@@ -25,15 +25,7 @@ import cn.com.model.Resourseandcatelogue;
 import cn.com.model.ResourseandcatelogueId;
 import cn.com.service.CourseService;
 
-/**
- * 尼玛asdasdas
- * @author zongyulang
- *
- /**
- * ehheheweddeddewheheheh
- * @author zongyulang
- *
- */
+
 
 public class CourseAction extends BaseActionSupport {
 	private List<Course> cList;
