@@ -50,6 +50,7 @@ public class TestquestionDAO extends HibernateDaoSupport {
 		log.debug("deleting Testquestion instance");
 		try {
 			getHibernateTemplate().delete(persistentInstance);
+			getHibernateTemplate().flush();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);

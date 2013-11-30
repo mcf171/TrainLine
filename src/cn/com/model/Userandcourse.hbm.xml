@@ -8,11 +8,11 @@
     <class name="cn.com.model.Userandcourse" table="userandcourse" catalog="trainline">
         <composite-id name="id" class="cn.com.model.UserandcourseId">
             <key-property name="userId" type="java.lang.Integer">
-                <column name="userId" />
+            <column name="userId"></column>
             </key-property>
-            <key-many-to-one name="course" class="cn.com.model.Course">
-                <column name="courseId" />
-            </key-many-to-one>
+            <key-property name="courseId" type="java.lang.Integer">
+            <column name="courseId"></column>
+            </key-property>
         </composite-id>
     </class>
 </hibernate-mapping>

@@ -11,10 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.com.model.Catalogue;
 import cn.com.model.Course;
 import cn.com.model.Coursetype;
 import cn.com.model.Position;
 import cn.com.model.Positionandcourse;
+import cn.com.model.Userandcourse;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -216,7 +218,7 @@ public class CourseDAO extends HibernateDaoSupport {
 					for (int i = 0; i < pList2.size(); i++) {
 						String hql2 = "from Course where courseId = "
 								+ pList2.get(i).getId().getCourseId()
-								+ " and   courseIntro like '%" + keyWords + "%' ";
+								+ " and   courseIntro like '%" + keyWords + "%'  and courseState = 1";
 						List<Course> cs = getHibernateTemplate().find(hql2);
 						for (int j = 0; j < cs.size(); j++) {
 							courses.add(cs.get(j));
@@ -238,7 +240,7 @@ public class CourseDAO extends HibernateDaoSupport {
 									+ pList2.get(i).getId().getCourseId()
 									+ " and  courseTypeId = " + courseTypeId
 									+ " and courseIntro like '%" + keyWords
-									+ "%' ";
+									+ "%' and courseState = 1";
 							List<Course> cs = getHibernateTemplate().find(hql2);
 							for (int j = 0; j < cs.size(); j++) {
 								courses.add(cs.get(j));
@@ -249,5 +251,66 @@ public class CourseDAO extends HibernateDaoSupport {
 			}
 		}
 		return courses;
+	}
+
+	public List<Course> fgFindMyAllCourse(Integer userId) {
+		List<Course> courses = new ArrayList<Course>();
+		if(userId!=null)
+		{
+			String hql="from Userandcourse where  userId = "+userId;
+			List<Userandcourse> userandcourses = getHibernateTemplate().find(hql);
+			for (int i = 0; i < userandcourses.size(); i++) {
+				Course course =getHibernateTemplate().get(Course.class,userandcourses.get(i).getId().getCourseId());
+				course.setIsSelect(1);
+				courses.add(course);
+			}
+		}
+		
+		return courses;
+	}
+
+	public List<Course> fgFindMyAllCourse(Integer userId, Course course) {
+		List<Course> courses = new ArrayList<Course>();
+		if(userId!=null)
+		{
+			String hql="from Userandcourse where  userId = "+userId;
+			List<Userandcourse> userandcourses = getHibernateTemplate().find(hql);
+			for (int i = 0; i < userandcourses.size(); i++) {
+				String hql2 ="from Course where courseId = "+userandcourses.get(i).getId().getCourseId()+
+						"  and courseName like '%"+course.getCourseName()+"%' " +
+						"  and courseSpeaker like '%"+course.getCourseSpeaker()+"%' "+
+						"  and courseIntro like '%"+course.getCourseIntro()+"%' ";
+				List<Course> cList =getHibernateTemplate().find(hql2);
+				for (int j = 0; j < cList.size(); j++) {
+					cList.get(j).setIsSelect(1);
+					courses.add(cList.get(j));
+				}
+			}
+		}
+		return courses;
+	}
+
+	public List<Course> fbFindExampleCourse() {
+		List<Course> courses = new ArrayList<Course>();
+		String hql =" from Course where courseState = 2 ";
+		courses = getHibernateTemplate().find(hql);
+		return courses;
+	}
+
+	public List<Course> fbFindExampleCourse(Course course) {
+		List<Course> courses = new ArrayList<Course>();
+				
+		String hql = "from Course where courseState = 2  and courseName like '%"+course.getCourseName()+"%' " +
+				"  and courseSpeaker like '%"+course.getCourseSpeaker()+"%' "+
+				"  and courseIntro like '%"+course.getCourseIntro()+"%' ";
+		courses = getHibernateTemplate().find(hql);
+		
+		return courses;
+	}
+
+	public List<Catalogue> getCataloguDetail(Integer courseId) {
+		String hql ="from Catalogue where courseId = "+courseId ;
+		List<Catalogue> catalogues = getHibernateTemplate().find(hql);
+		return catalogues;
 	}
 }

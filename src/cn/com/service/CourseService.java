@@ -93,4 +93,30 @@ public class CourseService {
 			String positionName) {
 		return courseDAO.findCourseToCenter(keyWords,courseType,positionName);
 	}
+
+
+	public List<Course> fgFindMyAllCourse(Integer userId) {
+		return courseDAO.fgFindMyAllCourse(userId);
+	}
+
+
+	public List<Course> fgFindMyAllCourse(Integer userId, Course course) {
+		
+		return courseDAO.fgFindMyAllCourse(userId,course);
+	}
+
+
+	public List<Course> fbFindExampleCourse() {
+		return courseDAO.fbFindExampleCourse();
+	}
+
+
+	public List<Course> fbFindExampleCourse(Course course) {
+		return courseDAO.fbFindExampleCourse(course);
+	}
+
+
+	public List<Catalogue> getCataloguDetail(Integer courseId) {
+		return courseDAO.getCataloguDetail(courseId);
+	}
 }

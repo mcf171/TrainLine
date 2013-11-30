@@ -14,9 +14,7 @@ public class TestPaperAction extends BaseActionSupport {
 	private List<Testpaper> tpList;
 	private TestPaperService testPaperService;
 	private Map<String, Object> dataMap;
-	
-	
-	
+
 	public TestPaperAction() {
 		super();
 		dataMap = new HashMap<String, Object>();
@@ -36,7 +34,20 @@ public class TestPaperAction extends BaseActionSupport {
 		return this.SUCCESS;
 	}
 	
+	public String getOpenTestPaperPage(){
+		
+		return this.SUCCESS;
+	}
 	
+	public String getKeepTestPaperPage(){
+		
+		return this.SUCCESS;
+	}
+	
+	public String getRubbleTestPaperPage(){
+		
+		return this.SUCCESS;
+	}
 	
 	public List<Testpaper> getTpList() {
 		return tpList;

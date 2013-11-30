@@ -1,12 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="${basePath}scripts/jquery.js"></script>
 <script>
 
 $(document).ready( function(){
 	
 	var indexNumber = 1;
-	var testType = 1;
 	
 	$("#deleteChoose").click(function(){
 		
@@ -14,9 +13,8 @@ $(document).ready( function(){
 		indexNumber --;
 	});
 	
-	$("#testType").change(function(){
-		
-		testType = parseInt(this.value);
+	
+		testType = ${testquestion.testType};
 		
 		switch(testType){
 		
@@ -34,7 +32,7 @@ $(document).ready( function(){
 			$("#xuanxiangxinxi").addClass("hidden");
 			break;
 		}
-	});
+
 	
 	$("#addChoose").click(function(){
 		
@@ -103,7 +101,15 @@ $(document).ready( function(){
 		});
 		} 
 	});
+	<c:forEach items="${standardAnswer}" var="item">
+	$("#${item}").attr("checked","checked");
+</c:forEach>
 	
+	$("#cancle").click(function(){
+		
+		loadHTML('${basePath}admin/getQuestionsPage.action');
+	});
+
 });
 
 </script>
@@ -137,11 +143,15 @@ $(document).ready( function(){
 	<div class="control-group">
 		<label class="control-label" >试题类型：</label>
 		<div class="controls">
-			<select class="input-medium" name="testquestion.testType" id="testType">
-			<option value="1">单选题</option>
-			<option value="2">多选题</option>
-			<option value="3">主观题</option>
-			</select>
+			<c:if test="${testquestion.testType =='1'}">
+						<span class="input-xlarge uneditable-input" id="courseName">单选题</span>
+						</c:if>
+			<c:if test="${testquestion.testType =='2'}">
+				<span class="input-xlarge uneditable-input" id="courseName">多选题</span>
+			</c:if>
+			<c:if test="${testquestion.testType =='3'}">
+				<span class="input-xlarge uneditable-input" id="courseName">主观题</span>
+			</c:if>
 		</div>
 	</div>
 	
@@ -178,16 +188,18 @@ $(document).ready( function(){
 		
 		<c:forEach items="${testAnswerIntroduce}" var="item" varStatus="index">
 		
+		
 			<c:if test="${index.index ==0}">
 				<div class="control-group">
 					<label class="control-label" >A：</label>
 					<div class="controls">
-					<span class="input-xlarge uneditable-input" id="courseName">${item}</span>
+					<input type="text"
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
 						<c:if test="${testquestion.testType =='1'}">
-						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="A" value="A" selected/> 正确答案
+							<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="A" value="A" selected/> 正确答案
 						</c:if>
 						<c:if test="${testquestion.testType =='2'}">
-						<input type="checkbox" class="standardAnswer" name="duoxuanstandardAnswer" id="A" value="A" selected/> 正确答案
+							<input type="checkbox" class="standardAnswer" name="duoxuanstandardAnswer" id="A" value="A" selected/> 正确答案
 						</c:if>
 					</div>
 				</div>
@@ -196,7 +208,8 @@ $(document).ready( function(){
 				<div class="control-group">
 					<label class="control-label" >B：</label>
 					<div class="controls">
-					<span class="input-xlarge uneditable-input" id="courseName">${item}</span>
+					<input type="text"
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
 						
 						<c:if test="${testquestion.testType =='1'}">
 						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="B" value="B"/> 正确答案
@@ -211,7 +224,8 @@ $(document).ready( function(){
 				<div class="control-group">
 					<label class="control-label" >C：</label>
 					<div class="controls">
-					<span class="input-xlarge uneditable-input" id="courseName">${item}</span>
+					<input type="text"
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
 						
 						<c:if test="${testquestion.testType =='1'}">
 						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="C" value="C"/> 正确答案
@@ -226,7 +240,8 @@ $(document).ready( function(){
 				<div class="control-group">
 					<label class="control-label" >D：</label>
 					<div class="controls">
-					<span class="input-xlarge uneditable-input" id="courseName">${item}</span>
+					<input type="text"
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
 						
 						<c:if test="${testquestion.testType =='1'}">
 						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="D" value="D"/> 正确答案
@@ -241,7 +256,8 @@ $(document).ready( function(){
 				<div class="control-group">
 					<label class="control-label" >E：</label>
 					<div class="controls">
-					<span class="input-xlarge uneditable-input" id="courseName">${item}</span>
+					<input type="text"
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
 						
 						<c:if test="${testquestion.testType =='1'}">
 						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="E" value="E"/> 正确答案
@@ -257,7 +273,8 @@ $(document).ready( function(){
 				<div class="control-group">
 					<label class="control-label" >F：</label>
 					<div class="controls">
-					<span class="input-xlarge uneditable-input" id="courseName">${item}</span>
+					<input type="text"
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
 						
 						
 						<c:if test="${testquestion.testType =='1'}">
@@ -274,7 +291,8 @@ $(document).ready( function(){
 				<div class="control-group">
 					<label class="control-label" >G：</label>
 					<div class="controls">
-					<span class="input-xlarge uneditable-input" id="courseName">${item}</span>
+					<input type="text"
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
 						
 						<c:if test="${testquestion.testType =='1'}">
 						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="G" value="G"/> 正确答案
@@ -290,7 +308,8 @@ $(document).ready( function(){
 				<div class="control-group">
 					<label class="control-label" >H：</label>
 					<div class="controls">
-					<span class="input-xlarge uneditable-input" id="courseName">${item}</span>
+					<input type="text"
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
 
 						<c:if test="${testquestion.testType =='1'}">
 						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="H" value="H"/> 正确答案
@@ -315,7 +334,7 @@ $(document).ready( function(){
 	<div class="control-group">
 
 		<div class="controls">
-			<button type="submit" class="btn"><i class="icon-ok"></i>确定</button> <button type="submit" class="btn"><i class="icon-remove"></i>取消</button>
+			<button type="submit" class="btn"><i class="icon-ok"></i>确定</button> <button type="button" class="btn" id="cancle"><i class="icon-remove"></i>取消</button>
 		</div>
 	</div>
 </form>

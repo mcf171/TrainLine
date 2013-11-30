@@ -9,6 +9,17 @@
 			<result>/WEB-INF/jsp/backend/examinations.jsp</result>
 		</action>
 		
+		<action name="getOpenTestPaperPage" class="testPaperAction" method="getOpenTestPaperPage">
+			<result>/WEB-INF/jsp/backend/test/questionareOpen.jsp</result>
+		</action>
+		
+		<action name="getKeepTestPaperPage" class="testPaperAction" method="getKeepTestPaperPage">
+			<result>/WEB-INF/jsp/backend/test/questionareKeep.jsp</result>
+		</action>
+		
+		<action name="getRubbleTestPaperPage" class="testPaperAction" method="getRubbleTestPaperPage">
+			<result>/WEB-INF/jsp/backend/test/questionareRubble.jsp</result>
+		</action>
 		
 	</package>
 </struts>    

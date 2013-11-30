@@ -19,6 +19,17 @@ public class TestArrangementAction extends BaseActionSupport{
 		return SUCCESS;
 	}
 	
+	public String getNormalTestArrangementPage(){
+		
+		
+		return this.SUCCESS;
+	}
+	
+	public String getBackendTestArrangementPage(){
+		
+		return this.SUCCESS;
+	}
+	
 	public List<Testarrangement> getTaList() {
 		return taList;
 	}

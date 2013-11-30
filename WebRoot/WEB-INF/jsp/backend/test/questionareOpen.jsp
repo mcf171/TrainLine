@@ -1,9 +1,10 @@
-<link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
-<link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
-<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
-<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
-<script type="text/javascript" src="../scripts/mmgrid.js"></script>
-<script type="text/javascript" src="../scripts/mmpaginator.js"></script>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<link rel="stylesheet" type="text/css" href="${basePath}styles/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/mmpaginator.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmpaginator.css" />
+<script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
+<script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function ()
@@ -62,7 +63,7 @@ $(document).ready(function ()
 </script>
 <div class="row-fluid line-margin">
 	<div class="span12">
-		<button class="btn"><i class="icon-share"></i>&nbsp;发布</button>
+		<button class="btn"><i class="icon-share"></i>&nbsp;保留</button>
 	</div>
 </div>
 <div class="row-fluid line-margin">
