@@ -113,6 +113,21 @@ public class TestquestionAction extends BaseActionSupport {
 		return this.SUCCESS;
 	}
 	
+	/**
+	 * 获取显示修改页面
+	 * @return
+	 */
+	public String getTestquestionModifyPage(){
+		
+		testquestion = testQuestionService.getTestquestionById(testquestion);
+		String[] testAnswerIntroduce = testquestion.getTestAnswerIntroduce().split("~");
+		String[] standardAnswer = testquestion.getStandardAnswer().split("~");
+		
+		request.setAttribute("testquestion", testquestion);
+		request.setAttribute("testAnswerIntroduce", testAnswerIntroduce);
+		request.setAttribute("standardAnswer", standardAnswer);
+		return this.SUCCESS;
+	}
 	public List<Testquestion> getTlist() {
 		return tlist;
 	}

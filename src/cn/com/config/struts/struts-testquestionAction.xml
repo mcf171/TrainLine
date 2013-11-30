@@ -27,5 +27,9 @@
 			<result>/WEB-INF/jsp/backend/examinations/manage-questionItemShow.jsp</result>
 		</action>
 		
+		<action name ="getTestquestionModifyPage" class="testquestionAction" method="getTestquestionModifyPage">
+			<result>/WEB-INF/jsp/backend/examinations/manage-questionItemModify.jsp</result>
+		</action>
+		
 	</package>
 </struts>    

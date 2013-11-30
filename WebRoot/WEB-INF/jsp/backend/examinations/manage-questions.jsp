@@ -68,7 +68,7 @@ $(document).ready(function ()
 				renderer: function (val, item, row)
 				{
 					//onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
-					return '<a href="javascript:loadHTML(\'${basePath}admin/getTestquestionById.action?testquestion.testQuestionId=' + item.testQuestionId + '\')" > 查看</a> <a href="loadHTML(\'${basePath}getTestquestionById.action?testquestion.testQuestionId=' + item.testQuestionId + '\')" > 修改</a> <a href="#" > 删除</a>';
+					return '<a href="javascript:loadHTML(\'${basePath}admin/getTestquestionById.action?testquestion.testQuestionId=' + item.testQuestionId + '\')" > 查看</a> <a href="javascript:loadHTML(\'${basePath}admin/getTestquestionModifyPage.action?testquestion.testQuestionId=' + item.testQuestionId + '\')" > 修改</a> <a href="#" > 删除</a>';
 				}
 			}
 		],
