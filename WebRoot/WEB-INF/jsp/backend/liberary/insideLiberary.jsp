@@ -18,7 +18,7 @@ $(document).ready(function ()
 {
 	$('#time-to').css('background', 'none').datepicker();
 	$('#time-from').css('background', 'none').datepicker();
-	test="ready"
+	test="ready";
 	mmGirdTable = $('#grid').mmGrid({
 		url: '${basePath}getInsideLiberaryList.action',
 		height: 410,
@@ -41,7 +41,7 @@ $(document).ready(function ()
 					width: 100,
 					renderer: function (val, item, row)
 					{
-						onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
+						//onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
 						return '<a href="javascript:loadHTML(\'${basePath}modifyBookPage.action?book.bookId=' +item.bookId + '\')">修改</a> ' + '&nbsp' + '<a href="javascript:showConfirm(' +item.bookId + ',' +'\'${basePath}\''+')" >删除</a> ';
 					}
 				}
@@ -69,6 +69,7 @@ $(document).ready(function ()
 		mmGirdTable.load(
 				{"book.bookName":bookName,
 				"book.bookContent":bookContent,
+				"book.bookState":1,
 				"book.bookType.bookTypeId":bookType,
 				"book.bookClassIndex":bookClassIndex
 				}
@@ -129,16 +130,18 @@ $(document).ready(function ()
 		            
             	</div>
             </div>
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-<h3 id="myModalLabel">确认删除</h3>
-</div>
-<div class="modal-body">
-<p>是否真的删除？</p>
-</div>
-<div class="modal-footer">
-<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-<button class="btn btn-primary" onclick="deleteBook()">确认</button>
-</div>
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h3 id="myModalLabel">确认删除</h3>
+	</div>
+	<div class="modal-body">
+		<p>是否真的删除？</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		<button class="btn btn-primary" onclick="deleteBook()">确认</button>
+	</div>
 </div>

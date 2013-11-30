@@ -12,15 +12,27 @@
 	</package>
 
 	<include file="cn/com/config/struts/struts-global.xml"></include>
-	<include file="cn/com/config/struts/struts-liberary.xml"></include>
+	<include file="cn/com/config/struts/struts-liberaryAction.xml"></include>
 	<include file="cn/com/config/struts/struts-questionnaireAction.xml"></include>
 	<include file="cn/com/config/struts/struts-questionnairerubricAction.xml"></include>
 	<include file="cn/com/config/struts/struts-courseAction.xml"></include>
 	<include file="cn/com/config/struts/struts-noteAction.xml"></include>
+	<include file="cn/com/config/struts/struts-netDangkeAction.xml"></include>
 	<include file="cn/com/config/struts/struts-TrainingClassAction.xml"></include>
 	<include file="cn/com/config/struts/struts-credentialAction.xml"></include>
-	<include file="cn/com/config/struts/struts-user.xml"></include>
-	<include file="cn/com/config/struts/struts-upload.xml"></include>
+
+	<include file="cn/com/config/struts/struts-userAction.xml"></include>
+	<include file="cn/com/config/struts/struts-uploadAction.xml"></include>
+
+    <include file="cn/com/config/struts/struts-forumAction.xml"></include>
 	<include file="cn/com/config/struts/struts-humanAction.xml"></include>
 	<include file="cn/com/config/struts/struts-resource.xml"></include>
+	
+	<include file="cn/com/config/struts/struts-testPaperAction.xml"></include>
+	<include file="cn/com/config/struts/struts-testquestionAction.xml"></include>
+	<include file="cn/com/config/struts/struts-systemAction.xml"></include>
+	<include file="cn/com/config/struts/struts-recordAction.xml"></include>
+	<include file="cn/com/config/struts/struts-newsManageAction.xml"></include>
+	
+
 </struts>    

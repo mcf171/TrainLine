@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/jsp/backend/classes.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/backend/classes/ClassInfo.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/classes/addClass1.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/classes/addClass2.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/classes/certificateList.jsp=UTF-8

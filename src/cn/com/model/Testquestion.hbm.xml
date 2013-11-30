@@ -10,7 +10,7 @@
             <column name="testQuestionId" />
             <generator class="native" />
         </id>
-        <many-to-one name="course" class="cn.com.model.Course" fetch="select">
+        <many-to-one name="course" class="cn.com.model.Course" fetch="join" lazy="false">
             <column name="courseId" />
         </many-to-one>
         <property name="testQuestionName" type="java.lang.String">
@@ -31,6 +31,7 @@
         <property name="standardAnswer" type="java.lang.String">
             <column name="standardAnswer" length="50" />
         </property>
+        <!-- 
         <set name="testpapers" table="testandquestion" catalog="trainline">
             <key>
                 <column name="testQuestionId" not-null="true" />
@@ -47,5 +48,6 @@
                 <column name="userId" not-null="true" />
             </many-to-many>
         </set>
+         -->
     </class>
 </hibernate-mapping>

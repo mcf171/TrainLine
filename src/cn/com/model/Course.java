@@ -12,6 +12,7 @@ public class Course implements java.io.Serializable {
 	// Fields
 
 	private Integer courseId;
+	private Integer courseTypeId;
 	private String courseName;
 	private String courseSpeaker;
 	private String courseIntro;
@@ -22,7 +23,7 @@ public class Course implements java.io.Serializable {
 	private Set testquestions = new HashSet(0);
 
 	// Constructors
-
+	private Integer isSelect =0;
 	/** default constructor */
 	public Course() {
 	}
@@ -113,6 +114,22 @@ public class Course implements java.io.Serializable {
 
 	public void setTestquestions(Set testquestions) {
 		this.testquestions = testquestions;
+	}
+
+	public Integer getIsSelect() {
+		return isSelect;
+	}
+
+	public void setIsSelect(Integer isSelect) {
+		this.isSelect = isSelect;
+	}
+
+	public Integer getCourseTypeId() {
+		return courseTypeId;
+	}
+
+	public void setCourseTypeId(Integer courseTypeId) {
+		this.courseTypeId = courseTypeId;
 	}
 
 }

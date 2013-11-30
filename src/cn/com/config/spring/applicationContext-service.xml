@@ -1,26 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
+	<aop:config>
 
+    <aop:pointcut id="entryPointMethod" expression="execution(public * cn.com.service.*.*(..))"/>
+
+    <!-- will execute after the profiling advice (c.f. the order attribute) -->
+    <aop:advisor
+        advice-ref="txAdvice"
+        pointcut-ref="entryPointMethod"
+        order="2"/> <!-- order value is higher than the profiling aspect -->
+
+  </aop:config>
+
+  <tx:advice id="txAdvice" transaction-manager="txManager">
+    <tx:attributes>
+      <tx:method name="get*" read-only="true"/>
+      <tx:method name="*"/>
+    </tx:attributes>
+  </tx:advice>
+
+    <bean id="noticeService" class="cn.com.service.NoticeService" scope="prototype">
+        <property name="noticeDAO" ref="noticeDAO"></property>
+        <property name="noticeTypeDAO" ref="NoticetypeDAO"></property>
+    </bean>
+    <bean id="recordService" class="cn.com.service.RecordService" scope="prototype">
+		<property name="recordDAO" ref="RecordDAO"></property>
+	</bean>
 	<bean id="liberaryService" class="cn.com.service.LiberaryService" scope="prototype">
 		<property name="bookDAO" ref="BookDAO"></property>
 		<property name="bookTypeDAO" ref="BooktypeDAO"></property>
 		<property name="uploadUtil" ref="uploadUtil"></property>
 	</bean>
 	
+	
 	<bean id="forumService" class="cn.com.service.ForumService" scope="prototype">
 	   <property name="themeDAO" ref="ThemeDAO"></property>
+	   <property name="tieziDAO" ref="TieziDAO"></property>
+	   <property name="topicDAO" ref="TopicDAO"></property>
 	</bean>
 	
 	<bean id="userService" class="cn.com.service.UserService" scope="prototype">
 		<property name="userDAO" ref="UserDAO"></property>
 	</bean>
 	
-	<bean id="questionnairerService" class="cn.com.service.QuestionnaireService">
+	<bean id="questionnairerService" class="cn.com.service.QuestionnaireService" scope="prototype">
 		<property name="questionnaireDAO" ref="QuestionnaireDAO"></property>
 	</bean>
 	
@@ -46,6 +80,7 @@
 
 	<bean id="testPaperService" class="cn.com.service.TestPaperService">
 		<property name="testpaperDAO" ref="TestpaperDAO"></property>
+		<property name="testquestionDAO" ref="TestquestionDAO"></property>
 	</bean>
 
 	<bean id="testArrangementService" class="cn.com.service.TestArrangementService">
@@ -59,10 +94,15 @@
 	<bean id="credentialService" class="cn.com.service.CredentialService">
 		<property name="credentialDAO" ref="CredentialDAO"></property>
 	</bean>
-	<bean id="recordService" class="cn.com.service.RecordService">
-		<property name="recordDAO" ref="RecordDAO"></property>
+	
+	<bean id="humanService" class="cn.com.service.HumanService">
+		<property name="userDAO" ref="UserDAO"></property>
+		<property name="companyDAO" ref="CompanyDAO"></property>
+		<property name="departmentDAO" ref="DepartmentDAO"></property>
+		<property name="positionDAO" ref="PositionDAO"></property>
 	</bean>
     <bean id="resourceService" class="cn.com.service.ResourceService">
 		<property name="resourceDAO" ref="ResourceDAO"></property>
 	</bean>
+	
 	</beans>

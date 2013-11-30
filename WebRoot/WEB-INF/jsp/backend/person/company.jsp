@@ -11,44 +11,51 @@
 	href="${basePath}themes/mmgrid/mmpaginator.css" />
 <script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
 <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
+<script type="text/javascript" src="${basePath}scripts/human.js"></script>
 
 
 
 <script type="text/javascript">
 	//         
+	var mmGirdTable;
 	$(document).ready(function() {
-		$('#grid').mmGrid({
-			url : '/api/peixunrenyuan',
+		test = "ready";
+	mmGirdTable = $('#grid').mmGrid({
+			url : '${basePath}getCompanyList.action',
 			height : 410,
 			autoLoad : true,
 			checkCol : true,
 			multiSelect : true,
-			fullWithRows : true,
+			fullWidthRows : true,
+			root:'human',
 			cols : [ {
 				title : '公司ID',
 				sortable : true,
-				width : 200,
-				name : ''
+				name : 'companyId'
 			}, {
 				title : '公司名',
 				sortable : true,
-				width : 200,
-				name : ''
+				name : 'companyName'
 			}, {
 				title : '公司等级',
 				sortable : true,
-				width : 200,
-				name : ''
+				name : 'companystatus'
 			}, {
 				title : '公司介绍',
 				sortable : true,
-				width : 200,
-				name : ''
+				name : 'companyIntro'
 			}, {
 				title : '公司简称',
 				sortable : true,
-				width : 200,
-				name : ''
+				name : 'companyShortName'
+			},{
+				title : '操作',
+				renderer : function(val, item, row) {
+					onclick = "#";
+					return '<a href="javascript:loadHTML(\'${basePath}modifyCompanyPage.action?company.companyId=' +item.companyId + '\')")">修改</a> '
+							+ '&nbsp'
+							+ '<a href="javascript:showConfirm(' +item.companyId + ',' +'\'${basePath}\''+')" >删除</a> ';
+				}
 			}],
 			plugins : [ $('#page').mmPaginator({}) ]
 		});
@@ -58,7 +65,7 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<button class="btn" onclick="loadHTML('${basePath}addCompany.jsp')">
+		<button class="btn" onclick="loadHTML('${basePath}addCompanyPage.action')">
 			<i class="icon-plus"></i>新增
 		</button>
 	</div>
@@ -100,5 +107,19 @@
 				</div>
 			</form>
 		</div>
+	</div>
+</div>
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">确认删除</h3>
+	</div>
+	<div class="modal-body">
+		<p>是否真的删除？</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		<button class="btn btn-primary" onclick="deleteCompany()">确认</button>
 	</div>
 </div>

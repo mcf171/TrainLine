@@ -8,6 +8,18 @@ import cn.com.model.Testquestion;
 public class TestQuestionService {
 	private TestquestionDAO testquestionDAO;
 
+	public List<Testquestion> getTestQuestion(Testquestion testquestion){
+	
+		List<Testquestion> list = testquestionDAO.findByExample(testquestion);
+		
+		return list;
+	}
+	
+	public Testquestion getTestquestionById(Testquestion testquestion){
+		
+		return testquestionDAO.findById(testquestion.getTestQuestionId());
+	}
+	
 	public void insert(Testquestion testQuestion) {
 		testquestionDAO.save(testQuestion);
 	}
@@ -38,6 +50,11 @@ public class TestQuestionService {
 
 	public void setTestquestionDAO(TestquestionDAO testquestionDAO) {
 		this.testquestionDAO = testquestionDAO;
+	}
+
+	public List<Testquestion> getquestionList() {
+		// TODO Auto-generated method stub
+		return testquestionDAO.findAll();
 	}
 	
 }

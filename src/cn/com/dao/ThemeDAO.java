@@ -35,7 +35,8 @@ public class ThemeDAO extends HibernateDaoSupport {
 		log.debug("saving Theme instance");
 		try {
 			getHibernateTemplate().save(transientInstance);
-			log.debug("save successful");
+			this.getHibernateTemplate().flush();
+			log.debug("save successfu l");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
 			throw re;

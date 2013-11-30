@@ -82,4 +82,15 @@ public class CourseService {
 	public void setResourseandcatelogueDAO(ResourseandcatelogueDAO resourseandcatelogueDAO) {
 		this.resourseandcatelogueDAO = resourseandcatelogueDAO;
 	}
+
+
+	public List<Course> fgFindAll() {
+		return courseDAO.fgFindAll();
+	}
+
+
+	public List<Course> findCourseToCenter(String keyWords, String courseType,
+			String positionName) {
+		return courseDAO.findCourseToCenter(keyWords,courseType,positionName);
+	}
 }

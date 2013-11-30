@@ -1,5 +1,6 @@
 package cn.com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Set;
@@ -10,6 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import sun.text.resources.FormatData;
+
+import cn.com.model.Classandcourse;
+import cn.com.model.Classcase;
+import cn.com.model.Course;
 import cn.com.model.Trainingclass;
 
 /**
@@ -35,13 +41,10 @@ public class TrainingclassDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
-	public void save(Trainingclass transientInstance) {
-		try {
+	public Integer save(Trainingclass transientInstance) {
 			Session session  = getHibernateTemplate().getSessionFactory().openSession();
-			session.save(transientInstance);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			Integer id = (Integer) session.save(transientInstance);
+		return id;
 	}
 
 	public void delete(Trainingclass persistentInstance) {
@@ -175,5 +178,44 @@ public class TrainingclassDAO extends HibernateDaoSupport {
 
 	public void update(Trainingclass trainingclass) {
 		attachDirty(trainingclass);
+	}
+
+	public void saveClassAndCourse(Classandcourse classandcourse) {
+		getHibernateTemplate().save(classandcourse);
+		getHibernateTemplate().flush();
+	}
+
+	public List<Course> getCourseByClassId(Integer classId) {
+		String hql ="from Classandcourse where trainingClassId = "+classId+" ";
+		List<Classandcourse> list = getHibernateTemplate().find(hql);
+		Course course =null;
+		List<Course> courseslist = new ArrayList<Course>();
+		
+		if(list!=null&&list.size()!=0)
+		{
+			for (int i = 0; i < list.size(); i++) {
+				course = getHibernateTemplate().get(Course.class, list.get(i).getId().getCourseId());
+				courseslist.add(course);
+			}
+			
+		}
+		return  courseslist;
+	}
+
+	public void delCourseFClass(Classandcourse classandcourse) {
+		getHibernateTemplate().delete(classandcourse);
+		getHibernateTemplate().flush();
+	}
+
+	public Classcase getClassCaseById(Integer classId) {
+		String hql ="from Classcase where trainingClassId = "+ classId;
+		List<Classcase> list =getHibernateTemplate().find(hql);
+		Classcase classcase = null;
+		if(list.size()==1)
+		{
+			classcase = list.get(0);
+			return classcase;
+		}
+		return null;
 	}
 }

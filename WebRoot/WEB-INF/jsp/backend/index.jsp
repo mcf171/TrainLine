@@ -15,14 +15,15 @@
 //<![CDATA[
 var PAGES = {
 	page_0: '${basePath}note_intoStudy.action',
-	page_1: 'examinations.jsp',
+	page_1: '${basePath}admin/getExaminations.action',
 	page_2: '${basePath}trainingClass_intoClasspage.action',
 	page_3: '${basePath}showBackendResourceListPage.action',
-	page_4: 'human.jsp',
-	page_5: 'newsManager.jsp',
+
+	page_4: '${basePath}showBackendHumanPage.action',
+	page_5: '${basePath}newMessageAction.action',
 	page_6: 'report.jsp',
-	page_7: 'system.jsp',
-	page_8: 'forum.jsp',
+	page_7: '${basePath}conductSystemaction.action',
+	page_8: '${basePath}showBackendforumListPage.action',
 	page_9:'${basePath}showBackendLiberaryListPage.action'
 };
 

@@ -10,7 +10,7 @@
             <column name="noticeId" />
             <generator class="native" />
         </id>
-        <many-to-one name="noticetype" class="cn.com.model.Noticetype" fetch="select">
+        <many-to-one name="noticetype" class="cn.com.model.Noticetype" lazy="false" fetch="join">
             <column name="noticeTypeId" />
         </many-to-one>
         <property name="noticeTitle" type="java.lang.String">

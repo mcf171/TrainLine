@@ -128,9 +128,9 @@ public class LiberaryAction extends BaseActionSupport{
 	
 	public String addBook(){
 		
+		
 		boolean flag = liberaryService.addBook(book, image, imageContentType, imageFileName);
 		String path = flag == true ? this.SUCCESS : this.FAIL;
-		
 		return path;
 	}
 	

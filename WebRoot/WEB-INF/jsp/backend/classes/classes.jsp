@@ -23,6 +23,7 @@ $(document).ready(function ()
 			mmg = $('#grid').mmGrid({
 				url: '${basePath}trainingClass_findAllTrainingClass.action',
 				height: 410,
+				width:800,
 				cache:true,
 				autoLoad: true,
 				checkCol: true,
@@ -31,18 +32,19 @@ $(document).ready(function ()
 				root:'tcList',
 				fullWithRows: false,
 				cols: [
-					{ title: '班级ID', sortable: true, width: 110, name: 'trainingClassId' },	
+					{ title: '班级ID', sortable: true, width: 90, name: 'trainingClassId' },	
 					{ title: '班级名称', sortable: true, width: 150, name: 'trainingClassName' },
-					{ title: '状态 ', sortable: true, width: 130, name: 'trainingClassStatus' },
+					{ title: '状态 ', sortable: true, width:90, name: 'trainingClassStatus' },
 								{
 						title: '操作',
-						width: 210,
+						width: 350,
 						renderer: function (val, item, row)
 						{
 						return '<input type="hidden" value="' + item.trainingClassId + '" />'+
-						'<a href="#" role="button" class="btn">查看</a> '+
 		        '<a href="#myModal0" onclick="updateClasss('+item.trainingClassId+')" role="button" class="btn" data-toggle="modal">修改</a>'+
-		        '<a href="#myModal1" onclick="deleteClasss('+item.trainingClassId+')" role="button" class="btn" data-toggle="modal">删除</a>';
+		        '<a href="#myModal1" onclick="deleteClasss('+item.trainingClassId+')" role="button" class="btn" data-toggle="modal">删除</a>'+
+		        '<a href="#" onclick="browseCourse('+item.trainingClassId+')" role="button" class="btn">查看课程</a>'+
+		        '<a href="#" onclick="browseClassCase('+item.trainingClassId+')" role="button" class="btn">详细信息</a>';
 						}
 					}
 				],
@@ -101,6 +103,16 @@ $(document).ready(function ()
 		function deleteClasss(trainingClassId)
 		{
 			trainingClassID =trainingClassId;
+		}
+		
+		function browseCourse(trainingClassId)
+		{
+		 loadHTML('${basepath}trainingClass_intoAddClassPage2.action?classId='+trainingClassId);
+		}
+		
+		function browseClassCase(trainingClassId)
+		{
+		 loadHTML('${basepath}trainingClass_intoClassInfoPage.action?classId='+trainingClassId);
 		}
 </script>
 </head>

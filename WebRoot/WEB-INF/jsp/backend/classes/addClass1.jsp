@@ -77,7 +77,6 @@ $(document).ready(function (){
 					data:"trainingclass.trainingClassName="+$("#classNmaeIID").val()+"&trainingclass.credentialId="+$("#credentialIID").val(),
 					dataType : "json",
 					success : function(json) {
-					
 					},
 					error : function() {
 						return false;

@@ -18,7 +18,7 @@ import cn.com.model.Department;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see cn.com.dao1.Department
+ * @see cn.com.model.Department
  * @author MyEclipse Persistence Tools
  */
 public class DepartmentDAO extends HibernateDaoSupport {
@@ -50,8 +50,10 @@ public class DepartmentDAO extends HibernateDaoSupport {
 		log.debug("deleting Department instance");
 		try {
 			getHibernateTemplate().delete(persistentInstance);
+			getHibernateTemplate().flush();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
+			
 			log.error("delete failed", re);
 			throw re;
 		}
@@ -61,7 +63,7 @@ public class DepartmentDAO extends HibernateDaoSupport {
 		log.debug("getting Department instance with id: " + id);
 		try {
 			Department instance = (Department) getHibernateTemplate().get(
-					"cn.com.dao1.Department", id);
+					"cn.com.model.Department", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -82,7 +84,7 @@ public class DepartmentDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByProperty(String propertyName, Object value) {
+	public List<Department> findByProperty(String propertyName, Object value) {
 		log.debug("finding Department instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
@@ -95,31 +97,32 @@ public class DepartmentDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByDepartmentName(Object departmentName) {
+
+	public List<Department> findByDepartmentName(Object departmentName) {
 		return findByProperty(DEPARTMENT_NAME, departmentName);
 	}
 
-	public List findByDepartmentstatus(Object departmentstatus) {
+	public List<Department> findByDepartmentstatus(Object departmentstatus) {
 		return findByProperty(DEPARTMENTSTATUS, departmentstatus);
 	}
 
-	public List findByDepartmentShortName(Object departmentShortName) {
+	public List<Department> findByDepartmentShortName(Object departmentShortName) {
 		return findByProperty(DEPARTMENT_SHORT_NAME, departmentShortName);
 	}
 
-	public List findByBusinessUnits(Object businessUnits) {
+	public List<Department> findByBusinessUnits(Object businessUnits) {
 		return findByProperty(BUSINESS_UNITS, businessUnits);
 	}
 
-	public List findByDepartmentCoding(Object departmentCoding) {
+	public List<Department> findByDepartmentCoding(Object departmentCoding) {
 		return findByProperty(DEPARTMENT_CODING, departmentCoding);
 	}
 
-	public List findByCountry(Object country) {
+	public List<Department> findByCountry(Object country) {
 		return findByProperty(COUNTRY, country);
 	}
 
-	public List findAll() {
+	public List<Department> findAll() {
 		log.debug("finding all Department instances");
 		try {
 			String queryString = "from Department";
