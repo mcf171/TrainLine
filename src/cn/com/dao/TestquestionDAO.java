@@ -18,7 +18,7 @@ import cn.com.model.Testquestion;
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
  * 
- * @see cn.com.dao1.Testquestion
+ * @see cn.com.model.Testquestion
  * @author MyEclipse Persistence Tools
  */
 public class TestquestionDAO extends HibernateDaoSupport {
@@ -61,7 +61,7 @@ public class TestquestionDAO extends HibernateDaoSupport {
 		log.debug("getting Testquestion instance with id: " + id);
 		try {
 			Testquestion instance = (Testquestion) getHibernateTemplate().get(
-					"cn.com.dao1.Testquestion", id);
+					"cn.com.model.Testquestion", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

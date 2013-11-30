@@ -89,7 +89,8 @@ public class CourseService {
 	}
 
 
-	public List<Course> fgSearchCourses(Course course) {
-		return courseDAO.fgSearchCourses(course);
+	public List<Course> findCourseToCenter(String keyWords, String courseType,
+			String positionName) {
+		return courseDAO.findCourseToCenter(keyWords,courseType,positionName);
 	}
 }

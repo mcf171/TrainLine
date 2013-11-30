@@ -21,7 +21,7 @@
 		</property>
 		<property name="url" value="jdbc:mysql://localhost:3306/trainline"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="root"></property>
+		<property name="password" value="123456"></property>
 
 	</bean>
 	<bean id="sessionFactory"
@@ -86,6 +86,8 @@
 				<value>cn/com/model/Jobcertificate.hbm.xml</value>
 				<value>cn/com/model/Position.hbm.xml</value>
 				<value>cn/com/model/Department.hbm.xml</value>
+				<value>cn/com/model/Positionandcourse.hbm.xml</value>
+				<value>cn/com/model/Coursetype.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

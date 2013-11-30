@@ -25,15 +25,7 @@ import cn.com.model.Resourseandcatelogue;
 import cn.com.model.ResourseandcatelogueId;
 import cn.com.service.CourseService;
 
-/**
- * 尼玛asdasdas
- * @author zongyulang
- *
- /**
- * ehheheweddeddewheheheh
- * @author zongyulang
- *
- */
+
 
 public class CourseAction extends BaseActionSupport {
 	private List<Course> cList;
@@ -44,7 +36,12 @@ public class CourseAction extends BaseActionSupport {
 	private Course course;
 
 	private String catalogueName;
+	
+	private String keyWords;
+	private String positionName;
+	private String courseType;
 
+	
 	// 文件上传
 	public static final int BUFFER_SIZE = 1024 * 6;
 	private String title;
@@ -153,8 +150,9 @@ public class CourseAction extends BaseActionSupport {
 	
 	public String fbfindCourse()
 	{
-		if (course != null) {
-			cList = courseService.fgSearchCourses(course);
+		
+		if (positionName != null || courseType!=null) {
+			cList =courseService.findCourseToCenter(keyWords,courseType,positionName);
 		} 
 		else {
 				cList = courseService.fgFindAll();
@@ -169,8 +167,6 @@ public class CourseAction extends BaseActionSupport {
 		course.setCourseId(courseId);
 		courseService.delete(course);
 		
-		//cList = courseService.findAll();
-		//cList = (List<Course>) session.put("cList",cList);
 		return JSON;
 	}
 
@@ -184,12 +180,10 @@ public class CourseAction extends BaseActionSupport {
 	public String updateCourse() {
 		if (course != null) {
 			courseService.update(course);
-//			cList = courseService.findAll();
-//			session.put("cList",cList);
 		}
 		return JSON;
 	}
-
+	
 	public String intoAddcoursePage() {
 		return "addCourse";
 	}
@@ -287,4 +281,31 @@ public class CourseAction extends BaseActionSupport {
 	public void setCatalogueName(String catalogueName) {
 		this.catalogueName = catalogueName;
 	}
+	
+	public String getKeyWords() {
+		return keyWords;
+	}
+
+	public void setKeyWords(String keyWords) {
+		this.keyWords = keyWords;
+	}
+
+
+
+	public String getPositionName() {
+		return positionName;
+	}
+
+	public void setPositionName(String positionName) {
+		this.positionName = positionName;
+	}
+
+	public String getCourseType() {
+		return courseType;
+	}
+
+	public void setCourseType(String courseType) {
+		this.courseType = courseType;
+	}
+
 }

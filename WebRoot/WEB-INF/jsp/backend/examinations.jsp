@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //<![CDATA[
 $(document).ready(function ()
 {
-	$('#content').load('${basePath}getQuestionsPage.action');
+	$('#content').load('${basePath}admin/getQuestionsPage.action');
 });
 //]]>
 </script>
@@ -34,7 +34,7 @@ $(document).ready(function ()
 				<li class="jstree-open">
 					<a href="#">题库管理</a>
 					<ul>
-						<li class="jstree-leaf"><a class="blacked" href="${basePath}getQuestionsPage.action">题目管理</a></li>
+						<li class="jstree-leaf"><a class="blacked" href="${basePath}admin/getQuestionsPage.action">题目管理</a></li>
 					</ul>
 				</li>
 				<li class="jstree-open">
