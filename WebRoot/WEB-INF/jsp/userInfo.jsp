@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="left">
 			<div id="asd">
 				<div id="tl">
-					<b><span style="color:white">个人资料</span></b>
+					<b><span style="color:white">个人资料123</span></b>
 				</div>
 			</div>
 			<div id="zil">
@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							张三 <img class="vm" title="在线"
 								alt="online" src="image/ol.gif">
 							&nbsp;
-							<span class="xw0"> (UID: 2140014)</span>
+							<span class="xw0"> (UID: 21400141111)</span>
 						</h2>
 					</div>
 					<div style="margin-top: 10px;">

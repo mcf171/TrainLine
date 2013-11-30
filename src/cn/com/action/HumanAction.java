@@ -1,6 +1,5 @@
 package cn.com.action;
 
-//shiyixia
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +28,6 @@ public class HumanAction extends BaseActionSupport {
 
 	public HumanAction() {
 		super();
-		// TODO Auto-generated constructor stub
 		dataMap = new HashMap<String, Object>();
 	}
 
@@ -48,6 +46,8 @@ public class HumanAction extends BaseActionSupport {
 	}
 	
 	public String addPersonPage() {
+		List<Company> allCompanyList = humanService.getCompanyList();
+		request.setAttribute("allCompanyList", allCompanyList);
 		return SUCCESS;
 	}
 	
@@ -57,7 +57,13 @@ public class HumanAction extends BaseActionSupport {
 	}
 
 	public String getCompanyList() {
-		List<Company> companyList = humanService.getCompanyList();
+		List<Company> companyList = null;
+		if(company == null){
+			companyList = humanService.getCompanyList();
+		}else{
+			System.out.println(company.getCompanyId());
+			companyList = humanService.searchCompanyList(company);
+		}
 		dataMap.put("human", companyList);
 		return SUCCESS;
 	}
@@ -84,6 +90,12 @@ public class HumanAction extends BaseActionSupport {
 		return path;
 	}
 	
+	public String deleteCompany() {
+		humanService.deleteCompany(company);
+		dataMap.put("success", "success");
+		return SUCCESS;
+	}
+	
 	//department部分
 	public String showBackendDepartmentPage() {
 		return SUCCESS;
@@ -96,9 +108,16 @@ public class HumanAction extends BaseActionSupport {
 			departmentList = humanService.getDepartmentList();
 		}
 		else{
-			if(department.getCompany()!=null){
-				departmentList = humanService.getDepartmentListByCompanyId(department.getCompany().getCompanyId());
-			}
+			departmentList = humanService.searchDepartmentList(department);
+		}
+		dataMap.put("human", departmentList);
+		return SUCCESS;
+	}
+	
+	public String getDepartmentListByCompanyId(){
+		List<Department> departmentList = null;
+		if(department.getCompany()!=null){
+			departmentList = humanService.getDepartmentListByCompanyId(department.getCompany().getCompanyId());
 		}
 		dataMap.put("human", departmentList);
 		return SUCCESS;
@@ -111,20 +130,44 @@ public class HumanAction extends BaseActionSupport {
 	}
 	
 	public String addDepartment(){
-		/*String companyName = department.getCompany().getCompanyName();
-		Company company = humanService.getCompanyByName(companyName);
-		department.getCompany().setCompanyId(company.getCompanyId());*/
 		boolean flag = humanService.addDepartment(department);
 		String path = flag == true? SUCCESS:FAIL;
 		return path;
 	}
+	
+	public String modifyDepartmentPage(){
+		List<Company> allCompanyList = humanService.getCompanyList();
+		department = humanService.getDepartmentById(department.getDepartmentId());
+		request.setAttribute("allCompanyList", allCompanyList);
+		request.setAttribute("department", department);
+		return SUCCESS;
+	}
+	
+	public String modifyDepartment(){
+		boolean flag = humanService.modifyDepartment(department);
+		String path = flag == true? SUCCESS:FAIL;
+		return path;
+	}
 
+	public String deleteDepartment() {
+		System.out.println(department.getDepartmentId());
+		humanService.deleteDepartment(department);
+		dataMap.put("success", "success");
+		return SUCCESS;
+	}
+	
+	
 	public String showBackendPositionPage() {
 		return SUCCESS;
 	}
 
 	public String getPositionList() {
-		List<Position> positionList = humanService.getPositionList();
+		List<Position> positionList = null;
+		if(position == null){
+			positionList = humanService.getPositionList();
+		}else{
+			positionList = humanService.searchPositionList(position);
+		}
 		dataMap.put("human", positionList);
 		return SUCCESS;
 	}
@@ -140,6 +183,28 @@ public class HumanAction extends BaseActionSupport {
 		boolean flag = humanService.addPosition(position);
 		String path = flag == true? SUCCESS:FAIL;
 		return path;
+	}
+	
+	public String modifyPositionPage(){
+		List<Company> allCompanyList = humanService.getCompanyList();
+		position = humanService.getPositionById(position.getPositionId());
+		request.setAttribute("allCompanyList", allCompanyList);
+		request.setAttribute("position", position);
+		return SUCCESS;
+	}
+	
+	public String modifyPosition(){
+		System.out.println(position.getPositionId());
+		boolean flag = humanService.modifyPosition(position);
+		String path = flag == true? SUCCESS:FAIL;
+		return path;
+	}
+	
+	public String deletePosition() {
+		System.out.println(position.getPositionId());
+		humanService.deletePosition(position);
+		dataMap.put("success", "success");
+		return SUCCESS;
 	}
 	
 	public Map<String, Object> getDataMap() {

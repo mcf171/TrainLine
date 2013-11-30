@@ -36,10 +36,7 @@ public class TestPaperService {
 		
 	}
 	
-	public List<Testquestion> getTestquestionList(){
-		
-		return testquestionDAO.findAll();
-	}
+	
 	
 	
 	public TestquestionDAO getTestquestionDAO() {

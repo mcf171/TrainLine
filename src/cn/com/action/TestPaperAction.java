@@ -36,21 +36,7 @@ public class TestPaperAction extends BaseActionSupport {
 		return this.SUCCESS;
 	}
 	
-	public String getQuestionsPage(){
-		
-		return this.SUCCESS;
-	}
 	
-	public String getQuestions(){
-		
-		List<Testquestion>list = null;
-		
-		list = testPaperService.getTestquestionList();
-		
-		this.dataMap.put("testquestionList", list);
-		
-		return this.SUCCESS;
-	}
 	
 	public List<Testpaper> getTpList() {
 		return tpList;
@@ -68,4 +54,13 @@ public class TestPaperAction extends BaseActionSupport {
 		this.testPaperService = testPaperService;
 	}
 
+	public Map<String, Object> getDataMap() {
+		return dataMap;
+	}
+
+	public void setDataMap(Map<String, Object> dataMap) {
+		this.dataMap = dataMap;
+	}
+	
+	
 }

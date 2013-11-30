@@ -1,7 +1,9 @@
 package cn.com.dao;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.LockMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,6 +70,32 @@ public class NoticeDAO extends HibernateDaoSupport {
 		}
 	}
 
+	public List findByNoticeTime(Timestamp fromTime,Timestamp toTime){
+		String queryString = "from Notice where 1 = 1 and noticeTime between ? and ?";
+		List<Object> params = new ArrayList<Object>();
+		params.add(fromTime);
+		params.add(toTime);
+		List <Notice> NoticeList = getHibernateTemplate().find(queryString, params.toArray());
+		return NoticeList;
+	}
+	public List findByNoticeExample(Notice notice){
+		String queryString = "from Notice where 1 = 1";
+		List<Object> params = new ArrayList<Object>();
+		if(notice.getNoticeId()!=0){
+			queryString+="and noticeId=?";
+			params.add(notice.getNoticeId());
+		}
+		if(notice.getNoticetype().getNoticeTypeId()!=0){
+			queryString+="and noticeTypeId=?";
+			params.add(notice.getNoticetype().getNoticeTypeId());	
+		}
+		if(notice.getNoticeContent()!=null){
+			queryString+="and noticeContent like ?";
+			params.add("%"+notice.getNoticeContent() + "%");
+		}
+		List <Notice> NoticeList = getHibernateTemplate().find(queryString, params.toArray());
+		return NoticeList;
+	}
 	public List findByExample(Notice instance) {
 		log.debug("finding Notice instance by example");
 		try {

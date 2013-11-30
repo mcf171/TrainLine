@@ -1,5 +1,6 @@
 package cn.com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -8,6 +9,7 @@ import org.hibernate.LockMode;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.com.model.Company;
 import cn.com.model.Department;
 
 /**
@@ -18,7 +20,7 @@ import cn.com.model.Department;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see cn.com.dao1.Department
+ * @see cn.com.model.Department
  * @author MyEclipse Persistence Tools
  */
 public class DepartmentDAO extends HibernateDaoSupport {
@@ -49,9 +51,12 @@ public class DepartmentDAO extends HibernateDaoSupport {
 	public void delete(Department persistentInstance) {
 		log.debug("deleting Department instance");
 		try {
+			getHibernateTemplate().clear();
 			getHibernateTemplate().delete(persistentInstance);
+			getHibernateTemplate().flush();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
+			
 			log.error("delete failed", re);
 			throw re;
 		}
@@ -61,7 +66,7 @@ public class DepartmentDAO extends HibernateDaoSupport {
 		log.debug("getting Department instance with id: " + id);
 		try {
 			Department instance = (Department) getHibernateTemplate().get(
-					"cn.com.dao1.Department", id);
+					"cn.com.model.Department", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -168,5 +173,56 @@ public class DepartmentDAO extends HibernateDaoSupport {
 
 	public static DepartmentDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (DepartmentDAO) ctx.getBean("DepartmentDAO");
+	}
+	
+	public List<Department> findByExampleFuzzy(Department department){
+		
+		String queryString = "from Department where 1=1 ";
+
+		List<Object> params = new ArrayList<Object>();
+		
+		if(department.getDepartmentId() != null){
+			queryString += "and departmentId = ?";
+			params.add(department.getDepartmentId());
+		}
+		
+		if(department.getCompany().getCompanyId() != null){
+			queryString += "and companyId = ? ";
+			params.add( department.getCompany().getCompanyId());
+		}
+		
+		if(department.getDepartmentName() != null){
+			queryString += "and departmentName like ? ";
+			params.add("%" + department.getDepartmentName() + "%");
+		}
+		
+		if(department.getDepartmentstatus() != null && department.getDepartmentstatus() != -1){
+			queryString += "and departmentstatus = ? ";
+			params.add(department.getDepartmentstatus());
+		}
+		
+		if(department.getDepartmentShortName() != null){
+			queryString += "and departmentShortName like ? ";
+			params.add("%" + department.getDepartmentShortName() + "%");
+		}
+		
+		if(department.getBusinessUnits() != null){
+			queryString += "and BusinessUnits like ? ";
+			params.add("%" + department.getBusinessUnits() + "%");
+		}
+		
+		if(department.getDepartmentCoding() != null){
+			queryString += "and departmentCoding = ? ";
+			params.add( department.getDepartmentCoding());
+		}
+		
+		if(department.getCountry() != null){
+			queryString += "and country like ? ";
+			params.add("%" + department.getCountry() + "%");
+		}
+		
+		List<Department> departmentList = getHibernateTemplate().find(queryString,params.toArray());
+		
+		return departmentList;
 	}
 }

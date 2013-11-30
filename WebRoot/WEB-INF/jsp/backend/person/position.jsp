@@ -11,8 +11,7 @@
 	href="${basePath}themes/mmgrid/mmpaginator.css" />
 <script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
 <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
-
-
+<script type="text/javascript" src="${basePath}scripts/human.js"></script>
 
 <script type="text/javascript">
 	//         
@@ -64,15 +63,28 @@
 				title : '操作',
 				renderer : function(val, item, row) {
 					onclick = "#";
-					return '<a href="#">查看</a> '
-							+ '&nbsp'
-							+ '<a href="#" >修改</a> '
-							+ '&nbsp'
-							+ '<a href="#" >删除</a> ';
+					return '<a href="javascript:loadHTML(\'${basePath}modifyPositionPage.action?position.positionId=' +item.positionId + '\')")">修改</a> '
+					+ '&nbsp'
+					+ '<a href="javascript:showConfirm(' +item.positionId + ',' +'\'${basePath}\''+')" >删除</a>  ';
 				}
 			} ],
 			plugins : [ $('#page').mmPaginator({}) ]
 		});
+	
+		$("#showAll").click(function(){
+			mmGridTable.load();
+		});
+		
+		$("#search").click(function(){
+			var positionId = $("#positionId").val();
+			var positionName = $("#positionName").val();
+			
+			mmGridTable.load({
+				"position.positionId" : positionId,
+				"position.positionName" : positionName
+			});
+		});
+	
 	});
 	//
 </script>
@@ -88,27 +100,19 @@
 			<form id="condition" class="span12 form-inline no-margin">
 				<div class="row-fluid line-margin">
 					<span class="help-inline"><b>基本过滤：</b>职位ID：</span> 
-					<input type="text" class="span2" placeholder="请输入相应内容" />
+					<input type="text" class="span2" placeholder="请输入相应内容" id="positionId" />
 					 <span class="help-inline">职位名：</span> 
-					 <input type="text" class="span2" placeholder="请输入相应内容" />
-					 <span class="help-inline">部门名：</span> 
-					 <select class="input-small">
-						<option>0</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-					</select>
+					 <input type="text" class="span2" placeholder="请输入相应内容" id="positionName" />
 				</div>
 				<div>
 					<div class="row-fluid line-margin">
-							<button class="btn ">
+							<button class="btn " type="button" id="search">
 								<i class="icon-search"></i>查询
 							</button>
 							<button class="btn" type="reset">
 								<i class="icon-remove"></i>清除条件
 							</button>
-							<button class="btn " id="showAll">
+							<button class="btn " id="showAll" type="button">
 								<i class="icon-align-justify"></i>显示所有
 							</button>
 					</div>
@@ -121,5 +125,19 @@
 				</div>
 			</form>
 		</div>
+	</div>
+</div>
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">确认删除</h3>
+	</div>
+	<div class="modal-body">
+		<p>是否真的删除？</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		<button class="btn btn-primary" onclick="deletePosition()">确认</button>
 	</div>
 </div>

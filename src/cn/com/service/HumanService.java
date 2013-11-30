@@ -1,21 +1,16 @@
 package cn.com.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.runner.Request;
 
 import cn.com.dao.CompanyDAO;
 import cn.com.dao.DepartmentDAO;
-import cn.com.dao.PersonalinformationDAO;
 import cn.com.dao.PositionDAO;
 import cn.com.dao.UserDAO;
 import cn.com.model.Company;
 import cn.com.model.Department;
-import cn.com.model.Personalinformation;
 import cn.com.model.Position;
 import cn.com.model.User;
-import cn.com.model.UserDTO;
 
 public class HumanService {
 	private UserDAO userDAO;
@@ -29,6 +24,10 @@ public class HumanService {
 	
 	public List<Company> getCompanyList(){
 		return companyDAO.findAll();
+	}
+	
+	public List<Company> searchCompanyList(Company company){
+		return companyDAO.findByExampleFuzzy(company);
 	}
 	
 	public Company getCompanyByName(Object companyName){
@@ -45,15 +44,20 @@ public class HumanService {
 			companyDAO.save(company);
 			flag = true;
 		}catch (Exception e) {
-			// TODO: handle exception
 			flag = false;
 			e.printStackTrace();
-		}finally{
-			flag = false;
 		}
 		return flag;
 	}
 	
+	public void deleteCompany(Company company){
+		
+		List<Department> departmentList = departmentDAO.findByProperty("company.companyId", company.getCompanyId());
+		for(int i=0; i<departmentList.size(); i++){
+			deleteDepartment(departmentList.get(i));
+		}
+		companyDAO.delete(company);
+	}
 	
 	public boolean modifyCompany(Company company){
 		boolean flag = false;
@@ -61,11 +65,8 @@ public class HumanService {
 			companyDAO.merge(company);
 			flag = true;
 		}catch (Exception e) {
-			// TODO: handle exception
 			flag = false;
 			e.printStackTrace();
-		}finally{
-			flag = false;
 		}
 		return flag;
 	}
@@ -74,14 +75,22 @@ public class HumanService {
 		return departmentDAO.findAll();
 	}
 	
+	public List<Department> searchDepartmentList(Department department){
+		List<Company> companyList = companyDAO.findByCompanyName(department.getCompany().getCompanyName());
+		if(companyList.size() > 0){			
+			department.getCompany().setCompanyId(companyList.get(0).getCompanyId());
+		}
+		return departmentDAO.findByExampleFuzzy(department);
+	}
+	
 	public List<Department> getDepartmentListByCompanyId(int companyId){
-		System.out.println(companyId);
 		Company company = companyDAO.findById(companyId);
 		List<Department> departmentList = departmentDAO.findByProperty("company.companyId", company.getCompanyId());
-		for(int i=0; i<departmentList.size(); i++){
-			System.out.println("DepartmentName:" + departmentList.get(i).getDepartmentName());
-		}
 		return departmentList;
+	}
+	
+	public Department getDepartmentById(int departmentId){
+		return departmentDAO.findById(departmentId);
 	}
 	
 	public boolean addDepartment(Department department){
@@ -96,10 +105,40 @@ public class HumanService {
 		return flag;
 	}
 	
+	public boolean modifyDepartment(Department department){
+		boolean flag = false;
+		try{
+			departmentDAO.merge(department);
+			flag = true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+
+	public void deleteDepartment(Department department){
+		List<Position> positionList = positionDAO.findByProperty("department.departmentId", department.getDepartmentId());
+		for(int i=0; i<positionList.size(); i++){
+			positionDAO.delete(positionList.get(i));
+		}
+		departmentDAO.delete(department);
+	}
+	
 	public List<Position> getPositionList(){
 		return positionDAO.findAll();
 	}
 
+	public List<Position> searchPositionList(Position position){
+		return positionDAO.findByExampleFuzzy(position);
+	}
+	
+	public Position getPositionById(int positionId){
+		return positionDAO.findById(positionId);
+	}
+	
 	public boolean addPosition(Position position){
 		boolean flag = false;
 		try{
@@ -111,6 +150,23 @@ public class HumanService {
 			e.printStackTrace();
 		}
 		return flag;
+	}
+	
+	public boolean modifyPosition(Position position){
+		boolean flag = false;
+		try{
+			positionDAO.merge(position);
+			flag = true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public void deletePosition(Position position){
+		positionDAO.delete(position);
 	}
 	
 	public UserDAO getUserDAO() {

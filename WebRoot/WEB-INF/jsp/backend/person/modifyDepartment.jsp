@@ -6,15 +6,17 @@
 <script type="text/javascript">
 //<!--
 $(document).ready(function(){
-	
-
 	var optionString = "";
 	<c:forEach items="${allCompanyList}" var="item">
 			optionString += "<option name='companyName' value='" + ${item.companyId} + "'>" + "${item.companyName}" +"</option>";
 	</c:forEach>
-
 	$("#companyName").append(optionString);
-
+	
+	var companyNameValue = ${department.company.companyId };
+	$("#companyName option[value = '" + companyNameValue + "']").attr("selected","selected");
+	
+    var departmentstatusValue = ${department.departmentstatus};
+    $("#departmentstatus option[value='" + departmentstatusValue + "']").attr("selected","selected");
 });
 
 
@@ -25,32 +27,36 @@ $("#cancle").click(function(){
 </script>
 
 <div class="row-fluid">
-	<form action="${basePath}addDepartment.action"  enctype="multipart/form-data" method="post">
+	<form action="${basePath}modifyDepartment.action"  enctype="multipart/form-data" method="post">
+		<div class="row-fluid line-margin" style="display: none;">
+			<span class="help-inline">部门ID：</span>
+			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.departmentId" value="${department.departmentId}"/>
+		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门名称：</span>
 			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.departmentName" value="${department.departmentName}"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门等级：</span>
-			<select class="input-small " name="department.departmentstatus" value="${department.departmentstatus}">
-				<option>0</option>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
+			<select class="input-small " id="departmentstatus" name="department.departmentstatus" value="${department.departmentstatus}">
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
 			</select>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门简称：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.departmentShortName" value="${department.departmentShortName }"/>
+			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.departmentShortName" value="${department.departmentShortName}"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">业务板块：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.businessUnits" value="${department.businessUnits }"/>
+			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.businessUnits" value="${department.businessUnits}"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门编码：</span>
-			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.departmentCoding" value="department.departmentCoding"/>
+			<input type="text" class=" span2" placeholder="请输入人员名称" name="department.departmentCoding" value="${department.departmentCoding}"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">籍贯：</span>
