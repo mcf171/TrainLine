@@ -70,6 +70,21 @@
 			} ],
 			plugins : [ $('#page').mmPaginator({}) ]
 		});
+	
+		$("#showAll").click(function(){
+			mmGridTable.load();
+		});
+		
+		$("#search").click(function(){
+			var positionId = $("#positionId").val();
+			var positionName = $("#positionName").val();
+			
+			mmGridTable.load({
+				"position.positionId" : positionId,
+				"position.positionName" : positionName
+			});
+		});
+	
 	});
 	//
 </script>
@@ -85,27 +100,19 @@
 			<form id="condition" class="span12 form-inline no-margin">
 				<div class="row-fluid line-margin">
 					<span class="help-inline"><b>基本过滤：</b>职位ID：</span> 
-					<input type="text" class="span2" placeholder="请输入相应内容" />
+					<input type="text" class="span2" placeholder="请输入相应内容" id="positionId" />
 					 <span class="help-inline">职位名：</span> 
-					 <input type="text" class="span2" placeholder="请输入相应内容" />
-					 <span class="help-inline">部门名：</span> 
-					 <select class="input-small">
-						<option>0</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-					</select>
+					 <input type="text" class="span2" placeholder="请输入相应内容" id="positionName" />
 				</div>
 				<div>
 					<div class="row-fluid line-margin">
-							<button class="btn ">
+							<button class="btn " type="button" id="search">
 								<i class="icon-search"></i>查询
 							</button>
 							<button class="btn" type="reset">
 								<i class="icon-remove"></i>清除条件
 							</button>
-							<button class="btn " id="showAll">
+							<button class="btn " id="showAll" type="button">
 								<i class="icon-align-justify"></i>显示所有
 							</button>
 					</div>

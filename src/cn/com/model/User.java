@@ -10,7 +10,6 @@ import java.util.Set;
 public class User implements java.io.Serializable {
 
 	// Fields
-
 	private Integer userId;
 	private Majorqualification majorqualification;
 	private Personalinformation personalinformation;

@@ -1,5 +1,6 @@
 package cn.com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -8,6 +9,7 @@ import org.hibernate.LockMode;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.com.model.Company;
 import cn.com.model.Position;
 
 /**
@@ -44,7 +46,9 @@ public class PositionDAO extends HibernateDaoSupport {
 	public void delete(Position persistentInstance) {
 		log.debug("deleting Position instance");
 		try {
+			getHibernateTemplate().clear();
 			getHibernateTemplate().delete(persistentInstance);
+			getHibernateTemplate().flush();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
@@ -142,5 +146,32 @@ public class PositionDAO extends HibernateDaoSupport {
 
 	public static PositionDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (PositionDAO) ctx.getBean("PositionDAO");
+	}
+	
+	public List<Position> findByExampleFuzzy(Position position){
+		
+		String queryString = "from Position where 1=1 ";
+		List<Object> params = new ArrayList<Object>();
+		
+		if (position.getPositionId() != null) {
+			
+			queryString += "and positionId = ?";
+			params.add(position.getPositionId());
+		}
+		
+		if (position.getPositionName() != null) {
+
+			queryString += "and positionName like ?";
+			params.add("%" + position.getPositionName() + "%");
+		}
+		
+		if (position.getDepartment().getDepartmentId() != null) {
+
+			queryString += "and departmentId = ?";
+			params.add( position.getDepartment().getDepartmentId() );
+		}
+		List<Position> positionList = getHibernateTemplate().find(queryString,params.toArray());
+		
+		return positionList;
 	}
 }

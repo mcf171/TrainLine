@@ -26,6 +26,10 @@ public class HumanService {
 		return companyDAO.findAll();
 	}
 	
+	public List<Company> searchCompanyList(Company company){
+		return companyDAO.findByExampleFuzzy(company);
+	}
+	
 	public Company getCompanyByName(Object companyName){
 		return (Company) companyDAO.findByCompanyName(companyName).get(0);
 	}
@@ -47,6 +51,11 @@ public class HumanService {
 	}
 	
 	public void deleteCompany(Company company){
+		
+		List<Department> departmentList = departmentDAO.findByProperty("company.companyId", company.getCompanyId());
+		for(int i=0; i<departmentList.size(); i++){
+			deleteDepartment(departmentList.get(i));
+		}
 		companyDAO.delete(company);
 	}
 	
@@ -66,8 +75,15 @@ public class HumanService {
 		return departmentDAO.findAll();
 	}
 	
+	public List<Department> searchDepartmentList(Department department){
+		List<Company> companyList = companyDAO.findByCompanyName(department.getCompany().getCompanyName());
+		if(companyList.size() > 0){			
+			department.getCompany().setCompanyId(companyList.get(0).getCompanyId());
+		}
+		return departmentDAO.findByExampleFuzzy(department);
+	}
+	
 	public List<Department> getDepartmentListByCompanyId(int companyId){
-		System.out.println(companyId);
 		Company company = companyDAO.findById(companyId);
 		List<Department> departmentList = departmentDAO.findByProperty("company.companyId", company.getCompanyId());
 		return departmentList;
@@ -115,6 +131,10 @@ public class HumanService {
 		return positionDAO.findAll();
 	}
 
+	public List<Position> searchPositionList(Position position){
+		return positionDAO.findByExampleFuzzy(position);
+	}
+	
 	public Position getPositionById(int positionId){
 		return positionDAO.findById(positionId);
 	}
