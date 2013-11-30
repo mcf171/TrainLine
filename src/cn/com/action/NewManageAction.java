@@ -108,7 +108,7 @@ public class NewManageAction extends BaseActionSupport{
 			 Timestamp toTimeStamp = Timestamp.valueOf(toTime);
 			 noticeList = noticeService.findByNoticeTime(fromTimeStamp, toTimeStamp);
 		 }
-		 if(notice!=null){
+		 else if(notice!=null){
 			 noticeList = noticeService.findByNoticeExample(notice);
 		 }
 		 else{

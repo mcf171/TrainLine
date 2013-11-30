@@ -14,7 +14,7 @@
 <script type="text/javascript">
 //<![CDATA[
 var PAGES = {
-	page_0: '${basePath}note_intoStudy.action',
+	page_0: '${basePath}note_getNoticeList.action',
 	page_1: '${basePath}admin/getExaminations.action',
 	page_2: '${basePath}trainingClass_intoClasspage.action',
 	page_3: 'resource.jsp',

@@ -1,17 +1,21 @@
 package cn.com.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Catalogue;
 import cn.com.model.Note;
+import cn.com.model.Notice;
 import cn.com.service.NoteService;
-import cn.com.util.RegEx;
+import cn.com.service.NoticeService;
 
 public class NoteAction extends BaseActionSupport {
 	private List<Note> nList;
 	private NoteService noteService;
+	private NoticeService noticeService;
 	private Map<String, List> dataMap;
 
 	// **查询条件*/
@@ -21,8 +25,66 @@ public class NoteAction extends BaseActionSupport {
 	private String catalogueId;
 	private String noteContent;
 	private Integer page;
+	private List<Notice>noticeList1;
+	private List<Notice>noticeList2;
+	private List<Notice>noticeList3;
+	private List<Notice>noticeList4;
+	private List<Notice>noticeList5;
+	
+	public List<Notice> getNoticeList1() {
+		return noticeList1;
+	}
+
+	public void setNoticeList1(List<Notice> noticeList1) {
+		this.noticeList1 = noticeList1;
+	}
+
+	public List<Notice> getNoticeList2() {
+		return noticeList2;
+	}
+
+	public void setNoticeList2(List<Notice> noticeList2) {
+		this.noticeList2 = noticeList2;
+	}
+
+	public List<Notice> getNoticeList3() {
+		return noticeList3;
+	}
+
+	public List<Notice> getNoticeList4() {
+		return noticeList4;
+	}
+
+	public void setNoticeList4(List<Notice> noticeList4) {
+		this.noticeList4 = noticeList4;
+	}
+
+	public List<Notice> getNoticeList5() {
+		return noticeList5;
+	}
+
+	public void setNoticeList5(List<Notice> noticeList5) {
+		this.noticeList5 = noticeList5;
+	}
+
+	public void setNoticeList3(List<Notice> noticeList3) {
+		this.noticeList3 = noticeList3;
+	}
+
+	public NoticeService getNoticeService() {
+		return noticeService;
+	}
+
+	public void setNoticeService(NoticeService noticeService) {
+		this.noticeService = noticeService;
+	}
 
 	public NoteAction() {
+		noticeList1=new ArrayList<Notice>();
+		noticeList2=new ArrayList<Notice>();
+		noticeList3=new ArrayList<Notice>();
+		noticeList4=new ArrayList<Notice>();
+		noticeList5=new ArrayList<Notice>();
 		note =new Note();
 		dataMap = new HashMap<String, List>();
 	}
@@ -79,6 +141,41 @@ public class NoteAction extends BaseActionSupport {
 		return dataMap;
 	}
 
+	public String getNoticeList(){
+		List<Notice> noticeList = new ArrayList<Notice>();
+		noticeList = noticeService.getAllNotice();
+		for(int i=0;i<noticeList.size();i++){
+			int id = noticeList.get(i).getNoticetype().getNoticeTypeId();
+			if(id==5){
+		           noticeList1.add(noticeList.get(i));
+			}
+			else if(id==6){
+				noticeList2.add(noticeList.get(i));
+			}
+			else if(id==7){
+				noticeList3.add(noticeList.get(i));
+			}
+		}
+		return "showGonggao";
+	}
+	
+	public String getQiantaiNotice(){
+		List<Notice> noticeList = new ArrayList<Notice>();
+		noticeList = noticeService.getAllNotice();
+		for(int i=0;i<noticeList.size();i++){
+			int id = noticeList.get(i).getNoticetype().getNoticeTypeId();
+			if(id==1){
+				   if(noticeList4.size()<=3){
+			           noticeList4.add(noticeList.get(i));
+				   }
+			}
+			else if(id==2){
+				noticeList5.add(noticeList.get(i));
+			}			
+		}
+		return "showQiantaiGonggao";
+	}
+	
 	public void setDataMap(Map<String, List> dataMap) {
 		this.dataMap = dataMap;
 	}

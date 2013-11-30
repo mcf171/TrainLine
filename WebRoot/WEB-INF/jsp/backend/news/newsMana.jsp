@@ -97,12 +97,11 @@ $("#baseCheck").click(function(){
     );
     
 });
-var flag = 0;
+
 $("#timeCheck").click(function(){
+var flag = 0;
 var fromTime = $("#time-from").val();
-alert(fromTime);
 var toTime = $("#time-to").val();
-alert(toTime);
 if((fromTime!="")&&(toTime!="")){
    flag=1;
    mmGirdTable.load(
@@ -163,7 +162,7 @@ if((fromTime!="")&&(toTime!="")){
 					    <input id="noticeIdSearch" class="span2 " type="text" placeholder="请输入内容" name="keyword">
 					    <b>内容过滤：</b>
 					    <input id="noticeContent" class="span2 " type="text" placeholder="请输入内容" name="keyword">
-					    <button type="submit" class="btn" id="baseCheck">查询</button>
+					    <button type="button" class="btn" id="baseCheck">查询</button>
 			    </div>            
 			    <div style="margin-top:10px">
 					     <span class="help-inline">
@@ -173,7 +172,7 @@ if((fromTime!="")&&(toTime!="")){
 					     <span class="help-inline">至</span>
 					     <input type="text" id="time-to" name="toTime" class="span2" readonly="readonly" placeholder="结束时间">
 					     <button type="submit" class="btn" id="timeCheck">查询</button>
-					     <button type="submit" id="checkAll" class="btn">清楚条件</button>
+					     <button type="button" id="checkAll" class="btn">清楚条件</button>
 			    </div>                     
            </div>
           <div class="row word_style">
