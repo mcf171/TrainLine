@@ -1,4 +1,4 @@
-package cn.com.model;
+package cn.com.model;;
 
 /**
  * ClassandcourseId entity. @author MyEclipse Persistence Tools
@@ -8,8 +8,8 @@ public class ClassandcourseId implements java.io.Serializable {
 
 	// Fields
 
-	private Trainingclass trainingclass;
-	private Course course;
+	private Integer trainingClassId;
+	private Integer courseId;
 
 	// Constructors
 
@@ -18,27 +18,27 @@ public class ClassandcourseId implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public ClassandcourseId(Trainingclass trainingclass, Course course) {
-		this.trainingclass = trainingclass;
-		this.course = course;
+	public ClassandcourseId(Integer trainingClassId, Integer courseId) {
+		this.trainingClassId = trainingClassId;
+		this.courseId = courseId;
 	}
 
 	// Property accessors
 
-	public Trainingclass getTrainingclass() {
-		return this.trainingclass;
+	public Integer getTrainingClassId() {
+		return this.trainingClassId;
 	}
 
-	public void setTrainingclass(Trainingclass trainingclass) {
-		this.trainingclass = trainingclass;
+	public void setTrainingClassId(Integer trainingClassId) {
+		this.trainingClassId = trainingClassId;
 	}
 
-	public Course getCourse() {
-		return this.course;
+	public Integer getCourseId() {
+		return this.courseId;
 	}
 
-	public void setCourse(Course course) {
-		this.course = course;
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
 	}
 
 	public boolean equals(Object other) {
@@ -50,13 +50,14 @@ public class ClassandcourseId implements java.io.Serializable {
 			return false;
 		ClassandcourseId castOther = (ClassandcourseId) other;
 
-		return ((this.getTrainingclass() == castOther.getTrainingclass()) || (this
-				.getTrainingclass() != null
-				&& castOther.getTrainingclass() != null && this
-				.getTrainingclass().equals(castOther.getTrainingclass())))
-				&& ((this.getCourse() == castOther.getCourse()) || (this
-						.getCourse() != null && castOther.getCourse() != null && this
-						.getCourse().equals(castOther.getCourse())));
+		return ((this.getTrainingClassId() == castOther.getTrainingClassId()) || (this
+				.getTrainingClassId() != null
+				&& castOther.getTrainingClassId() != null && this
+				.getTrainingClassId().equals(castOther.getTrainingClassId())))
+				&& ((this.getCourseId() == castOther.getCourseId()) || (this
+						.getCourseId() != null
+						&& castOther.getCourseId() != null && this
+						.getCourseId().equals(castOther.getCourseId())));
 	}
 
 	public int hashCode() {
@@ -64,10 +65,10 @@ public class ClassandcourseId implements java.io.Serializable {
 
 		result = 37
 				* result
-				+ (getTrainingclass() == null ? 0 : this.getTrainingclass()
+				+ (getTrainingClassId() == null ? 0 : this.getTrainingClassId()
 						.hashCode());
 		result = 37 * result
-				+ (getCourse() == null ? 0 : this.getCourse().hashCode());
+				+ (getCourseId() == null ? 0 : this.getCourseId().hashCode());
 		return result;
 	}
 

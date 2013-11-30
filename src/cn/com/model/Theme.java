@@ -13,7 +13,6 @@ public class Theme implements java.io.Serializable {
 
 	private Integer themeId;
 	private String themeName;
-	private Set topics = new HashSet(0);
 
 	// Constructors
 
@@ -21,11 +20,7 @@ public class Theme implements java.io.Serializable {
 	public Theme() {
 	}
 
-	/** full constructor */
-	public Theme(String themeName, Set topics) {
-		this.themeName = themeName;
-		this.topics = topics;
-	}
+
 
 	// Property accessors
 
@@ -45,12 +40,6 @@ public class Theme implements java.io.Serializable {
 		this.themeName = themeName;
 	}
 
-	public Set getTopics() {
-		return this.topics;
-	}
-
-	public void setTopics(Set topics) {
-		this.topics = topics;
-	}
+	
 
 }

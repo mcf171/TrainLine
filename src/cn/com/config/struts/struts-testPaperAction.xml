@@ -4,5 +4,19 @@
 	<package name="testPaper" namespace="/" extends="json-default">
 		<action name="testPaper_*" class="testPaperAction" method="{1}">
 		</action>
+		
+		<action name="getExaminations" class="testPaperAction" method="getExaminations">
+			<result>/WEB-INF/jsp/backend/examinations.jsp</result>
+		</action>
+		
+		<action name="getQuestionsPage" class="testPaperAction" method="getQuestionsPage">
+			<result>/WEB-INF/jsp/backend/examinations/manage-questions.jsp</result>
+		</action>
+		
+		<action name="getQuestions" class="testPaperAction" method="getQuestions">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
 	</package>
 </struts>    

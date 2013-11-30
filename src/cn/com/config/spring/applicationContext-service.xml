@@ -45,6 +45,8 @@
 	
 	<bean id="forumService" class="cn.com.service.ForumService" scope="prototype">
 	   <property name="themeDAO" ref="ThemeDAO"></property>
+	   <property name="tieziDAO" ref="TieziDAO"></property>
+	   <property name="topicDAO" ref="TopicDAO"></property>
 	</bean>
 	
 	<bean id="userService" class="cn.com.service.UserService" scope="prototype">
@@ -77,6 +79,7 @@
 
 	<bean id="testPaperService" class="cn.com.service.TestPaperService">
 		<property name="testpaperDAO" ref="TestpaperDAO"></property>
+		<property name="testquestionDAO" ref="TestquestionDAO"></property>
 	</bean>
 
 	<bean id="testArrangementService" class="cn.com.service.TestArrangementService">

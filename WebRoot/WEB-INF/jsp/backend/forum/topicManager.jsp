@@ -20,23 +20,39 @@ $(document).ready(function ()
 	$('#time-from').css('background', 'none').datepicker();
 	test="ready"
 	mmGirdTable = $('#grid').mmGrid({
-		url: '${basePath}getInsideLiberaryList.action',
+		url: '${basePath}showBackendforumTopicList.action',
 		height: 410,
 		autoLoad: true,
 		fullWidthRows: true,
-		root:'liberary',
+		root:'topicList',
 		cols: [
-				{ title: '主题名称', sortable: true,  name: 'themeName' },
-				{ title: '主题编号', sortable: true, name: 'themeId' },
-				{ title: '用户名字', sortable: true, name: 'themeId' },
-				{ title: '主题图片路径', sortable: true, name: 'themeId' },
-				{ title: '话题名称', sortable: true, name: 'themeId' },
+		       
+				{ title: '话题名字', sortable: true, name: 'topicName' },
+				{ title: '话题图标', sortable: true, name: 'topicImgPath' },
+				{ title: '版主名称', sortable: true, 
+					renderer: function (val, item, row)
+					{
+						return item.user.userName;
+					}	
+				},
+				{ title: '主题名称', sortable: true,  
+					renderer: function (val, item, row)
+					{
+						return item.theme.themeName;
+					}
+				},
+				{ title: '主题编号', sortable: true, 
+					renderer: function (val, item, row)
+					{
+						return item.theme.themeId;
+					}
+				},
 				{
 					title: '操作',
 					width: 100,
 					renderer: function (val, item, row)
 					{
-						onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
+						
 						return '<a href="javascript:loadHTML(\'${basePath}modifyBookPage.action?book.bookId=' +item.bookId + '\')">修改</a> ' + '&nbsp' + '<a href="javascript:showConfirm(' +item.bookId + ',' +'\'${basePath}\''+')" >删除</a> ';
 					}
 				}
@@ -55,17 +71,24 @@ $(document).ready(function ()
 	$("#showAll").click(function(){
 		mmGirdTable.load();
 	});
+	$("#reset").click(function(){
+		
+		$("#topicName").val("");
+		$("#userName").val("");
+		$("#themeId").val("");
+	});
 	$("#search").click(function(){
-		var bookName = $("#bookName").val();
-		var bookContent = $("#bookContent").val();
-		var bookClassIndex = $("#bookClassIndex").val();
-		var bookType = $("#bookType").val();
+		var topicName = $("#topicName").val();
+		var userName = $("#userName").val();
+		//var themeName = $("#themeName").val();
+		var themeId = $("#themeId").val();
 		//mmGirdTable.load([{"book.bookName":bookName },{"book.bookContent":checkValue}]);
 		mmGirdTable.load(
-				{"book.bookName":bookName,
-				"book.bookContent":bookContent,
-				"book.bookType.bookTypeId":bookType,
-				"book.bookClassIndex":bookClassIndex
+				{
+					"topic.topicName":topicName,
+					"topic.user.userName":userName,
+					//"topic.theme.themeName":themeName,
+					"topic.theme.themeId":themeId
 				}
 				);
 	});
@@ -85,25 +108,32 @@ $(document).ready(function ()
 						<button class="btn" onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"><i class="icon-plus"></i>&nbsp;新增</button>
 					</div>			
             			<div class="row-fluid line-margin">
-			               <span class="help-inline"><b>基本过滤：</b>主题名称：</span>
+			               <span class="help-inline"><b>基本过滤：</b>话题名称：</span>
 			               <input
-			               			id="bookName"
+			               			id="topicName"
 									type="text"
 									name="keyword"
 									class="span2 "
 									placeholder="请输入内容"
 								/>
-			                <span class="help-inline">主题编号：</span> <input
-									id="bookContent"
+			                <span class="help-inline">版主名称：</span> <input
+									id="userName"
 									type="text"
 									name="keyword"
 									class="span2 "
 									placeholder="请输入内容"
 								/>
-			             			    
+								
+								<span class="help-inline">主题编号：</span> <input
+									id="themeId"
+									type="text"
+									name="keyword"
+									class="span2 "
+									placeholder="请输入内容"
+								/>
 			                <div class="row-fluid line-margin">
 			                     <button class="btn " id="search"><i class="icon-search"></i>查询</button>
-			                     <button class="btn" type="reset"><i class="icon-remove"></i>清除</button>
+			                     <button class="btn" id="reset"><i class="icon-remove"></i>清除</button>
 			                     <button class="btn " id="showAll"><i class="icon-align-justify"></i>显示所有</button>
 		               		</div>
 		               </div>

@@ -24,100 +24,184 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //<![CDATA[
 $(document).ready(function ()
 {
-	$('#course-switcher a[href="#selected"]').click(function ()
+	$('#course-switcher a[href="#kecheng"]').click(function ()
 	{
-		$('#list-selected, #filter-selected, #button-remove').removeClass('hidden');
+		$('#list-kecheng, #filter-kecheng, #button-remove').removeClass('hidden');
 		$('#list-available, #filter-available, #button-select').addClass('hidden');
+		$('#list-jiaoxue, #filter-jiaoxue, #button-select').addClass('hidden');
+		$('#list-cuotiji, #filter-cuotiji, #button-select').addClass('hidden');
 	});
 
 	$('#course-switcher a[href="#available"]').click(function ()
 	{
-		$('#list-selected, #filter-selected, #button-remove').addClass('hidden');
+		$('#list-kecheng, #filter-kecheng, #button-remove').addClass('hidden');
 		$('#list-available, #filter-available, #button-select').removeClass('hidden');
+		$('#list-jiaoxue, #filter-jiaoxue, #button-select').addClass('hidden');
+		$('#list-cuotiji, #filter-cuotiji, #button-select').addClass('hidden');
 	});
 
+	$('#course-switcher a[href="#jiaoxue"]').click(function ()
+			{
+				$('#list-kecheng, #filter-kecheng, #button-remove').addClass('hidden');
+				$('#list-available, #filter-available, #button-select').addClass('hidden');
+				$('#list-jiaoxue, #filter-jiaoxue, #button-select').removeClass('hidden');
+				$('#list-cuotiji, #filter-cuotiji, #button-select').addClass('hidden');
+			});
+	
+	$('#course-switcher a[href="#cuotiji"]').click(function ()
+			{
+				$('#list-kecheng, #filter-kecheng, #button-remove').addClass('hidden');
+				$('#list-available, #filter-available, #button-select').addClass('hidden');
+				$('#list-jiaoxue, #filter-jiaoxue, #button-select').addClass('hidden');
+				$('#list-cuotiji, #filter-cuotiji, #button-select').removeClass('hidden');
+			});
+	
+
 	$('#grid-available').mmGrid({
-		url: '${basePath}courseList.action',
+		url: '${basePath}course_fbfindCourse.action',
 		height: 230,
-		root:'courseList',
+		root:'cList',
 		autoLoad: true,
 		checkCol: true,
 		multiSelect: true,
-		fullWithRows: true,
+		fullWidthRows: true,
 		cols: [
-			{ title: '课程编号', sortable: true, width: 100, name: 'courseId' },
-			{ title: '课程名称', sortable: true, width: 370, name: 'courseName' },
+			{ title: '课程编号', sortable: true,  name: 'courseId' },
+			{ title: '课程名称', sortable: true,  name: 'courseName' },
+			{ title: '讲师', sortable: true,  name: 'courseSpeaker' },
+			{ title: '课程介绍', sortable: true,  name: 'courseIntro' },
 			{
-				width: 160,
-				title: '保密级别',
-				sortable: true,
-				renderer: function (val, item, row)
-				{
-					return item['keepsecret']==1 ? '保密' : '公开';
-				}
-			},
-			{
-				width: 160,
 				title: '课程状态',
 				sortable: true,
-				renderer: function (val, item, row)
+				
+				renderer: function (val,item,row)
 				{
-					return item.select ? '已选' : '未选';
+					return item.isSelect==1 ? '已选' : '未选';
 				}
 			},
 			{
 				title: '操作',
-				width: 170,
+				
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.id + '" />' +
-						'<a href="studyContent.jsp">详细信息</a>&nbsp;&nbsp;' +
-						(item.select ? '' : (item.public ? '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>'));
+					return '<input type="hidden" value="' + item.courseId + '" />' +
+						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
+						(item.isSelect==0 ?  '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>');
 				}
 			}
 		],
 		plugins: [
-			$('#page-available').mmPaginator({})
+			$('#page-selected').mmPaginator({})
 		]
 	});
-
-	$('#grid-selected').mmGrid({
-		url: '${basePath}courseList.action',
+	
+	
+	$('#grid-kecheng').mmGrid({
+		url: '${basePath}course_fbfindCourse.action',
 		height: 230,
-		root:'courseList',
+		root:'cList',
 		autoLoad: true,
 		checkCol: true,
 		multiSelect: true,
-		fullWithRows: true,
+		fullWidthRows: true,
 		cols: [
-			{ title: '课程编号', sortable: true, width: 100, name: 'courseId' },
-			{ title: '课程名称', sortable: true, width: 370, name: 'courseName' },
+			{ title: '课程编号', sortable: true,  name: 'courseId' },
+			{ title: '课程名称', sortable: true,  name: 'courseName' },
+			{ title: '讲师', sortable: true,  name: 'courseSpeaker' },
+			{ title: '课程介绍', sortable: true,  name: 'courseIntro' },
 			{
-				width: 160,
-				title: '保密级别',
-				sortable: true,
-				renderer: function (val, item, row)
-				{
-					return item['keepsecret']==1 ? '保密' : '公开';
-				}
-			},
-			{
-				width: 160,
 				title: '课程状态',
 				sortable: true,
-				renderer: function (val, item, row)
+				
+				renderer: function (val,item,row)
 				{
-					return item.select ? '已选' : '未选';
+					return item.isSelect==1 ? '已选' : '未选';
 				}
 			},
 			{
 				title: '操作',
-				width: 170,
+				
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.id + '" />' +
+					return '<input type="hidden" value="' + item.courseId + '" />' +
 						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
-						(item.select ? '' : (item.public ? '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>'));
+						(item.isSelect==0 ?  '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>');
+				}
+			}
+		],
+		plugins: [
+			$('#page-selected').mmPaginator({})
+		]
+	});
+	
+	$('#grid-jiaoxue').mmGrid({
+		url: '${basePath}course_fbfindCourse.action',
+		height: 230,
+		root:'cList',
+		autoLoad: true,
+		checkCol: true,
+		multiSelect: true,
+		fullWidthRows: true,
+		cols: [
+			{ title: '课程编号', sortable: true,  name: 'courseId' },
+			{ title: '课程名称', sortable: true,  name: 'courseName' },
+			{ title: '讲师', sortable: true,  name: 'courseSpeaker' },
+			{ title: '课程介绍', sortable: true,  name: 'courseIntro' },
+			{
+				title: '课程状态',
+				sortable: true,
+				
+				renderer: function (val,item,row)
+				{
+					return item.isSelect==1 ? '已选' : '未选';
+				}
+			},
+			{
+				title: '操作',
+				
+				renderer: function (val, item, row)
+				{
+					return '<input type="hidden" value="' + item.courseId + '" />' +
+						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
+						(item.isSelect==0 ?  '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>');
+				}
+			}
+		],
+		plugins: [
+			$('#page-selected').mmPaginator({})
+		]
+	});
+	
+	$('#grid-cuotiji').mmGrid({
+		url: '${basePath}course_fbfindCourse.action',
+		height: 230,
+		root:'cList',
+		autoLoad: true,
+		checkCol: true,
+		multiSelect: true,
+		fullWidthRows: true,
+		cols: [
+			{ title: '课程编号', sortable: true,  name: 'courseId' },
+			{ title: '课程名称', sortable: true,  name: 'courseName' },
+			{ title: '讲师', sortable: true,  name: 'courseSpeaker' },
+			{ title: '课程介绍', sortable: true,  name: 'courseIntro' },
+			{
+				title: '课程状态',
+				sortable: true,
+				
+				renderer: function (val,item,row)
+				{
+					return item.isSelect==1 ? '已选' : '未选';
+				}
+			},
+			{
+				title: '操作',
+				
+				renderer: function (val, item, row)
+				{
+					return '<input type="hidden" value="' + item.courseId + '" />' +
+						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
+						(item.isSelect==0 ?  '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>');
 				}
 			}
 		],
@@ -137,9 +221,9 @@ $(document).ready(function ()
 				<form class="span12 form-inline no-margin">
 					<ul id="course-switcher" class="row-fluid nav nav-pills line-margin">
 						<li class="active"><a href="#available" data-toggle="tab">选课中心</a></li>
-						<li><a href="#selected" data-toggle="tab">我的课程</a></li>
-						<li><a href="#selected" data-toggle="tab">案例教学</a></li>
-						<li><a href="#selected" data-toggle="tab">错题集</a></li>
+						<li><a href="#kecheng" data-toggle="tab">我的课程</a></li>
+						<li><a href="#jiaoxue" data-toggle="tab">案例教学</a></li>
+						<li><a href="#cuotiji" data-toggle="tab">错题集</a></li>
 					</ul>
 					<hr class="seperator" />
 					<div id="filter-available">
@@ -163,19 +247,65 @@ $(document).ready(function ()
 							<select class="input-medium">
 								<option>所有</option>
 								<option>财务类</option>
-								<option>工程经济类</option>
-							</select>
-							<span class="help-inline">课程状态</span>
-							<select class="input-medium">
-								<option>所有</option>
-								<option>已选</option>
-								<option>未选</option>
+								<option>经济类</option>
 							</select>
 						</div>
 					</div>
-					<div id="filter-selected" class="hidden">
+					<div id="filter-kecheng" class="hidden">
 						<div class="row-fluid">
 							<div class="span2">我的课程</div>
+							<div class="span10 form-inline">
+								<label class="checkbox"><input type="checkbox" name="required" checked="checked" />已选</label>
+								&#12288;&nbsp;
+								<label class="checkbox"><input type="checkbox" name="optional" checked="checked" />可选</label>
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="span2">课程类型</div>
+							<div class="span10 form-inline">
+								<label class="checkbox"><input type="checkbox" name="required" checked="checked" />必修课</label>
+								&nbsp;
+								<label class="checkbox"><input type="checkbox" name="optional" checked="checked" />选修课</label>
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="span2">课程状态</div>
+							<div class="span10 form-inline">
+								<label class="checkbox"><input type="checkbox" name="finished" checked="checked" />学习中</label>
+								&nbsp;
+								<label class="checkbox"><input type="checkbox" name="pending" checked="checked" />已完成</label>
+							</div>
+						</div>
+					</div>
+					<div id="filter-jiaoxue" class="hidden">
+						<div class="row-fluid">
+							<div class="span2">案例教学</div>
+							<div class="span10 form-inline">
+								<label class="checkbox"><input type="checkbox" name="required" checked="checked" />已选</label>
+								&#12288;&nbsp;
+								<label class="checkbox"><input type="checkbox" name="optional" checked="checked" />可选</label>
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="span2">课程类型</div>
+							<div class="span10 form-inline">
+								<label class="checkbox"><input type="checkbox" name="required" checked="checked" />必修课</label>
+								&nbsp;
+								<label class="checkbox"><input type="checkbox" name="optional" checked="checked" />选修课</label>
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="span2">课程状态</div>
+							<div class="span10 form-inline">
+								<label class="checkbox"><input type="checkbox" name="finished" checked="checked" />学习中</label>
+								&nbsp;
+								<label class="checkbox"><input type="checkbox" name="pending" checked="checked" />已完成</label>
+							</div>
+						</div>
+					</div>
+					<div id="filter-cuotiji" class="hidden">
+						<div class="row-fluid">
+							<div class="span2">错题集</div>
 							<div class="span10 form-inline">
 								<label class="checkbox"><input type="checkbox" name="required" checked="checked" />已选</label>
 								&#12288;&nbsp;
@@ -205,6 +335,7 @@ $(document).ready(function ()
 							<button class="btn"><i class="icon-ok"></i>&nbsp;批量提交</button>
 						</div>
 						<div id="button-remove" class="span2 first-button hidden">
+						
 							<button class="btn"><i class="icon-remove"></i>&nbsp;批量退选</button>
 						</div>
 						<div id="search-keyword" class="span6">
@@ -227,18 +358,37 @@ $(document).ready(function ()
 					</div>
 				</form>
 			</div>
+			
 			<div id="list-available" class="row-fluid">
 				<div class="span12">
 					<table id="grid-available"></table>
 					<div id="page-available" class="pull-right"></div>
 				</div>
 			</div>
-			<div id="list-selected" class="row-fluid hidden">
-				<div class="span12">
-					<table id="grid-selected"></table>
+			
+			<div id="list-kecheng" class="row-fluid hidden">
+				     <div class="span12">
+					<table id="grid-kecheng"></table>
+					
+					<div id="page-kecheng" class="pull-right"></div>
+					</div>
+			 </div>
+			 <div id="list-jiaoxue" class="row-fluid hidden">
+				     <div class="span12">
+					<table id="grid-jiaoxue"></table>
+					
 					<div id="page-selected" class="pull-right"></div>
-				</div>
-			</div>
+					</div>
+			 </div>
+			 <div id="list-cuotiji" class="row-fluid hidden">
+				     <div class="span12">
+					<table id="grid-cuotiji"></table>
+					
+					<div id="page-selected" class="pull-right"></div>
+					</div>
+			 </div>
+			 
+			 
 		</div>
 	</div>
 </div>

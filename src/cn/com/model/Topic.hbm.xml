@@ -10,29 +10,19 @@
             <column name="topicId" />
             <generator class="native" />
         </id>
-        <many-to-one name="theme" class="cn.com.model.Theme" fetch="select">
+        <many-to-one name="theme" class="cn.com.model.Theme" lazy="false" fetch="join">
             <column name="themeId" />
         </many-to-one>
-        <property name="userId" type="java.lang.Integer">
+        <many-to-one name="user" class="cn.com.model.User" lazy="false" fetch="join">
             <column name="userId" />
-        </property>
+        </many-to-one>
+        
         <property name="topicName" type="java.lang.String">
             <column name="topicName" length="50" />
         </property>
         <property name="topicImgPath" type="java.lang.String">
             <column name="topicImgPath" length="50" />
         </property>
-        <set name="posts" inverse="true">
-            <key>
-                <column name="topicId" />
-            </key>
-            <one-to-many class="cn.com.model.Post" />
-        </set>
-        <set name="tiezis" inverse="true">
-            <key>
-                <column name="topicId" />
-            </key>
-            <one-to-many class="cn.com.model.Tiezi" />
-        </set>
+       
     </class>
 </hibernate-mapping>

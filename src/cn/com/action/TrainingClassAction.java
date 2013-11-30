@@ -4,7 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.swing.internal.plaf.metal.resources.metal;
+
 import cn.com.base.BaseActionSupport;
+import cn.com.model.Classandcourse;
+import cn.com.model.ClassandcourseId;
+import cn.com.model.Classcase;
+import cn.com.model.Course;
 import cn.com.model.Trainingclass;
 import cn.com.service.TrainingClassService;
 
@@ -13,6 +19,9 @@ public class TrainingClassAction extends BaseActionSupport {
 	private TrainingClassService trainingClassService;
 	private Map<String, List> dataMap;
 	private Trainingclass trainingclass;
+	private Integer classId;
+	private Integer courseId;
+	private Classcase classcase;
 
 	public TrainingClassAction() {
 		dataMap = new HashMap<String, List>();
@@ -25,12 +34,22 @@ public class TrainingClassAction extends BaseActionSupport {
 			tcList = trainingClassService.findByConditions(trainingclass);
 		}
 
-		dataMap.put("tcList", tcList);
+		dataMap.put("tcList",tcList);
 		return SUCCESS;
 
 	}
+	
+	public String geTrainClass()
+	{
+		classId = (Integer) session.get("classId");
+		if(classId!=null)
+		{
+			trainingclass = trainingClassService.getTrainingclass(classId);
+		}
+		return JSON;
+	}
 
-	public String deleteClass() {
+	public String deleteClass(){
 		if (trainingclass.getTrainingClassId() != null) {
 			trainingClassService.delete(trainingclass);
 		}
@@ -40,11 +59,49 @@ public class TrainingClassAction extends BaseActionSupport {
 	public String addClass() {
 		if (trainingclass != null) {
 			trainingclass.setTrainingClassStatus(new Integer(1));
-			trainingClassService.insert(trainingclass);
+			classId = trainingClassService.insert(trainingclass);
+			super.session.put("classId",classId);
 		}
 		return JSON;
 	}
+	
+	public String addClassAndCourse()
+	{
+		classId = (Integer) session.get("classId");
+		if(classId!=null&&courseId!=null)
+		{
+			Classandcourse classandcourse = new Classandcourse();
+			classandcourse.setId(new ClassandcourseId(classId, courseId));
+			trainingClassService.saveClassAndCourse(classandcourse);
+		}
+		
+		return JSON;
+	}
 
+	public String getCourseByClassId()
+	{
+		classId = (Integer) session.get("classId");
+		if(classId!=null)
+		{
+			List<Course> courseList =trainingClassService.getCourseByClassId(classId);
+			dataMap.put("courseList",courseList);
+		}
+		
+		return "getCourseByClassId";
+	}
+	
+	public String delCourseFrClass()
+	{
+		classId = (Integer) session.get("classId");
+		if(courseId!=null && classId!=null)
+		{
+			Classandcourse classandcourse = new Classandcourse();
+			classandcourse.setId(new ClassandcourseId(classId, courseId));
+			trainingClassService.delCourseFClass(classandcourse);
+		}
+		return  JSON;
+	}
+	
 	public String updateClass() {
 		if (trainingclass != null) {
 			trainingClassService.update(trainingclass);
@@ -52,6 +109,25 @@ public class TrainingClassAction extends BaseActionSupport {
 		return JSON;
 	}
 
+	public String getClassCase()
+	{
+		classId = (Integer) session.get("classId");
+		if(classId!=null)
+		{
+			classcase= trainingClassService.getClassCaseById(classId);
+		}
+		return JSON;
+	}
+	
+	public String intoClassInfoPage()
+	{
+		if(classId!=null)
+		{
+			super.session.put("classId",classId);
+		}
+		return "intoClassInfoPage";
+	}
+	
 	public String intoClasspage() {
 		return "intoClasspage";
 	}
@@ -65,6 +141,10 @@ public class TrainingClassAction extends BaseActionSupport {
 	}
 
 	public String intoAddClassPage2() {
+		if(classId!=null)
+		{
+			super.session.put("classId",classId);
+		}
 		return "intoAddClassPage2";
 	}
 
@@ -96,5 +176,32 @@ public class TrainingClassAction extends BaseActionSupport {
 	public void setTrainingclass(Trainingclass trainingclass) {
 		this.trainingclass = trainingclass;
 	}
+
+	public Integer getClassId() {
+		return classId;
+	}
+
+	public void setClassId(Integer classId) {
+		this.classId = classId;
+	}
+
+
+
+	public Integer getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
+	}
+
+	public Classcase getClasscase() {
+		return classcase;
+	}
+
+	public void setClasscase(Classcase classcase) {
+		this.classcase = classcase;
+	}
+
 
 }

@@ -25,7 +25,7 @@
 			
 		</bean>
 	
-	<bean id="forumAction" class="cn.com.action.ForumAction">
+	<bean id="forumAction" class="cn.com.action.ForumAction" scope="prototype">
 	         <property name="forumService" ref="forumService"></property>
 	    </bean>
 	
@@ -38,7 +38,7 @@
 	<property name="questionnairerService" ref="questionnairerService"></property>
 	</bean>
 	
-	<bean id="questionnairerubricAction" class="cn.com.action.QuestionnaireRubricAction">
+	<bean id="questionnairerubricAction" class="cn.com.action.QuestionnaireRubricAction" scope="prototype">
 	<property name="questionnairerubricService" ref="questionnairerubricService"></property>
 	</bean>
 	
@@ -50,7 +50,7 @@
 	<property name="noteService" ref="noteService"></property>
 	</bean>
 	
-	<bean id="netDangkeAction" class="cn.com.action.NetDangKeAction">
+	<bean id="netDangkeAction" class="cn.com.action.NetDangKeAction" scope="prototype">
 	
 	</bean>
 	

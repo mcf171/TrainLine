@@ -20,7 +20,7 @@ $(document).ready(function ()
 	$('#time-from').css('background', 'none').datepicker();
 	test="ready"
 	mmGirdTable = $('#grid').mmGrid({
-		url: '${basePath}getInsideLiberaryList.action',
+		url: '${basePath}showBackendforumTalkList.action',
 		height: 410,
 		autoLoad: true,
 		fullWidthRows: true,

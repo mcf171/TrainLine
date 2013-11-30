@@ -82,4 +82,14 @@ public class CourseService {
 	public void setResourseandcatelogueDAO(ResourseandcatelogueDAO resourseandcatelogueDAO) {
 		this.resourseandcatelogueDAO = resourseandcatelogueDAO;
 	}
+
+
+	public List<Course> fgFindAll() {
+		return courseDAO.fgFindAll();
+	}
+
+
+	public List<Course> fgSearchCourses(Course course) {
+		return courseDAO.fgSearchCourses(course);
+	}
 }

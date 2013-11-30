@@ -141,21 +141,29 @@ public class CourseAction extends BaseActionSupport {
 	}
 
 	public String findAllCourse() {
-		//cList = (List<Course>) session.get("cList");
 		if (course != null) {
 			cList = courseService.searchCourses(course);
-			session.remove("cList");
 		} 
 		else {
-//			if(cList==null){
 				cList = courseService.findAll();
-//				session.put("cList",cList);
-//			}
+		}
+		dataMap.put("cList",cList);
+		return SUCCESS;
+	}
+	
+	public String fbfindCourse()
+	{
+		if (course != null) {
+			cList = courseService.fgSearchCourses(course);
+		} 
+		else {
+				cList = courseService.fgFindAll();
 		}
 		dataMap.put("cList",cList);
 		return SUCCESS;
 	}
 
+	
 	public String deleteCourse() {
 		Course course = new Course();
 		course.setCourseId(courseId);
