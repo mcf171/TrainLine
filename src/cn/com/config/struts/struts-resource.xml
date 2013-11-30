@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="resource" extends="system" namespace="/" >
+	     <action name="getInsideResourceList" class="resourceAction" method="getInsideResourceList">
+				<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+	   	</action>
+   		<action name="showBackendResourceListPage" class="resourceAction" method="showBackendResourceListPage">
+   			<result>/WEB-INF/jsp/backend/resource.jsp</result>
+   		</action>
+   		<action name="showBackendInsideResourceListPage" class="resourceAction" method="showBackendInsideResourceListPage">
+   			<result>/WEB-INF/jsp/backend/resources/videoManager.jsp</result>
+   		</action>
+   		
+   	</package>
+</struts>    

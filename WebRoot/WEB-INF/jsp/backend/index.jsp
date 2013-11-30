@@ -17,7 +17,7 @@ var PAGES = {
 	page_0: '${basePath}note_intoStudy.action',
 	page_1: 'examinations.jsp',
 	page_2: '${basePath}trainingClass_intoClasspage.action',
-	page_3: 'resource.jsp',
+	page_3: '${basePath}showBackendResourceListPage.action',
 	page_4: 'human.jsp',
 	page_5: 'newsManager.jsp',
 	page_6: 'report.jsp',

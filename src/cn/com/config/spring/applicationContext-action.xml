@@ -56,6 +56,11 @@
 	<property name="credentialService" ref="credentialService"></property>
 	</bean>
 	
+	
+	
+	<bean id="resourceAction" class="cn.com.action.ResourceAction" scope="prototype"> 
+	<property name="resourceService" ref="resourceService"></property>
+	</bean>
 	<bean id="humanAction" class="cn.com.action.HumanAction" scope="prototype"> 
 	</bean>
 		

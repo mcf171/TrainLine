@@ -62,5 +62,7 @@
 	<bean id="recordService" class="cn.com.service.RecordService">
 		<property name="recordDAO" ref="RecordDAO"></property>
 	</bean>
-
+    <bean id="resourceService" class="cn.com.service.ResourceService">
+		<property name="resourceDAO" ref="ResourceDAO"></property>
+	</bean>
 	</beans>
