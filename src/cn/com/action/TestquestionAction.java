@@ -128,6 +128,11 @@ public class TestquestionAction extends BaseActionSupport {
 		request.setAttribute("standardAnswer", standardAnswer);
 		return this.SUCCESS;
 	}
+	public String deleteTestquestion(){
+		
+		testQuestionService.delete(testquestion);
+		return this.SUCCESS;
+	}
 	public List<Testquestion> getTlist() {
 		return tlist;
 	}

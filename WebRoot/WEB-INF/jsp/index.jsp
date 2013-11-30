@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 var PAGES = {
 	page_0: 'homeList.action',
 	page_1: '${basePath}course_intoStudyCenter.action',
-	page_2:'exam.jsp',
+	page_2:'${basePath}getNormalTestArrangementPage.action',
 	page_3: '${basePath}showNetDangKePage.action',
 	page_4: 'education.jsp',
 	page_5: '${basePath}showNormalLiberaryListPage.action'

@@ -23,6 +23,12 @@
 				</result>
 		</action>
 		
+		<action name="deleteTestquestion" class="testquestionAction" method="deleteTestquestion">
+				<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
 		<action name ="getTestquestionById" class="testquestionAction" method="getTestquestionById">
 			<result>/WEB-INF/jsp/backend/examinations/manage-questionItemShow.jsp</result>
 		</action>

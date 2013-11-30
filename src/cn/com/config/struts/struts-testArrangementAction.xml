@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="testArrangement" namespace="/" extends="json-default">
+	<package name="testArrangement" namespace="/" extends="system">
 		<action name="testArrangement_*" class="testArrangementAction" method="{1}">
 		</action>
+		
+		<action name="getNormalTestArrangementPage" class="testArrangementAction" method="getNormalTestArrangementPage">
+			<result>/WEB-INF/jsp/exam.jsp</result>
+		</action>
+	</package>
+	
+	<package name="testArrangementAdmin" namespace="/admin" extends="system">
+		
+			<action name="getBackendTestArrangementPage" class="testArrangementAction" method="getBackendTestArrangementPage">
+				<result>/WEB-INF/jsp/backend/test/questionare.jsp</result>
+			</action>
 	</package>
 </struts>    

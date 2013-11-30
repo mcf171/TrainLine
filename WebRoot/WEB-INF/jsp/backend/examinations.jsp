@@ -40,15 +40,15 @@ $(document).ready(function ()
 				<li class="jstree-open">
 					<a href="#">试卷管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="test/questionareOpen.html">已公布</a></li>
-						<li class="jstree-leaf"><a href="test/questionareKeep.html">保留</a></li>
-						<li class="jstree-leaf"><a href="test/questionareRubble.html">回收站</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getOpenTestPaperPage.action">已公布</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getKeepTestPaperPage.action">保留</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getRubbleTestPaperPage.action">回收站</a></li>
 					</ul>
 				</li>
 				<li class="jstree-open">
 					<a href="#">考试管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="test/questionare.html">考试查看</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getBackendTestArrangementPage.action">考试查看</a></li>
 					</ul>
 				</li>
 			</ul>
