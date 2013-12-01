@@ -45,58 +45,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
      <div class="row-fluid line-margin">
-		<div class="span12">
+		<div class="span6">
 			<h3>内存</h3>
 			<div>内存使用量</div>
 			<canvas id="myChart" width="500" height="200"></canvas>
 		</div>
-		<div class="row-fluid line-margin" class="page-header">
-			<div class="span4">
+		<div class="span4 row-fluid line-margin" style="margin-top:100px"class="page-header">
+			<div class="span10">
 			    <table>
 			      <tr>
-			         <td>使用中</td>
-			         <td>可用</td>
+			         <td><strong>内 存 总 量 :</strong></td>
+			         <td>${system[0].totalMemory} M</td>
 			      </tr>
 			      <tr>
-			         <td><strong>2.4 GB</strong></td>
-			         <td><strong>1.4 GB</strong></td>
+			         <td><strong>内存使用量:</strong></td>
+			         <td>${system[0].usedmemory} M</td>
 			      </tr>
 			      <tr>
-			         <td>已提交</td>
-			         <td>已缓存</td>		        
+			         <td><strong>内存剩余量:</strong></td>
+			         <td id="test">${system[0].freeMemory} M</td>
+			         </td>
 			      </tr>
 			      <tr>
-			         <td><strong>3.0/7.7 GB</strong></td>
-			         <td><strong>885 MB</strong></td>			         
-			      </tr>
-			      <tr>
-			         <td>页面缓冲池</td>
-			         <td>非页面缓冲池</td>
-			      </tr>
-			      <tr>
-			         <td><strong>246 MB</strong></td>
-			         <td><strong>82.2 MB</strong></td>
-			      </tr>
-			    </table>
-			</div>
-			<div class="span4"> 
-			    <table>
-			      <tr>
-			         <td>速度:</td>
-			         <td>1067 MHz</td>
-			      </tr>
-			      <tr>
-			         <td>已使用的插槽:</td>
-			         <td>2/2</td>
-			      </tr>
-			      <tr>
-			         <td>组成要素:</td>
-			         <td>SODIMM</td>
-			      </tr>
-			      <tr>
-			         <td>为硬件保留的内存:</td>
-			         <td>201MB</td>
-			      </tr>
+			         <td><strong>内存使用率:</strong></td>
+			         <td>${system[0].usedPercent} %</td>
+			      </tr>		
+			       <tr>
+			         <td><strong>内存生育率:</strong></td>
+			         <td>${system[0].freePercent} %</td>
+			      </tr>    		   
 			    </table>
 			</div>
 		</div>
