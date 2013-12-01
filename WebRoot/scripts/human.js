@@ -42,3 +42,15 @@ function deletePosition(){
 		  }
 		});
 }
+
+function deletePerson(){
+	$.ajax({
+		  type: "post",
+		  url: basePath+"deletePerson.action",
+		  data:"user.userId=" + id,
+		  success: function(msg){
+			  $('#myModal').modal('hide');
+			  mmGirdTable.removeRow(mmGirdTable.selectedRowsIndex());
+		  }
+		});
+}

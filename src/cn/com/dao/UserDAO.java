@@ -1,5 +1,6 @@
 package cn.com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -8,6 +9,7 @@ import org.hibernate.LockMode;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.com.model.Company;
 import cn.com.model.User;
 
 /**
@@ -18,7 +20,7 @@ import cn.com.model.User;
  * provides additional information for how to configure it for the desired type
  * of transaction control.
  * 
- * @see cn.com.dao1.User
+ * @see cn.com.model.User
  * @author MyEclipse Persistence Tools
  */
 public class UserDAO extends HibernateDaoSupport {
@@ -59,7 +61,7 @@ public class UserDAO extends HibernateDaoSupport {
 		log.debug("getting User instance with id: " + id);
 		try {
 			User instance = (User) getHibernateTemplate().get(
-					"cn.com.dao1.User", id);
+					"cn.com.model.User", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -156,5 +158,40 @@ public class UserDAO extends HibernateDaoSupport {
 
 	public static UserDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (UserDAO) ctx.getBean("UserDAO");
+	}
+	
+	public List<User> findByExampleFuzzy(User user){
+		
+		String queryString = "from User where 1=1 ";
+		
+		List<Object> params = new ArrayList<Object>();
+		
+		if (user.getUserId() != null) {
+
+			queryString += "and userId = ?";
+			params.add(user.getUserId());
+		}
+		
+		if (user.getUserName() != null) {
+
+			queryString += "and userName like ?";
+			params.add("%" + user.getUserName() + "%");
+		}
+		
+		if (user.getUserPassword() != null) {
+
+			queryString += "and passWord like ?";
+			params.add("%" + user.getUserPassword() + "%");
+		}
+		
+		if (user.getPersonalinformation().getPersonalInformationId() != null) {
+
+			queryString += "and personalInformationId like ?";
+			params.add("%" + user.getPersonalinformation().getPersonalInformationId() + "%");
+		}
+		
+		List<User> userList = getHibernateTemplate().find(queryString,params.toArray());
+		
+		return userList;
 	}
 }

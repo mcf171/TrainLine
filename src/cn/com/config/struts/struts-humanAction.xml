@@ -50,6 +50,12 @@
 			<result>/WEB-INF/jsp/backend/person/addPerson.jsp</result>
 		</action>
 		
+		<action name="addPerson" class="humanAction" method="addPerson">
+			<result type="redirectAction">
+   				<param name="actionName">showBackendHumanPage</param>
+   			</result>
+		</action>
+		
 		<action name="addCompanyPage" class="humanAction" method="addCompanyPage">
 			<result>/WEB-INF/jsp/backend/person/addCompany.jsp</result>
 		</action>
@@ -59,8 +65,6 @@
    				<param name="actionName">showBackendHumanPage</param>
    			</result>
 		</action>
-		
-		
 		
 		<action name="addDepartmentPage" class="humanAction" method="addDepartmentPage">
 			<result>/WEB-INF/jsp/backend/person/addDepartment.jsp</result>
@@ -112,6 +116,16 @@
    			</result>
 		</action>
 		
+		<action name="modifyPersonPage" class="humanAction" method="modifyPersonPage">
+			<result>/WEB-INF/jsp/backend/person/modifyPerson.jsp</result>
+		</action>
+		
+		<action name="modifyPerson" class="humanAction" method="modifyPerson">
+			<result type="redirectAction">
+   				<param name="actionName">showBackendHumanPage</param>
+   			</result>
+		</action>
+		
 		<action name="deleteCompany" class="humanAction" method="deleteCompany">
 			<result type="json">
 				<param name="root">dataMap</param>
@@ -125,6 +139,12 @@
 		</action>
 		
 		<action name="deletePosition" class="humanAction" method="deletePosition">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="deletePerson" class="humanAction" method="deletePerson">
 			<result type="json">
 				<param name="root">dataMap</param>
 			</result>

@@ -13,7 +13,7 @@ $(document).ready(function(){
 	</c:forEach>
 
 	$("#companyName").append(optionString);
-
+	
 	getDepartmentNameByCompanyId();
 });
 

@@ -10,13 +10,13 @@
             <column name="userId" />
             <generator class="native" />
         </id>
-        <many-to-one name="majorqualification" class="cn.com.model.Majorqualification" fetch="select">
+        <many-to-one name="majorqualification" class="cn.com.model.Majorqualification" lazy="false" fetch="join">
             <column name="majorQualificationId" />
         </many-to-one>
-        <many-to-one name="personalinformation" class="cn.com.model.Personalinformation" fetch="select">
+        <many-to-one name="personalinformation" class="cn.com.model.Personalinformation" lazy="false" fetch="join">
             <column name="personalInformationId" />
         </many-to-one>
-        <many-to-one name="educationbackground" class="cn.com.model.Educationbackground" fetch="select">
+        <many-to-one name="educationbackground" class="cn.com.model.Educationbackground" lazy="false" fetch="join">
             <column name="educationBackgroundId" />
         </many-to-one>
         <property name="userName" type="java.lang.String">

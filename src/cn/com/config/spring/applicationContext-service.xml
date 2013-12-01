@@ -100,6 +100,9 @@
 		<property name="companyDAO" ref="CompanyDAO"></property>
 		<property name="departmentDAO" ref="DepartmentDAO"></property>
 		<property name="positionDAO" ref="PositionDAO"></property>
+		<property name="personalinformationDAO" ref="PersonalinformationDAO"></property>
+		<property name="majorqualificationDAO" ref="MajorqualificationDAO"></property>
+		<property name="educationbackgroundDAO" ref="EducationbackgroundDAO"></property>
 	</bean>
     <bean id="resourceService" class="cn.com.service.ResourceService">
 		<property name="resourceDAO" ref="ResourceDAO"></property>

@@ -21,11 +21,11 @@ $("#cancle").click(function(){
 	<form action="modifyCompany.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin" style="display:none">
 			<span class="help-inline">公司ID：</span>
-			<input type="text" class=" span2" placeholder="请输入公司名称" name="company.companyId" value="${company.companyId}"/>
+			<input type="text" class=" span2" placeholder="请输入内容" name="company.companyId" value="${company.companyId}"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司名称：</span>
-			<input type="text" class=" span2" placeholder="请输入公司名称" name="company.companyName" value="${company.companyName}"/>
+			<input type="text" class=" span2" placeholder="请输入内容" name="company.companyName" value="${company.companyName}"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司等级：</span>
@@ -35,7 +35,6 @@ $("#cancle").click(function(){
 				<option id="2">2</option>
 				<option id="3">3</option>
 				<option id="4">4</option>
-				<option id="5">5</option>
 			</select>
 		</div>
 		<div class="row-fluid line-margin">
