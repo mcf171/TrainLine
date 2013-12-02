@@ -45,52 +45,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
      <div class="row-fluid line-margin">
-		<div class="span12">
+		<div class="span6">
 			<h3>WI-FI</h3>
 			<div>吞吐量(kbps)</div>
 			<canvas id="myChart" width="500" height="200"></canvas>
 		</div>
-		<div class="row-fluid line-margin" class="page-header">
-			<div class="span4">
-			    <table>
-			      <tr>
-			         <td>发送</td>
-			      </tr>
-			      <tr>
-			         <td><strong>8.0 Kbps</strong></td>
-			      </tr>	
-			      <tr>
-			         <td>接收</td>
-			      </tr>
-			      <tr>
-			         <td>24.0 Kbps</td>
-			      </tr>		     
-			    </table>
-			</div>
-			<div class="span4"> 
-			    <table>
-			      <tr>
-			         <td>适配器名称:</td>
-			         <td>WI-FI</td>
-			      </tr>
-			      <tr>
-			         <td>SSID:</td>
-			         <td>ChinaNet-LbE7</td>
-			      </tr>
-			      <tr>
-			         <td>连接类型:</td>
-			         <td>802.11n</td>
-			      </tr>
-			      <tr>
-			         <td>IPv4地址:</td>
-			         <td>10.96.99.228</td>
-			      </tr>
-			      <tr>
-			         <td>Ipv6地址:</td>
-			         <td>2001:250:4400:d000::797c</td>
-			      </tr>
-			    </table>
-			</div>
+		<div class="span6 row-fluid line-margin" style="margin-top:100px"class="page-header">
+		    <table>
+		       <tr>
+		         <td><strong>设  备  名: </strong><br></td>
+		         <td>  ${system[9].deviceName }  </td>		         		         		         		         
+		       </tr>	       
+		      <!-- <c:forEach var="item" items="${system}"> --> 
+		         <tr>
+		             <td><strong>IP 地  址: </strong></td>
+		             <td>  ${system[9].address }  </td>		             		             		             
+		         </tr>
+		      <!--  </c:forEach> -->
+		      <tr>
+		         <td><strong>子网掩码: </strong></td>
+		         <td>  ${system[9].netMsk }  </td>
+		      </tr>
+		         <td><Strong>Mac地址: </Strong></td>
+		         <td>  ${system[9].hwAddr }  </td>
+		      <tr>
+		      </tr>
+		         <td><Strong>广播地址: </Strong></td>
+		         <td>  ${system[9].broadCast }  </td>
+		      <tr>
+		         <td><Strong>网络描述: </Strong></td>
+		         <td>  ${system[9].description }  </td>
+		      </tr>
+		    </table>
 		</div>
 	 </div>
   </body> 

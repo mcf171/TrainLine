@@ -10,6 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="styles/global.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/backend.css" />
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/bootstrap.js"></script>
 <script type="text/javascript" src="scripts/global.js"></script>
@@ -19,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span8">
-			<div class="row-fluid resources">
+			<div class="row-fluid resources fixed-box">
 				<div class="span12">
 					<div class="row-fluid">
 						<div class="span12">
@@ -40,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</c:if>			
 				</div>
 			</div>
-			<div class="row-fluid resources">
+			<div class="row-fluid resources fixed-box">
 				<div class="span12">
 					<div class="row-fluid">
 						<div class="span12">

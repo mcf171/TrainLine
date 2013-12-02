@@ -62,75 +62,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body >
      <div class="row-fluid line-margin">
-		<div class="span12">
+		<div class="span6">
 			<h3>CPU</h3>
 			<div class="pull-right"></div>
 			<div>使用率</div>
 			<canvas id="myChart" width="500" height="200"></canvas>
 		</div>
-		<div class="row-fluid line-margin" class="page-header">
-			<div class="span4">
+		<div class="span4 row-fluid line-margin" style="margin-top:100px"class="page-header">
+			<div class="span6">
 			    <table>
 			      <tr>
-			         <td>利用率</td>
-			         <td>速度</td>
+			         <td><strong>厂商:</strong></td>
+			         <td>${system[1].vendor}</td>
 			      </tr>
 			      <tr>
-			         <td id="test">${system[0].cpuLiyonglv}</td>
-			         <td><strong>1.3 GHz</strong></td>
+			         <td><strong>型号:</strong></td>
+			         <td>${system[1].model}</td>
 			      </tr>
 			      <tr>
-			         <td>进程</td>
-			         <td>线程</td>
-			         <td>句柄</td>
+			         <td><strong>利用率:</strong></td>
+			         <td id="test">${system[3].cpuLiyonglv}</td>
+			         </td>
 			      </tr>
 			      <tr>
-			         <td><strong>74</strong></td>
-			         <td><strong>1356</strong></td>
-			         <td><strong>33396</strong></td>
+			         <td><strong>速度:</strong></td>
+			         <td>${system[1].mhz } mhz</td>
+			      </tr>		
+			       <tr>
+			         <td><strong>插槽:</strong></td>
+			         <td>${system[1].sockets}</td>
 			      </tr>
 			      <tr>
-			         <td>正常运行时间</td>
-			      </tr>
+			         <td><strong>内核:</strong></td>
+			         <td> ${system[1].coreCount} </td>
+			      </tr>			      
 			      <tr>
-			         <td><strong>02:16:29</strong></td>
-			      </tr>
-			    </table>
-			</div>
-			<div class="span4"> 
-			    <table>
-			      <tr>
-			         <td>最大速度:</td>
-			         <td>2.13 GHz</td>
-			      </tr>
-			      <tr>
-			         <td>插槽:</td>
-			         <td>1</td>
-			      </tr>
-			      <tr>
-			         <td>内核:</td>
-			         <td> ${system[0].coreCount} </td>
-			      </tr>
-			      <tr>
-			         <td>逻辑处理器:</td>
-			         <td>4</td>
-			      </tr>
-			      <tr>
-			         <td>虚拟化:</td>
-			         <td>已启用</td>
-			      </tr>
-			      <tr>
-			         <td>L1缓存:</td>
-			         <td>128KB</td>
-			      </tr>
-			      <tr>
-			         <td>L2缓存::</td>
-			         <td>512KB</td>
-			      </tr>
-			      <tr>
-			         <td>L3缓存:</td>
-			         <td>3.0MB</td>
-			      </tr>
+			         <td><strong>缓存大小:</strong></td>
+			         <td>${system[1].cacheSize }</td>
+			      </tr>	     		   
 			    </table>
 			</div>
 		</div>
