@@ -11,6 +11,10 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 	
+	<bean id="reportAction" class="cn.com.action.ReportAction" scope="prototype">
+	   <property name="reportService" ref="reportService"></property>
+	</bean>
+	
     <bean id="newMessageAction" class="cn.com.action.NewManageAction" scope="prototype">
 	   <property name="noticeService" ref="noticeService"></property>
 	</bean>

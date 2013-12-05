@@ -39,6 +39,32 @@ public class TrainingClassAction extends BaseActionSupport {
 
 	}
 	
+	/**
+	 * 前台显示培训班页面
+	 * @return
+	 */
+	public String getNormalTrainClassPage(){
+		
+		
+		
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 获取前台培训班级列表
+	 * @return
+	 */
+	public String getNormalTrainClassList(){
+		
+		List<Trainingclass> list = trainingClassService.findAll();
+		dataMap.put("trainList", list);
+		return this.SUCCESS;
+	}
+	public String getDetialInfoPage(){
+		
+		
+		return this.SUCCESS;
+	}
 	public String geTrainClass()
 	{
 		classId = (Integer) session.get("classId");

@@ -25,6 +25,12 @@
         <property name="uploadingPerson" type="java.lang.String">
             <column name="uploadingPerson" length="20" />
         </property>
+        <set name="resource" inverse="true">
+            <key>
+                <column name="resourceId" />
+            </key>
+            <one-to-many class="cn.com.model.Resource" />
+        </set>
         <set name="notes" inverse="true">
             <key>
                 <column name="catalogueId" />
@@ -37,11 +43,13 @@
             </key>
             <one-to-many class="cn.com.model.Tcomment" />
         </set>
+        <!-- 
         <set name="resourseandcatelogues" inverse="true">
             <key>
                 <column name="catalogueId" not-null="true" />
             </key>
             <one-to-many class="cn.com.model.Resourseandcatelogue" />
         </set>
+         -->
     </class>
 </hibernate-mapping>

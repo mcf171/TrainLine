@@ -108,4 +108,7 @@
 		<property name="resourceDAO" ref="ResourceDAO"></property>
 	</bean>
 	
+	<bean id="reportService" class="cn.com.service.ReportService">
+	</bean>
+	
 	</beans>

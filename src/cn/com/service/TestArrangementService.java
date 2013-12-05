@@ -23,7 +23,8 @@ public class TestArrangementService{
 
 	public Testarrangement getTestarrangement(Testarrangement testarrangement)
 	{
-		return null;
+		return testarrangementDAO.findById(testarrangement.getTestArrangementId());
+		
 	}
 	
 	public List<Testarrangement> findAll()

@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="styles/global.css" />
+<link rel="stylesheet" type="text/css" 	href="styles/global.css" />
 <link rel="stylesheet" type="text/css" href="styles/mmgrid.css" />
 <link rel="stylesheet" type="text/css" href="styles/mmpaginator.css" />
 <link rel="stylesheet" type="text/css" href="themes/mmgrid/mmgrid.css" />
@@ -30,35 +30,81 @@ $(document).ready(function ()
 	});
 
 	$('#grid').mmGrid({
-		url: '${basePath}trainList.action',
+		url: '${basePath}getNormalTrainClassList.action',
 		height: 280,
 		autoLoad: true,
 		fullWithRows: true,
 		root:'trainList',
 		cols: [
-			{ title: '课程名称', sortable: true, width: 150, name: 'trainName' },
-			{ title: '培训内容', sortable: true, width: 150, name: 'trainContent' },
-			{ title: '培训地点', sortable: true, width: 150, name: 'trainPlace' },
-			{ title: '学时', sortable: true, width: 100, name: 'trainCountHour' },
-			{ title: '电报号', sortable: true, width: 150, name: 'trainTelegramCode' },
-			{ title: '培训机构', sortable: true, width: 150, name: 'trainTrainAgency' },
-			{ title: '开始时间', sortable: true, width: 180, name: 'trainStartTime' },	
-			{ title: '结束时间', sortable: true, width: 180, name: 'trainEndTime' },
-			{
-				width: 100,
-				title: '课程类型',
-				sortable: true,
+			{ title: '班级编号', sortable: true, width: 150, name: 'trainingClassId' },
+			{ title: '班级名称', sortable: true, width: 150, name: 'trainingClassName' },
+			{ title: '培训内容', sortable: true, width: 150, 
 				renderer: function (val, item, row)
 				{
-					return item.force ? '必修课' : '选修课'
+					if(item.classcases[0]!=null){
+					return item.classcases[0].classContent;
+					}else{
+						return "暂无培训内容";
+					}
 				}
 			},
+			{ title: '培训地点', sortable: true, width: 150, 
+				renderer: function (val, item, row)
+				{
+					if(item.classcases[0]!=null){
+					return item.classcases[0].trainAddress;
+					}else{
+						return "暂未培训地点";
+					}
+				}	
+			},
+			{ title: '学时', sortable: true, width: 100, 
+				renderer: function (val, item, row)
+				{
+					if(item.classcases[0]!=null){
+					return item.classcases[0].trainHour;
+					}else{
+						return "暂未学时";
+					}
+				}	
+			},
+			{ title: '培训机构', sortable: true, width: 150, 
+				renderer: function (val, item, row)
+				{
+					if(item.classcases[0]!=null){
+					return item.classcases[0].trainUnit;
+					}else{
+						return "暂未培训机构";
+					}
+				}	
+			},
+			{ title: '开始时间', sortable: true, width: 180,
+				renderer: function (val, item, row)
+				{
+					if(item.classcases[0]!=null){
+					return item.classcases[0].classStartTime;
+					}else{
+						return "暂未确定开始时间";
+					}
+				}
+			},	
+			{ title: '结束时间', sortable: true, width: 180, 
+				renderer: function (val, item, row)
+				{
+					if(item.classcases[0]!=null){
+					return item.classcases[0].classEndtTime;
+					}else{
+						return "暂未确定结束时间";
+					}
+				}	
+			},
+			
 			{
 				title: '操作',
 				width: 100,
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.id + '" /><a href="classes.jsp">进入</a>';
+					return '<input type="hidden" value="' + item.id + '" /><a href="${basePath}getDetialInfoPage.action">进入</a>';
 				}
 			}
 		],

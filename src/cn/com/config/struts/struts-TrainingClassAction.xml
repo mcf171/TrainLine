@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="trainingClass" namespace="/" extends="json-default">
+	<package name="trainingClass" namespace="/" extends="system">
 		<action name="trainingClass_*" class="trainingClassAction" method="{1}">
 		<result type="json" name="success">
 		<param name="root">dataMap</param>
@@ -15,6 +15,20 @@
 		<result name="classContent">/WEB-INF/jsp/backend/classes/classes.jsp</result>
 		<result name="intoAddClassPage">/WEB-INF/jsp/backend/classes/addClass1.jsp</result>
 		<result name="intoAddClassPage2">/WEB-INF/jsp/backend/classes/addClass2.jsp</result>
+		</action>
+		
+		<action name="getNormalTrainClassPage" class="trainingClassAction" method="getNormalTrainClassPage">
+			<result>/WEB-INF/jsp/education.jsp</result>
+		</action>
+		
+		<action name="getNormalTrainClassList" class="trainingClassAction" method="getNormalTrainClassList">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="getDetialInfoPage" class="trainingClassAction" method="getDetialInfoPage">
+			<result>/WEB-INF/jsp/classes.jsp</result>
 		</action>
 	</package>
 </struts>    

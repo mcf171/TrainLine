@@ -17,6 +17,7 @@ public class Course implements java.io.Serializable {
 	private String courseSpeaker;
 	private String courseIntro;
 	private Integer courseState;
+	private Integer courseKind;
 	private Set classandcourses = new HashSet(0);
 	private Set userandcourses = new HashSet(0);
 	private Set catalogues = new HashSet(0);
@@ -28,19 +29,7 @@ public class Course implements java.io.Serializable {
 	public Course() {
 	}
 
-	/** full constructor */
-	public Course(String courseName, String courseSpeaker, String courseIntro,
-			Integer courseState, Set classandcourses, Set userandcourses,
-			Set catalogues, Set testquestions) {
-		this.courseName = courseName;
-		this.courseSpeaker = courseSpeaker;
-		this.courseIntro = courseIntro;
-		this.courseState = courseState;
-		this.classandcourses = classandcourses;
-		this.userandcourses = userandcourses;
-		this.catalogues = catalogues;
-		this.testquestions = testquestions;
-	}
+	
 
 	// Property accessors
 
@@ -132,4 +121,13 @@ public class Course implements java.io.Serializable {
 		this.courseTypeId = courseTypeId;
 	}
 
+	public Integer getCourseKind() {
+		return courseKind;
+	}
+
+	public void setCourseKind(Integer courseKind) {
+		this.courseKind = courseKind;
+	}
+
+	
 }

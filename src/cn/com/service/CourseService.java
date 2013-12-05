@@ -20,7 +20,10 @@ public class CourseService {
 		return courseDAO.save(course);
 	}
 	
-
+	public List<Course> findByExample(Course course){
+		
+		return courseDAO.findByExample(course);
+	}
 	public void delete(Course course)
 	{
 		courseDAO.delete(course);
@@ -118,5 +121,15 @@ public class CourseService {
 
 	public List<Catalogue> getCataloguDetail(Integer courseId) {
 		return courseDAO.getCataloguDetail(courseId);
+	}
+	
+	public List<Course> findDangJianKeCheng(){
+		
+		return courseDAO.findByProperty("courseKind", 3);
+	}
+	
+	public List<Course> findDangJianJiangZuo(){
+		
+		return courseDAO.findByProperty("courseKind", 4);
 	}
 }

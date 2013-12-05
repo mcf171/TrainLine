@@ -16,5 +16,22 @@
 		<result name="addCourse">/WEB-INF/jsp/backend/study/addCourse.jsp</result>
 		<param name="savePath">/upload</param>
 		</action>
+		
+		<action name="getCourseStudyPage" class="courseAction"  method="getCourseStudyPage">
+			<result name="two">/WEB-INF/jsp/study2.jsp</result>
+			<result name="three">/WEB-INF/jsp/study.jsp</result>
+		</action>
+		
+		<action name="getNormalDangJianKeCheng" class="courseAction"  method="getNormalDangJianKeCheng">
+		<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+		</action>
+		
+		<action name="getNormalDangJianKeCheng" class="courseAction" method="getNormalDangJianKeCheng">
+		<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+		</action>
 	</package>
 </struts>    

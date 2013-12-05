@@ -25,6 +25,9 @@
         <property name="courseState" type="java.lang.Integer">
             <column name="courseState" />
         </property>
+        <property name="courseKind" type="java.lang.Integer">
+            <column name="courseKind" />
+        </property>
         <set name="classandcourses" inverse="true" cascade="all-delete-orphan">
             <key>
                 <column name="courseId" not-null="true" />

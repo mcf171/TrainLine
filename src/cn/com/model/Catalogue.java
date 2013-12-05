@@ -18,9 +18,10 @@ public class Catalogue implements java.io.Serializable {
 	private Integer catalogueNumber;
 	private Timestamp uploading;
 	private String uploadingPerson;
+	private Set resource = new HashSet(0);
 	private Set notes = new HashSet(0);
 	private Set tcomments = new HashSet(0);
-	private Set resourseandcatelogues = new HashSet(0);
+	
 
 	// Constructors
 
@@ -36,20 +37,7 @@ public class Catalogue implements java.io.Serializable {
 		return this.catalogueId;
 	}
 
-	public Catalogue(Integer catalogueId, Integer courseId,
-			String catalogueName, Integer catalogueNumber, Timestamp uploading,
-			String uploadingPerson, Set notes, Set tcomments,
-			Set resourseandcatelogues) {
-		this.catalogueId = catalogueId;
-		this.courseId = courseId;
-		this.catalogueName = catalogueName;
-		this.catalogueNumber = catalogueNumber;
-		this.uploading = uploading;
-		this.uploadingPerson = uploadingPerson;
-		this.notes = notes;
-		this.tcomments = tcomments;
-		this.resourseandcatelogues = resourseandcatelogues;
-	}
+	
 
 	public void setCatalogueId(Integer catalogueId) {
 		this.catalogueId = catalogueId;
@@ -112,12 +100,16 @@ public class Catalogue implements java.io.Serializable {
 		this.tcomments = tcomments;
 	}
 
-	public Set getResourseandcatelogues() {
-		return this.resourseandcatelogues;
+	public Set getResource() {
+		return resource;
 	}
 
-	public void setResourseandcatelogues(Set resourseandcatelogues) {
-		this.resourseandcatelogues = resourseandcatelogues;
+	public void setResource(Set resource) {
+		this.resource = resource;
 	}
+
+	
+
+	
 
 }

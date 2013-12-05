@@ -117,6 +117,17 @@ $(document).ready(function ()
 			{ title: '课程名称', sortable: true,  name: 'courseName' },
 			{ title: '讲师', sortable: true,  name: 'courseSpeaker' },
 			{ title: '课程介绍', sortable: true,  name: 'courseIntro' },
+			{ title: '课程介绍', sortable: true,  
+				renderer: function (val,item,row)
+				{
+					switch(item.courseKind){
+					
+					case 1: return "二分屏";break;
+					case 2: return "三分屏";break;
+					}
+					
+				}	
+			},
 			{
 				title: '课程状态',
 				sortable: true,
@@ -131,8 +142,9 @@ $(document).ready(function ()
 				
 				renderer: function (val, item, row)
 				{
+					
 					return '<input type="hidden" value="' + item.courseId + '" />' +
-						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
+						'<a target="_blank" href="${basePath}getCourseStudyPage.action?course.courseId=' + item.courseId + '">学习</a>&nbsp;&nbsp;' +
 						(item.isSelect==1 ?  '<a href="#">退选</a>' : '<a href="study.jsp" target="_blank">学习</a>');
 				}
 			}

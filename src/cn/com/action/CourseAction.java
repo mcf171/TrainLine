@@ -90,6 +90,21 @@ public class CourseAction extends BaseActionSupport {
 	}
 
 	/**
+	 * 获取前台课程学习界面
+	 * @return
+	 */
+	public String getCourseStudyPage(){
+		
+		course = courseService.getCourse(course);
+		
+		request.setAttribute("course", course);
+		if(course.getCourseKind() ==1){
+			return "two";
+		}else{
+			return "three";
+		}
+	}
+	/**
 	 * 上传资源并存入数据库路径等信息
 	 * 
 	 * @return
@@ -219,7 +234,27 @@ public class CourseAction extends BaseActionSupport {
 		dataMap.put("cList", cList);
 		return SUCCESS;
 	}
+	/**
+	 * 获取前台党建课程
+	 * @return
+	 */
+	public String getNormalDangJianKeCheng(){
+		
+		List<Course> list = courseService.findDangJianKeCheng();
+		dataMap.put("list", list);
+		return this.SUCCESS;
+	}
 
+	/**
+	 * 获取前台党建讲座
+	 * @return
+	 */
+	public String getNormalDangJianJiangZuo(){
+		
+		List<Course> list = courseService.findDangJianJiangZuo();
+		dataMap.put("list", list);
+		return this.SUCCESS;
+	}
 	/**
 	 * 删除课程
 	 */

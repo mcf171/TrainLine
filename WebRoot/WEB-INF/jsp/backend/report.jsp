@@ -1,0 +1,62 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="../styles/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="../styles/global.css" />
+<link rel="stylesheet" type="text/css" href="../styles/backend.css" />
+<script type="text/javascript" src="../scripts/jquery.js"></script>
+<script type="text/javascript" src="../scripts/jstree.js"></script>
+<script type="text/javascript" src="../scripts/bootstrap.js"></script>
+<script type="text/javascript" src="../scripts/mousewheel.js"></script>
+<script type="text/javascript" src="../scripts/global.js"></script>
+<script type="text/javascript" src="../scripts/backend.js"></script>
+<title>报表管理</title>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div id="sidebar" class="span2 tree-container">
+			<ul>
+				<li class="jstree-open">
+					<a href="#">培训报表</a>
+					<ul>
+						<li class="jstree-leaf"><a href="report/peixunrenyuan.html">培训人员报名表</a></li>
+						<li class="jstree-leaf"><a href="report/gangweipeixunban.html">岗位培训办班备案表（报建设厅）</a></li>
+						<li class="jstree-leaf"><a href="report/niandupeixunjihua.html">年度培训计划及实施情况记录表</a></li>
+						<li class="jstree-leaf"><a href="report/niandupeixunwanchengqingkuang.html">年度培训完成情况报表（报股份公司、国资委）</a></li>
+						<li class="jstree-leaf"><a href="report/peixunbanbaoming.html">培训班报名表（如三类安全员）</a></li>
+						<li class="jstree-leaf"><a href="report/peixunrichenganpai.html">培训日程安排表</a></li>
+					</ul>
+				</li>
+				<li class="jstree-open">
+					<a href="#">技师报表</a>
+					<ul>
+						<li class="jstree-leaf"><a href="report/gaojijishupingshen.html">高级技师评审表</a></li>
+						<li class="jstree-leaf"><a href="report/jishipingshen.html">技师评审表A4</a></li>
+						<li class="jstree-leaf"><a href="report/zhiyejinengjianding">职业技能鉴定申请表</a></li>
+					</ul>
+				</li>
+				<li class="jstree-open">
+					<a href="#">五大员报表</a>
+					<ul>
+						<li class="jstree-leaf"><a href="report/wudayuanbaomingdengji.html">五大员报名登记表（报建设厅）</a></li>
+						<li class="jstree-leaf"><a href="report/wudayuanquzhengkaoshenghuamingce.html">五大员取证考生花名册（报建设厅）</a></li>
+					</ul>
+				</li>
+				<li class="jstree-open">
+					<a href="#">教师报表</a>
+					<ul>
+						<li class="jstree-leaf"><a href="report/jiaoshigongzuoqingkuang.html">教师工作情况表（报建设厅）</a></li>
+						<li class="jstree-leaf"><a href="report/jiaoshixinxidengji.html">教师信息登记表（报建设厅）</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="content" class="span10">
+		</div>
+	</div>
+</div>
+</body>
+</html>

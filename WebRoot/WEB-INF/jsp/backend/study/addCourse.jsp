@@ -68,6 +68,34 @@ $(document).ready(function()
 						placeholder="请输入课程描述"></textarea>
 				</div>
 			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="courseDescInput">讲课老师:</label>
+				<div class="controls">
+					<input class="form-control" type="text" name="course.courseSpeaker" id="courseDescInput"
+						placeholder="请输入课程描述"/>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="courseDescInput">课程类型:</label>
+				<div class="controls">
+					<select name="course.courseState" >
+					<option value="-1">-------------------</option>
+					<option value="1">选课中心</option>
+					<option value="2">案例教学</option>
+					<option value="3">党建课程</option>
+					<option value="4">党建讲座</option>
+					</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="courseDescInput">课程类型:</label>
+				<div class="controls">
+					<input  type="radio"  name="course.courseKind" value="1"/>二分屏（文档或视频 + 学习心得）
+					<input  type="radio"  name="course.courseKind" value="2"/>三分屏（文档 + 视频 + 学习心得）
+				</div>
+			</div>
 
 			
 			<div class="control-group offset2" id="btn">

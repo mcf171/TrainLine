@@ -31,31 +31,59 @@ $(document).ready(function ()
 	});
 
 	$('#grid').mmGrid({
-		url: '${basePath}examList.action',
+		url: '${basePath}getTestArrangementList.action',
 		height: 280,
 		autoLoad: true,
-		root:'examList',
-		fullWithRows: true,
+		root:'testArrangementList',
+		fullWidthRows: true,
 		cols: [
-			{ title: '课程名称', sortable: true, width: 210, name: 'examName' },
-			{ title: '考试名称', sortable: true, width: 210, name: 'examName' },
-			{ title: '开始时间', sortable: true, width: 180, name: 'examStartTime' },	
-			{ title: '结束时间', sortable: true, width: 180, name: 'examEndTime' },
-			{
-				width: 100,
-				title: '课程类型',
-				sortable: true,
+			{ title: '班级名称', sortable: true, 
 				renderer: function (val, item, row)
 				{
-					return item.force ? '必修课' : '选修课'
-				}
+					return item.trainingclass.trainingClassName;
+				}	
+			},
+			{ title: '考试地点', sortable: true, 
+				renderer: function (val, item, row)
+				{
+					return item.testArrangementPlace;
+				}		
+			},
+			{ title: '开始时间', sortable: true, 
+				renderer: function (val, item, row)
+				{
+					return item.testStartTime;
+				}		
+			},	
+			{ title: '结束时间', sortable: true, 
+				renderer: function (val, item, row)
+				{
+					return item.attributestStartTimete51;
+				}		
+			},
+			{ title: '通过分数', sortable: true, 
+				renderer: function (val, item, row)
+				{
+					return item.passMark;
+				}		
+			},
+			{ title: '考试状态', sortable: true, 
+				renderer: function (val, item, row)
+				{
+					switch(item.testState){
+					
+					case 1: return "尚未开始";break;
+					case 2: return "正在考试";break;
+					case 3: return "考试结束";break;
+					case 4: return "阅卷结束";break;
+					}
+				}		
 			},
 			{
 				title: '操作',
-				width: 100,
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.id + '" /><a href="test.html" target="_blank">考试</a>';
+					return '<input type="hidden" value="' + item.id + '" /><a href="${basePath}getTestPage.action?testArrangement.testArrangementId=' +item.testArrangementId + '" target="_blank">考试</a>';
 				}
 			}
 		],

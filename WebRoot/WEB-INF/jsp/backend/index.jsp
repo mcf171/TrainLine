@@ -21,7 +21,7 @@ var PAGES = {
 
 	page_4: '${basePath}showBackendHumanPage.action',
 	page_5: '${basePath}newMessageAction.action',
-	page_6: 'report.jsp',
+	page_6: '${basePath}/admin/getBackendReportPage.action',
 	page_7: '${basePath}conductSystemaction.action',
 	page_8: '${basePath}showBackendforumListPage.action',
 	page_9:'${basePath}showBackendLiberaryListPage.action'

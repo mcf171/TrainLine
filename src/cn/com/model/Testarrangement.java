@@ -15,7 +15,7 @@ public class Testarrangement implements java.io.Serializable {
 	private Integer testArrangementId;
 	private Testpaper testpaper;
 	private Trainingclass trainingclass;
-	private Integer userId;
+	private User user;
 	private String testArrangementPlace;
 	private Timestamp testStartTime;
 	private Timestamp attributestStartTimete51;
@@ -23,7 +23,7 @@ public class Testarrangement implements java.io.Serializable {
 	private Integer testPersonOfHierarchy;
 	private Integer passMark;
 	private Integer testState;
-	private Set testpapers = new HashSet(0);
+	//private Set testpapers = new HashSet(0);
 
 	// Constructors
 
@@ -31,24 +31,6 @@ public class Testarrangement implements java.io.Serializable {
 	public Testarrangement() {
 	}
 
-	/** full constructor */
-	public Testarrangement(Testpaper testpaper, Trainingclass trainingclass,
-			Integer userId, String testArrangementPlace,
-			Timestamp testStartTime, Timestamp attributestStartTimete51,
-			Integer testSumPerson, Integer testPersonOfHierarchy,
-			Integer passMark, Integer testState, Set testpapers) {
-		this.testpaper = testpaper;
-		this.trainingclass = trainingclass;
-		this.userId = userId;
-		this.testArrangementPlace = testArrangementPlace;
-		this.testStartTime = testStartTime;
-		this.attributestStartTimete51 = attributestStartTimete51;
-		this.testSumPerson = testSumPerson;
-		this.testPersonOfHierarchy = testPersonOfHierarchy;
-		this.passMark = passMark;
-		this.testState = testState;
-		this.testpapers = testpapers;
-	}
 
 	// Property accessors
 
@@ -76,13 +58,6 @@ public class Testarrangement implements java.io.Serializable {
 		this.trainingclass = trainingclass;
 	}
 
-	public Integer getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
 
 	public String getTestArrangementPlace() {
 		return this.testArrangementPlace;
@@ -140,12 +115,14 @@ public class Testarrangement implements java.io.Serializable {
 		this.testState = testState;
 	}
 
-	public Set getTestpapers() {
-		return this.testpapers;
+	public User getUser() {
+		return user;
 	}
 
-	public void setTestpapers(Set testpapers) {
-		this.testpapers = testpapers;
+	public void setUser(User user) {
+		this.user = user;
 	}
+
+
 
 }

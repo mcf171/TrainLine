@@ -23,7 +23,7 @@ var PAGES = {
 	page_1: '${basePath}course_intoStudyCenter.action',
 	page_2:'${basePath}getNormalTestArrangementPage.action',
 	page_3: '${basePath}showNetDangKePage.action',
-	page_4: 'education.jsp',
+	page_4: '${basePath}getNormalTrainClassPage.action',
 	page_5: '${basePath}showNormalLiberaryListPage.action'
 };
 

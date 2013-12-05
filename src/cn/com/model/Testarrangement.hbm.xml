@@ -10,15 +10,16 @@
             <column name="testArrangementId" />
             <generator class="native" />
         </id>
-        <many-to-one name="testpaper" class="cn.com.model.Testpaper" fetch="select">
+        <many-to-one name="testpaper" class="cn.com.model.Testpaper" lazy="false" fetch="join">
             <column name="testPaperId" />
         </many-to-one>
-        <many-to-one name="trainingclass" class="cn.com.model.Trainingclass" fetch="select">
+        <many-to-one name="trainingclass" class="cn.com.model.Trainingclass" lazy="false" fetch="join">
             <column name="trainingClassId" />
         </many-to-one>
-        <property name="userId" type="java.lang.Integer">
+        <many-to-one name="user" class="cn.com.model.User" lazy="false" fetch="join">
             <column name="userId" />
-        </property>
+        </many-to-one>
+        
         <property name="testArrangementPlace" type="java.lang.String">
             <column name="testArrangementPlace" length="50" />
         </property>
@@ -40,11 +41,5 @@
         <property name="testState" type="java.lang.Integer">
             <column name="testState" />
         </property>
-        <set name="testpapers" inverse="true">
-            <key>
-                <column name="testArrangementId" />
-            </key>
-            <one-to-many class="cn.com.model.Testpaper" />
-        </set>
     </class>
 </hibernate-mapping>

@@ -8,6 +8,16 @@
 		<action name="getNormalTestArrangementPage" class="testArrangementAction" method="getNormalTestArrangementPage">
 			<result>/WEB-INF/jsp/exam.jsp</result>
 		</action>
+		<action name="getTestArrangementList" class="testArrangementAction" method="getTestArrangementList">
+			<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+		</action>
+		
+		<action name="getTestPage" class="testArrangementAction" method="getTestPage">
+			<result>/WEB-INF/jsp/test.jsp</result>
+		</action>
+		
 	</package>
 	
 	<package name="testArrangementAdmin" namespace="/admin" extends="system">
