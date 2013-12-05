@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -59,51 +59,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
      <div class="row-fluid line-margin">
-		<div class="span12">
+		<div class="span6">
 			<h3>磁盘</h3>
 			<div>活动时间</div>
 			<canvas id="myChart" width="500" height="200"></canvas>
 			<div>磁盘传输速率(kb/秒)</div>
 			<canvas id="myChart2" width="500" height="200"></canvas>
 		</div>
-		<div class="row-fluid line-margin" class="page-header">
-			<div class="span4">
-			    <table>
-			      <tr>
-			         <td>活动时间</td>
-			         <td>平均响应时间</td>
-			      </tr>
-			      <tr>
-			         <td><strong>23%</strong></td>
-			         <td><strong>461毫秒</strong></td>
-			      </tr>
-			      <tr>
-			         <td>读取速度</td>
-			         <td>写入速度</td>
-			      </tr>
-			      <tr>
-			         <td><strong>65.7KB/秒</strong></td>
-			         <td><strong>132KB/秒</strong></td>
-			      </tr>
-			    </table>
-			</div>
-			<div class="span4"> 
-			    <table>
-			      <tr>
-			         <td>已格式化:</td>
-			         <td>298 GB</td>
-			      </tr>
-			      <tr>
-			         <td>系统磁盘:</td>
-			         <td>是</td>
-			      </tr>
-			      <tr>
-			         <td>页面文件:</td>
-			         <td>是</td>
-			      </tr>
-			    </table>
-			</div>
+		<div class="span6 row-fluid line-margin" style="margin-top:100px"class="page-header">
+		    <table>
+		       <tr>
+		         <th><strong>盘符名称</strong></th>
+		         <th><strong>总容量</strong></th>
+		         <th><strong>已用容量</strong></th>
+		         <th><Strong>剩余容量</Strong></th>
+		         <th><Strong>使用率</Strong></th>
+		       </tr>	       
+		       <c:forEach var="item" items="${system}">
+		         <tr>
+		             <td>${item.devName }</td>
+		             <td>${item.totalDisk }</td>
+		             <td>${item.freeDisk }</td>
+		             <td>${item.usedDisk }</td>
+		             <td>${item.userPercent }%</td>
+		         </tr>
+		       </c:forEach>
+		    </table>
 		</div>
+		
 	 </div>
   </body> 
 </html>

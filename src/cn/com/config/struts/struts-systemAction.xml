@@ -3,9 +3,18 @@
 <struts>
 <package name="system2" extends="struts-default">
 
-	<action name="systemaction" class="systemAction" method="cpu">
+	<action name="systemaction_*" class="systemAction" method="{1}">
 		<result name="cpu">
 		/WEB-INF/jsp/backend/system/Myjsp.jsp
+		</result>
+		<result name="memory">
+		/WEB-INF/jsp/backend/system/mymemory.jsp
+		</result>
+		<result name="disk">
+		/WEB-INF/jsp/backend/system/mydisk.jsp
+		</result>
+		<result name="net">
+		/WEB-INF/jsp/backend/system/mynetwork.jsp
 		</result>
 	</action>
 	<action name="conductSystemaction" class="systemAction" method="getSystemPage">

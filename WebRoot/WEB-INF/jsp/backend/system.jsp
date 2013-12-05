@@ -23,10 +23,10 @@
 				<li class="jstree-open">
 					<a href="#">系统信息</a>
 					<ul>
-						<li class="jstree-leaf"><a href="${basePath}systemaction.action">CPU 状态</a></li>
-						<li class="jstree-leaf"><a href="system/mymemory.jsp">内存状态</a></li>
-						<li class="jstree-leaf"><a href="system/mydisk.jsp">磁盘状态</a></li>
-						<li class="jstree-leaf"><a href="system/mynetwork.jsp">网络状态</a></li>
+						<li class="jstree-leaf"><a href="${basePath}systemaction_cpu.action">CPU 状态</a></li>
+						<li class="jstree-leaf"><a href="${basePath}systemaction_memory.action">内存状态</a></li>
+						<li class="jstree-leaf"><a href="${basePath}systemaction_disk.action">磁盘状态</a></li>
+						<li class="jstree-leaf"><a href="${basePath}systemaction_net.action">网络状态</a></li>
 						<li class="jstree-leaf"><a href="${basePath}showPageAction.action">系统日志</a></li> 
 					</ul>
 				</li>
