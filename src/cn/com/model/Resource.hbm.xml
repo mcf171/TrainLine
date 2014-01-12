@@ -22,6 +22,9 @@
         <property name="resourceType" type="java.lang.Integer">
             <column name="resourceType" />
         </property>
+        <property name="downloundCount" type="java.lang.Double">
+            <column name="downloundCount" />
+        </property>
         <set name="resourseandcatelogues" inverse="true">
             <key>
                 <column name="resourceId" not-null="true" />

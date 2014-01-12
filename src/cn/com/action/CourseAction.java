@@ -25,6 +25,7 @@ import cn.com.model.Resourseandcatelogue;
 import cn.com.model.ResourseandcatelogueId;
 import cn.com.model.User;
 import cn.com.service.CourseService;
+import cn.com.service.UserService;
 
 /**
  */
@@ -33,8 +34,9 @@ public class CourseAction extends BaseActionSupport {
 	private List<Course> cList;
 	private List<Catalogue> ctList;
 	private CourseService courseService;
-	private Map<String, List> dataMap;
-
+	private UserService userService;
+	private Map<String, Object> dataMap;
+	private int[] courseIds;
 	private Integer courseId;
 	private Course course;
 
@@ -146,6 +148,7 @@ public class CourseAction extends BaseActionSupport {
 	public String intoaddChapterPage() {
 		if (courseId != null) {
 			request.setAttribute("courseId", courseId);
+			request.setAttribute("course", course);
 		}
 		return "intoaddChapterPage";
 	}
@@ -159,11 +162,13 @@ public class CourseAction extends BaseActionSupport {
 		if (course != null) {
 			courseId = courseService.insert(course);
 		}
-		return JSON;
+		request.setAttribute("courseId", courseId);
+		request.setAttribute("course", course);
+		return this.SUCCESS;
 	}
 
 	public CourseAction() {
-		dataMap = new HashMap<String, List>();
+		dataMap = new HashMap<String, Object>();
 	}
 
 	/**
@@ -259,11 +264,10 @@ public class CourseAction extends BaseActionSupport {
 	 * 删除课程
 	 */
 	public String deleteCourse() {
-		Course course = new Course();
-		course.setCourseId(courseId);
+		
 		courseService.delete(course);
-
-		return JSON;
+		dataMap.put("success", "success");
+		return this.SUCCESS;
 	}
 
 	/**
@@ -309,10 +313,33 @@ public class CourseAction extends BaseActionSupport {
 		ctList = courseService.getCataloguDetail(courseId);
 	}
 		
-		return JSON;
+		dataMap.put("list", ctList);
+		
+		return this.SUCCESS;
 	}
 
-	
+	/***
+	 * 用户进行选课
+	 * @return
+	 */
+	public String selectCourse(){
+		
+		User user = (User) session.get("user");
+		if(course == null){
+			course =new Course();
+		}
+		for(int item : courseIds){
+			
+			course.setCourseId(item);
+			course = courseService.getCourse(course);
+			user.getCourses().add(course);
+		}
+		
+		userService.update(user);
+		dataMap.put("success", "success");
+		
+		return this.SUCCESS;
+	}
 
 	public String intoAddcoursePage() {
 		return "addCourse";
@@ -442,4 +469,29 @@ public class CourseAction extends BaseActionSupport {
 	public void setCtList(List<Catalogue> ctList) {
 		this.ctList = ctList;
 	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public CourseService getCourseService() {
+		return courseService;
+	}
+
+	public int[] getCourseIds() {
+		return courseIds;
+	}
+
+	public void setCourseIds(int[] courseIds) {
+		this.courseIds = courseIds;
+	}
+
+	
+
+	
+	
 }

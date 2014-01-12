@@ -116,6 +116,17 @@ public class ResourceDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+	public List findAllOrderByDownLoad() {
+		log.debug("finding all Resource instances");
+		try {
+			String queryString = "from Resource where catalogueId = 0 order by downloundCount desc";
+			return getHibernateTemplate().find(queryString);
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	
 
 	public Resource merge(Resource detachedInstance) {
 		log.debug("merging Resource instance");
@@ -151,6 +162,7 @@ public class ResourceDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+	
 
 	public static ResourceDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (ResourceDAO) ctx.getBean("ResourceDAO");

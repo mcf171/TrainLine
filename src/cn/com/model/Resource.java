@@ -16,6 +16,7 @@ public class Resource implements java.io.Serializable {
 	private String resourceName;
 	private String resourcePath;
 	private Integer resourceType;
+	private Double downloundCount;
 	private Set resourseandcatelogues = new HashSet(0);
 
 	// Constructors
@@ -33,16 +34,6 @@ public class Resource implements java.io.Serializable {
 		return this.resourceId;
 	}
 
-	public Resource(Integer resourceId, Integer catalogueId,
-			String resourceName, String resourcePath, Integer resourceType,
-			Set resourseandcatelogues) {
-		this.resourceId = resourceId;
-		this.catalogueId = catalogueId;
-		this.resourceName = resourceName;
-		this.resourcePath = resourcePath;
-		this.resourceType = resourceType;
-		this.resourseandcatelogues = resourseandcatelogues;
-	}
 
 	public void setResourceId(Integer resourceId) {
 		this.resourceId = resourceId;
@@ -86,6 +77,14 @@ public class Resource implements java.io.Serializable {
 
 	public void setCatalogueId(Integer catalogueId) {
 		this.catalogueId = catalogueId;
+	}
+
+	public Double getDownloundCount() {
+		return downloundCount;
+	}
+
+	public void setDownloundCount(Double downloundCount) {
+		this.downloundCount = downloundCount;
 	}
 
 }

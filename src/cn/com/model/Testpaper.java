@@ -12,10 +12,10 @@ public class Testpaper implements java.io.Serializable {
 	// Fields
 
 	private Integer testPaperId;
-	private Testarrangement testarrangement;
+	private Integer testPaperState;
 	private String testPaperName;
 	private Set testquestions = new HashSet(0);
-	private Set testarrangements = new HashSet(0);
+;
 
 	// Constructors
 
@@ -23,14 +23,7 @@ public class Testpaper implements java.io.Serializable {
 	public Testpaper() {
 	}
 
-	/** full constructor */
-	public Testpaper(Testarrangement testarrangement, String testPaperName,
-			Set testquestions, Set testarrangements) {
-		this.testarrangement = testarrangement;
-		this.testPaperName = testPaperName;
-		this.testquestions = testquestions;
-		this.testarrangements = testarrangements;
-	}
+	
 
 	// Property accessors
 
@@ -42,13 +35,6 @@ public class Testpaper implements java.io.Serializable {
 		this.testPaperId = testPaperId;
 	}
 
-	public Testarrangement getTestarrangement() {
-		return this.testarrangement;
-	}
-
-	public void setTestarrangement(Testarrangement testarrangement) {
-		this.testarrangement = testarrangement;
-	}
 
 	public String getTestPaperName() {
 		return this.testPaperName;
@@ -66,12 +52,18 @@ public class Testpaper implements java.io.Serializable {
 		this.testquestions = testquestions;
 	}
 
-	public Set getTestarrangements() {
-		return this.testarrangements;
+
+
+	public Integer getTestPaperState() {
+		return testPaperState;
 	}
 
-	public void setTestarrangements(Set testarrangements) {
-		this.testarrangements = testarrangements;
+
+
+	public void setTestPaperState(Integer testPaperState) {
+		this.testPaperState = testPaperState;
 	}
+
+
 
 }

@@ -74,7 +74,7 @@ $(document).ready(function ()
 				{
 					return '<input type="hidden" value="' + item.courseId + '" />' +
 						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
-						'<a href="study.jsp" target="_blank">学习</a>';
+						'<a target="_blank" href="${basePath}getCourseStudyPage.action?course.courseId=' + item.courseId + '">学习</a>';
 				}
 			}
 		],
@@ -87,7 +87,7 @@ $(document).ready(function ()
 		url: '${basePath}getDangkeLiberaryList.action',
 		height: 410,
 		autoLoad: true,
-		fullWithRows: true,
+		fullWidthRows: true,
 		root:'liberary',
 		cols: [
 				{ title: '图书名称', sortable: true, width: 210, name: 'bookName' },
@@ -114,7 +114,7 @@ $(document).ready(function ()
 	});
 	
 	$('#grid-jiangzuo').mmGrid({
-		url: '${basePath}getNormalDangJianKeCheng.action',
+		url: '${basePath}getNormalDangJianJiangZuo.action',
 		height: 410,
 		root:'list',
 		autoLoad: true,
@@ -142,7 +142,7 @@ $(document).ready(function ()
 				{
 					return '<input type="hidden" value="' + item.courseId + '" />' +
 						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
-						'<a href="study.jsp" target="_blank">学习</a>';
+						'<a target="_blank" href="${basePath}getCourseStudyPage.action?course.courseId=' + item.courseId + '">学习</a>';
 				}
 			}
 		],

@@ -20,11 +20,11 @@ $(document).ready(function ()
 	$('#time-from').css('background', 'none').datepicker();
 	test="ready"
 	mmGirdTable = $('#grid').mmGrid({
-		url: '${basePath}getInsideResourceList.action',
+		url: '${basePath}admin/getBackendShiPingResource.action',
 		height: 410,
 		autoLoad: true,
 		fullWidthRows: true,
-		root:'liberary',
+		root:'list',
 		cols: [
 				{ title: '视频名称', sortable: true,  name: 'resourceName' },
 				{ title: '视频简介', sortable: true, name: 'resourcePath' },

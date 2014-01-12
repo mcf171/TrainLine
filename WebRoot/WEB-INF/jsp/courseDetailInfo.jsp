@@ -21,13 +21,13 @@ $(document).ready(function ()
 {
 $.ajax({
 	type:"post",
-	url:"${basePath}course_catalogueDetail.action",
-	dataType:"json",
+	url:"${basePath}catalogueDetail.action",
 	data:"courseId=${courseId}",
-	success:function(json){
-	if(json.ctList!=null && json.ctList.length>0)
+	success:function(list){
+		list = list.list;
+	if(list!=null && list.length>0)
 	{
-	var ctlgList = json.ctList;
+	var ctlgList = list;
 	addDiv1(ctlgList);
 	}else
 	{

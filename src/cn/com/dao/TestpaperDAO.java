@@ -110,10 +110,25 @@ public class TestpaperDAO extends HibernateDaoSupport {
 	public Testpaper merge(Testpaper detachedInstance) {
 		log.debug("merging Testpaper instance");
 		try {
+			
 			Testpaper result = (Testpaper) getHibernateTemplate().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
+		} catch (RuntimeException re) {
+			log.error("merge failed", re);
+			throw re;
+		}
+	}
+	
+	public void update(Testpaper detachedInstance) {
+		log.debug("merging Testpaper instance");
+		try {
+			
+			 getHibernateTemplate().update(
+					detachedInstance);
+			log.debug("merge successful");
+			//return result;
 		} catch (RuntimeException re) {
 			log.error("merge failed", re);
 			throw re;

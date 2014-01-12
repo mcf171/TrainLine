@@ -21,6 +21,43 @@ public class ReportAction extends BaseActionSupport {
 		
 		return this.SUCCESS;
 	}
+	
+	/**
+	 * 获取培训人员人员报名表页面
+	 * @return
+	 */
+	public String getPeiXunRenYuanBaoMingBiaoPage(){
+		
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 获取后台岗位培训班级报名表页面
+	 * @return
+	 */
+	public String getGangWeiPeiXunBanBeiAnBiaoPage(){
+		
+		
+		return this.SUCCESS;
+	}
+	/**
+	 * 获取年度培训计划及实施情况页面
+	 * @return
+	 */
+	public String getNianDuPeiJiXunJiHuaShiShiQingKuang(){
+		
+		
+		return this.SUCCESS;
+	}
+	/**
+	 * 获取岗位培训班详细页面
+	 * @return
+	 */
+	public String getGangWeiPeiXunBanXiangXiPage(){
+		
+		return this.SUCCESS;
+	}
+	//public String getNianDuPeiXun
 
 	public ReportService getReportService() {
 		return reportService;

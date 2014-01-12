@@ -10,6 +10,7 @@ import cn.com.dao.BooktypeDAO;
 import cn.com.model.Book;
 import cn.com.model.Booktype;
 import cn.com.util.BookStateConstant;
+import cn.com.util.FlexpaperUtil;
 import cn.com.util.UploadUtil;
 
 public class LiberaryService {
@@ -81,7 +82,7 @@ public class LiberaryService {
 	 * @return
 	 */
 
-	public boolean addBook(Book book , File image, String imageContentType, String imageFileName){
+	public boolean addBook(Book book , File image, String imageContentType, String imageFileName,String physicalPath){
 		
 		boolean flag = false;
 		String bookURL = uploadUtil.getSavePath()+"/"+imageFileName;
@@ -93,7 +94,7 @@ public class LiberaryService {
 		try {
 			bookDAO.save(book);
 			uploadUtil.upload();
-			flag = true;
+			flag = FlexpaperUtil.converterPDFToSWF(physicalPath, imageFileName);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			flag = false;

@@ -45,4 +45,12 @@ public class InterceptorUtil {
 		
 		return basePath;
 	}
+	
+	public static String getRootPath(HttpServletRequest request){
+		
+		String path = request.getContextPath();
+		String rootPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
+		
+		return rootPath;
+	}
 }

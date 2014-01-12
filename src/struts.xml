@@ -35,5 +35,6 @@
 	<include file="cn/com/config/struts/struts-recordAction.xml"></include>
 	<include file="cn/com/config/struts/struts-newsManageAction.xml"></include>
 	<include file="cn/com/config/struts/struts-reportAction.xml"></include>
+	<include file="cn/com/config/struts/struts-validationCodeAction.xml"></include>
 
 </struts>    

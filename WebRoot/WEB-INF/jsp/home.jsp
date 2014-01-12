@@ -73,15 +73,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							  
 							<a target="_blank" href="#" class="more">更多</a>
 							 <select class="input-small more">
-              <option>所有</option>
-              <option>已完成</option>
-              <option>未完成</option>
+              <option>视频资源</option>
+              <option>文档资源</option>
+              <option>动画资源</option>
             </select>
 						</div>
 					</div>
 					<hr class="seperator" />
 					
-					<c:forEach items="${resourseList}" var="item"  varStatus="s">
+					<c:forEach items="${resourceList}" var="item"  varStatus="s">
 					<div class="row-fluid">
 						<div class="span12">
 						   <c:choose> 
@@ -90,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					        <c:when test="${s.count==3}"><div class="badge badge-info">${s.count}</div></c:when>
 					        <c:otherwise><div class="badge">${s.count}</div></c:otherwise>
 						   </c:choose>
-						    <a href="#">${item.resourseName }</a>
+						    <a href="#">${item.resourceName }</a>
 							<span class="time muted">${item.downloundCount}</span>
 						</div>
 					</div>

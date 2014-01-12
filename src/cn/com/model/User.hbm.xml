@@ -28,6 +28,15 @@
         <property name="userState" type="java.lang.Integer">
             <column name="userState" />
         </property>
+        <set name="courses" inverse="false" table="userandcourse" lazy="false" cascade="save-update">
+            <key>
+                <column name="userId" not-null="true" />
+            </key>
+            <many-to-many entity-name="cn.com.model.Course">
+                <column name="courseId" not-null="true" />
+            </many-to-many>
+        </set>
+        
         <!-- 
         <set name="posts" inverse="true">
             <key>
@@ -49,14 +58,7 @@
                 <column name="testQuestionId" not-null="true" />
             </many-to-many>
         </set>
-        <set name="courses" table="userandcourse" catalog="trainline">
-            <key>
-                <column name="userId" not-null="true" />
-            </key>
-            <many-to-many entity-name="cn.com.model.Course">
-                <column name="courseId" not-null="true" />
-            </many-to-many>
-        </set>
+        
         <set name="records" inverse="true">
             <key>
                 <column name="userId" />

@@ -29,6 +29,28 @@ var mmg1;
 var mmg2;
 var mmg3;
 var mmg4;
+
+function selectCourse(){
+	
+	arrayClass = mmg1.selectedRowsIndex();
+	dataCourse = "";
+	for(i=0 ; i < arrayClass.length; i++){
+		
+		dataCourse += "&courseIds="+mmg1.row(arrayClass[0]).courseId;
+	}
+	
+	$.ajax({
+		  type: "post",
+		  url: '${basePath}'+"selectCourse.action",
+		  data:dataCourse,
+		  success: function(msg){
+			 
+			  $('#myModal').modal();
+			  mmg1.removeRow(mmg1.selectedRowsIndex());
+		  }
+		});
+}
+
 $(document).ready(function ()
 {
 	$('#course-switcher a[href="#kecheng"]').click(function ()
@@ -63,7 +85,7 @@ $(document).ready(function ()
 				$('#list-cuotiji, #filter-cuotiji, #button-select').removeClass('hidden');
 			});
 	
-
+	
 	mmg1 = $('#grid-available').mmGrid({
 		url: '${basePath}course_fbfindCourse.action',
 		height: 230,
@@ -83,7 +105,14 @@ $(document).ready(function ()
 				
 				renderer: function (val,item,row)
 				{
-					return item.isSelect==1 ? '已选' : '未选';
+					switch(item.courseState){
+					
+					case 1:return "选课中心";
+					case 2:return "案例教学";
+					case 3:return "党建课程";
+					case 4:return "党建讲座";
+					}
+					
 				}
 			},
 			{
@@ -93,7 +122,7 @@ $(document).ready(function ()
 				{
 					return '<input type="hidden" value="' + item.courseId + '" />' +
 						'<button id="courseDetaiID" onclick="detail('+item.courseId+')" class="btn"><a href="#" >详细信息</a></button>&nbsp;&nbsp;' +
-						(item.isSelect==0 ?  '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>');
+						'<a href="javascript:selectCourse()">选课</a>';
 				}
 			}
 		],
@@ -145,7 +174,7 @@ $(document).ready(function ()
 					
 					return '<input type="hidden" value="' + item.courseId + '" />' +
 						'<a target="_blank" href="${basePath}getCourseStudyPage.action?course.courseId=' + item.courseId + '">学习</a>&nbsp;&nbsp;' +
-						(item.isSelect==1 ?  '<a href="#">退选</a>' : '<a href="study.jsp" target="_blank">学习</a>');
+					'<a href="#">退选</a>' 
 				}
 			}
 		],
@@ -183,7 +212,7 @@ $(document).ready(function ()
 				{
 					return '<input type="hidden" value="' + item.courseId + '" />' +
 						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
-						'<a href="study.jsp" target="_blank">学习</a>';
+						'<a target="_blank" href="${basePath}getCourseStudyPage.action?course.courseId=' + item.courseId + '">学习</a>';
 				}
 			}
 		],
@@ -221,7 +250,7 @@ $(document).ready(function ()
 				{
 					return '<input type="hidden" value="' + item.courseId + '" />' +
 						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
-						(item.isSelect==0 ?  '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>');
+						 '<a target="_blank" href="${basePath}getCourseStudyPage.action?course.courseId=' + item.courseId + '">学习</a>';
 				}
 			}
 		],
@@ -378,7 +407,7 @@ $(document).ready(function ()
 						<hr class="seperator top-margin" />
 						<div class="row-fluid">
 							<div id="button-select" class="span2 first-button">
-								<button class="btn">
+								<button class="btn" onclick="selectCourse()">
 									<i class="icon-ok"></i>&nbsp;批量提交
 								</button>
 							</div>
@@ -438,6 +467,20 @@ $(document).ready(function ()
 			</div>
 		</div>
 	</div>
-
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h3 id="myModalLabel">选课成功</h3>
+	</div>
+	<div class="modal-body">
+		<p>选课成功</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">确认</button>
+		
+	</div>
+</div>
 </body>
 </html>

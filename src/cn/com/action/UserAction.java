@@ -1,12 +1,16 @@
 package cn.com.action;
 
-import java.util.List;
+import javax.servlet.ServletContext;
+
+import org.apache.struts2.ServletActionContext;
 
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Record;
 import cn.com.model.User;
 import cn.com.service.RecordService;
 import cn.com.service.UserService;
+
+import com.opensymphony.xwork2.ActionContext;
 
 public class UserAction extends BaseActionSupport{
 
@@ -19,7 +23,6 @@ public class UserAction extends BaseActionSupport{
 		user = userService.login(user);
 		
 		String path = user == null ? this.INPUT : this.SUCCESS;
-		
 		session.put("user", user);
 		
 		return path;
@@ -42,6 +45,12 @@ public class UserAction extends BaseActionSupport{
 //		return path;
 		return SUCCESS;
 		
+	}
+	
+	public String goToJform(){
+		
+		
+		return this.SUCCESS;
 	}
 	
 	public UserService getUserService() {

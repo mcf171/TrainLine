@@ -23,6 +23,8 @@ public class GetSysImfoAction extends ActionSupport{
 	
 	public String getSystemPage() throws Exception { 
 		System.out.println("测试");
+		String str=System.getProperty("java.library.path");
+		System.out.println(str);
 		return SUCCESS;
 	}
 	

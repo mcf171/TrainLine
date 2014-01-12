@@ -3,15 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="../styles/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../styles/global.css" />
-<link rel="stylesheet" type="text/css" href="../styles/backend.css" />
-<script type="text/javascript" src="../scripts/jquery.js"></script>
-<script type="text/javascript" src="../scripts/jstree.js"></script>
-<script type="text/javascript" src="../scripts/bootstrap.js"></script>
-<script type="text/javascript" src="../scripts/mousewheel.js"></script>
-<script type="text/javascript" src="../scripts/global.js"></script>
-<script type="text/javascript" src="../scripts/backend.js"></script>
+<link rel="stylesheet" type="text/css" href="${basePath}styles/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/global.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/backend.css" />
+<script type="text/javascript" src="${basePath}scripts/jquery.js"></script>
+<script type="text/javascript" src="${basePath}scripts/jstree.js"></script>
+<script type="text/javascript" src="${basePath}scripts/bootstrap.js"></script>
+<script type="text/javascript" src="${basePath}scripts/mousewheel.js"></script>
+<script type="text/javascript" src="${basePath}scripts/global.js"></script>
+<script type="text/javascript" src="${basePath}scripts/backend.js"></script>
 <title>报表管理</title>
 </head>
 <body>
@@ -22,9 +22,9 @@
 				<li class="jstree-open">
 					<a href="#">培训报表</a>
 					<ul>
-						<li class="jstree-leaf"><a href="report/peixunrenyuan.html">培训人员报名表</a></li>
-						<li class="jstree-leaf"><a href="report/gangweipeixunban.html">岗位培训办班备案表（报建设厅）</a></li>
-						<li class="jstree-leaf"><a href="report/niandupeixunjihua.html">年度培训计划及实施情况记录表</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getPeiXunRenYuanBaoMingBiaoPage.action">培训人员报名表</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getGangWeiPeiXunBanBeiAnBiaoPage.action">岗位培训办班备案表（报建设厅）</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getNianDuPeiJiXunJiHuaShiShiQingKuang.action">年度培训计划及实施情况记录表</a></li>
 						<li class="jstree-leaf"><a href="report/niandupeixunwanchengqingkuang.html">年度培训完成情况报表（报股份公司、国资委）</a></li>
 						<li class="jstree-leaf"><a href="report/peixunbanbaoming.html">培训班报名表（如三类安全员）</a></li>
 						<li class="jstree-leaf"><a href="report/peixunrichenganpai.html">培训日程安排表</a></li>

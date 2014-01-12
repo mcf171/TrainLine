@@ -51,4 +51,29 @@ public class NoticeService {
 	public List findByNoticeTime(Timestamp fromTime, Timestamp toTime){
 		return noticeDAO.findByNoticeTime(fromTime, toTime);
 	}
+	
+	/**
+	 * 获取前台课程公告通知
+	 * @return
+	 */
+	public List<Notice> findNormalKeChengGongGao(){
+		
+		return noticeDAO.findByProperty("noticetype.noticeTypeId", 1);
+		/*
+		Notice notice = new Notice();
+		Noticetype noticeType = new Noticetype();
+		noticeType.setNoticeTypeId(1);
+		notice.setNoticetype(noticeType);
+		return noticeDAO.findByExample(notice);
+		*/
+	}
+	
+	/**
+	 * 获取前台考试公告通知
+	 * @return
+	 */
+	public List<Notice> findNormalKaoShiGongGao(){
+		
+		return noticeDAO.findByProperty("noticetype.noticeTypeId", 2);
+	}
 }

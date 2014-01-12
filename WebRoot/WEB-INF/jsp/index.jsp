@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 //<![CDATA[
 var PAGES = {
-	page_0: 'note_getQiantaiNotice.action',
+	page_0: '${basePath}note_getQiantaiNotice.action',
 	page_1: '${basePath}course_intoStudyCenter.action',
 	page_2:'${basePath}getNormalTestArrangementPage.action',
 	page_3: '${basePath}showNetDangKePage.action',
@@ -73,7 +73,7 @@ $(document).ready(function ()
 				<li id="page_4" class="span2 header-menu-item"><a href="#">培训班</a></li>
 				<li id="page_3" class="span2 header-menu-item"><a href="#">网上党校</a></li>
 				<li id="page_5" class="span2 header-menu-item"><a href="#">图书馆</a></li>
-				<li id="page_6" class="span1 header-menu-item"><a href="forum/index.html" target="_blank">社区</a></li>
+				<li id="page_6" class="span1 header-menu-item"><a href="${rootPath}/jforum/jforum.page?module=user&action=validateLogin&username=${user.userName}&password=${user.userPassword }&login=%E7%99%BB%E5%85%A5" >社区</a></li>
 			</ul>
 		</div>
 	</div>
@@ -96,7 +96,7 @@ $(document).ready(function ()
 			<a href="getBackendIndex.action" target="_blank">后台管理</a>
 			&nbsp;
 			</c:if>
-			<a href="userInfo.action" target="_blank">个人中心</a>
+			<a href="javascript:alert('正在建设中')" >个人中心</a>
 			&nbsp;
 			<a href="${basePath}email/index.html">收件箱</a>
 		</div>

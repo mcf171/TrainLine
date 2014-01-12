@@ -10,49 +10,45 @@
 $(document).ready(function ()
 {
 	$('#grid').mmGrid({
-		url: '/api/backend/study/get_questionares',
+		url: '${basePath}admin/findOpenTestPaper.action',
 		height: 410,
 		autoLoad: true,
 		checkCol: true,
 		multiSelect: true,
-		fullWithRows: true,
+		fullWidthRows: true,
+		root:'list',
 		cols: [
-			{ title: '问卷编号', sortable: true, width: 150, name: 'no' },
-			{ title: '问卷名称', sortable: true, width: 210, name: 'name' },
-			{ title: '开始日期', sortable: true, width: 120, name: 'start' },
-			{ title: '截止日期', sortable: true, width: 120, name: 'end' },
-			{
-				width: 70,
-				title: '问卷状态',
-				sortable: true,
+			{ title: '试卷编号', sortable: true, width: 150, name: 'testPaperId' },
+			{ title: '试卷名称', sortable: true, width: 210, name: 'testPaperName' },
+			{ title: '试卷状态', sortable: true, width: 120,
+				
 				renderer: function (val, item, row)
 				{
-					switch (item.status)
+					switch (item.testPaperState)
 					{
-						case 0: return '未发布';
-						case 1: return '<span class="text-info">已发布</span>';
-						case 2: return '<span class="text-success">已完成</span>';
-						case 3: return '<span class="muted">已撤销</span>';
-						case 4: return '<span class="text-error">已过期</span>';
-						default: return '';
+						case 1: return '发布';
+						case 2: return '保留';
+						case 3: return '回收';
+						
 					}
 				}
 			},
+			
 			{
 				title: '操作',
-				width: 280,
+				width: 70,
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.id + '" />' +
-						'<a href="#">查看</a>&nbsp;&nbsp;' +
-						'<a href="#">复制</a>&nbsp;&nbsp;' +
-						(item.status != 0 ? '' : '<a href="#">修改</a>&nbsp;&nbsp;') +
-						(item.status != 2 ? '' : '<a href="#">查看结果</a>&nbsp;&nbsp;') +
-						(item.status != 2 ? '' : '<a href="#">回应</a>&nbsp;&nbsp;') +
-						(item.status != 0 ? '' : '<a href="#">发布</a>&nbsp;&nbsp;') +
-						(item.status >= 3 ? '' : '<a href="#">撤销</a>');
+					switch (item.testPaperState)
+					{
+						case 1: return '<a href="javascript:loadHTML(\'${basePath}admin/modifyTestPaper.action?testPaper.testPaperId=' + item.testPaperId + '&testPaper.testPaperState=2\')">保留试卷</a>';
+						case 2: return '<a href="javascript:loadHTML(\'${basePath}admin/modifyTestPaper.action?testPaper.testPaperId=' + item.testPaperId + '&testPaper.testPaperState=1\')">发布试卷</a> <a href="javascript:loadHTML(\'${basePath}admin/modifyTestPaper.action?testPaper.testPaperId=' + item.testPaperId + '&testPaper.testPaperState=3\')">回收试卷</a>';
+						case 3: return '<a href="javascript:loadHTML(\'${basePath}admin/modifyTestPaper.action?testPaper.testPaperId=' + item.testPaperId + '&testPaper.testPaperState=2\')">保留试卷</a> <a href="javascript:loadHTML(\'${basePath}admin/deleteTestPaper.action?testPaper.testPaperId=' + item.testPaperId + '\')">删除试卷</a>';
+						
+					}
 				}
 			}
+			
 		],
 		plugins: [
 			$('#page').mmPaginator({})
@@ -63,7 +59,7 @@ $(document).ready(function ()
 </script>
 <div class="row-fluid line-margin">
 	<div class="span12">
-		<button class="btn"><i class="icon-share"></i>&nbsp;保留</button>
+		<button class="btn" onclick="loadHTML('${basePath}admin/getAddTestPaperPage.action')"><i class="icon-share" ></i>&nbsp;添加</button>
 	</div>
 </div>
 <div class="row-fluid line-margin">

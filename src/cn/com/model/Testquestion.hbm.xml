@@ -31,8 +31,11 @@
         <property name="standardAnswer" type="java.lang.String">
             <column name="standardAnswer" length="50" />
         </property>
-        <!-- 
-        <set name="testpapers" table="testandquestion" catalog="trainline">
+        <property name="testIndex" type="java.lang.Integer">
+            <column name="testIndex" length="50" />
+        </property>
+        
+        <set name="testpapers" inverse="false" table="testandquestion" lazy="false" cascade="save-update">
             <key>
                 <column name="testQuestionId" not-null="true" />
             </key>
@@ -40,6 +43,7 @@
                 <column name="testPaperId" not-null="true" />
             </many-to-many>
         </set>
+        <!-- 
         <set name="users" inverse="true" table="userandquestion" catalog="trainline">
             <key>
                 <column name="testQuestionId" not-null="true" />

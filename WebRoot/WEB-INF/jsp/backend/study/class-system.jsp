@@ -8,6 +8,7 @@
 <script type="text/javascript" src="${basePath}scripts/datepicker.js"></script>
 <script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
 <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
+<script type="text/javascript" src="${basePath}scripts/bootstrap.js"></script>
 <script type="text/javascript">
 var mmg;
 var courseID;
@@ -28,7 +29,7 @@ $(document).ready(function ()
 		autoLoad: true,
 		indexCol:true,
 		root:'cList',
-		fullWithRows: true,
+		fullWidthRows: true,
 		cols: [
 	 {title: '课程ID', sortable: true, width: 70, name: 'courseId' },
      { title: '课程名', sortable: true, width: 80, name:'courseName' },
@@ -36,7 +37,14 @@ $(document).ready(function ()
       { title: '课程内容', sortable: true, width: 210, name: 'courseIntro' },
       {title:'状态',sortable:true,width:100,
       renderer:function (val,item,row){
-      return item.courseState==1?'是':'否';
+    	  switch(item.courseState){
+			
+			case 1:return "选课中心";
+			case 2:return "案例教学";
+			case 3:return "党建课程";
+			case 4:return "党建讲座";
+			}
+			
       }
       },
        {
@@ -62,7 +70,7 @@ $(document).ready(function ()
 	$('#myModal1').modal('hide');
 	 $.ajax({
 				type : "POST",
-				url : "${basePath}course_deleteCourse.action?courseId="+courseID,
+				url : "${basePath}admin/deleteCourse.action?course.courseId="+courseID,
 				dataType : "json",
 				success : function(json) {
 				mmg.load();

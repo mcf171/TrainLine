@@ -37,42 +37,35 @@ $(document).ready(function ()
 	});
 
 	$('#grid-available').mmGrid({
-		url: '${basePath}courseList.action',
+		url: '${basePath}course_fbfindCourse.action',
 		height: 230,
-		root:'courseList',
+		root:'cList',
 		autoLoad: true,
 		checkCol: true,
 		multiSelect: true,
-		fullWithRows: true,
+		fullWidthRows: true,
 		cols: [
-			{ title: '课程编号', sortable: true, width: 100, name: 'courseId' },
-			{ title: '课程名称', sortable: true, width: 370, name: 'courseName' },
+			{ title: '课程编号', sortable: true,  name: 'courseId' },
+			{ title: '课程名称', sortable: true,  name: 'courseName' },
+			{ title: '讲师', sortable: true,  name: 'courseSpeaker' },
+			{ title: '课程介绍', sortable: true,  name: 'courseIntro' },
 			{
-				width: 160,
-				title: '保密级别',
-				sortable: true,
-				renderer: function (val, item, row)
-				{
-					return item['keepsecret']==1 ? '保密' : '公开';
-				}
-			},
-			{
-				width: 160,
 				title: '课程状态',
 				sortable: true,
-				renderer: function (val, item, row)
+				
+				renderer: function (val,item,row)
 				{
-					return item.select ? '已选' : '未选';
+					return item.isSelect==1 ? '已选' : '未选';
 				}
 			},
 			{
 				title: '操作',
-				width: 170,
+				
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.id + '" />' +
-						'<a href="studyContent.jsp">详细信息</a>&nbsp;&nbsp;' +
-						(item.select ? '' : (item.public ? '<a href="#">选课</a>' : '<a href="study.jsp" target="_blank">学习</a>'));
+					return '<input type="hidden" value="' + item.courseId + '" />' +
+						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
+						 '<a target="_blank" href="${basePath}getCourseStudyPage.action?course.courseId=' + item.courseId + '">学习</a>';
 				}
 			}
 		],

@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.com.dao.RecordDAO;
 import cn.com.dao.UserDAO;
+import cn.com.model.Course;
 import cn.com.model.Record;
 import cn.com.model.User;
 
@@ -20,12 +21,22 @@ public class UserService {
 		return user;
 	}
     
+	public User getUserById(User user){
+		
+		return userDAO.findById(user.getUserId());
+	}
+	
 	public UserDAO getUserDAO() {
 		return userDAO;
 	}
 
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
+	}
+
+	public void update(User user) {
+		// TODO Auto-generated method stub
+		userDAO.merge(user);
 	}
 	
 	

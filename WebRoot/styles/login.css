@@ -1,0 +1,7 @@
+.lay_background {
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}

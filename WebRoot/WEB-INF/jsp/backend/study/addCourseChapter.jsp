@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -98,10 +99,13 @@ $(document).ready(function()
 				<div class="control-group">
 					<label class="control-label" for="chSrcInput">章节资源:</label>
 					<div class="control-group">
+					
 						<input type="file" id="chSrcInput" name="upload" placeholder="请输入章节资源">
-						<button class="btn" type="button" id="addSrcBtn">
-							<i class="icon-plus"></i>
-						</button>
+						<input type="file" id="chSrcInput" name="upload" placeholder="请输入章节资源">
+						<c:if test="${course.courseKind==2}">
+						<input type="file" id="chSrcInput" name="upload" placeholder="请输入章节资源">
+						</c:if>
+						
 						<br>
 					</div>
 				</div>

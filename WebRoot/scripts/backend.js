@@ -74,7 +74,7 @@ function init_spinner(selector, min, max)
 
 $(document).ready(function ()
 {
-	$.jstree._themes = '../themes/jstree/';
+	$.jstree._themes = 'themes/jstree/';
 
 	init_tree('#sidebar', '#content', {
 		plugins: [

@@ -19,7 +19,11 @@ public class CourseService {
 	public Integer insert(Course course) {
 		return courseDAO.save(course);
 	}
-	
+	/**
+	 * 模糊查询
+	 * @param course
+	 * @return
+	 */
 	public List<Course> findByExample(Course course){
 		
 		return courseDAO.findByExample(course);
@@ -31,9 +35,13 @@ public class CourseService {
 	
 	public void update(Course course)
 	{
-		courseDAO.update(course);
+		courseDAO.merge(course);
 	}
-
+/**
+ * 通过ID查询
+ * @param course
+ * @return
+ */
 	public Course getCourse(Course course)
 	{
 		
@@ -125,11 +133,11 @@ public class CourseService {
 	
 	public List<Course> findDangJianKeCheng(){
 		
-		return courseDAO.findByProperty("courseKind", 3);
+		return courseDAO.findByProperty("courseState", 3);
 	}
 	
 	public List<Course> findDangJianJiangZuo(){
 		
-		return courseDAO.findByProperty("courseKind", 4);
+		return courseDAO.findByProperty("courseState", 4);
 	}
 }

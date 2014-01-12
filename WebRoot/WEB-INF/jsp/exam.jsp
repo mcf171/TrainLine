@@ -52,13 +52,17 @@ $(document).ready(function ()
 			{ title: '开始时间', sortable: true, 
 				renderer: function (val, item, row)
 				{
-					return item.testStartTime;
+					str1 = item.testStartTime.substring(0,item.testStartTime.indexOf('T'));
+					str2 = item.testStartTime.substring(item.testStartTime.indexOf('T')+1);;
+					return str1+ " " + str2;
 				}		
 			},	
 			{ title: '结束时间', sortable: true, 
 				renderer: function (val, item, row)
 				{
-					return item.attributestStartTimete51;
+					str1 = item.attributestStartTimete51.substring(0,item.attributestStartTimete51.indexOf('T'));
+					str2 = item.attributestStartTimete51.substring(item.attributestStartTimete51.indexOf('T')+1);;
+					return str1+ " " + str2;
 				}		
 			},
 			{ title: '通过分数', sortable: true, 

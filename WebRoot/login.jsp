@@ -35,9 +35,11 @@ position:absolute;
 
 		<script type="text/javascript" src="scripts/bootstrap.js"></script>
 		<script type="text/javascript" src="scripts/jquery.js"></script>
+		<script type="text/javascript" src="scripts/login.js"></script>
 		<script src="scripts/sco.modal.js"></script>
 <script src="scripts/sco.message.js"></script>
 		<link rel="stylesheet" href="styles/bootstrap.css" type="text/css"></link>
+		<link rel="stylesheet" href="styles/login.css" type="text/css"></link>
 		<link href="styles/scojs.css" rel="stylesheet" media="screen">
 	</head>
 
@@ -73,11 +75,21 @@ position:absolute;
 						</div>
 					</div>
 					<div class="control-group">
+						<label class="control-label" for="inputEmail">
+							验证码
+						</label>
 						<div class="controls">
-							<label class="checkbox">
-								<input type="checkbox">
-								记住我
-							</label>
+							<input type="text" value="" name="validCode" onblur="validCodeConfirm(this)" style="width:106px"> <img id="validCode" src="validationCode.action" onclick="refreshValidCode();"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+								<input type="radio" name="userType">
+								学生
+								<input type="radio" name="userType">
+								老师
+								<input type="radio" name="userType">
+								管理员
 							<button type="submit" class="btn btn-primary">
 								登录
 							</button>
@@ -113,6 +125,9 @@ position:absolute;
 			</div>
 		</div>
 		</c:if>
+<div id="lay_bg" class="lay_background" style="width: 1366px; height: 216px;">
+		<img id="lay_bg_img" class="backendgroundImg" alt="" src="${basePath}images/bk5.jpg" >
+		</div>
 	</body>
 </html>
 

@@ -24,12 +24,13 @@ $(document).ready(function()
 	}
 	
 	
-	
+	/*
 	$("#addCourseAndSrcBtn").click(function(){
 	 $.ajax({
 				type : "POST",
 				url : "${basePath}course_addCourse.action",
-				data:"course.courseName="+$("#courseNameInput").val()+"&course.courseIntro="+$("#courseDescInput").val(),
+				data:"course.courseName="+$("#courseNameInput").val()+"&course.courseIntro="+$("#courseDescInput").val()+"&course.courseSpeaker="+$("#courseSpeaker").val()+"&course.courseState"
+				+$("#courseState").val(),
 				dataType : "json",
 				success : function(json) {
 				courseID = json.courseId;
@@ -40,7 +41,7 @@ $(document).ready(function()
 					return false;
 				}
 			});
-	});
+	});*/
 
 });
 
@@ -52,7 +53,7 @@ $(document).ready(function()
 			<span></span>
 		</div>
 
-		<form role="form" class="form-horizontal" action="javascript:void(0)" 
+		<form role="form" class="form-horizontal" action="${basePath}admin/addCourse.action" 
 		method="post">
 			<div class="control-group">
 				<label class="control-label" for="courseNameInput">课程名称:</label>
@@ -72,7 +73,7 @@ $(document).ready(function()
 			<div class="control-group">
 				<label class="control-label" for="courseDescInput">讲课老师:</label>
 				<div class="controls">
-					<input class="form-control" type="text" name="course.courseSpeaker" id="courseDescInput"
+					<input class="form-control" type="text" name="course.courseSpeaker" id="courseSpeaker"
 						placeholder="请输入课程描述"/>
 				</div>
 			</div>
@@ -80,7 +81,7 @@ $(document).ready(function()
 			<div class="control-group">
 				<label class="control-label" for="courseDescInput">课程类型:</label>
 				<div class="controls">
-					<select name="course.courseState" >
+					<select name="course.courseState" id="courseState">
 					<option value="-1">-------------------</option>
 					<option value="1">选课中心</option>
 					<option value="2">案例教学</option>

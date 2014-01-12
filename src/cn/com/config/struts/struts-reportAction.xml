@@ -8,6 +8,25 @@
 			/WEB-INF/jsp/backend/report.jsp
 			</result>
 		</action>
-		
+		<action name="getNianDuPeiJiXunJiHuaShiShiQingKuang" class="reportAction" method="getNianDuPeiJiXunJiHuaShiShiQingKuang">
+			<result>
+			/WEB-INF/jsp/backend/report/niandupeixunwanchengqingkuang.jsp
+			</result>
+		</action>
+		<action name="getPeiXunRenYuanBaoMingBiaoPage" class="reportAction" method="getPeiXunRenYuanBaoMingBiaoPage">
+			<result>
+			/WEB-INF/jsp/backend/report/peixunbanbaoming.jsp
+			</result>
+		</action>
+		<action name="getGangWeiPeiXunBanBeiAnBiaoPage" class="reportAction" method="getGangWeiPeiXunBanBeiAnBiaoPage">
+			<result>
+			/WEB-INF/jsp/backend/report/gangweipeixunban.jsp
+			</result>
+		</action>
+		<action name="getGangWeiPeiXunBanXiangXiPage" class="reportAction" method="getGangWeiPeiXunBanXiangXiPage">
+			<result>
+			/WebRoot/WEB-INF/jsp/backend/report/gangweipeixunbanxiangxi.jsp
+			</result>
+		</action>
 	</package>
 </struts>    

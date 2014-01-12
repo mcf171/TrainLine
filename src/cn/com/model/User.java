@@ -17,11 +17,12 @@ public class User implements java.io.Serializable {
 	private String userName;
 	private String userPassword;
 	private Integer userState;
+	private Set courses = new HashSet(0);
 	/*
 	private Set posts = new HashSet(0);
 	private Set jobcertificates = new HashSet(0);
 	private Set testquestions = new HashSet(0);
-	private Set courses = new HashSet(0);
+	
 	private Set records = new HashSet(0);
 	private Set notes = new HashSet(0);
 	private Set discusses = new HashSet(0);
@@ -102,6 +103,14 @@ public class User implements java.io.Serializable {
 
 	public void setUserState(Integer userState) {
 		this.userState = userState;
+	}
+
+	public Set getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set courses) {
+		this.courses = courses;
 	}
 
 

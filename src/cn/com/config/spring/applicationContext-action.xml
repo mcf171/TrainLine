@@ -1,91 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
-	
+
 	<bean id="reportAction" class="cn.com.action.ReportAction" scope="prototype">
-	   <property name="reportService" ref="reportService"></property>
+		<property name="reportService" ref="reportService"></property>
 	</bean>
-	
-    <bean id="newMessageAction" class="cn.com.action.NewManageAction" scope="prototype">
-	   <property name="noticeService" ref="noticeService"></property>
+
+	<bean id="newMessageAction" class="cn.com.action.NewManageAction"
+		scope="prototype">
+		<property name="noticeService" ref="noticeService"></property>
 	</bean>
-	<bean id="systemAction" class="cn.com.action.GetSysImfoAction" scope="prototype">
+	<bean id="systemAction" class="cn.com.action.GetSysImfoAction"
+		scope="prototype">
 
 	</bean>
 	<bean id="recordAction" class="cn.com.action.RecordAction" scope="prototype">
-        <property name="recordService" ref="recordService"></property>
-    </bean>
-		<bean id="liberaryAction" class="cn.com.action.LiberaryAction" scope="prototype">
-			<property name="liberaryService" ref="liberaryService"></property>
-			
-		</bean>
-	
+		<property name="recordService" ref="recordService"></property>
+	</bean>
+	<bean id="liberaryAction" class="cn.com.action.LiberaryAction"
+		scope="prototype">
+		<property name="liberaryService" ref="liberaryService"></property>
+
+	</bean>
+
 	<bean id="forumAction" class="cn.com.action.ForumAction" scope="prototype">
-	         <property name="forumService" ref="forumService"></property>
-	    </bean>
-	
-		<bean id="userAction" class="cn.com.action.UserAction" scope="prototype">
-			<property name="userService" ref="userService"></property>
-			<property name="recordService" ref="recordService"></property>
-		</bean>
-		
-		<bean id="questionnarieAction" class="cn.com.action.QuestionnaireAction" scope="prototype">
-	<property name="questionnairerService" ref="questionnairerService"></property>
+		<property name="forumService" ref="forumService"></property>
 	</bean>
-	
-	<bean id="questionnairerubricAction" class="cn.com.action.QuestionnaireRubricAction" scope="prototype">
-	<property name="questionnairerubricService" ref="questionnairerubricService"></property>
+
+	<bean id="userAction" class="cn.com.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+		<property name="recordService" ref="recordService"></property>
 	</bean>
-	
+
+	<bean id="questionnarieAction" class="cn.com.action.QuestionnaireAction"
+		scope="prototype">
+		<property name="questionnairerService" ref="questionnairerService"></property>
+	</bean>
+
+	<bean id="questionnairerubricAction" class="cn.com.action.QuestionnaireRubricAction"
+		scope="prototype">
+		<property name="questionnairerubricService" ref="questionnairerubricService"></property>
+	</bean>
+
 	<bean id="courseAction" class="cn.com.action.CourseAction" scope="prototype">
-	<property name="courseService" ref="courseService"></property>
+		<property name="courseService" ref="courseService"></property>
+		<property name="userService" ref="userService"></property>
 	</bean>
-	
+
 	<bean id="noteAction" class="cn.com.action.NoteAction" scope="prototype">
-	<property name="noteService" ref="noteService"></property>
-	<property name="noticeService" ref="noticeService"></property>
+		<property name="noteService" ref="noteService"></property>
+		<property name="noticeService" ref="noticeService"></property>
+		<property name="resourceService" ref="resourceService"></property>
 	</bean>
-	
-	<bean id="netDangkeAction" class="cn.com.action.NetDangKeAction" scope="prototype">
-	
+
+	<bean id="netDangkeAction" class="cn.com.action.NetDangKeAction"
+		scope="prototype">
+
 	</bean>
-	
-	<bean id="testquestionAction" class="cn.com.action.TestquestionAction" scope="prototype">
-	<property name="testQuestionService" ref="testQuestionService"></property>
-	</bean>
-	
-	<bean id="testPaperAction" class="cn.com.action.TestPaperAction" scope="prototype">
-	<property name="testPaperService" ref="testPaperService"></property>
-	</bean>
-	
-	<bean id="testArrangementAction" class="cn.com.action.TestArrangementAction" scope="prototype">
-	<property name="testArrangementService" ref="testArrangementService"></property>
-	</bean>
-	
-	<bean id="trainingClassAction" class="cn.com.action.TrainingClassAction" scope="prototype">
-	<property name="trainingClassService" ref="trainingClassService"></property>
-	</bean>
-	
-	<bean id="credentialAction" class="cn.com.action.CredentialAction" scope="prototype"> 
-	<property name="credentialService" ref="credentialService"></property>
-	</bean>
-	
-	
-	
-	<bean id="resourceAction" class="cn.com.action.ResourceAction" scope="prototype"> 
-	<property name="resourceService" ref="resourceService"></property>
-	</bean>
-	<bean id="humanAction" class="cn.com.action.HumanAction" scope="prototype"> 
-	<property name="humanService" ref="humanService"></property>
-	</bean>
+
+	<bean id="testquestionAction" class="cn.com.action.TestquestionAction"
+		scope="prototype">
+		<property name="testQuestionService" ref="testQuestionService"></property>
 		
-	</beans>
+	</bean>
+
+	<bean id="testPaperAction" class="cn.com.action.TestPaperAction"
+		scope="prototype">
+		<property name="testPaperService" ref="testPaperService"></property>
+		<property name="testQuestionService" ref="testQuestionService"></property>
+	</bean>
+
+	<bean id="testArrangementAction" class="cn.com.action.TestArrangementAction"
+		scope="prototype">
+		<property name="testArrangementService" ref="testArrangementService"></property>
+	</bean>
+
+	<bean id="trainingClassAction" class="cn.com.action.TrainingClassAction"
+		scope="prototype">
+		<property name="trainingClassService" ref="trainingClassService"></property>
+	</bean>
+
+	<bean id="credentialAction" class="cn.com.action.CredentialAction"
+		scope="prototype">
+		<property name="credentialService" ref="credentialService"></property>
+	</bean>
+
+
+
+	<bean id="resourceAction" class="cn.com.action.ResourceAction"
+		scope="prototype">
+		<property name="resourceService" ref="resourceService"></property>
+		<property name="dataMap" ref="hashMap"></property>
+	</bean>
+	<bean id="humanAction" class="cn.com.action.HumanAction" scope="prototype">
+		<property name="humanService" ref="humanService"></property>
+	</bean>
+
+</beans>

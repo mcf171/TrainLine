@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="resource" extends="system" namespace="/" >
-	     <action name="getInsideResourceList" class="resourceAction" method="getInsideResourceList">
-				<result type="json">
+	<package name="resource" extends="system" namespace="/">
+		<action name="getInsideResourceList" class="resourceAction"
+			method="getInsideResourceList">
+			<result type="json">
 				<param name="root">dataMap</param>
-				</result>
-	   	</action>
-   		<action name="showBackendResourceListPage" class="resourceAction" method="showBackendResourceListPage">
-   			<result>/WEB-INF/jsp/backend/resource.jsp</result>
-   		</action>
-   		<action name="showBackendInsideResourceListPage" class="resourceAction" method="showBackendInsideResourceListPage">
-   			<result>/WEB-INF/jsp/backend/resources/videoManager.jsp</result>
-   		</action>
-   		
-   	</package>
+			</result>
+		</action>
+		<action name="showBackendResourceListPage" class="resourceAction"
+			method="showBackendResourceListPage">
+			<result>/WEB-INF/jsp/backend/resource.jsp</result>
+		</action>
+		<action name="showBackendInsideResourceListPage" class="resourceAction"
+			method="showBackendInsideResourceListPage">
+			<result>/WEB-INF/jsp/backend/resources/videoManager.jsp</result>
+		</action>
+		
+		
+		
+	</package>
+	<package name="resourceAdmin" extends="system" namespace="/admin">
+		<action name="getBackendShiPingResource" class="resourceAction" method="getBackendShiPingResource">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="getBackendWenDangResource" class="resourceAction" method="getBackendWenDangResource">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="getBackendDongTaiResource" class="resourceAction" method="getBackendDongTaiResource">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="showBackendDocResourcePage" class="resourceAction" method="showBackendDocResourcePage">
+			<result >/WEB-INF/jsp/backend/resources/docManager.jsp</result>
+		</action>
+		<action name="showBackendDongTaiResourcePage" class="resourceAction" method="showBackendDongTaiResourcePage">
+			<result >/WEB-INF/jsp/backend/resources/flashManager.jsp</result>
+		</action>
+	</package>
 </struts>    

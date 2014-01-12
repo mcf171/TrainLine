@@ -19,8 +19,11 @@ public class Testquestion implements java.io.Serializable {
 	private String testType;
 	private String testAnswerIntroduce;
 	private String standardAnswer;
-	/**
+	private Integer testIndex;
+	
+	
 	private Set testpapers = new HashSet(0);
+	/**
 	private Set users = new HashSet(0);
 */
 	// Constructors
@@ -95,6 +98,30 @@ public class Testquestion implements java.io.Serializable {
 
 	public void setStandardAnswer(String standardAnswer) {
 		this.standardAnswer = standardAnswer;
+	}
+
+
+
+	public Integer getTestIndex() {
+		return testIndex;
+	}
+
+
+
+	public void setTestIndex(Integer testIndex) {
+		this.testIndex = testIndex;
+	}
+
+
+
+	public Set getTestpapers() {
+		return testpapers;
+	}
+
+
+
+	public void setTestpapers(Set testpapers) {
+		this.testpapers = testpapers;
 	}
 
 

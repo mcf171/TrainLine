@@ -18,6 +18,7 @@ public class Course implements java.io.Serializable {
 	private String courseIntro;
 	private Integer courseState;
 	private Integer courseKind;
+	private Set users = new HashSet(0);
 	private Set classandcourses = new HashSet(0);
 	private Set userandcourses = new HashSet(0);
 	private Set catalogues = new HashSet(0);
@@ -127,6 +128,18 @@ public class Course implements java.io.Serializable {
 
 	public void setCourseKind(Integer courseKind) {
 		this.courseKind = courseKind;
+	}
+
+
+
+	public Set getUsers() {
+		return users;
+	}
+
+
+
+	public void setUsers(Set users) {
+		this.users = users;
 	}
 
 	

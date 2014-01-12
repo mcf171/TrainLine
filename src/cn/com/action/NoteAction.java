@@ -9,12 +9,15 @@ import cn.com.base.BaseActionSupport;
 import cn.com.model.Catalogue;
 import cn.com.model.Note;
 import cn.com.model.Notice;
+import cn.com.model.Resource;
 import cn.com.service.NoteService;
 import cn.com.service.NoticeService;
+import cn.com.service.ResourceService;
 
 public class NoteAction extends BaseActionSupport {
 	private List<Note> nList;
 	private NoteService noteService;
+	private ResourceService resourceService;
 	private NoticeService noticeService;
 	private Map<String, List> dataMap;
 
@@ -28,8 +31,7 @@ public class NoteAction extends BaseActionSupport {
 	private List<Notice>noticeList1;
 	private List<Notice>noticeList2;
 	private List<Notice>noticeList3;
-	private List<Notice>noticeList4;
-	private List<Notice>noticeList5;
+
 	
 	public List<Notice> getNoticeList1() {
 		return noticeList1;
@@ -51,22 +53,6 @@ public class NoteAction extends BaseActionSupport {
 		return noticeList3;
 	}
 
-	public List<Notice> getNoticeList4() {
-		return noticeList4;
-	}
-
-	public void setNoticeList4(List<Notice> noticeList4) {
-		this.noticeList4 = noticeList4;
-	}
-
-	public List<Notice> getNoticeList5() {
-		return noticeList5;
-	}
-
-	public void setNoticeList5(List<Notice> noticeList5) {
-		this.noticeList5 = noticeList5;
-	}
-
 	public void setNoticeList3(List<Notice> noticeList3) {
 		this.noticeList3 = noticeList3;
 	}
@@ -83,8 +69,6 @@ public class NoteAction extends BaseActionSupport {
 		noticeList1=new ArrayList<Notice>();
 		noticeList2=new ArrayList<Notice>();
 		noticeList3=new ArrayList<Notice>();
-		noticeList4=new ArrayList<Notice>();
-		noticeList5=new ArrayList<Notice>();
 		note =new Note();
 		dataMap = new HashMap<String, List>();
 	}
@@ -160,19 +144,14 @@ public class NoteAction extends BaseActionSupport {
 	}
 	
 	public String getQiantaiNotice(){
-		List<Notice> noticeList = new ArrayList<Notice>();
-		noticeList = noticeService.getAllNotice();
-		for(int i=0;i<noticeList.size();i++){
-			int id = noticeList.get(i).getNoticetype().getNoticeTypeId();
-			if(id==1){
-				   if(noticeList4.size()<=3){
-			           noticeList4.add(noticeList.get(i));
-				   }
-			}
-			else if(id==2){
-				noticeList5.add(noticeList.get(i));
-			}			
-		}
+		
+		List<Resource> list = resourceService.getPaiHangBangList();
+		List<Notice> noticeList4 = noticeService.findNormalKeChengGongGao();
+		List<Notice> noticeList5 = noticeService.findNormalKaoShiGongGao();
+		
+		request.setAttribute("noticeList4", noticeList4);
+		request.setAttribute("noticeList5", noticeList5);
+		request.setAttribute("resourceList", list);
 		return "showQiantaiGonggao";
 	}
 	
@@ -234,6 +213,14 @@ public class NoteAction extends BaseActionSupport {
 
 	public void setNoteId(Integer noteId) {
 		this.noteId = noteId;
+	}
+
+	public ResourceService getResourceService() {
+		return resourceService;
+	}
+
+	public void setResourceService(ResourceService resourceService) {
+		this.resourceService = resourceService;
 	}
 
 }

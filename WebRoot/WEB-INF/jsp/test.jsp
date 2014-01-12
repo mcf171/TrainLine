@@ -1,8 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>购买家具调查</title>
+<title>${testArrangement.testpaper.testPaperName}</title>
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Cache-Control" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
@@ -18,6 +19,7 @@
      }
      html{ overflow-x:hidden;}
      </style>
+     <script type="text/javascript" src="${basePath}scripts/jquery.js"></script>
 </head>
 
 <body style="">
@@ -56,556 +58,86 @@
             
             <div id="ctl00_ContentPlaceHolder1_JQ1_surveyContent">
               <fieldset class="fieldset" id="fieldset1">
-                <legend><span style="font:14px">第1页/共1页</span></legend>
-                <div style="" class="div_question" id="div1">
+              <c:forEach var="item" items="${testArrangement.testpaper.testquestions}" varStatus="index">
+              		<div style="" class="div_question" id="div${index.index+1}">
                   <div class="div_title_question_all">
-                    <div id="divTitle1" class="div_title_question">1．您的年龄是<span style="color:red;">&nbsp;*</span></div>
+                    <div id="divTitle1" class="div_title_question">${index.index +1}．${item.testQuestionName}<span style="color:red;">&nbsp;*</span></div>
                     <div style="clear:both;"></div>
                   </div>
-                  <div class="div_table_radio_question" id="divquestion1">
-                    <div class="div_table_clear_top"></div>
-                    <ul>
-                      <li style="width:99%;">
-                        <input name="q1" id="q1_1" value="1" type="radio">
-                        <label for="q1_1">A.10-20岁</label>
-                      </li>
-                      <li style="width:99%;">
-                        <input name="q1" id="q1_2" value="2" type="radio">
-                        <label for="q1_2">B.20-30岁</label>
-                      </li>
-                      <li style="width:99%;">
-                        <input name="q1" id="q1_3" value="3" type="radio">
-                        <label for="q1_3">C.30-40岁</label>
-                      </li>
-                      <li style="width:99%;">
-                        <input name="q1" id="q1_4" value="4" type="radio">
-                        <label for="q1_4">D.40岁以上</label>
-                      </li>
-                      <div style="clear:both;"></div>
-                    </ul>
-                    <div style="clear:both;"></div>
-                    <div class="div_table_clear_bottom"></div>
+                  
+                  <div class="div_table_radio_question" id="divquestion${index.index+1}">
+                  <script>
+                 	testType = ${item.testType};
+                  	var question = '${item.testAnswerIntroduce}';
+                  	var questionIntroduce = question.split('~');
+                  	var 
+                  	insertHTML='<ul>';
+                  	for(i = 0 ; i < questionIntroduce.length; i++){
+                  		switch(testType){
+                  		
+                  		case 1:
+	                  		switch(i){
+	            			
+	                		case 0: insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="A" type="radio">'+
+	                					'<label for="q1_1">A.' + questionIntroduce[i] + '</label>' + '</li>';
+	                		; break;
+	                		case 1:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="B" type="radio">'+
+	                					'<label for="q1_1">B.' + questionIntroduce[i] + '</label>' + '</li>';
+	                		; break;
+	                		case 2:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="C" type="radio">'+
+	                					'<label for="q1_1">C.' + questionIntroduce[i] + '</label>' + '</li>';
+	                		; break;
+	                		case 3:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="D" type="radio">'+
+	                					'<label for="q1_1">D.' + questionIntroduce[i] + '</label>' + '</li>';
+	                		; break;
+	                		default: chooseBianhao = 'I';
+	                		
+	                		};break;
+                  		case 2:
+							switch(i){
+	            			
+							case 0: insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="A" type="checkbox">'+
+        					'<label for="q1_1">A.' + questionIntroduce[i] + '</label>' + '</li>';
+        					; break;
+			        		case 1:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="B" type="checkbox">'+
+			        					'<label for="q1_1">B.' + questionIntroduce[i] + '</label>' + '</li>';
+			        		; break;
+			        		case 2:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="C" type="checkbox">'+
+			        					'<label for="q1_1">C.' + questionIntroduce[i] + '</label>' + '</li>';
+			        		; break;
+			        		case 3:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="D" type="checkbox">'+
+			        					'<label for="q1_1">D.' + questionIntroduce[i] + '</label>' + '</li>';
+			        		; break;
+	                		default: chooseBianhao = 'I';
+	                		
+	                		};
+                  			break;
+                  		}
+                  		
+                  		insertHTML += '<div style="clear:both;"></div></ul>';	
+                  	}
+                  	$("#divquestion${index.index+1}").append(insertHTML);
+                  </script>
+                    
                   </div>
                 </div>
-                <div style="" class="div_question" id="div2">
-                  <div class="div_title_question_all">
-                    <div id="divTitle2" class="div_title_question">2、您的性别是<span style="color:red;">&nbsp;*</span></div>
-                    <div style="clear:both;"></div>
-                  </div>
-                  <div class="div_table_radio_question" id="divquestion2">
-                    <div class="div_table_clear_top"></div>
-                    <ul>
-                      <li style="width:99%;">
-                        <input name="q2" id="q2_1" value="1" type="radio">
-                        <label for="q2_1">男</label>
-                      </li>
-                      <li style="width:99%;">
-                        <input name="q2" id="q2_2" value="2" type="radio">
-                        <label for="q2_2">女</label>
-                      </li>
-                      <div style="clear:both;"></div>
-                    </ul>
-                    <div style="clear:both;"></div>
-                    <div class="div_table_clear_bottom"></div>
-                  </div>
-                </div>
-                <div class="div_question" id="div3">
-                  <div class="div_title_question_all">
-                    <div id="divTitle3" class="div_title_question">3、目前您对于家具的购买手段是<span style="color:red;">&nbsp;*</span><span style="color:#0066FF;">&nbsp;[多选题]</span></div>
-                    <div style="clear:both;"></div>
-                  </div>
-                  <div class="div_table_radio_question" id="divquestion3">
-                    <div class="div_table_clear_top"></div>
-                    <ul>
-                      <li style="width:99%;">
-                        <input id="q3_1" name="q3" value="1" type="checkbox">
-                        <label for="q3_1">亲自上门去家具城购买</label>
-                      </li>
-                      <li style="width:99%;">
-                        <input id="q3_2" name="q3" value="2" type="checkbox">
-                        <label for="q3_2">由销售人员上门推荐</label>
-                      </li>
-                      <li style="width:99%;">
-                        <input id="q3_3" name="q3" value="3" type="checkbox">
-                        <label for="q3_3">通过网上购买</label>
-                      </li>
-                      <li style="width:99%;">
-                        <input id="q3_4" name="q3" value="4" type="checkbox">
-                        <label for="q3_4">委托别人购买</label>
-                      </li>
-                      <div style="clear:both;"></div>
-                    </ul>
-                    <div style="clear:both;"></div>
-                    <div class="div_table_clear_bottom"></div>
-                  </div>
-                </div>
-                <div class="div_question" id="div4">
-                  <div class="div_title_question_all">
-                    <div id="divTitle4" class="div_title_question">4、买家具前是否有明确的购买目标 譬如：有的人就有了固定的选择，知道要买布沙发，买几座的<span style="color:red;">&nbsp;*</span></div>
-                    <div style="clear:both;"></div>
-                  </div>
-                  <div class="div_table_radio_question" id="divquestion4">
-                    <div class="div_table_clear_top"></div>
-                    <ul>
-                      <li style="width:99%;">
-                        <input name="q4" id="q4_1" value="1" type="radio">
-                        <label for="q4_1">有</label>
-                      </li>
-                      <li style="width:99%;">
-                        <input name="q4" id="q4_2" value="2" type="radio">
-                        <label for="q4_2">无</label>
-                      </li>
-                      <li style="width:99%;">
-                        <input name="q4" id="q4_3" value="3" type="radio">
-                        <label for="q4_3">有时候有</label>
-                      </li>
-                      <div style="clear:both;"></div>
-                    </ul>
-                    <div style="clear:both;"></div>
-                    <div class="div_table_clear_bottom"></div>
-                  </div>
-                </div>
-                <div  class="div_question" id="div5">
-                  <div class="div_title_question_all">
-                    <div id="divTitle5" class="div_title_question">4、请按您认为购买家具最重要的因素 <span style="color:red;">&nbsp;*</span><span style="color:#0066FF;">&nbsp;[请选择<b>全部选</b>项并排序]</span></div>
-                    <div style="clear:both;"></div>
-                  </div>
-                  <div class="div_table_radio_question" id="divquestion5">
-                    <div class="div_table_clear_top"></div>
-                    <div style="width:90%;">
-                      <ul style="float:left;&gt;&lt;li style=" float:none;'="" class="lisort">
-                        <input style="color: rgb(153, 153, 153);" id="q5_1" rel="q5" value="1" type="checkbox">
-                        <label for="q5_1">价格合理</label>
-                        <li style="float:none;" class="lisort">
-                          <input style="color: rgb(153, 153, 153);" id="q5_2" rel="q5" value="2" type="checkbox">
-                          <label for="q5_2">质量保证</label>
-                        </li>
-                        <li style="float:none;" class="lisort">
-                          <input style="color: rgb(153, 153, 153);" id="q5_3" rel="q5" value="3" type="checkbox">
-                          <label for="q5_3">环保</label>
-                        </li>
-                        <li style="float:none;" class="lisort">
-                          <input style="color: rgb(153, 153, 153);" id="q5_4" rel="q5" value="4" type="checkbox">
-                          <label for="q5_4">美观</label>
-                        </li>
-                        <li style="float:none;" class="lisort">
-                          <input style="color: rgb(153, 153, 153);" id="q5_5" rel="q5" value="5" type="checkbox">
-                          <label for="q5_5">方便适用</label>
-                        </li>
-                      </ul>
-                      <table style="float:left;">
-                        <tbody>
-                          <tr>
-                            <td verticalalign="center"><div style="margin-left:10px;">
-                                <select size="6" id="q5" style="width:200px;overflow:auto;height:120px;">
-                                </select>
-                              </div></td>
-                            <td verticalalign="center"><div class="qButton">
-                                <ul>
-                                  <li><a rel="q5" class="goTop" href="javascript:void(0);" name="first">移至最前</a></li>
-                                  <li><a rel="q5" href="javascript:void(0);" class="upMove" name="up">上移一位</a></li>
-                                  <li style="margin-top:10px"><a rel="q5" href="javascript:void(0);" class="downMove" name="down">下移一位</a></li>
-                                  <li><a rel="q5" class="goBottom" href="javascript:void(0);" name="last">移至最后</a></li>
-                                </ul>
-                              </div></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div style="clear:both;"></div>
-                    </div>
-                    <div class="div_table_clear_bottom"></div>
-                  </div>
-                </div>
-                <div class="div_question" id="div6">
-                  <div class="div_title_question_all">
-                    <div id="divTitle6" class="div_title_question">5、如果可以关于家具您是喜欢自己设计还是别人帮您设计<span style="color:red;">&nbsp;*</span></div>
-                    <div style="clear:both;"></div>
-                  </div>
-                  <div class="div_table_radio_question" id="divquestion6">
-                    <div class="div_table_clear_top"></div>
-                    <ul style="margin:5px 0 0 5px;">
-                      <li style="width:105px;">
-                        <input title="自己" name="q6" id="q6_1" value="1" type="radio">
-                        <label for="q6_1">自己</label>
-                      </li>
-                      <li style="width:105px;">
-                        <input title="别人" name="q6" id="q6_2" value="2" type="radio">
-                        <label for="q6_2">别人</label>
-                      </li>
-                      <div style="clear:both;"></div>
-                    </ul>
-                    <div style="clear:both;"></div>
-                    <div class="div_table_clear_bottom"></div>
-                  </div>
-                </div>
-                <div class="div_question" id="div7">
-                  <div class="div_title_question_all">
-                    <div id="divTitle7" class="div_title_question">6、.如果有一款软件能模拟您的家庭空间，您可以用它模拟任何家具摆放在您房间的任何位置，使您能一次性选择出最美观的摆放方式，免除您的体力劳累之苦，并且能提供给您每个家具是由哪个厂商生产。您是否需要？<span style="color:red;">&nbsp;*</span></div>
-                    <div style="clear:both;"></div>
-                  </div>
-                  <div class="div_table_radio_question" id="divquestion7">
-                    <div class="div_table_clear_top"></div>
-                    <ul>
-                      <li style="width:99%;">
-                        <input name="q7" id="q7_1" value="1" type="radio">
-                        <label for="q7_1">需要</label>
-                      </li>
-                      <li style="width:99%;">
-                        <input name="q7" id="q7_2" value="2" type="radio">
-                        <label for="q7_2">不需要</label>
-                      </li>
-                      <li style="width:99%;">
-                        <input name="q7" id="q7_3" value="3" type="radio">
-                        <label for="q7_3">看用的是否顺手</label>
-                      </li>
-                      <div style="clear:both;"></div>
-                    </ul>
-                    <div style="clear:both;"></div>
-                    <div class="div_table_clear_bottom"></div>
-                  </div>
-                </div>
+              </c:forEach>
+                              
                 <div class="register_div">
                   <div style="display:none;" id="divpoweredby">Powered by <a href="http://www.sojump.com/" title="专业的问卷调查网站" class="link-06f" target="_blank"><strong>Pioneer</strong></a><span style="font-family:Tahoma">™</span></div>
                 </div>
               </fieldset>
             </div>
-            <div style="margin-top: 6px;clear:both;" id="submit_div">
-              <table id="submit_table" style="margin: 20px auto;">
-                <tbody>
-                  <tr>
-                    <td id="ctl00_ContentPlaceHolder1_JQ1_tdCode" style="display: none;"><input id="txtCode" size="14" maxlength="10" onkeydown="enter_clicksub(event);" style="height:24px; line-height:24px; border:1px solid #7F9DB9;">
-                      &nbsp;&nbsp;<img id="imgCode" alt="验证码" title="看不清吗？点击可以刷新" style="vertical-align: bottom; cursor:pointer; display:none;"></td>
-                    <td><input class="submitbutton" value="提交答卷" onmouseout="this.className='submitbutton';" id="submit_button" type="button">
-                      &nbsp;&nbsp; </td>
-                    <td><div id="divPreviewQ" style="display:none;">
-                        <div style="margin:30px auto; text-align:center;"><a id="hrefPQ" target="_blank" onclick='alert("您的答卷还没有提交，请预览答卷后返回此页面并点击“提交按钮”提交答卷！");PDF_close();return true;' class="btnbg"><span>成功生成预览，点击查看</span></a></div>
-                      </div></td>
-                    <td><a href="http://www.sojump.com/viewstat/2178971.aspx" id="ctl00_ContentPlaceHolder1_JQ1_hrefViewResult" class="link-U00a6e6" style="margin-left:10px; display:none;" target="_blank"> 查看结果</a></td>
-                    <td align="right"><span id="spanTest" style="visibility:hidden;"> &nbsp;&nbsp;
-                      <input style="font-weight: bold;" class="operation" value="试填问卷" id="submittest_button" title="只有发布者才能看到试填按钮，试填的答卷不会参与结果统计！" type="button">
-                      <a title="只有发布者才能看到试填按钮，试填的答卷不会参与结果统计！" style="color: green" href="javascript:void(0);"><b>(?)</b></a>&nbsp;&nbsp;<span style="color: #ff3300;"></span></span></td>
-                    <td align="right" valign="bottom"></td>
-                  </tr>
-                </tbody>
-              </table>
-              <div style="clear:both;"></div>
-            </div>
-            <div id="divMinTime" style="display: none; position: absolute; width: 140px; font-size: 14px;
-        color: #666666;"> 还剩<span style="color: Red; font-weight: bold;" id="spanMinTime"></span>秒后才能继续 </div>
-            <div id="submit_tip" style="display: none; background-color: #f04810; color: White;
-        margin-bottom: 20px; padding: 10px"> </div>
+            
+            
           </div>
-          <div id="ctl00_ContentPlaceHolder1_JQ1_divLeftBar" style="text-align: center; position: absolute; width: 50px; padding: 8px 0px; left: 1147px; top: 310px; background: none repeat scroll 0% 0% rgb(255, 255, 255);" class="leftbar">
-            <div id="divProgressBar">
-              <style>
-            #loading
-            {
-                background: url(http://image.sojump.com/images/wjx/JoinQuestionnaire/bgProgressBg.gif) no-repeat 0px 0px;
-                height:120px;width: 15px;
-                float: left;
-                border: 1px #d6ebf7 solid;
-            }
-            #loadcss
-            {
-                display: block; /*很重要, 弄成块*/
-                background: url(http://image.sojump.com/images/wjx/JoinQuestionnaire/ProgressBarbar.gif);
-                background-repeat: repeat;
-                background-attachment: fixed;
-                text-align: center;
-                width: 15px;
-                line-height: 15px;
-            }
-           
-        </style>
-              <div style="text-align:left;"> <span id="loadprogress" style="font-weight: bold; visibility: visible;">&nbsp;&nbsp;0%</span> </div>
-              <div id="ctl00_ContentPlaceHolder1_JQ1_divProgressImg" style="float: left; padding-left: 15px; visibility: visible;">
-                <div id="loading" title="已答题比率"> <span id="loadcss" style="height: 0%;line-height:0;font-size:0; overflow:hidden;"></span> </div>
-              </div>
-              <div style="float: left; width:14px; line-height:0;" id="divSaveText"> </div>
-              <div class="divclear"></div>
-            </div>
-            <div style="float: left;padding-left: 2px; visibility:hidden;"> </div>
-            <script type="text/javascript">
-            var timerq; 
-            var surveycontent=document.getElementById("ctl00_ContentPlaceHolder1_JQ1_question");
-            var container=document.getElementById("container");
-            var progressBarType=1;
-             var divLeftBar=document.getElementById("ctl00_ContentPlaceHolder1_JQ1_divLeftBar");
-             var divProgressBar=document.getElementById("divProgressBar");  
-             var loading=document.getElementById("loading"); 
-             var divSave=document.getElementById("ctl00_ContentPlaceHolder1_JQ1_divSave");
-              var issimple = '';
-              var isSolid=1;
-              var divSaveText=document.getElementById("divSaveText");
-              var divProgressImg=document.getElementById("ctl00_ContentPlaceHolder1_JQ1_divProgressImg");
-             var xTop=0;var solidmainCss=document.getElementById("mainCss");
-             function addEventSimple(obj, evt, fn) {
-                if (obj.addEventListener)
-                    obj.addEventListener(evt, fn, false);
-                else if (obj.attachEvent)
-                    obj.attachEvent('on' + evt, fn);
-            }
-             function resizeLeftBar()
-             {
-                 if(!divLeftBar||!surveycontent)return;
-                 var xy2=null;var clientWidth=0;
-                  if(solidmainCss){
-                    xy2=getTop(solidmainCss);
-                    clientWidth=solidmainCss.offsetWidth||solidmainCss.clientWidth;
-                   
-                    }
-                    else if(issimple && surveycontent){
-                      xy2=getTop(surveycontent);
-                      clientWidth=surveycontent.clientWidth;
-                   }
-                   else if(container){
-                     xy2=getTop(container);
-                      clientWidth=container.clientWidth;
-                   }
-                     if(!xy2)return;
-                     var lWidth=0;
-                      var leftQ=xy2.x+clientWidth-lWidth; 
-                      divLeftBar.style.left=leftQ+"px";
-                      xTop=getTop(surveycontent).y;
-                      var docHeight=document.documentElement.clientHeight||document.body.clientHeight;
-                      if(xTop>docHeight/2)
-                        xTop=docHeight/2;
-             }
-              addEventSimple(window,"resize",resizeLeftBar);
-              resizeLeftBar();
-             addEventSimple(window,"scroll",mmq);
-             mmq();
-             var hasDisplayed=false;
-            function mmq()   
-            {   
-              var posY=document.documentElement.scrollTop||document.body.scrollTop;
-              if(divLeftBar){
-                  divLeftBar.style.top=posY+xTop+"px"; 
-              }
-            }  
-             function getTop(e)
-            {
-                if(!e)return;
-                var x = e.offsetLeft;
-                var y = e.offsetTop;
-                while(e = e.offsetParent)
-                {
-                    x += e.offsetLeft;
-                    y += e.offsetTop;
-                }
-                return {"x": x, "y": y};
-            }
-        </script>
-            <div style="clear: both;"> </div>
-          </div>
+         
           <div style="clear: both;"> </div>
-          <script type="text/javascript">
-    var hasQJump = "";
-</script> 
-          <script type="text/javascript">
-//总页数，问卷相关
-var totalPage=1;
-var hasDate ="";
-var hasSlider ="";
-var TouPiaoPay=0;
-var qstr = 'false§true¤page§1§§§¤radio§1§1§false§false§0§true§§§0§§§false〒〒0§false〒〒0§false〒〒0§false〒〒0¤radio§2§1§false§false§0§true§§§0§§§false〒〒0§false〒〒0¤check§3§1§false§false§0§true,,§§§0§§§false〒〒0〒§false〒〒0〒§false〒〒0〒§false〒〒0〒¤radio§4§1§false§false§0§true§§§0§§§false〒〒0§false〒〒0§false〒〒0¤check§5§1§false§false§0§true,,§§§1§§§false〒〒0〒§false〒〒0〒§false〒〒0〒§false〒〒0〒§false〒〒0〒¤radio§6§1§true§false§0§true§§§101§§§false〒1〒0§false〒2〒0¤radio§7§1§false§false§0§true§§§0§§§false〒〒0§false〒〒0§false〒〒0';//所有问题，与服务器端交互
-//其它交互
-var starttime="2013/9/12 1:32:14";
-langVer=0;
-var langsufix="";
-if(langVer==1)
-  langsufix="_en";
-else if(langVer==2)
- langsufix="_tw";
-else if(langVer==3)langsufix="_jp";
-var sjUser='';
-var tdCode="ctl00_ContentPlaceHolder1_JQ1_tdCode";
-var guid = "";var mobileRnum="";var onlyMailSms="";
-var sourceDetail = "未知";
-if(document.referrer)
-   sourceDetail=document.referrer;
-var nv='';
-var source = '';
-var udsid='';
-var eproguid = '';
-var eprotype='';
-var parterparm='';
-var parterparmname='';
- var operation = 'i';
- var userGuid='';
- var activityId = '2178971';
- var code = '';
- var simple = '';
-  var qinvited = '';
-  var qwidth='';
-   var parterid = '';
-   if(!window.isRunning)
-      window.isRunning="false";
-   var displayPrevPage="none";
-   var isPub="true";var isSuper="";
-   if(!parterid)
-      parterid='';
-var execute = "true";
-  var needRegister="false";
-  var hasJoin='';
-  var nfjoinid='';
- var promoteSource="";
- var lastSavePage=0;
- var lastSaveQ=0;
-  var jiFen="0";
- var hrefPreview = document.getElementById("ctl00_ContentPlaceHolder1_JQ1_hrefPreview");
- var afterDigitPublish = 1;
- var inviteid='';
- var survey = document.getElementById("ctl00_ContentPlaceHolder1_JQ1_surveyContent");
-var refu='';
-var isTest=''&&isPub;
-var isPreview='';
-var Password = "";
 
-var isProduction="true";
-var cAlipayAccount="";
-var wbid='';
-var needJQJiang=0;
-var IsSampleService=0;
-var divDec="ctl00_ContentPlaceHolder1_JQ1_divDec";
- try{
-        HTMLElement.prototype.click = function() {
-    var evt = this.ownerDocument.createEvent('MouseEvents');
-    evt.initMouseEvent('click', true, true, this.ownerDocument.defaultView, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
-    this.dispatchEvent(evt);
-    } 
-    }catch(ex){};
- 
- if(hasSlider)
- {
-     document.write('<script type="text/javascript" language="javascript"' + ' src="/js/slider_extras.js"><' + '/script>');
- }
-if(execute=="true")
-{  
-    document.write(
-            '<script type="text/javascript" language="javascript"' + ' src="scripts/hintInfo'+langsufix+'.js"><' + '/script>'+
-            '<script type="text/javascript" language="javascript"' + ' src="scripts/jqnew2.js?v=12"><' + '/script>');
- }
- var refer=document.referrer;
- if(!refer)refer="";
- else refer=refer.toLowerCase();
- var isFromSojiang=0;
- var isLogin=true;
- var CurrentDomain=1;
- var jiFenBao=0;var HasJiFenBao=0;
- var sojumpParm="";
- function gotoReg(){
-    PDF_launch(url,740,420, function () {
-		            if(!isLogin)gotoReg();
-                    else window.location.href=window.location.href;
-	    });
- }
-   if(needRegister=="true" && isRunning=="true" && refer.indexOf("/jq/")==-1) {
-         isLogin=false;
-         alert('此问卷赠送'+jiFen+'个积分（积分可以兑换支付宝现金或礼品），您必须注册或登录后填写才能获取积分。');
-           var url='/register/registers.aspx?eproguid='+"&type=1";
-           window.onload=function(){
-             gotoReg();
-           };
-     }
-     else if(jiFenBao>0){
-       window.onload=function(){
-          PDF_launch("/wjx/design/setalipay.aspx?activity=2178971",340,220, function () {
-		   var spanaliAccount=document.getElementById("spanaliAccount");
-           if(spanaliAccount && window.alipayAccount)
-           spanaliAccount.innerHTML="集分宝会赠送到<b style='font-size:13px;color:red;'>"+window.alipayAccount+"</b>，";
-	    });
-       }
-     }
-     else if(!isTest && window.location.href.toLowerCase().indexOf("/jq/")>-1 && window.PDF_launch){//&& isRunning!="true" 
-        var tMsg=document.getElementById("spanNotSubmit");var val='';
-        if(tMsg) val=tMsg.getAttribute("value");
-        var divNotRun=document.getElementById("divNotRun");
-        if(tMsg&&tMsg.innerHTML && (!getCookie("noJQPromote")||val=="1") && CurrentDomain &&divNotRun){
-          divNotRun.innerHTML="<div style=' margin-top:30px;'>"+tMsg.parentNode.innerHTML+"<div style='margin-top:10px;'><input type='button' value='确定' class='operation' onclick='window.parent.PDF_close();' /></div></div>";
-          window.onload=function(){
-           PDF_launch("divNotRun",520,120);
-             setCookie("noJQPromote","1",null,"/","sojump.com",null);
-           };
-        }
-     }
- if(hasDate)
- {
-    
-          document.onclick=function(e){
-          if(window.calendar)
-          {
-          calendar.hide();
-          };
-          }
-          }
+          
+        
           
           
-          function getCookieVal(offset) {
-          var endstr = document.cookie.indexOf(";", offset);
-          if (endstr == -1) {
-          endstr = document.cookie.length;
-          }
-          return unescape(document.cookie.substring(offset, endstr));
-          }
-          function getCookie(name) {
-          var arg = name + "=";
-          var alen = arg.length;
-          var clen = document.cookie.length;
-          var i = 0;
-          while (i < clen) {
-          var j = i + alen;
-          if (document.cookie.substring(i, j) == arg) {
-          return getCookieVal(j);
-          }
-          i = document.cookie.indexOf(" ", i) + 1;
-          if (i == 0) break;
-          }
-          return "";
-          }
-          function setCookie(name, value, expires, path, domain, secure) {
-          document.cookie = name + "=" + escape(value) +
-          ((expires) ? "; expires=" + expires : "") +
-          ((path) ? "; path=" + path : "") +
-          ((domain) ? "; domain=" + domain : "") +
-          ((secure) ? "; secure" : "");
-          }
-          function closeInfo()//关闭
-          {
-          var divInfo= document.getElementById("ctl00_ContentPlaceHolder1_JQ1_divPreview");
-          divInfo.style.display="none";
-          }
-          var cProvince="";
-          var cCity="";
-          var cIp="";
-          var NeedSearchKeyword=1;
-          var allowCopy=1 ;
-          var allowViewStat=1;
-          var Search_Keyword='';
-          var allowSaveJoin='';
-          if(isPub && onlyMailSms){
-          if(!guid&&!mobileRnum){
-          alert("提示：此问卷只允许从Pioneer系统发送的邮件和短信中包含的问卷链接访问。\r\n您是问卷发布者，可以从普通链接访问！");
-          }
-          }
-          var cepingCandidate="";
-          var cpid=""; 
-          </script><script type="text/javascript" language="javascript" src="scripts/hintInfo.js"></script><script type="text/javascript" language="javascript" src="scripts/jqnew2.js"></script> 
-          <script type="text/javascript">
-  var needAvoidCrack=0;
-  var AvoidCrackSetOpen=0;
-</script> 
-          <script type="text/javascript">
-try{document.execCommand("BackgroundImageCache", false, true);}
-catch(ex){}
-</script> 
-          <script type="text/javascript">
-    try {
-        sourceDetail = 'http%3a%2f%2fwww.sojump.com%2f';
-    }
-    catch (ex) { }
-    
-</script>
           <div style="clear: both;"> </div>
         </div>
         <div style="margin:30px auto 0; padding-top:30px; overflow: hidden; width:100%;">
@@ -624,7 +156,7 @@ catch(ex){}
                       </tr>
                       <tr id="ctl00_trPoweredBy">
                         <td style="color: #666666; font-family: Tahoma, 宋体;" align="center"><div style="height: 10px;"> </div>
-                          <a href="http://www.sojump.com/" target="_blank" class="link-444" title="Pioneer-专业的在线问卷调查、测评、投票平台">Pioneer</a>™提供技术支持 </td>
+                          Pioneer™提供技术支持 </td>
                       </tr>
                       <tr>
                         <td></td>

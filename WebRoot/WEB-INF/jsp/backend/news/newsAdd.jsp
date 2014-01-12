@@ -76,8 +76,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            <div class="row ">
                                     是否置顶：
               <select class="input-medium" name="notice.weight">
-			   <option >1</option>
-			   <option >2</option>			
+			   <option value="1">是</option>
+			   <option value="2">否</option>			
 			   </select>	
            </div>
            <div class="row">

@@ -25,5 +25,13 @@
 			<action name="getBackendTestArrangementPage" class="testArrangementAction" method="getBackendTestArrangementPage">
 				<result>/WEB-INF/jsp/backend/test/questionare.jsp</result>
 			</action>
+			
+			<action name="getAddTestArrangementPage" class="testArrangementAction" method="getAddTestArrangementPage">
+				<result>/WEB-INF/jsp/backend/test/addTestArrangement.jsp</result>
+			</action>
+			
+			<action name="addTestArrangment" class="testArrangementAction" method="addTestArrangment">
+				<result>/WEB-INF/jsp/backend/test/questionare.jsp</result>
+			</action>
 	</package>
 </struts>    

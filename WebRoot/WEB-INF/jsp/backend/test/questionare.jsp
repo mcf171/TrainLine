@@ -9,33 +9,60 @@
 $(document).ready(function ()
 {
 	$('#grid').mmGrid({
-		url: '/api/backend/study/get_questionares',
-		height: 410,
+		url: '${basePath}getTestArrangementList.action',
+		height: 280,
+		nowrap:true,
 		autoLoad: true,
 		checkCol: true,
 		multiSelect: true,
-		fullWithRows: true,
+		root:'testArrangementList',
+		fullWidthRows: true,
 		cols: [
-			{ title: '问卷编号', sortable: true, width: 150, name: 'no' },
-			{ title: '问卷名称', sortable: true, width: 210, name: 'name' },
-			{ title: '开始日期', sortable: true, width: 120, name: 'start' },
-			{ title: '截止日期', sortable: true, width: 120, name: 'end' },
-			{
-				width: 70,
-				title: '问卷状态',
-				sortable: true,
+			{ title: '班级名称', sortable: true, 
 				renderer: function (val, item, row)
 				{
-					switch (item.status)
-					{
-						case 0: return '未发布';
-						case 1: return '<span class="text-info">已发布</span>';
-						case 2: return '<span class="text-success">已完成</span>';
-						case 3: return '<span class="muted">已撤销</span>';
-						case 4: return '<span class="text-error">已过期</span>';
-						default: return '';
+					return item.trainingclass.trainingClassName;
+				}	
+			},
+			{ title: '考试地点', sortable: true, 
+				renderer: function (val, item, row)
+				{
+					return item.testArrangementPlace;
+				}		
+			},
+			{ title: '开始时间', sortable: true, 
+				renderer: function (val, item, row)
+				{
+					str1 = item.testStartTime.substring(0,item.testStartTime.indexOf('T'));
+					str2 = item.testStartTime.substring(item.testStartTime.indexOf('T')+1);;
+					return str1+ " " + str2;
+				}		
+			},	
+			{ title: '结束时间', sortable: true, 
+				renderer: function (val, item, row)
+				{
+					str1 = item.attributestStartTimete51.substring(0,item.attributestStartTimete51.indexOf('T'));
+					str2 = item.attributestStartTimete51.substring(item.attributestStartTimete51.indexOf('T')+1);;
+					return str1+ " " + str2;
+				}		
+			},
+			{ title: '通过分数', sortable: true, 
+				renderer: function (val, item, row)
+				{
+					return item.passMark;
+				}		
+			},
+			{ title: '考试状态', sortable: true, 
+				renderer: function (val, item, row)
+				{
+					switch(item.testState){
+					
+					case 1: return "尚未开始";break;
+					case 2: return "正在考试";break;
+					case 3: return "考试结束";break;
+					case 4: return "阅卷结束";break;
 					}
-				}
+				}		
 			},
 			{
 				title: '操作',
@@ -63,6 +90,7 @@ $(document).ready(function ()
 <div class="row-fluid line-margin">
 	<div class="span12">
 		<button class="btn"><i class="icon-share"></i>&nbsp;发布</button>
+		<button class="btn" onclick="javascript:loadHTML('${basePath}admin/getAddTestArrangementPage.action')"><i class="icon-share"></i>&nbsp;添加</button>
 	</div>
 </div>
 <div class="row-fluid line-margin">

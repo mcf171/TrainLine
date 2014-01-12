@@ -16,6 +16,7 @@
 <script type="text/javascript" src="${basePath}scripts/datepicker.js"></script>
 <script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
 <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
+<script type="text/javascript" src="${basePath}scripts/bootstrap.js"></script>
 <script type="text/javascript">
 var mmg;
 var noteID;
@@ -60,7 +61,7 @@ var noteID;
 							height : 410,
 							autoLoad : true,
 							root : 'nList',
-							fullWithRows : true,
+							fullWidthRows : true,
 							cols : [
 									{
 										title : '笔记ID',
@@ -92,7 +93,7 @@ var noteID;
 										renderer : function(val, item, row) {
 											return '<input type="hidden" id="'+item.noteId+'" value="' + item.noteId + '" />'
 													+ '<a href="#">查看</a>&nbsp;&nbsp; '+
-													'<a href="#myModal" onclick="deleteN('+item.noteId+')" role="button" class="btn" data-toggle="modal">删除</a>';
+													'<a href="javascript:deleteN('+item.noteId+')" >删除</a>';
 										}
 
 									} ],
@@ -102,13 +103,14 @@ var noteID;
 	};
 	
 	$("#sureDeleteBtn").click(function (){
-	$("#myModal").modal('hide');
+	
 	$.ajax({
 				type : "POST",
 				url : "${basePath}note_deleteNote.action?noteId="+noteID,
 				dataType : "json",
 				success : function(json) {
 				mmg.load({page:1});
+				$("#myModal").modal('hide');
 				},
 				error : function() {
 					alert("操作失败,请重试!");
@@ -120,6 +122,7 @@ var noteID;
 	
 	//删除一条记录
 	function deleteN(noteid){
+		$('#myModal').modal();
 	noteID = noteid;
 	}
 

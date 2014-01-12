@@ -23,8 +23,15 @@ public class TestPaperService {
 	
 	public void update(Testpaper testpaper)
 	{
+		testpaperDAO.update(testpaper);
 	}
-
+	
+	public void updateState(Testpaper testpaper){
+		
+		Testpaper temp = testpaperDAO.findById(testpaper.getTestPaperId());
+		temp.setTestPaperState(testpaper.getTestPaperState());
+		this.update(temp);
+	}
 	public Testpaper getTestpaper(Testpaper testpaper)
 	{
 		
@@ -36,6 +43,26 @@ public class TestPaperService {
 		
 	}
 	
+	public List<Testpaper> findOpenTestPaper(){
+		
+		List<Testpaper> list = testpaperDAO.findByProperty("testPaperState", 1);
+		
+		return list;
+	}
+	
+public List<Testpaper> findRubbleTestPaper(){
+		
+		List<Testpaper> list = testpaperDAO.findByProperty("testPaperState", 3);
+		
+		return list;
+	}
+
+public List<Testpaper> findKeepTestPaper(){
+	
+	
+	List<Testpaper> list = testpaperDAO.findByProperty("testPaperState", 2);
+	return list;
+}
 	
 	
 	

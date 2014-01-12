@@ -52,5 +52,12 @@
             </key>
             <one-to-many class="cn.com.model.Testquestion" />
         </set>
+        <set name="users" inverse="false" table="userandcourse" lazy="false" cascade="save-update">
+            <key>
+                <column name="courseId" />
+            </key>
+            <many-to-many class="cn.com.model.User" column="userId"/>
+        </set>
+        
     </class>
 </hibernate-mapping>

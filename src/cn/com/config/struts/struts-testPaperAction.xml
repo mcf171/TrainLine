@@ -5,6 +5,18 @@
 		<action name="testPaper_*" class="testPaperAction" method="{1}">
 		</action>
 		
+		<action name="getAddTestPaperPage" class="testPaperAction" method="getAddTestPaperPage">
+			<result>/WEB-INF/jsp/backend/test/addTest.jsp</result>
+		</action>
+		<action name="addTestPaper" class="testPaperAction" method="addTestPaper">
+			<result>/WEB-INF/jsp/backend/test/questionareOpen.jsp</result>
+		</action>
+		<action name="modifyTestPaper" class="testPaperAction" method="modifyTestPaper">
+			<result>/WEB-INF/jsp/backend/test/questionareOpen.jsp</result>
+		</action>
+		<action name="deleteTestPaper" class="testPaperAction" method="deleteTestPaper">
+			<result>/WEB-INF/jsp/backend/test/questionareOpen.jsp</result>
+		</action>
 		<action name="getExaminations" class="testPaperAction" method="getExaminations">
 			<result>/WEB-INF/jsp/backend/examinations.jsp</result>
 		</action>
@@ -20,6 +32,26 @@
 		<action name="getRubbleTestPaperPage" class="testPaperAction" method="getRubbleTestPaperPage">
 			<result>/WEB-INF/jsp/backend/test/questionareRubble.jsp</result>
 		</action>
+		
+		<action name="findOpenTestPaper" class="testPaperAction" method="findOpenTestPaper">
+			<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+		</action>
+		
+		<action name="findRubbleTestPaper" class="testPaperAction" method="findRubbleTestPaper">
+			<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+		</action>
+		
+		<action name="findKeepTestPaper" class="testPaperAction" method="findKeepTestPaper">
+			<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+		</action>
+		
+		
 		
 	</package>
 </struts>    

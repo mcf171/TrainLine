@@ -10,7 +10,7 @@
 		</result>
 		<result name="detailCourseInfo">/WEB-INF/jsp/courseDetailInfo.jsp</result>
 		<result name="intoStudyCenter">/WEB-INF/jsp/course.jsp</result>
-		<result name="intoaddChapterPage">/WEB-INF/jsp/backend/study/addCourseChapter.jsp</result>
+		
 		<result type="json" name="json"></result>
 		<result name="intoCoursePage">/WEB-INF/jsp/backend/study/class-system.jsp</result>
 		<result name="addCourse">/WEB-INF/jsp/backend/study/addCourse.jsp</result>
@@ -33,5 +33,47 @@
 				<param name="root">dataMap</param>
 				</result>
 		</action>
+		
+		<action name="getNormalDangJianJiangZuo" class="courseAction" method="getNormalDangJianJiangZuo">
+		<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+		</action>
+		
+		<action name="catalogueDetail" class="courseAction" method="catalogueDetail">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="selectCourse" class="courseAction" method="selectCourse">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
 	</package>
+	
+	<package name="courseAdmin" namespace="/admin" extends="system">
+	
+		<action name="addCourse" class="courseAction" method="addCourse">
+			<result type="redirectAction">
+				<param name="actionName">intoaddChapterPage.action</param>
+				<param name="courseId">${courseId}</param>
+				<param name="course.courseKind">${course.courseKind}</param>
+			</result>
+		</action>
+		
+		<action name="intoaddChapterPage" class="courseAction" method="intoaddChapterPage">
+			<result name="intoaddChapterPage">/WEB-INF/jsp/backend/study/addCourseChapter.jsp</result>
+		</action>
+		
+		<action name="deleteCourse" class="courseAction" method="deleteCourse">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		
+	</package>
+	
 </struts>    

@@ -21,12 +21,6 @@ public class Noticetype implements java.io.Serializable {
 	public Noticetype() {
 	}
 
-	/** full constructor */
-	public Noticetype(String noticeTypeName, Set notices) {
-		this.noticeTypeName = noticeTypeName;
-		this.notices = notices;
-	}
-
 	// Property accessors
 
 	public Integer getNoticeTypeId() {

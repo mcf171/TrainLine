@@ -6,6 +6,9 @@ import java.util.Map;
 
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Testarrangement;
+import cn.com.model.Testpaper;
+import cn.com.model.Trainingclass;
+import cn.com.model.User;
 import cn.com.service.TestArrangementService;
 
 public class TestArrangementAction extends BaseActionSupport{
@@ -13,18 +16,31 @@ public class TestArrangementAction extends BaseActionSupport{
 	private TestArrangementService testArrangementService;
 	private Map<String, Object> dataMap;
 	private Testarrangement testArrangement;
-	
+	private int testPaperId;
+	private int trainClassId;
 	
 	public TestArrangementAction() {
 		super();
 		dataMap = new HashMap<String, Object>();
 		// TODO Auto-generated constructor stub
 	}
-
+	public String addTestArrangment(){
+		
+		testArrangement.setTestpaper(new Testpaper());
+		testArrangement.getTestpaper().setTestPaperId(testPaperId);
+		testArrangement.setTestState(1);
+		testArrangement.setUser((User) session.get("user"));
+		testArrangement.setTrainingclass(new Trainingclass());
+		testArrangement.getTrainingclass().setTrainingClassId(trainClassId);
+		
+		testArrangementService.insert(testArrangement);
+		
+		return this.SUCCESS;
+	}
 	public String findAllTestarrangement()
 	{
 		taList = testArrangementService.findAll();
-		super.session.put("taList", taList);
+		dataMap.put("taList", taList);
 		return SUCCESS;
 	}
 	
@@ -57,6 +73,11 @@ public class TestArrangementAction extends BaseActionSupport{
 		
 		List<Testarrangement> list = testArrangementService.findAll();
 		dataMap.put("testArrangementList", list);
+		
+		return this.SUCCESS;
+	}
+	public String getAddTestArrangementPage(){
+		
 		
 		return this.SUCCESS;
 	}
@@ -97,6 +118,18 @@ public class TestArrangementAction extends BaseActionSupport{
 
 	public void setTestArrangement(Testarrangement testArrangement) {
 		this.testArrangement = testArrangement;
+	}
+	public int getTestPaperId() {
+		return testPaperId;
+	}
+	public void setTestPaperId(int testPaperId) {
+		this.testPaperId = testPaperId;
+	}
+	public int getTrainClassId() {
+		return trainClassId;
+	}
+	public void setTrainClassId(int trainClassId) {
+		this.trainClassId = trainClassId;
 	}
 
 	

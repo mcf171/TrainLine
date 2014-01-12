@@ -13,5 +13,16 @@
    			<result>/WEB-INF/jsp/backend/index.jsp</result>
    		</action>
    		
+   		<action name="goToJform" class="userAction" method="goToJform">
+   			<result type="redirect">
+   				<param name="location">${rootPath}/jforum</param>
+   				<param name="module">user</param>
+   				<param name="action">validateLogin</param>
+   				<param name="username">${user.userName}</param>
+   				<param name="password">${user.userPassword}</param>
+   				<param name="login">%E7%99%BB%E5%85%A5</param>
+   			</result>
+   		</action>
+   		
    	</package>
 </struts>    
