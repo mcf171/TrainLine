@@ -140,7 +140,14 @@ public class Page implements Serializable{
 	public void setSize(int numPerPage) {
 		this.numPerPage = numPerPage;
 	}
-	
+	/**
+	 * 初始化Page
+	 * author:Apache
+	 * modifyTime:2014/1/15 11:16
+	 * @param page 当前页
+	 * @param countRow 总记录数
+	 * @param numPerPage 每页显示数
+	 */
 	public Page(int page, int countRow,int numPerPage) {
 		this.allRows = countRow;
 		this.pageNum = page;
@@ -169,7 +176,7 @@ public class Page implements Serializable{
 		first = 1;
 		last = allPages;
 		// 从第几条数据开始查询
-		allRows = (pageNum - 1) * numPerPage;
+//		allRows = (pageNum - 1) * numPerPage;
 	}
 
 	public Page() {

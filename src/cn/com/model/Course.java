@@ -142,5 +142,30 @@ public class Course implements java.io.Serializable {
 		this.users = users;
 	}
 
+
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		if (obj instanceof  Course){
+			Course item = (Course) obj;
+			//System.out.println("local id is :"+this.courseId);
+			//System.out.println("compare id is : "+ item.getCourseId());
+			if(item.getCourseId().equals(this.courseId)){
+				flag = true;
+			}
+		}
+		return flag;
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
 	
 }

@@ -12,7 +12,12 @@
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 <!-- 
 		<aop:aspectj-autoproxy proxy-target-class="true"/>
-		
-			<bean class="cn.com.util.LoggingAspect"></bean>
-			 -->
+		 -->
+		 <bean id="loggingAspect" class="cn.com.aspect.LoggingAspect"></bean>
+		<aop:config proxy-target-class="true">
+			<aop:aspect id="login" ref="loggingAspect">
+				<aop:pointcut expression="execution(* cn.com.action.UserAction.login(..))" id="loginTarget"/>
+				<aop:before method="loginBefore" pointcut-ref="loginTarget"/>
+			</aop:aspect>
+		</aop:config>	
 	</beans>

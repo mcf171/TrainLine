@@ -20,13 +20,20 @@ public class UserAction extends BaseActionSupport{
 	
 	public String login(){
 		
+		//user.getUserPassword();
 		user = userService.login(user);
 		
 		String path = user == null ? this.INPUT : this.SUCCESS;
 		session.put("user", user);
-		
+		request.setAttribute("error", "用户名或密码错误");
 		return path;
 		
+	}
+	
+	public String logout(){
+		
+		session.remove("user");
+		return this.LOGIN;
 	}
    public String show(){
 	    user = (User)session.get("user");

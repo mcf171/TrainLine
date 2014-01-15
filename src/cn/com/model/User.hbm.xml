@@ -36,7 +36,14 @@
                 <column name="courseId" not-null="true" />
             </many-to-many>
         </set>
-        
+        <set name="notices" inverse="false" table="userandnotice" lazy="false" cascade="save-update">
+            <key>
+                <column name="userId" not-null="true" />
+            </key>
+            <many-to-many entity-name="cn.com.model.Notice">
+                <column name="noticeId" not-null="true" />
+            </many-to-many>
+        </set>
         <!-- 
         <set name="posts" inverse="true">
             <key>

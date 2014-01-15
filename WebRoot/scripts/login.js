@@ -1,6 +1,7 @@
 
 function validCodeConfirm(inputObj){
 	
+	
 	name = inputObj.value;
 	if(name!=""){
 	$.ajax({
@@ -29,9 +30,8 @@ function refreshValidCode(){
 	validCodeImg = $("#validCode");
 	validCodeImg.attr("src","validationCode.action?randNumber="+randomNumber);
 }
+$(window).resize(function (){
 
-$(document).ready(function (){
-	
 	var bkWidth = $(document).width();
 	var bkHeight = $(document).height();
 	
@@ -40,4 +40,37 @@ $(document).ready(function (){
 	
 	$("#lay_bg_img").css("width",bkWidth);
 	$("#lay_bg_img").css("height",bkHeight);
+}); 
+$(document).ready(function(){
+	var bkWidth = $(document).width();
+	var bkHeight = $(document).height();
+	
+	$("#lay_bg").css("width",bkWidth);
+	$("#lay_bg").css("height",bkHeight);
+	
+	$("#lay_bg_img").css("width",bkWidth);
+	$("#lay_bg_img").css("height",bkHeight);
+	
 });
+function checkNull(){
+	
+	var  userName = $("#userName").val();
+	var userPassword = $("#userPassword").val();
+	var validateCode = $("#validateCode").val();
+	
+	if(userName == "")
+	{
+		$.scojs_message('用户名不能为空', $.scojs_message.TYPE_ERROR);
+		return false;
+	}
+	if(userPassword =""){
+		$.scojs_message('密码不能为空', $.scojs_message.TYPE_ERROR);
+		return false;
+	}
+	if(validateCode = "")
+	{
+		$.scojs_message('验证码不能为空', $.scojs_message.TYPE_ERROR);
+		return false;
+	}
+	return true;
+}

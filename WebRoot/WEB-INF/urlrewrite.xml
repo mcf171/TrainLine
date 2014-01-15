@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlrewrite>
+<rule>
+	<from>/index.html</from>
+	<to type="forward">${basePath}/login.jsp</to>
+</rule>
+<!-- 将新闻内容映射为/news-contentId-moduleId.html -->
+<rule>
+	<from>^/news-([0-9]+)-([0-9]+).html$</from>
+	<to type="forward">
+		/queryModuleContent.action?contentId=$1&amp;moduleId=$2
+	</to>
+</rule> 
+</urlrewrite> 

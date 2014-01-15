@@ -51,6 +51,12 @@
 				<param name="root">dataMap</param>
 			</result>
 		</action>
+		
+		<action name="dropCourse" class="courseAction" method="dropCourse">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="courseAdmin" namespace="/admin" extends="system">

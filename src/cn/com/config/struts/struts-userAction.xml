@@ -9,6 +9,10 @@
    			<result name="input">login.jsp</result>
    		</action>
    		
+   		<action name="logout"	class="userAction"	method="logout">
+   		
+   		</action>
+   		
    		<action name="getBackendIndex" class="userAction" method="getBackendIndex">
    			<result>/WEB-INF/jsp/backend/index.jsp</result>
    		</action>

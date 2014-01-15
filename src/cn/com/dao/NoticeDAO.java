@@ -1,13 +1,18 @@
 package cn.com.dao;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.com.model.Notice;
@@ -78,21 +83,30 @@ public class NoticeDAO extends HibernateDaoSupport {
 		List <Notice> NoticeList = getHibernateTemplate().find(queryString, params.toArray());
 		return NoticeList;
 	}
+	/**
+	 * 返回通过Notice Example的查询结果，并按照发布时间降序排序
+	 * author: Apache
+	 * modifyTime:2014-1-13 10:30
+	 * @notice 需要查询的Notice
+	 * @return 返回通过Notice Example的查询结果，并按照发布时间降序排序
+	 */
 	public List findByNoticeExample(Notice notice){
-		String queryString = "from Notice where 1 = 1";
+		String queryString = "from Notice where 1 = 1 ";
 		List<Object> params = new ArrayList<Object>();
-		if(notice.getNoticeId()!=0){
-			queryString+="and noticeId=?";
+		if(notice.getNoticeId()!=null&&notice.getNoticeId()!=0){
+			queryString+="and noticeId=? ";
 			params.add(notice.getNoticeId());
 		}
 		if(notice.getNoticetype().getNoticeTypeId()!=0){
-			queryString+="and noticeTypeId=?";
+			queryString+="and noticeTypeId=? ";
 			params.add(notice.getNoticetype().getNoticeTypeId());	
 		}
 		if(notice.getNoticeContent()!=null){
-			queryString+="and noticeContent like ?";
+			queryString+="and noticeContent like ? ";
 			params.add("%"+notice.getNoticeContent() + "%");
 		}
+		queryString += " order by noticeTime desc";
+		//getHibernateTemplate().executeFind(action)
 		List <Notice> NoticeList = getHibernateTemplate().find(queryString, params.toArray());
 		return NoticeList;
 	}
@@ -107,7 +121,84 @@ public class NoticeDAO extends HibernateDaoSupport {
 			log.error("find by example failed", re);
 			throw re;
 		}
+		
 	}
+	/**
+	 * 返回通过Notice Example的查询结果并根据分页，并按照发布时间降序排序
+	 * author: Apache
+	 * modifyTime:2014-1-13 10:30
+	 * @notice 需要查询的Notice
+	 * @offset 起始点
+	 * @length 页号
+	 * @return 返回通过Notice Example的查询结果，并按照发布时间降序排序
+	 */
+	public List findByNoticeExample(Notice notice,int offset, int length){
+		String queryString = "from Notice where 1 = 1 ";
+		List<Object> params = new ArrayList<Object>();
+		if(notice.getNoticeId()!=null&&notice.getNoticeId()!=0){
+			queryString+="and noticeId=? ";
+			params.add(notice.getNoticeId());
+		}
+		if(notice.getNoticetype().getNoticeTypeId()!=0){
+			queryString+="and noticeTypeId=? ";
+			params.add(notice.getNoticetype().getNoticeTypeId());	
+		}
+		if(notice.getNoticeContent()!=null){
+			queryString+="and noticeContent like ? ";
+			params.add("%"+notice.getNoticeContent() + "%");
+		}
+		queryString += " order by noticeTime desc";
+		//getHibernateTemplate().executeFind(action)
+		List <Notice> NoticeList = getNoticeByExampleByPage(queryString,offset,length, params);
+		return NoticeList;
+		
+	}
+	/**
+	 * 通过Notice 返回总共有多少条
+	 * @param notice
+	 * @return 返回总共有多少记录数
+	 */
+	public int getCount(Notice notice){
+		int count = 0;
+		List list = this.findByNoticeExample(notice);
+		count = list.size();
+		return count;
+	}
+	/**
+	 * 返回通过hql的查询结果并根据分页，并按照发布时间降序排序
+	 * author: Apache
+	 * modifyTime:2014-1-15 11:00
+	 * @hql 需要查询的hql
+	 * @offset 起始点
+	 * @length 页号
+	 * @return 返回通过Notice Example的查询结果
+	 */
+	public List getNoticeByExampleByPage(final String hql, final int offset,     
+		    final int length,final List<Object> params) {     
+		   List list = getHibernateTemplate().executeFind(new HibernateCallback() {     
+		    public Object doInHibernate(Session session)     
+		      throws HibernateException, SQLException {     
+		     Query query = session.createQuery(hql);     
+		     
+		     for(int i = 0; i< params.size(); i++){
+		    	 
+		    	 if(params.get(i) instanceof Integer){
+		    		 query.setInteger(i,(Integer) params.get(i));
+		    	 }else if (params.get(i) instanceof Double){
+		    		 query.setDouble(i,(Double) params.get(i));
+		    	 }else if(params.get(i) instanceof String ){
+		    		 query.setString(i,(String) params.get(i));
+		    	 }
+		     }
+		     
+		     query.setFirstResult(offset);     
+		     query.setMaxResults(length);     
+		     List list = query.list();     
+		     return list;     
+		    }     
+		   });     
+		   return list;     
+		}
 
 	public List findByProperty(String propertyName, Object value) {
 		log.debug("finding Notice instance with property: " + propertyName

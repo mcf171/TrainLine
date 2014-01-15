@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 //<![CDATA[
 var PAGES = {
-	page_0: '${basePath}note_getQiantaiNotice.action',
+	page_0: '${basePath}getHomeNotice.action',
 	page_1: '${basePath}course_intoStudyCenter.action',
 	page_2:'${basePath}getNormalTestArrangementPage.action',
 	page_3: '${basePath}showNetDangKePage.action',
@@ -78,13 +78,37 @@ $(document).ready(function ()
 		</div>
 	</div>
 </div>
-<div class="row-fluid">
+<div class="row-fluid" id="content">
 	<iframe id="container" scrolling="no" frameborder="0" class="span10 offset1">
 	</iframe>
 </div>
 <div class="push"></div>
 <div class="importantInfo">
-	<a href="#" onclick="hiddenClass('importantInfo')"><img src="images/importantInfo.png"/></a>
+	<div class="span4">
+			<div class="row-fluid resources">
+				<div class="span12">
+					<div class="row-fluid">
+						<div class="span12">
+							<b>通知</b>
+							  
+							<a href="javascript:hiddenClass('importantInfo')" class="more"><i class=" icon-remove"></i></a>
+							<a target="_blank" href="#" class="more">更多</a> 
+							
+						</div>
+					</div>
+					<hr class="seperator" />
+					
+					<c:forEach items="${user.notices}" var="item"  varStatus="s">
+					<div class="row-fluid">
+						<div class="span12">
+						
+					        ${s.count}、<a href="#">${item.resourceName }</a>
+						</div>
+					</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
 </div>
 <div class="footer">
 	<div class="row-fluid">
@@ -92,6 +116,8 @@ $(document).ready(function ()
 			<span class="offset1">${user.userName}</span>
 		</div>
 		<div class="pull-right">
+			<a href="${basePath}logout.action">注销</a>
+			&nbsp;
 			<c:if test="${user.userState== 1}">
 			<a href="getBackendIndex.action" target="_blank">后台管理</a>
 			&nbsp;

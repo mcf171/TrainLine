@@ -87,7 +87,7 @@ $(document).ready(function ()
 	
 	
 	mmg1 = $('#grid-available').mmGrid({
-		url: '${basePath}course_fbfindCourse.action',
+		url: '${basePath}course_fbfindCourse.action?user.userId=${user.userId}',
 		height: 230,
 		root:'cList',
 		autoLoad: true,
@@ -174,7 +174,7 @@ $(document).ready(function ()
 					
 					return '<input type="hidden" value="' + item.courseId + '" />' +
 						'<a target="_blank" href="${basePath}getCourseStudyPage.action?course.courseId=' + item.courseId + '">学习</a>&nbsp;&nbsp;' +
-					'<a href="#">退选</a>' 
+					'<a href="javascript:dropCourse(\'' + item.courseId + '\')">退选</a>' 
 				}
 			}
 		],
@@ -306,6 +306,52 @@ $(document).ready(function ()
 	function detail(courseId)
 	{
 	loadHTML('${basePath}course_intoDetailCourseInfo.action?courseId='+courseId);
+	}
+	/**
+	*批量退选
+	*author:Apache
+	*time:2014-1-12 12:17
+	*/
+	function dropCourses(courseId){
+		
+		arrayClass = mmg2.selectedRowsIndex();
+		dataCourse = "";
+		for(i=0 ; i < arrayClass.length; i++){
+			
+			dataCourse += "&courseIds="+mmg1.row(arrayClass[0]).courseId;
+		}
+		
+		$.ajax({
+			  type: "post",
+			  url: '${basePath}'+"selectCourse.action",
+			  data:dataCourse,
+			  success: function(msg){
+				 
+				  $('#myModal').modal();
+				  mmg2.removeRow(mmg1.selectedRowsIndex());
+			  }
+			});
+
+	}
+	/**
+	*退选
+	*author:Apache
+	*time:2014-1-12 12:17
+	*/
+	function dropCourse(courseId){
+	
+		dataCourse = "course.courseId="+courseId;
+		$.ajax({
+			  type: "post",
+			  url: '${basePath}'+"dropCourse.action",
+			  data:dataCourse,
+			  success: function(msg){
+				 
+				  $('#dropModel').modal();
+				  mmg2.removeRow(mmg2.selectedRowsIndex());
+			  }
+			});
+
 	}
 </script>
 </head>
@@ -467,6 +513,7 @@ $(document).ready(function ()
 			</div>
 		</div>
 	</div>
+	<!-- 选课成功 -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
@@ -476,6 +523,22 @@ $(document).ready(function ()
 	</div>
 	<div class="modal-body">
 		<p>选课成功</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">确认</button>
+		
+	</div>
+</div>
+<!-- 退选成功 -->
+<div id="dropModel" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h3 id="myModalLabel">退选成功</h3>
+	</div>
+	<div class="modal-body">
+		<p>退选成功</p>
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">确认</button>

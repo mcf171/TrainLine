@@ -13,6 +13,7 @@
 
 	<include file="cn/com/config/struts/struts-global.xml"></include>
 	<include file="cn/com/config/struts/struts-liberaryAction.xml"></include>
+	<include file="cn/com/config/struts/struts-noticeAction.xml"></include>
 	<include file="cn/com/config/struts/struts-questionnaireAction.xml"></include>
 	<include file="cn/com/config/struts/struts-questionnairerubricAction.xml"></include>
 	<include file="cn/com/config/struts/struts-courseAction.xml"></include>

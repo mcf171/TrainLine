@@ -32,10 +32,11 @@ position:absolute;
 	font-size: x-large;
 }
 </style>
-
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="scripts/login.js"></script>
 		<script type="text/javascript" src="scripts/bootstrap.js"></script>
-		<script type="text/javascript" src="scripts/jquery.js"></script>
-		<script type="text/javascript" src="scripts/login.js"></script>
+		
+		
 		<script src="scripts/sco.modal.js"></script>
 <script src="scripts/sco.message.js"></script>
 		<link rel="stylesheet" href="styles/bootstrap.css" type="text/css"></link>
@@ -46,7 +47,7 @@ position:absolute;
 	<body>
 	<c:if test="${!empty request.error }">
 	<script>
-	 $.scojs_message('用户名或密码错误', $.scojs_message.TYPE_ERROR);
+	 $.scojs_message('${request.error}', $.scojs_message.TYPE_ERROR);
 	 </script>
 	</c:if>
 <c:if test="${empty session.user }">
@@ -57,13 +58,13 @@ position:absolute;
 				</h3>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" action="login.action"  method="post">
+				<form class="form-horizontal" action="login.action"  method="post" onsubmit="checkNull()">
 					<div class="control-group">
 						<label class="control-label" for="inputEmail">
 							用户名
 						</label>
 						<div class="controls">
-							<input type="text" id="inputEmail" placeholder="用户名" name="user.userName" required>
+							<input type="text" id="userName" placeholder="用户名" name="user.userName" required>
 						</div>
 					</div>
 					<div class="control-group">
@@ -71,7 +72,7 @@ position:absolute;
 							密 码
 						</label>
 						<div class="controls">
-							<input type="password" id="inputPassword" placeholder="密码" name="user.userPassword" required>
+							<input type="password" id="userPassword" placeholder="密码" name="user.userPassword" required>
 						</div>
 					</div>
 					<div class="control-group">
@@ -79,16 +80,16 @@ position:absolute;
 							验证码
 						</label>
 						<div class="controls">
-							<input type="text" value="" name="validCode" onblur="validCodeConfirm(this)" style="width:106px"> <img id="validCode" src="validationCode.action" onclick="refreshValidCode();"/>
+							<input type="text" value="" id="validateCode" name="validCode" onblur="validCodeConfirm(this)" style="width:106px" required> <img id="validCode" src="validationCode.action" onclick="refreshValidCode();"/>
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
-								<input type="radio" name="userType">
+								<input type="radio" name="user.userState" value="3" checked>
 								学生
-								<input type="radio" name="userType">
+								<input type="radio" name="user.userState" value="2">
 								老师
-								<input type="radio" name="userType">
+								<input type="radio" name="user.userState" value="1">
 								管理员
 							<button type="submit" class="btn btn-primary">
 								登录
@@ -128,6 +129,8 @@ position:absolute;
 <div id="lay_bg" class="lay_background" style="width: 1366px; height: 216px;">
 		<img id="lay_bg_img" class="backendgroundImg" alt="" src="${basePath}images/bk5.jpg" >
 		</div>
+		
+		
 	</body>
 </html>
 

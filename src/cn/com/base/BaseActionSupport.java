@@ -23,6 +23,7 @@ SessionAware, ServletResponseAware, ServletRequestAware{
 	public static final String LOGIN="login";
 	public static final String FINDALL="findall";
 	public static final String FAIL="fail";
+	public static final String INPUT="input";
 
 	/**
 	 * @Fields session:TODO

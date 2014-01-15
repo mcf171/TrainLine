@@ -9,7 +9,9 @@ import cn.com.base.BaseActionSupport;
 import cn.com.model.Catalogue;
 import cn.com.model.Note;
 import cn.com.model.Notice;
+import cn.com.model.Noticetype;
 import cn.com.model.Resource;
+import cn.com.model.User;
 import cn.com.service.NoteService;
 import cn.com.service.NoticeService;
 import cn.com.service.ResourceService;
@@ -17,9 +19,10 @@ import cn.com.service.ResourceService;
 public class NoteAction extends BaseActionSupport {
 	private List<Note> nList;
 	private NoteService noteService;
-	private ResourceService resourceService;
+	
 	private NoticeService noticeService;
 	private Map<String, List> dataMap;
+	private Notice notice;
 
 	// **查询条件*/
 	private Note note ;
@@ -32,7 +35,26 @@ public class NoteAction extends BaseActionSupport {
 	private List<Notice>noticeList2;
 	private List<Notice>noticeList3;
 
-	
+	/**
+	 * 获取note内容
+	 * author: Apache
+	 * time:2014-1-12 23:00
+	 * @return
+	 */
+	public String getNoticeContent(){
+		
+		notice = noticeService.getNoticeById(notice);
+		Notice temp = new Notice();
+		temp.setNoticetype(notice.getNoticetype());
+		List<Notice> list = noticeService.findByNoticeExample(temp);
+		Notice preNotice = noticeService.getPreNotice(notice);
+		Notice lastNotice = noticeService.getLastNotice(notice);
+		request.setAttribute("notice", notice);
+		request.setAttribute("preNotice", preNotice);
+		request.setAttribute("lastNotice", lastNotice);
+		request.setAttribute("list", list);
+		return this.SUCCESS;
+	}
 	public List<Notice> getNoticeList1() {
 		return noticeList1;
 	}
@@ -143,17 +165,8 @@ public class NoteAction extends BaseActionSupport {
 		return "showGonggao";
 	}
 	
-	public String getQiantaiNotice(){
-		
-		List<Resource> list = resourceService.getPaiHangBangList();
-		List<Notice> noticeList4 = noticeService.findNormalKeChengGongGao();
-		List<Notice> noticeList5 = noticeService.findNormalKaoShiGongGao();
-		
-		request.setAttribute("noticeList4", noticeList4);
-		request.setAttribute("noticeList5", noticeList5);
-		request.setAttribute("resourceList", list);
-		return "showQiantaiGonggao";
-	}
+	
+	
 	
 	public void setDataMap(Map<String, List> dataMap) {
 		this.dataMap = dataMap;
@@ -215,12 +228,11 @@ public class NoteAction extends BaseActionSupport {
 		this.noteId = noteId;
 	}
 
-	public ResourceService getResourceService() {
-		return resourceService;
+	public Notice getNotice() {
+		return notice;
 	}
-
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
+	public void setNotice(Notice notice) {
+		this.notice = notice;
 	}
 
 }

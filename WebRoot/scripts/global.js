@@ -14,6 +14,16 @@ function loadHTML(name){
 	$('#content').load(name);
 }
 
+function idLoadHTML(id,url){
+	$('#'+id).load(url);
+}
+
+function loadFrame(page)
+{
+	var temp = $('#container');
+	$('#container').attr('src', page);
+}
+
 function deleteTFromDate(value){
 	
 	str1 =value.substring(0,value.indexOf('T'));

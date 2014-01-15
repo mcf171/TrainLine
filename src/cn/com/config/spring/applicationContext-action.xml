@@ -7,7 +7,11 @@
 	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
-
+	<bean id="noticeAction" class="cn.com.action.NoticeAction" scope="prototype">
+		<property name="noticeService" ref="noticeService"></property>
+		<property name="resourceService" ref="resourceService"></property>
+	</bean>
+	
 	<bean id="reportAction" class="cn.com.action.ReportAction" scope="prototype">
 		<property name="reportService" ref="reportService"></property>
 	</bean>
@@ -56,7 +60,6 @@
 	<bean id="noteAction" class="cn.com.action.NoteAction" scope="prototype">
 		<property name="noteService" ref="noteService"></property>
 		<property name="noticeService" ref="noticeService"></property>
-		<property name="resourceService" ref="resourceService"></property>
 	</bean>
 
 	<bean id="netDangkeAction" class="cn.com.action.NetDangKeAction"

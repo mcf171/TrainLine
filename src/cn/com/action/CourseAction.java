@@ -54,6 +54,8 @@ public class CourseAction extends BaseActionSupport {
 	private String[] uploadContentTypeName;
 	private String savePath;
 
+	
+	
 	/**
 	 * 上传文件 文件流控制
 	 * 
@@ -91,6 +93,23 @@ public class CourseAction extends BaseActionSupport {
 		}
 	}
 
+	/**
+	 * 退选操作
+	 * author: 王珏
+	 * time:2014-1-12 12:00
+	 * @return
+	 */
+	public String dropCourse(){
+		
+		User user = (User) session.get("user");
+		//System.out.println(user.getCourses().contains(course));
+		user.getCourses().remove(course);
+		//System.out.println(user.getCourses().contains(course));
+		userService.update(user);
+		dataMap.put("success", "success");
+		
+		return this.SUCCESS;
+	}
 	/**
 	 * 获取前台课程学习界面
 	 * @return

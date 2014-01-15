@@ -15,9 +15,86 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="scripts/bootstrap.js"></script>
 <script type="text/javascript" src="scripts/global.js"></script>
 <title>主页</title>
+<script>
+$(document).ready(function(){
+	
+	var htmlContent1="",htmlContent2="",htmlContent3="";
+	var index1=1,index2=1,index3=1;
+	<c:forEach items="${resourceList}" var="item">
+	
+	<c:if test="${item.resourceType==1}">
+		htmlContent1 = htmlContent1+'<div class="row-fluid"><div class="span12" >';
+		switch(index1){
+		case 1: htmlContent1 = htmlContent1+'<div class="badge badge-important">'+index1+'</div>';break;
+		case 2: htmlContent1 = htmlContent1+'<div class="badge badge-success">'+index1+'</div>';break;
+		case 3: htmlContent1 = htmlContent1+'<div class="badge badge-info">'+index1+'</div>';break;
+		default : htmlContent1 = htmlContent1+'<div class="badge">'+index1+'</div>';
+		}
+		htmlContent1 = htmlContent1 +'<a href="${basePath}${item.resourcePath}">${item.resourceName }</a>';
+		htmlContent1 = htmlContent1 +'<span class="time muted">${item.downloundCount}</span></div></div>';
+		index1 ++;
+	</c:if>
+	<c:if test="${item.resourceType==2}">
+	htmlContent2 = htmlContent2+'<div class="row-fluid"><div class="span12" >';
+	switch(index2){
+	case 1: htmlContent2 = htmlContent2+'<div class="badge badge-important">'+index2+'</div>';break;
+	case 2: htmlContent2 = htmlContent2+'<div class="badge badge-success">'+index2+'</div>';break;
+	case 3: htmlContent2 = htmlContent2+'<div class="badge badge-info">'+index2+'</div>';break;
+	default : htmlContent2 = htmlContent2+'<div class="badge">'+index2+'</div>';
+	}
+	htmlContent2 = htmlContent2 +'<a href="${basePath}${item.resourcePath}">${item.resourceName }</a>';
+	htmlContent2 = htmlContent2 +'<span class="time muted">${item.downloundCount}</span></div></div>';
+	index2 ++;
+	</c:if>
+	
+	<c:if test="${item.resourceType==3}">
+	htmlContent3 = htmlContent3+'<div class="row-fluid"><div class="span12" >';
+	switch(index3){
+	case 1: htmlContent3 = htmlContent3+'<div class="badge badge-important">'+index3+'</div>';break;
+	case 2: htmlContent3 = htmlContent3+'<div class="badge badge-success">'+index3+'</div>';break;
+	case 3: htmlContent3 = htmlContent3+'<div class="badge badge-info">'+index3+'</div>';break;
+	default : htmlContent3 = htmlContent3+'<div class="badge">'+index3+'</div>';
+	}
+	htmlContent3 = htmlContent3 +'<a href="${basePath}${item.resourcePath}">${item.resourceName }</a>';
+	htmlContent3 = htmlContent3 +'<span class="time muted">${item.downloundCount}</span></div></div>';
+	index3 ++;
+	</c:if>
+	</c:forEach>
+	$("#resource1").html(htmlContent1);
+	$("#resource2").html(htmlContent2);
+	$("#resource3").html(htmlContent3);
+	
+	console.log(htmlContent1);
+	console.log(htmlContent2);
+	console.log(htmlContent3);
+});
+
+function changeResource(obj){
+	var value = parseInt(obj.value);
+	switch(value){
+	case	1: 
+		$("#resource1").removeClass('hidden');
+		$("#resource2").addClass('hidden');
+		$("#resource3").addClass('hidden');
+		break;
+	case	2: 
+		$("#resource2").removeClass('hidden');
+		$("#resource1").addClass('hidden');
+		$("#resource3").addClass('hidden');
+		break;
+	case	3: 
+		$("#resource3").removeClass('hidden');
+		$("#resource1").addClass('hidden');
+		$("#resource2").addClass('hidden');
+		break;
+	}
+	console.log(obj.value);
+}
+</script>
+
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid" id="content">
 	<div class="row-fluid">
 		<div class="span8">
 			<div class="row-fluid resources fixed-box">
@@ -25,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="row-fluid">
 						<div class="span12">
 							<b>课程公告</b>
-							<a target="_blank" href="#" class="more">更多</a>
+							<a href="javascript:loadHTML('${basePath}getAllNormalKechengGongGao.action?notice.noticetype.noticeTypeId=1')" class="more">更多</a>
 						</div>
 					</div>
 					<hr class="seperator" />
@@ -34,7 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							   <div class="row-fluid">
 								<div class="span12">
 									<i class="icon-info-sign"></i>
-									${item.noticeContent}
+									<a href="javascript:loadHTML('${basePath}getNoticeContent.action?notice.noticeId=${item.noticeId}&notice.noticetype.noticeTypeId=${item.noticetype.noticeTypeId}')">${item.noticeContent}</a>
 								</div>
 							</div>
 							  </c:forEach>
@@ -46,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="row-fluid">
 						<div class="span12">
 							<b>考试公告</b>
-							<a target="_blank" href="#" class="more">更多</a>
+							<a  href="javascript:loadHTML('${basePath}getAllNormalKaoShiGongGao.action?notice.noticetype.noticeTypeId=2')" class="more">更多</a>
 						</div>
 					</div>
 					<hr class="seperator" />
@@ -55,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							   <div class="row-fluid">
 								<div class="span12">
 									<i class="icon-info-sign"></i>
-									${item.noticeContent}
+									<a href="javascript:loadHTML('${basePath}getNoticeContent.action?notice.noticeId=${item.noticeId}&notice.noticetype.noticeTypeId=${item.noticetype.noticeTypeId}')">${item.noticeContent}</a>
 								</div>
 							</div>
 							  </c:forEach>
@@ -72,29 +149,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<b>热门资源排行</b>
 							  
 							<a target="_blank" href="#" class="more">更多</a>
-							 <select class="input-small more">
-              <option>视频资源</option>
-              <option>文档资源</option>
-              <option>动画资源</option>
-            </select>
+							 <select class="input-small more" onchange="changeResource(this)">
+					              <option value="1">视频资源</option>
+					              <option value="2">文档资源</option>
+					              <option value="3"> 动画资源</option>
+					            </select>
 						</div>
 					</div>
 					<hr class="seperator" />
-					
-					<c:forEach items="${resourceList}" var="item"  varStatus="s">
-					<div class="row-fluid">
-						<div class="span12">
-						   <c:choose> 
-					        <c:when test="${s.count==1}"><div class="badge badge-important">${s.count}</div></c:when>
-					        <c:when test="${s.count==2}"><div class="badge badge-success">${s.count}</div></c:when>
-					        <c:when test="${s.count==3}"><div class="badge badge-info">${s.count}</div></c:when>
-					        <c:otherwise><div class="badge">${s.count}</div></c:otherwise>
-						   </c:choose>
-						    <a href="#">${item.resourceName }</a>
-							<span class="time muted">${item.downloundCount}</span>
-						</div>
+					<div id="resource1">
+				
 					</div>
-					</c:forEach>
+					<div id="resource2" class="hidden">
+				
+					</div>
+					<div id="resource3" class="hidden">
+				
+					</div>
 				</div>
 			</div>
 		</div>

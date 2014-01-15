@@ -135,7 +135,7 @@ public class NewManageAction extends BaseActionSupport{
 			 Timestamp nowDate =new Timestamp(System.currentTimeMillis());
 			 notice.setNoticeTime(nowDate);
 			 Noticetype noticeType = new Noticetype();
-			 noticeType = noticeService.findById(notice.getNoticetype().getNoticeTypeId());
+			 noticeType = noticeService.findNoticetypeById(notice.getNoticetype().getNoticeTypeId());
 			 notice.setNoticetype(noticeType);
 			 User user = new User();
 			 user=(User)session.getAttribute("user");
