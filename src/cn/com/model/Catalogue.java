@@ -18,7 +18,8 @@ public class Catalogue implements java.io.Serializable {
 	private Integer catalogueNumber;
 	private Timestamp uploading;
 	private String uploadingPerson;
-	private Set resource = new HashSet(0);
+	private Integer cataloguaWeight;
+	private Set<Resource> resource = new HashSet<Resource>(0);
 	private Set notes = new HashSet(0);
 	private Set tcomments = new HashSet(0);
 	
@@ -100,7 +101,7 @@ public class Catalogue implements java.io.Serializable {
 		this.tcomments = tcomments;
 	}
 
-	public Set getResource() {
+	public Set<Resource> getResource() {
 		return resource;
 	}
 
@@ -108,8 +109,12 @@ public class Catalogue implements java.io.Serializable {
 		this.resource = resource;
 	}
 
-	
+	public Integer getCataloguaWeight() {
+		return cataloguaWeight;
+	}
 
+	public void setCataloguaWeight(Integer cataloguaWeight) {
+		this.cataloguaWeight = cataloguaWeight;
+	}
 	
-
 }

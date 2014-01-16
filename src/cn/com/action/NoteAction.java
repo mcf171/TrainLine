@@ -162,7 +162,7 @@ public class NoteAction extends BaseActionSupport {
 				noticeList3.add(noticeList.get(i));
 			}
 		}
-		return "showGonggao";
+		return this.SUCCESS;
 	}
 	
 	

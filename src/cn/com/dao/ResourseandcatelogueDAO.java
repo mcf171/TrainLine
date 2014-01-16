@@ -142,8 +142,15 @@ public class ResourseandcatelogueDAO extends HibernateDaoSupport {
 
 
 	public void save(Resource r) {
-	 Session session =getHibernateTemplate().getSessionFactory().openSession();
-	 session.save(r);
-	 session.flush();
+		try {
+			  
+			 getHibernateTemplate().saveOrUpdate(r);
+			log.debug("attach successful");
+		} catch (RuntimeException re) {
+			log.error("attach failed", re);
+			throw re;
+		}
+		
+	
 	}
 }

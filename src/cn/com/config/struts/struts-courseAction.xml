@@ -1,66 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-<constant name = "struts.multipart.maxSize" value = "100000000" />
+	<constant name="struts.multipart.maxSize" value="100000000" />
 
 	<package name="course" namespace="/" extends="json-default">
 		<action name="course_*" class="courseAction" method="{1}">
-		<result type="json" name="success">
-		<param name="root">dataMap</param>
-		</result>
-		<result name="detailCourseInfo">/WEB-INF/jsp/courseDetailInfo.jsp</result>
-		<result name="intoStudyCenter">/WEB-INF/jsp/course.jsp</result>
-		
-		<result type="json" name="json"></result>
-		<result name="intoCoursePage">/WEB-INF/jsp/backend/study/class-system.jsp</result>
-		<result name="addCourse">/WEB-INF/jsp/backend/study/addCourse.jsp</result>
-		<param name="savePath">/upload</param>
+			<result type="json" name="success">
+				<param name="root">dataMap</param>
+			</result>
+			<result name="detailCourseInfo">/WEB-INF/jsp/courseDetailInfo.jsp</result>
+			<result name="intoStudyCenter">/WEB-INF/jsp/course.jsp</result>
+
+			<result type="json" name="json"></result>
+			<param name="savePath">/upload</param>
 		</action>
-		
-		<action name="getCourseStudyPage" class="courseAction"  method="getCourseStudyPage">
+
+		<action name="getCourseStudyPage" class="courseAction" method="getCourseStudyPage">
 			<result name="two">/WEB-INF/jsp/study2.jsp</result>
 			<result name="three">/WEB-INF/jsp/study.jsp</result>
 		</action>
-		
-		<action name="getNormalDangJianKeCheng" class="courseAction"  method="getNormalDangJianKeCheng">
-		<result type="json">
+
+		<action name="getNormalDangJianKeCheng" class="courseAction"
+			method="getNormalDangJianKeCheng">
+			<result type="json">
 				<param name="root">dataMap</param>
-				</result>
+			</result>
 		</action>
-		
-		<action name="getNormalDangJianKeCheng" class="courseAction" method="getNormalDangJianKeCheng">
-		<result type="json">
+
+		<action name="getNormalDangJianKeCheng" class="courseAction"
+			method="getNormalDangJianKeCheng">
+			<result type="json">
 				<param name="root">dataMap</param>
-				</result>
+			</result>
 		</action>
-		
-		<action name="getNormalDangJianJiangZuo" class="courseAction" method="getNormalDangJianJiangZuo">
-		<result type="json">
+
+		<action name="getNormalDangJianJiangZuo" class="courseAction"
+			method="getNormalDangJianJiangZuo">
+			<result type="json">
 				<param name="root">dataMap</param>
-				</result>
+			</result>
 		</action>
-		
+
 		<action name="catalogueDetail" class="courseAction" method="catalogueDetail">
 			<result type="json">
 				<param name="root">dataMap</param>
 			</result>
 		</action>
-		
+
 		<action name="selectCourse" class="courseAction" method="selectCourse">
 			<result type="json">
 				<param name="root">dataMap</param>
 			</result>
 		</action>
-		
+
 		<action name="dropCourse" class="courseAction" method="dropCourse">
 			<result type="json">
 				<param name="root">dataMap</param>
 			</result>
 		</action>
+
+
 	</package>
-	
+
 	<package name="courseAdmin" namespace="/admin" extends="system">
-	
+
+		<action name="intoAddcoursePage" class="courseAction" method="intoAddcoursePage">
+			<result>/WEB-INF/jsp/backend/course/addCourse.jsp</result>
+		</action>
+
+		<action name="intoCoursePage" class="courseAction" method="intoCoursePage">
+			<result>/WEB-INF/jsp/backend/course/class-system.jsp</result>
+			
+		</action>
 		<action name="addCourse" class="courseAction" method="addCourse">
 			<result type="redirectAction">
 				<param name="actionName">intoaddChapterPage.action</param>
@@ -68,18 +79,24 @@
 				<param name="course.courseKind">${course.courseKind}</param>
 			</result>
 		</action>
-		
+
 		<action name="intoaddChapterPage" class="courseAction" method="intoaddChapterPage">
-			<result name="intoaddChapterPage">/WEB-INF/jsp/backend/study/addCourseChapter.jsp</result>
+			<result>/WEB-INF/jsp/backend/course/addCourseChapter.jsp</result>
 		</action>
-		
+
 		<action name="deleteCourse" class="courseAction" method="deleteCourse">
 			<result type="json">
 				<param name="root">dataMap</param>
 			</result>
 		</action>
-		
-		
+
+		<action name="addRescourse" class="courseAction" method="addRescourse">
+			<result type="redirectAction">
+				<param name="actionName">getNoticeList</param>
+			</result>
+			<result name="continueAdd">/WEB-INF/jsp/backend/course/addCourseChapter.jsp</result>
+		</action>
+
 	</package>
-	
+
 </struts>    

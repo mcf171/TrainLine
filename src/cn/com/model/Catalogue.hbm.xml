@@ -25,12 +25,17 @@
         <property name="uploadingPerson" type="java.lang.String">
             <column name="uploadingPerson" length="20" />
         </property>
-        <set name="resource" inverse="true">
+        <property name="cataloguaWeight" type="java.lang.Integer">
+        	<column name="cataloguaWeight"></column>
+        </property>
+        <set name="resource" inverse="false" table="testandquestion" lazy="false" cascade="all">
             <key>
                 <column name="resourceId" />
             </key>
-            <one-to-many class="cn.com.model.Resource" />
+            <one-to-many class="cn.com.model.Resource" column="resourceId"/>
         </set>
+        
+        
         <set name="notes" inverse="true">
             <key>
                 <column name="catalogueId" />

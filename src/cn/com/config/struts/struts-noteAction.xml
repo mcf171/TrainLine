@@ -9,9 +9,12 @@
 			<result name="showGonggao">/WEB-INF/jsp/backend/study.jsp</result>
 			<result name="showNotePage">/WEB-INF/jsp/backend/study/note-overview.jsp</result>
 		</action>
-		
-
 	</package>
 	
+	<package name="noteAdmin" namespace="/admin" extends="system">
+		<action name="getNoticeList" class="noteAction" method="getNoticeList">
+			<result>/WEB-INF/jsp/backend/study.jsp</result>
+		</action>
+	</package>
 	
 </struts>    

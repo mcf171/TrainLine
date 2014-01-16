@@ -31,7 +31,7 @@
 				<li class="jstree-open">
 					<a href="#">学习管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="${basePath}course_intoCoursePage.action">课程管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/intoCoursePage.action">课程管理</a></li>
 					</ul>
 				</li>
 				 

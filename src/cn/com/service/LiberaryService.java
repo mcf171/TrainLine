@@ -85,7 +85,9 @@ public class LiberaryService {
 	public boolean addBook(Book book , File image, String imageContentType, String imageFileName,String physicalPath){
 		
 		boolean flag = false;
-		String bookURL = uploadUtil.getSavePath()+"/"+imageFileName;
+		
+		String swfName = imageFileName.substring(0,imageFileName.indexOf(".")) + ".swf";
+		String bookURL = uploadUtil.getSavePath()+"/"+swfName;
 		book.setBookURL(bookURL);
 		uploadUtil.setFlie(image);
 		uploadUtil.setFlieContentType(imageContentType);

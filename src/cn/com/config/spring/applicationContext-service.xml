@@ -29,7 +29,11 @@
       <tx:method name="*"/>
     </tx:attributes>
   </tx:advice>
-
+	
+	<bean id="catalogueService" class="cn.com.service.CatalogueService">
+		<property name="catalogueDAO" ref="catalogueDAO"></property>
+	</bean>
+	
     <bean id="noticeService" class="cn.com.service.NoticeService" scope="prototype">
         <property name="noticeDAO" ref="noticeDAO"></property>
         <property name="noticeTypeDAO" ref="NoticetypeDAO"></property>

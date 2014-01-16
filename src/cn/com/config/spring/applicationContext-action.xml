@@ -7,6 +7,12 @@
 	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	
+	<bean id="catalogueAction" class="cn.com.action.CatalogueAction">
+		<property name="catalogueService" ref="catalogueService"></property>
+		<property name="dataMap" ref="hashMap"></property>
+	</bean>
+	
 	<bean id="noticeAction" class="cn.com.action.NoticeAction" scope="prototype">
 		<property name="noticeService" ref="noticeService"></property>
 		<property name="resourceService" ref="resourceService"></property>
@@ -55,6 +61,7 @@
 	<bean id="courseAction" class="cn.com.action.CourseAction" scope="prototype">
 		<property name="courseService" ref="courseService"></property>
 		<property name="userService" ref="userService"></property>
+		<property name="uploadUtil" ref="uploadUtil"></property>
 	</bean>
 
 	<bean id="noteAction" class="cn.com.action.NoteAction" scope="prototype">

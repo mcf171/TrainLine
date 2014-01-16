@@ -16,7 +16,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
+
 import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.ActionContext;
+
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Catalogue;
 import cn.com.model.Course;
@@ -26,6 +31,8 @@ import cn.com.model.ResourseandcatelogueId;
 import cn.com.model.User;
 import cn.com.service.CourseService;
 import cn.com.service.UserService;
+import cn.com.util.FlexpaperUtil;
+import cn.com.util.UploadUtil;
 
 /**
  */
@@ -36,9 +43,12 @@ public class CourseAction extends BaseActionSupport {
 	private CourseService courseService;
 	private UserService userService;
 	private Map<String, Object> dataMap;
+	private UploadUtil uploadUtil;
 	private int[] courseIds;
 	private Integer courseId;
 	private Course course;
+	private String continueAdd;
+	private Catalogue catalogue;
 
 	private String catalogueName;
 
@@ -134,22 +144,34 @@ public class CourseAction extends BaseActionSupport {
 	public String addRescourse() throws Exception {
 		File[] srcFile = this.getUpload();
 		Set<Resource> set = new HashSet<Resource>();
+		ActionContext ac = ActionContext.getContext();   
+		ServletContext sc = (ServletContext) ac.get(ServletActionContext.SERVLET_CONTEXT);   
+		String physicalPath = sc.getRealPath("/");
 		for (int i = 0; i < srcFile.length; i++) {
-			String path = this.getSavePath() + "\\"
-					+ this.getUploadFileName()[i];
+			String path = this.getSavePath() + "\\"  + this.getUploadFileName()[i];
 			String dstSavePath = ServletActionContext.getServletContext()
 					.getRealPath(path);
 			File dstFile = new File(dstSavePath);
 			this.copyFile(srcFile[i], dstFile);
 			Resource resource = new Resource();
 			resource.setResourceName(this.getUploadFileName()[i]);
-			resource.setResourcePath(path);
+			
+			String swfName =  this.getUploadFileName()[i].substring(0, this.getUploadFileName()[i].indexOf(".")) + ".swf";
+			swfName = uploadUtil.getSavePath()+"/"+swfName;
+			
+			resource.setResourcePath(swfName);
+			try {
+
+				FlexpaperUtil.converterPDFToSWF(physicalPath, this.getUploadFileName()[i]);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			set.add(resource);
 		}
-
-		Catalogue catalogue = new Catalogue();
-		catalogue.setCatalogueName(catalogueName);
-		catalogue.setUploadingPerson("xuetai");
+		
+		User user  = (User) session.get("user");
+		catalogue.setUploadingPerson(user.getUserName());
 		Timestamp timestamp = new Timestamp(new Date().getTime());
 		catalogue.setUploading(timestamp);
 		courseId = (Integer) request.getAttribute("courseId");
@@ -161,15 +183,28 @@ public class CourseAction extends BaseActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "intoaddChapterPage";
+		if(continueAdd.equals("no")){
+			return this.SUCCESS;
+		}else{
+			List list;
+			list = courseService.getCataloguDetail(courseId);
+			request.setAttribute("list", list);
+			request.setAttribute("courseId", courseId);
+			return "continueAdd";
+		}
+		
 	}
 
 	public String intoaddChapterPage() {
+		
 		if (courseId != null) {
+			List list;
 			request.setAttribute("courseId", courseId);
 			request.setAttribute("course", course);
+			list = courseService.getCataloguDetail(courseId);
+			request.setAttribute("list", list);
 		}
-		return "intoaddChapterPage";
+		return this.SUCCESS;
 	}
 
 	/**
@@ -361,12 +396,12 @@ public class CourseAction extends BaseActionSupport {
 	}
 
 	public String intoAddcoursePage() {
-		return "addCourse";
+		return this.SUCCESS;
 	}
 
 	public String intoCoursePage() {
 
-		return "intoCoursePage";
+		return this.SUCCESS;
 	}
 
 	public String intoStudyCenter() {
@@ -509,8 +544,30 @@ public class CourseAction extends BaseActionSupport {
 		this.courseIds = courseIds;
 	}
 
-	
+	public UploadUtil getUploadUtil() {
+		return uploadUtil;
+	}
 
-	
-	
+	public void setUploadUtil(UploadUtil uploadUtil) {
+		this.uploadUtil = uploadUtil;
+	}
+
+	public String getContinueAdd() {
+		return continueAdd;
+	}
+
+	public void setContinueAdd(String continueAdd) {
+		this.continueAdd = continueAdd;
+	}
+
+	public Catalogue getCatalogue() {
+		return catalogue;
+	}
+
+	public void setCatalogue(Catalogue catalogue) {
+		this.catalogue = catalogue;
+	}
+
+
+
 }
