@@ -18,6 +18,7 @@
 	<include file="cn/com/config/struts/struts-questionnaireAction.xml"></include>
 	<include file="cn/com/config/struts/struts-questionnairerubricAction.xml"></include>	
 
+	<include file="cn/com/config/struts/struts-catalogueAction.xml"></include>
 	<include file="cn/com/config/struts/struts-courseAction.xml"></include>
 	<include file="cn/com/config/struts/struts-netDangkeAction.xml"></include>
 	<include file="cn/com/config/struts/struts-TrainingClassAction.xml"></include>

@@ -5,6 +5,7 @@ import java.util.List;
 import cn.com.dao.RecordDAO;
 import cn.com.dao.ResourceDAO;
 import cn.com.model.Booktype;
+import cn.com.model.Catalogue;
 import cn.com.model.Record;
 import cn.com.model.Resource;
 
@@ -27,7 +28,9 @@ public class ResourceService {
 	public List<Resource> getBackendShiPingResource() {
 
 		Resource example = new Resource();
-		example.setCatalogueId(0);
+		Catalogue catalogue = new Catalogue();
+		catalogue.setCatalogueId(0);
+		example.setCatalogue(catalogue);
 		example.setResourceType(1);
 
 		return this.resourceDAO.findByExample(example);
@@ -36,7 +39,9 @@ public class ResourceService {
 	public List<Resource> getBackendDocResource() {
 
 		Resource example = new Resource();
-		example.setCatalogueId(0);
+		Catalogue catalogue = new Catalogue();
+		catalogue.setCatalogueId(0);
+		example.setCatalogue(catalogue);
 		example.setResourceType(2);
 
 		return this.resourceDAO.findByExample(example);
@@ -45,7 +50,9 @@ public class ResourceService {
 	public List<Resource> getBackendDongTaiResource() {
 
 		Resource example = new Resource();
-		example.setCatalogueId(0);
+		Catalogue catalogue = new Catalogue();
+		catalogue.setCatalogueId(0);
+		example.setCatalogue(catalogue);
 		example.setResourceType(3);
 
 		return this.resourceDAO.findByExample(example);

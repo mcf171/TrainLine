@@ -10,9 +10,7 @@
             <column name="catalogueId" />
             <generator class="native" />
         </id>
-         <property name="courseId" type="java.lang.Integer">
-            <column name="courseId"/>
-        </property>
+         <many-to-one name="course" column="courseId" lazy="false" ></many-to-one>
         <property name="catalogueName" type="java.lang.String">
             <column name="catalogueName" length="50" />
         </property>
@@ -28,26 +26,15 @@
         <property name="cataloguaWeight" type="java.lang.Integer">
         	<column name="cataloguaWeight"></column>
         </property>
-        <set name="resource" inverse="false" table="testandquestion" lazy="false" cascade="all">
-            <key>
-                <column name="resourceId" />
-            </key>
-            <one-to-many class="cn.com.model.Resource" column="resourceId"/>
-        </set>
         
-        
-        <set name="notes" inverse="true">
+		<one-to-one name="note" property-ref="catalogue"/>         
+        <set name="resource" inverse="true" table="resource" lazy="false" cascade="all">
             <key>
                 <column name="catalogueId" />
             </key>
-            <one-to-many class="cn.com.model.Note" />
+            <one-to-many class="cn.com.model.Resource" />
         </set>
-        <set name="tcomments" inverse="true">
-            <key>
-                <column name="catalogueId" />
-            </key>
-            <one-to-many class="cn.com.model.Tcomment" />
-        </set>
+        
         <!-- 
         <set name="resourseandcatelogues" inverse="true">
             <key>

@@ -10,9 +10,6 @@
             <column name="resourceId" />
             <generator class="native" />
         </id>
-        <property name="catalogueId" type="java.lang.Integer">
-            <column name="catalogueId" />
-        </property>
         <property name="resourceName" type="java.lang.String">
             <column name="resourceName" length="50" />
         </property>
@@ -22,9 +19,10 @@
         <property name="resourceType" type="java.lang.Integer">
             <column name="resourceType" />
         </property>
-        <property name="downloundCount" type="java.lang.Double">
+        <property name="downloundCount" type="java.lang.Integer">
             <column name="downloundCount" />
         </property>
+		<many-to-one name="catalogue" column="catalogueId" class="cn.com.model.Catalogue" not-found="ignore" lazy="false"></many-to-one>        
         <set name="resourseandcatelogues" inverse="true">
             <key>
                 <column name="resourceId" not-null="true" />

@@ -62,6 +62,7 @@
 		<property name="courseService" ref="courseService"></property>
 		<property name="userService" ref="userService"></property>
 		<property name="uploadUtil" ref="uploadUtil"></property>
+		<property name="savePath" value="upload"></property>
 	</bean>
 
 	<bean id="noteAction" class="cn.com.action.NoteAction" scope="prototype">

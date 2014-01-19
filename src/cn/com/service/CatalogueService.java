@@ -3,6 +3,7 @@ package cn.com.service;
 import java.io.File;
 
 import cn.com.dao.CatalogueDAO;
+import cn.com.dao.ResourceDAO;
 import cn.com.model.Catalogue;
 import cn.com.model.Resource;
 import cn.com.util.WebUtil;
@@ -10,23 +11,38 @@ import cn.com.util.WebUtil;
 public class CatalogueService {
 
 	private CatalogueDAO catalogueDAO;
+	private ResourceDAO resourceDAO;
 
 	public boolean deleteCatalogue(Catalogue catalogue){
 		
 		boolean flag = false;
+		
 		catalogue = catalogueDAO.findById(catalogue.getCatalogueId());
 		
 		try {
 			
-			catalogueDAO.delete(catalogue);
+			
 			for(Resource item : catalogue.getResource()){
 				
 				String path = WebUtil.getWebSitePhysalPath() + item.getResourcePath();
-				flag = (new File(path)).delete();
-				path = path.substring(0,path.indexOf('.'))+".pdf";
-				flag = (new File(path)).delete();
 				
+				flag = true;
+				
+				if(new File(path).exists()){
+					
+					flag = (new File(path)).delete();
+				}
+				path = path.substring(0,path.indexOf('.'))+".pdf";
+				
+				if(new File(path).exists()){
+					
+					flag = (new File(path)).delete();
+				}
+				//resourceDAO.delete(item);
 			}
+			
+			catalogueDAO.delete(catalogue);
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -42,6 +58,14 @@ public class CatalogueService {
 
 	public void setCatalogueDAO(CatalogueDAO catalogueDAO) {
 		this.catalogueDAO = catalogueDAO;
+	}
+
+	public ResourceDAO getResourceDAO() {
+		return resourceDAO;
+	}
+
+	public void setResourceDAO(ResourceDAO resourceDAO) {
+		this.resourceDAO = resourceDAO;
 	}
 	
 	

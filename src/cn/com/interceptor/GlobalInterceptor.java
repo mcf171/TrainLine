@@ -43,6 +43,7 @@ public class GlobalInterceptor extends AbstractInterceptor{
 		request.setAttribute("basePath", basePath);
 		request.setAttribute("rootPath", rootPath);
 		request.setAttribute("physicalPath", physicalPath);
+		
 		String result = invocation.invoke();
 		
 		return result;

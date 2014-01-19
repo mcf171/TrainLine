@@ -18,6 +18,7 @@ import cn.com.service.ResourceService;
 
 public class NoteAction extends BaseActionSupport {
 	private List<Note> nList;
+	
 	private NoteService noteService;
 	
 	private NoticeService noticeService;
@@ -55,6 +56,15 @@ public class NoteAction extends BaseActionSupport {
 		request.setAttribute("list", list);
 		return this.SUCCESS;
 	}
+	
+	public String addNote(){
+		
+		User user = (User) session.get("user");
+		note.setUser(user);
+		noteService.insert(note);
+		return this.SUCCESS;
+	}
+	
 	public List<Notice> getNoticeList1() {
 		return noticeList1;
 	}
@@ -97,9 +107,7 @@ public class NoteAction extends BaseActionSupport {
 
 	@SuppressWarnings("unchecked")
 	public String findAllNote() {
-		if (userId != null && !(userId.equals(""))) {
-			note.setUserId(Integer.parseInt(userId));
-		}
+
 		if (catalogueId != null && !(catalogueId.equals(""))) {
 			Catalogue catalogue = new Catalogue();
 			catalogue.setCatalogueId(Integer.parseInt(catalogueId));
@@ -132,7 +140,7 @@ public class NoteAction extends BaseActionSupport {
 	}
 
 	public String showNotePage() {
-		return "showNotePage";
+		return this.SUCCESS;
 	}
 
 	public String getNoteContent() {

@@ -55,34 +55,34 @@ $(document).ready(function ()
 {
 	$('#course-switcher a[href="#kecheng"]').click(function ()
 	{
-		$('#list-kecheng, #filter-kecheng, #button-remove').removeClass('hidden');
-		$('#list-available, #filter-available, #button-select').addClass('hidden');
-		$('#list-jiaoxue, #filter-jiaoxue, #button-select').addClass('hidden');
-		$('#list-cuotiji, #filter-cuotiji, #button-select').addClass('hidden');
+		$('#list-kecheng, #filter-kecheng, #button-remove,#page-selected-kecheng').removeClass('hidden');
+		$('#list-available, #filter-available, #button-select,#page-selected-available').addClass('hidden');
+		$('#list-jiaoxue, #filter-jiaoxue, #button-select,#page-selected-jiaoxue').addClass('hidden');
+		$('#list-cuotiji, #filter-cuotiji, #button-select,#page-selected-cuotiji').addClass('hidden');
 	});
 
 	$('#course-switcher a[href="#available"]').click(function ()
 	{
-		$('#list-kecheng, #filter-kecheng, #button-remove').addClass('hidden');
-		$('#list-available, #filter-available, #button-select').removeClass('hidden');
-		$('#list-jiaoxue, #filter-jiaoxue, #button-select').addClass('hidden');
-		$('#list-cuotiji, #filter-cuotiji, #button-select').addClass('hidden');
+		$('#list-kecheng, #filter-kecheng, #button-remove,#page-selected-kecheng').addClass('hidden');
+		$('#list-available, #filter-available, #button-select,#page-selected-available').removeClass('hidden');
+		$('#list-jiaoxue, #filter-jiaoxue, #button-select,#page-selected-jiaoxue').addClass('hidden');
+		$('#list-cuotiji, #filter-cuotiji, #button-select,#page-selected-cuotiji').addClass('hidden');
 	});
 
 	$('#course-switcher a[href="#jiaoxue"]').click(function ()
 			{
-				$('#list-kecheng, #filter-kecheng, #button-remove').addClass('hidden');
-				$('#list-available, #filter-available, #button-select').addClass('hidden');
-				$('#list-jiaoxue, #filter-jiaoxue, #button-select').removeClass('hidden');
-				$('#list-cuotiji, #filter-cuotiji, #button-select').addClass('hidden');
+		$('#list-kecheng, #filter-kecheng, #button-remove,#page-selected-kecheng').addClass('hidden');
+		$('#list-available, #filter-available, #button-select,#page-selected-available').addClass('hidden');
+		$('#list-jiaoxue, #filter-jiaoxue, #button-select,#page-selected-jiaoxue').removeClass('hidden');
+		$('#list-cuotiji, #filter-cuotiji, #button-select,#page-selected-cuotiji').addClass('hidden');
 			});
 	
 	$('#course-switcher a[href="#cuotiji"]').click(function ()
 			{
-				$('#list-kecheng, #filter-kecheng, #button-remove').addClass('hidden');
-				$('#list-available, #filter-available, #button-select').addClass('hidden');
-				$('#list-jiaoxue, #filter-jiaoxue, #button-select').addClass('hidden');
-				$('#list-cuotiji, #filter-cuotiji, #button-select').removeClass('hidden');
+		$('#list-kecheng, #filter-kecheng, #button-remove,#page-selected-kecheng').addClass('hidden');
+		$('#list-available, #filter-available, #button-select,#page-selected-available').addClass('hidden');
+		$('#list-jiaoxue, #filter-jiaoxue, #button-select,#page-selected-jiaoxue').addClass('hidden');
+		$('#list-cuotiji, #filter-cuotiji, #button-select,#page-selected-cuotiji').removeClass('hidden');
 			});
 	
 	
@@ -127,7 +127,7 @@ $(document).ready(function ()
 			}
 		],
 		plugins: [
-			$('#page-selected').mmPaginator({})
+			$('#page-available').mmPaginator({})
 		]
 	});
 	
@@ -179,7 +179,7 @@ $(document).ready(function ()
 			}
 		],
 		plugins: [
-			$('#page-selected').mmPaginator({})
+			$('#page-selected-kecheng').mmPaginator({})
 		]
 	});
 	
@@ -217,7 +217,7 @@ $(document).ready(function ()
 			}
 		],
 		plugins: [
-			$('#page-selected').mmPaginator({})
+			$('#page-selected-jiaoxue').mmPaginator({})
 		]
 	});
 	
@@ -255,7 +255,7 @@ $(document).ready(function ()
 			}
 		],
 		plugins: [
-			$('#page-selected').mmPaginator({})
+			$('#page-selected-cuotiji').mmPaginator({})
 		]
 	});
 	
@@ -491,21 +491,21 @@ $(document).ready(function ()
 				<div id="list-kecheng" class="row-fluid hidden">
 					<div class="span12">
 						<table id="grid-kecheng"></table>
-						<div id="page-kecheng" class="pull-right"></div>
+						<div id="page-selected-kecheng" class="pull-right"></div>
 					</div>
 				</div>
 				<div id="list-jiaoxue" class="row-fluid hidden">
 					<div class="span12">
 						<table id="grid-jiaoxue"></table>
 
-						<div id="page-selected" class="pull-right"></div>
+						<div id="page-selected-jiaoxue" class="pull-right"></div>
 					</div>
 				</div>
 				<div id="list-cuotiji" class="row-fluid hidden">
 					<div class="span12">
 						<table id="grid-cuotiji"></table>
 
-						<div id="page-selected" class="pull-right"></div>
+						<div id="page-selected-cuotiji" class="pull-right"></div>
 					</div>
 				</div>
 

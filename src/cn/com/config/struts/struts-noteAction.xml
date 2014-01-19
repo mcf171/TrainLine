@@ -7,13 +7,23 @@
 			<param name="root">dataMap</param>
 			</result>
 			<result name="showGonggao">/WEB-INF/jsp/backend/study.jsp</result>
-			<result name="showNotePage">/WEB-INF/jsp/backend/study/note-overview.jsp</result>
 		</action>
+		
+		<action name="addNote" class="noteAction" method="addNote">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
 	</package>
 	
 	<package name="noteAdmin" namespace="/admin" extends="system">
 		<action name="getNoticeList" class="noteAction" method="getNoticeList">
 			<result>/WEB-INF/jsp/backend/study.jsp</result>
+		</action>
+		
+		<action name="showNotePage" class="noteAction" method="showNotePage">
+			<result>/WEB-INF/jsp/backend/note/note-overview.jsp</result>
 		</action>
 	</package>
 	

@@ -12,11 +12,11 @@ public class Resource implements java.io.Serializable {
 	// Fields
 
 	private Integer resourceId;
-	private Integer catalogueId;
 	private String resourceName;
 	private String resourcePath;
 	private Integer resourceType;
-	private Double downloundCount;
+	private Integer downloundCount;
+	private Catalogue catalogue;
 	private Set resourseandcatelogues = new HashSet(0);
 
 	// Constructors
@@ -71,20 +71,21 @@ public class Resource implements java.io.Serializable {
 		this.resourseandcatelogues = resourseandcatelogues;
 	}
 
-	public Integer getCatalogueId() {
-		return catalogueId;
-	}
 
-	public void setCatalogueId(Integer catalogueId) {
-		this.catalogueId = catalogueId;
-	}
-
-	public Double getDownloundCount() {
+	public Integer getDownloundCount() {
 		return downloundCount;
 	}
 
-	public void setDownloundCount(Double downloundCount) {
+	public void setDownloundCount(Integer downloundCount) {
 		this.downloundCount = downloundCount;
+	}
+
+	public Catalogue getCatalogue() {
+		return catalogue;
+	}
+
+	public void setCatalogue(Catalogue catalogue) {
+		this.catalogue = catalogue;
 	}
 
 }

@@ -72,11 +72,7 @@ public class NoteDAO extends HibernateDaoSupport {
 	public List findByConditions(Note note){
 		Session session = getHibernateTemplate().getSessionFactory().openSession();
 		String hql ="from Note where 1=1 ";
-		if(note.getUserId()!=null && !(note.getUserId().equals("")))
-		{
-			hql+="and userId = "+note.getUserId()+"  ";
-		}
-		
+
 		if(note.getCatalogue()!=null){
 			hql+=" and catalogue.catalogueId = "+note.getCatalogue().getCatalogueId()+" ";	
 		}

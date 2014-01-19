@@ -43,11 +43,12 @@
 						});
 
 					});
-	function deleteCatalogue(){
-		catalogueId = $(this).val();
+	function deleteCatalogue(obj){
+		catalogueId = obj.value;
+		console.log(catalogueId);
 		$.ajax({
 			type:"post",
-			url:"${basePath}admin/delteCatalogue.action",
+			url:"${basePath}admin/deleteCatalogue.action",
 			data:"catalogue.catalogueId="+catalogueId,
 			success:function(msg){
 				
@@ -97,11 +98,12 @@
 							<span>已存在的章节</span>
 							<hr class="seperator"/>
 						</div>
-						<c:forEach items="${list}" var="item">
+						<c:forEach items="${list}" var="item" varStatus="index">
 							<div>
-								<span>章节名称：${item.catalogueName }</span> <span>权重为：${item.catalogueWeight}</span>
+								<i class="icon-list"></i><span>章节名称：${item.catalogueName }</span> <i class="icon-stop"></i> <span>权重为：${item.cataloguaWeight}</span>
 								<button type="button" class="btn btn-default" onclick="deleteCatalogue(this)" value="${item.catalogueId}">删除</button>
 							</div>
+							<hr class="seperator"/>
 						</c:forEach>
 					</c:if>
 					</div>
@@ -137,7 +139,7 @@
 							<div class="control-group">
 								<label class="control-label" for="chNameInput">章节权重:</label>
 								<div class="controls">
-									<input type="number" id="chNameInput" name="catalogue.catalogueNumber"
+									<input type="number" id="chNameInput" name="catalogue.cataloguaWeight"
 										placeholder="请输入章节权重" required min="1" max="10" >
 								</div>
 							</div>

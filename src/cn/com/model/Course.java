@@ -21,7 +21,7 @@ public class Course implements java.io.Serializable {
 	private Set users = new HashSet(0);
 	private Set classandcourses = new HashSet(0);
 	private Set userandcourses = new HashSet(0);
-	private Set catalogues = new HashSet(0);
+	private Set<Catalogue> catalogues = new HashSet<Catalogue>(0);
 	private Set testquestions = new HashSet(0);
 
 	// Constructors
@@ -90,7 +90,7 @@ public class Course implements java.io.Serializable {
 		this.userandcourses = userandcourses;
 	}
 
-	public Set getCatalogues() {
+	public Set<Catalogue> getCatalogues() {
 		return this.catalogues;
 	}
 

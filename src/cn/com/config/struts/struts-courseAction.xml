@@ -16,8 +16,7 @@
 		</action>
 
 		<action name="getCourseStudyPage" class="courseAction" method="getCourseStudyPage">
-			<result name="two">/WEB-INF/jsp/study2.jsp</result>
-			<result name="three">/WEB-INF/jsp/study.jsp</result>
+			<result >/WEB-INF/jsp/study.jsp</result>
 		</action>
 
 		<action name="getNormalDangJianKeCheng" class="courseAction"

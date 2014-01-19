@@ -10,12 +10,10 @@
             <column name="noteId" />
             <generator class="native" />
         </id>
-        <many-to-one name="catalogue" class="cn.com.model.Catalogue" fetch="select">
-            <column name="catalogueId" />
+         <many-to-one name="catalogue" column="catalogueId" unique="true" /> 
+        <many-to-one name="user" class="cn.com.model.User" lazy="false">
+        	<column name="userId"></column>
         </many-to-one>
-        <property name="userId" type="java.lang.Integer">
-            <column name="userId" />
-        </property>
         <property name="noteContent" type="java.lang.String">
             <column name="noteContent" length="200" />
         </property>

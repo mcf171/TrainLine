@@ -10,20 +10,13 @@ public class Note implements java.io.Serializable {
 
 	private Integer noteId;
 	private Catalogue catalogue;
-	private Integer userId;
+	private User user;
 	private String noteContent;
 
 	// Constructors
 
 	/** default constructor */
 	public Note() {
-	}
-
-	/** full constructor */
-	public Note(Catalogue catalogue, Integer userId, String noteContent) {
-		this.catalogue = catalogue;
-		this.userId = userId;
-		this.noteContent = noteContent;
 	}
 
 	// Property accessors
@@ -44,20 +37,20 @@ public class Note implements java.io.Serializable {
 		this.catalogue = catalogue;
 	}
 
-	public Integer getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
 	public String getNoteContent() {
 		return this.noteContent;
 	}
 
 	public void setNoteContent(String noteContent) {
 		this.noteContent = noteContent;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

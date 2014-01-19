@@ -13,15 +13,14 @@ public class Catalogue implements java.io.Serializable {
 	// Fields
 
 	private Integer catalogueId;
-	private Integer courseId;
+	private Course course;
 	private String catalogueName;
 	private Integer catalogueNumber;
 	private Timestamp uploading;
 	private String uploadingPerson;
 	private Integer cataloguaWeight;
+	private Note note;
 	private Set<Resource> resource = new HashSet<Resource>(0);
-	private Set notes = new HashSet(0);
-	private Set tcomments = new HashSet(0);
 	
 
 	// Constructors
@@ -45,12 +44,13 @@ public class Catalogue implements java.io.Serializable {
 	}
 
 
-	public Integer getCourseId() {
-		return courseId;
+
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setCourseId(Integer courseId) {
-		this.courseId = courseId;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
 	public String getCatalogueName() {
@@ -85,22 +85,6 @@ public class Catalogue implements java.io.Serializable {
 		this.uploadingPerson = uploadingPerson;
 	}
 
-	public Set getNotes() {
-		return this.notes;
-	}
-
-	public void setNotes(Set notes) {
-		this.notes = notes;
-	}
-
-	public Set getTcomments() {
-		return this.tcomments;
-	}
-
-	public void setTcomments(Set tcomments) {
-		this.tcomments = tcomments;
-	}
-
 	public Set<Resource> getResource() {
 		return resource;
 	}
@@ -116,5 +100,13 @@ public class Catalogue implements java.io.Serializable {
 	public void setCataloguaWeight(Integer cataloguaWeight) {
 		this.cataloguaWeight = cataloguaWeight;
 	}
-	
+
+	public Note getNote() {
+		return note;
+	}
+
+	public void setNote(Note note) {
+		this.note = note;
+	}
+
 }

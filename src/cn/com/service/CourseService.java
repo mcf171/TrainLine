@@ -15,6 +15,7 @@ public class CourseService {
 	private CourseDAO courseDAO;
 	private CatalogueDAO catalogueDAO;
 	private ResourseandcatelogueDAO resourseandcatelogueDAO;
+	private CatalogueService catalogueService;
 
 	public Integer insert(Course course) {
 		return courseDAO.save(course);
@@ -28,8 +29,19 @@ public class CourseService {
 		
 		return courseDAO.findByExample(course);
 	}
+	/**
+	 * 删除课程，同时删除catalog
+	 * author:Apache
+	 * modifyTime:2014-1-16 13:19
+	 * @param course 传入的course ，至少包括courseId;
+	 */
 	public void delete(Course course)
 	{
+		course = courseDAO.findById(course.getCourseId());
+		for(Catalogue item : course.getCatalogues()){
+			
+			catalogueService.deleteCatalogue(item);
+		}
 		courseDAO.delete(course);
 	}
 	
@@ -74,14 +86,8 @@ public class CourseService {
 	}
 
 	public void addChapterAndRescourse(Catalogue catalogue, Set<Resource> set) {
-		Integer catalogueId = catalogueDAO.save(catalogue);
-	    Iterator<Resource> i = set.iterator();
-		while(i.hasNext())
-		{
-			Resource r = i.next();
-			r.setCatalogueId(catalogueId);
-			resourseandcatelogueDAO.save(r);
-		}
+		catalogueDAO.save(catalogue);
+	   
 	}
 
 
@@ -140,4 +146,12 @@ public class CourseService {
 		
 		return courseDAO.findByProperty("courseState", 4);
 	}
+	public CatalogueService getCatalogueService() {
+		return catalogueService;
+	}
+	public void setCatalogueService(CatalogueService catalogueService) {
+		this.catalogueService = catalogueService;
+	}
+	
+	
 }

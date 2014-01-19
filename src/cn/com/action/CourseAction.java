@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -45,6 +46,7 @@ public class CourseAction extends BaseActionSupport {
 	private Map<String, Object> dataMap;
 	private UploadUtil uploadUtil;
 	private int[] courseIds;
+	private int cataloguaWeight;
 	private Integer courseId;
 	private Course course;
 	private String continueAdd;
@@ -128,12 +130,29 @@ public class CourseAction extends BaseActionSupport {
 		
 		course = courseService.getCourse(course);
 		
-		request.setAttribute("course", course);
-		if(course.getCourseKind() ==1){
-			return "two";
-		}else{
-			return "three";
+		Catalogue catalogue = null;
+		
+		if(cataloguaWeight == 0){
+			
+			catalogue = (Catalogue) course.getCatalogues().toArray()[0];
+		} else{
+			
+			for(Catalogue item : course.getCatalogues()){
+				if(item.getCataloguaWeight() == cataloguaWeight){
+					
+					catalogue = item;
+				}
+			}
 		}
+		request.setAttribute("course", course);
+		request.setAttribute("catalogue", catalogue);
+		
+		if(course.getCourseKind() ==1){
+			request.setAttribute("type", 2);
+		}else{
+			request.setAttribute("type", 3);
+		}
+		return this.SUCCESS;
 	}
 	/**
 	 * 上传资源并存入数据库路径等信息
@@ -155,18 +174,32 @@ public class CourseAction extends BaseActionSupport {
 			this.copyFile(srcFile[i], dstFile);
 			Resource resource = new Resource();
 			resource.setResourceName(this.getUploadFileName()[i]);
+			resource.setCatalogue(catalogue);
+			resource.setDownloundCount(0);
 			
-			String swfName =  this.getUploadFileName()[i].substring(0, this.getUploadFileName()[i].indexOf(".")) + ".swf";
-			swfName = uploadUtil.getSavePath()+"/"+swfName;
-			
-			resource.setResourcePath(swfName);
-			try {
+			if(resource.getResourceName().contains(".pdf")){
+				
+				String swfName =  this.getUploadFileName()[i].substring(0, this.getUploadFileName()[i].indexOf(".")) + ".swf";
+				swfName = uploadUtil.getSavePath()+"/"+swfName;
+				
+				resource.setResourcePath(swfName);
+				
+				try {
 
-				FlexpaperUtil.converterPDFToSWF(physicalPath, this.getUploadFileName()[i]);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+					FlexpaperUtil.converterPDFToSWF(physicalPath, this.getUploadFileName()[i]);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				resource.setResourceType(1);
+			}else if(resource.getResourceName().contains(".swf")){
+				
+				String swfName =  this.getUploadFileName()[i].substring(0, this.getUploadFileName()[i].indexOf("."));
+				swfName = uploadUtil.getSavePath()+"/"+swfName;
+				resource.setResourcePath(swfName);
+				resource.setResourceType(2);
 			}
+			
 			set.add(resource);
 		}
 		
@@ -174,9 +207,11 @@ public class CourseAction extends BaseActionSupport {
 		catalogue.setUploadingPerson(user.getUserName());
 		Timestamp timestamp = new Timestamp(new Date().getTime());
 		catalogue.setUploading(timestamp);
+		catalogue.setResource(set);
 		courseId = (Integer) request.getAttribute("courseId");
+		Course course = new Course();
 		if (courseId != null) {
-			catalogue.setCourseId(courseId);
+			catalogue.setCourse(course);
 		}
 		try {
 			courseService.addChapterAndRescourse(catalogue, set);
@@ -566,6 +601,14 @@ public class CourseAction extends BaseActionSupport {
 
 	public void setCatalogue(Catalogue catalogue) {
 		this.catalogue = catalogue;
+	}
+
+	public int getCataloguaWeight() {
+		return cataloguaWeight;
+	}
+
+	public void setCataloguaWeight(int cataloguaWeight) {
+		this.cataloguaWeight = cataloguaWeight;
 	}
 
 

@@ -38,7 +38,7 @@
 				<li class="jstree-open">
 					<a href="#">学习成效管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="${basePath}note_showNotePage.action">笔记总览</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/showNotePage.action">笔记总览</a></li>
 					</ul>
 				</li>
 				

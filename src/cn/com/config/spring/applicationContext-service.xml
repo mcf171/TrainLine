@@ -31,7 +31,8 @@
   </tx:advice>
 	
 	<bean id="catalogueService" class="cn.com.service.CatalogueService">
-		<property name="catalogueDAO" ref="catalogueDAO"></property>
+		<property name="catalogueDAO" ref="CatalogueDAO"></property>
+		<property name="resourceDAO" ref="ResourceDAO"></property>
 	</bean>
 	
     <bean id="noticeService" class="cn.com.service.NoticeService" scope="prototype">
@@ -72,6 +73,7 @@
 		<property name="courseDAO" ref="CourseDAO"></property>
 		<property name="catalogueDAO" ref="CatalogueDAO"></property>
 		<property name="resourseandcatelogueDAO" ref="ResourseandcatelogueDAO"></property>
+		<property name="catalogueService" ref="catalogueService"></property>
 	</bean>
 
 	<bean id="noteService" class="cn.com.service.NoteService">

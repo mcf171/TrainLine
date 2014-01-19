@@ -12,10 +12,10 @@ public class CatalogueAction extends BaseActionSupport{
 	private CatalogueService catalogueService;
 	private Map<String,Object> dataMap;
 	
-	private String deleteCatalogue(){
+	public String deleteCatalogue(){
 		
 		boolean flag = catalogueService.deleteCatalogue(catalogue);
-		String path;
+		
 		if(flag){
 			
 			dataMap.put("info", "success");
