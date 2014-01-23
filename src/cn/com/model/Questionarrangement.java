@@ -10,10 +10,11 @@ public class Questionarrangement implements java.io.Serializable {
 
 	// Fields
 
-	private Integer questionArrangementId;
+	private Integer questionnaireArrangementId;
 	private Questionnaire questionnaire;
 	private String questionArrangementName;
 	private Integer questionArrangementState;
+	private User user;
 	private Timestamp questionArrangementBeginTime;
 	private Timestamp questionArrangementOverTime;
 	private String questionArrangementIntro;
@@ -40,16 +41,17 @@ public class Questionarrangement implements java.io.Serializable {
 
 	// Property accessors
 
-	public Integer getQuestionArrangementId() {
-		return this.questionArrangementId;
-	}
-
-	public void setQuestionArrangementId(Integer questionArrangementId) {
-		this.questionArrangementId = questionArrangementId;
-	}
 
 	public Questionnaire getQuestionnaire() {
 		return this.questionnaire;
+	}
+
+	public Integer getQuestionnaireArrangementId() {
+		return questionnaireArrangementId;
+	}
+
+	public void setQuestionnaireArrangementId(Integer questionnaireArrangementId) {
+		this.questionnaireArrangementId = questionnaireArrangementId;
 	}
 
 	public void setQuestionnaire(Questionnaire questionnaire) {
@@ -98,4 +100,13 @@ public class Questionarrangement implements java.io.Serializable {
 		this.questionArrangementIntro = questionArrangementIntro;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	
 }

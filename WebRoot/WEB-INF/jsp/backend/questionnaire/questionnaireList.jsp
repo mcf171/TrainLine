@@ -17,11 +17,11 @@ $(document).ready(function ()
 	$('#time-from').css('background', 'none').datepicker();
 
 	mmg = $('#grid').mmGrid({
-		url:'${basePath}questionnaire_findAllQuestionnare.action',
+		url:'${basePath}admin/findAllQuestionnare.action',
 		height: 410,
 		autoLoad: true,
 		root:'qList',
-		fullWithRows: true,
+		fullWidthRows: true,
 		cols: [
      { title: 'ID', sortable: true, width: 40, name: 'questionnaireId' },  
      { title: '问卷标题', sortable: true, width: 110, name:'questionnaireTitle' },
@@ -57,7 +57,7 @@ $(document).ready(function ()
 	$("#myModal1").modal('hide');
 	$.ajax({
 		type : "POST",
-		url : "${basePath}questionnaire_deleteQuestionaire.action?questionnaire.questionnaireId="+questionnaireID,
+		url : "${basePath}admin/deleteQuestionaire.action?questionnaire.questionnaireId="+questionnaireID,
 		dataType : "json",
 		success : function(json) {
 		mmg.load({page:1});
@@ -78,7 +78,7 @@ $(document).ready(function ()
 	var open = $("#openIID").val();
 	$.ajax({
 			type : "POST",
-			url : "${basePath}questionnaire_updateQuestion.action",
+			url : "${basePath}admin/updateQuestion.action",
 			data:"questionnaire.questionnaireId="+questionnaireId+
 			"&questionnaire.questionnaireTitle="+questionnaireTitle+
 			"&questionnaire.questionnaireAuthor="+questionnaireAuthor+
@@ -101,7 +101,7 @@ function updateQ(questionnaireId){
 questionnaireID = questionnaireId;
 $.ajax({
 			type : "POST",
-			url : "${basePath}questionnaire_getQuestionnaireById.action?questionnaire.questionnaireId="+questionnaireId,
+			url : "${basePath}admin/getQuestionnaireById.action?questionnaire.questionnaireId="+questionnaireId,
 			dataType : "json",
 			success : function(json) {
 				if(json.questionnaire!=null)

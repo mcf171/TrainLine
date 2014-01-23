@@ -9,8 +9,8 @@ import cn.com.model.Questionnairerubric;
 public class QuestionnairerubricService {
 	private QuestionnairerubricDAO questionnairerubricDAO;
 
-	public void insert(Questionnairerubric questionnairerubric) {
-		questionnairerubricDAO.save(questionnairerubric);
+	public int insert(Questionnairerubric questionnairerubric) {
+		return questionnairerubricDAO.save(questionnairerubric);
 	}
 
 	public void delete(Questionnairerubric questionnairerubric)
@@ -36,7 +36,9 @@ public class QuestionnairerubricService {
 		return questionnairerubricDAO;
 	}
 
-	public void setQuestionnairerubricDAO(QuestionnairerubricDAO questionnairerubric) {
+	public void setQuestionnairerubricDAO(
+			QuestionnairerubricDAO questionnairerubricDAO) {
 		this.questionnairerubricDAO = questionnairerubricDAO;
 	}
+
 }

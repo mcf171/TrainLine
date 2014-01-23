@@ -29,7 +29,7 @@ var PAGES = {
 
 function load_page(page)
 {
-	$('#container').attr('src', PAGES[page]);
+	$('#container').load(PAGES[page]);
 }
 
 $(document).ready(function ()
@@ -42,6 +42,7 @@ $(document).ready(function ()
 	});
 
 	load_page('page_0');
+	/*
 	setInterval(function ()
 	{
 		try
@@ -50,7 +51,7 @@ $(document).ready(function ()
 			var h2 = $('#container').contents()[0].body.scrollHeight;
 			$('#container').height(h1 < h2 ? h1 : h2);
 		} catch (e) {}
-	}, 33);
+	}, 33);*/
 });
 //]]>
 </script>
@@ -80,9 +81,11 @@ $(document).ready(function ()
 		</div>
 	</div>
 </div>
-<div class="row-fluid">
+<div class="row-fluid" id="container">
+	<!-- 
 	<iframe id="container" scrolling="no" frameborder="0" class="span12">
 	</iframe>
+	 -->
 </div>
 </body>
 </html>

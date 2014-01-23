@@ -40,18 +40,18 @@ $(document).ready(function ()
 		url:  '${basePath}getInsideLiberaryList.action',
 		height: 280,
 		autoLoad: true,
-		fullWithRows: true,
+		fullWidthRows: true,
 		root:'liberary',
 		cols: [
-			{ title: '图书名称', sortable: true, width: 210, name: 'bookName' },
-			{ title: '图书简介', sortable: true, width: 250, name: 'bookContent' },
-			{ title: '图书类别', sortable: true, width: 210, 
+			{ title: '图书名称', sortable: true, name: 'bookName' },
+			{ title: '图书简介', sortable: true, name: 'bookContent' },
+			{ title: '图书类别', sortable: true, 
 				renderer: function (val, item, row)
 				{
 				return item.bookType.bookTypeName;
 				}
 			},	
-			{ title: '图书编号', sortable: true, width: 210, name: 'bookClassIndex' },
+			{ title: '图书编号', sortable: true, name: 'bookClassIndex' },
 			{
 				title: '操作',
 				width: 100,
@@ -73,21 +73,21 @@ $(document).ready(function ()
 		url:  '${basePath}getOutSideLiberaryList.action',
 		height: 280,
 		autoLoad: true,
-		fullWithRows: true,
+		fullWidthRows: true,
 		root:'liberary',
 		cols: [
-				{ title: '图书名称', sortable: true, width: 210, name: 'bookName' },
-				{ title: '图书简介', sortable: true, width: 250, name: 'bookContent' },
-				{ title: '图书类别', sortable: true, width: 210, 
+				{ title: '图书名称', sortable: true, name: 'bookName' },
+				{ title: '图书简介', sortable: true, name: 'bookContent' },
+				{ title: '图书类别', sortable: true, 
 					renderer: function (val, item, row)
 					{
 					return item.bookType.bookTypeName;
 					}
 				},	
-				{ title: '图书编号', sortable: true, width: 210, name: 'bookClassIndex' },
+				{ title: '图书编号', sortable: true, name: 'bookClassIndex' },
 				{
 					title: '操作',
-					width: 100,
+					
 					renderer: function (val, item, row)
 					{
 						outHTML = '<a href="readBook.action?book.bookId=' + item.bookId + '"  target="_blank">阅读</a> '; 

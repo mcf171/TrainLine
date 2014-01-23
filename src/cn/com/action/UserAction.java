@@ -1,5 +1,8 @@
 package cn.com.action;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 
 import org.apache.struts2.ServletActionContext;
@@ -17,19 +20,35 @@ public class UserAction extends BaseActionSupport{
 	private UserService userService;
 	private RecordService recordService;
 	private User user;
+	private Map<String, Object> dataMap;
 	
 	public String login(){
 		
 		//user.getUserPassword();
-		user = userService.login(user);
+		User temp = (User) session.get("user");
+		boolean exitUser = temp == null ? false : true;
+		String path;
+		if(!exitUser){
 		
-		String path = user == null ? this.INPUT : this.SUCCESS;
-		session.put("user", user);
-		request.setAttribute("error", "用户名或密码错误");
+			user = userService.login(user);
+			
+			path = user == null ? this.INPUT : this.SUCCESS;
+			session.put("user", user);
+			request.setAttribute("error", "用户名或密码错误");
+			
+		}else{
+			
+			path=this.SUCCESS;
+		}
 		return path;
 		
 	}
-	
+	/**
+	 * 前台注销
+	 * author:Apache
+	 * time:2014-1-20 22:17
+	 * @return
+	 */
 	public String logout(){
 		
 		session.remove("user");
@@ -43,6 +62,22 @@ public class UserAction extends BaseActionSupport{
 		return path;
 		
 	}
+   
+   /**
+    * 获取所有用户List
+    * author:Apache
+    * time:2014-1-22 19:37
+    * @return
+    */
+   public String getAllUser(){
+	   
+	   List<User> list = userService.getUserList();
+	    
+	   dataMap.put("list", list);
+	   
+	   return this.SUCCESS;
+   }
+   
 	public String getBackendIndex(){
 		
 		user = (User) session.get("user");
@@ -80,6 +115,12 @@ public class UserAction extends BaseActionSupport{
 	}
 	public void setRecordService(RecordService recordService) {
 		this.recordService = recordService;
+	}
+	public Map<String, Object> getDataMap() {
+		return dataMap;
+	}
+	public void setDataMap(Map<String, Object> dataMap) {
+		this.dataMap = dataMap;
 	}
 	
 	

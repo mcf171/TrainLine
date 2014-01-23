@@ -32,15 +32,18 @@ public class QuestionnairerubricDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
-	public void save(Questionnairerubric transientInstance) {
+	public int save(Questionnairerubric transientInstance) {
 		log.debug("saving Questionnairerubric instance");
+		int questionnaireRubricId;
 		try {
-			getHibernateTemplate().save(transientInstance);
+			questionnaireRubricId = (Integer) getHibernateTemplate().save(transientInstance);
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
 			throw re;
 		}
+		
+		return questionnaireRubricId;
 	}
 
 	public void delete(Questionnairerubric persistentInstance) {

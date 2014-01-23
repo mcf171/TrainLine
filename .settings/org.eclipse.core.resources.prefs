@@ -1,4 +1,4 @@
-#Thu Jan 16 10:28:32 CST 2014
+#Wed Jan 22 17:27:46 CST 2014
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/jsp/backend/classes.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/classes/ClassInfo.jsp=UTF-8
@@ -9,6 +9,7 @@ encoding//WebRoot/WEB-INF/jsp/backend/classes/classes.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/course/addCourse.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/course/addCourseChapter.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/course/class-system.jsp=UTF-8
-encoding//WebRoot/WEB-INF/jsp/backend/questionnaire/manage-show.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/backend/questionnaire/questionnaireArrangementList.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/backend/questionnaire/questionnaireList.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/test/questionare.jsp=utf-8
 encoding//src/cn/com/base/IHibernateTemplate.java=UTF-8

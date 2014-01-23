@@ -19,6 +19,7 @@ public class User implements java.io.Serializable {
 	private Integer userState;
 	private Set courses = new HashSet(0);
 	private Set notices = new HashSet(0);
+	private Set message  = new HashSet(0);
 	/*
 	private Set posts = new HashSet(0);
 	private Set jobcertificates = new HashSet(0);
@@ -120,6 +121,14 @@ public class User implements java.io.Serializable {
 
 	public void setNotices(Set notices) {
 		this.notices = notices;
+	}
+
+	public Set getMessage() {
+		return message;
+	}
+
+	public void setMessage(Set message) {
+		this.message = message;
 	}
 
 

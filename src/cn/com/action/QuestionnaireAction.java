@@ -10,13 +10,13 @@ import cn.com.service.QuestionnaireService;
 public class QuestionnaireAction extends BaseActionSupport{
 	private QuestionnaireService questionnairerService;
 	private List<Questionnaire> qList;
-	private Map<Object,List> dataMap;
+	private Map<String,Object> dataMap;
 	private Questionnaire questionnaire;
 	
 	
 	public QuestionnaireAction()
 	{
-		dataMap = new HashMap<Object, List>();
+		dataMap = new HashMap<String, Object>();
 	}
 
 	
@@ -37,13 +37,14 @@ public class QuestionnaireAction extends BaseActionSupport{
 		if(questionnaire!=null){
 			questionnaire =questionnairerService.getQuestionnaire(questionnaire);
 		}
-		return JSON;
+		dataMap.put("questionnaire", questionnaire);
+		return this.SUCCESS;
 	}
 	
 	public String deleteQuestionaire()
 	{
 		questionnairerService.delete(questionnaire);
-		return JSON;
+		return this.SUCCESS;
 	}
 	
 	public String updateQuestion()
@@ -52,12 +53,38 @@ public class QuestionnaireAction extends BaseActionSupport{
 		{
 			questionnairerService.update(questionnaire);
 		}
-		return JSON;
+		return this.SUCCESS;
 	}
 	
 	public String intoQuestionnairePage(){
 		
-		return "intoQuestionnairePage";
+		return this.SUCCESS;
+	}
+	
+	/***
+	 * 后台获得增加问卷的页面
+	 * author:Apache
+	 * time:2014-1-20 11:00
+	 * @return /WEB-INF/jsp/backend/questionnaire/addQuestionnaire.jsp
+	 */
+	public String getAddQuestionnairePage(){
+		
+		return this.SUCCESS;
+	}
+	
+	/***
+	 * 后台增加Questionnaire 并跳转至增加题目页面
+	 * author:Apache
+	 * time:2014-1-20 11:00
+	 * @return /WEB-INF/jsp/backend/questionnaire/addQuestionnaire.jsp
+	 */
+	public String addQuestionnaire(){
+		
+		int questionnaireId = questionnairerService.insert(questionnaire);
+		
+		request.setAttribute("questionnaireId", questionnaireId);
+		
+		return this.SUCCESS;
 	}
 
 	public void setQuestionnairerService(QuestionnaireService questionnairerService) {
@@ -74,14 +101,18 @@ public class QuestionnaireAction extends BaseActionSupport{
 		this.qList = qList;
 	}
 
-
-	public Map<Object, List> getDataMap() {
+	public Map<String, Object> getDataMap() {
 		return dataMap;
 	}
 
 
-	public void setDataMap(Map<Object, List> dataMap) {
+	public void setDataMap(Map<String, Object> dataMap) {
 		this.dataMap = dataMap;
+	}
+
+
+	public QuestionnaireService getQuestionnairerService() {
+		return questionnairerService;
 	}
 
 

@@ -23,9 +23,9 @@
 			<li class="jstree-open">
 					<a href="#">问卷管理</a>
 					<ul>
-						<li class="jstree-leaf"><a class="blacked" href="${basePath}questionnaire_intoQuestionnairePage.action">显示问卷</a></li>
-						<li class="jstree-leaf"><a href="questionnaire/manage-add1.html">增加问卷</a></li>
-						<li class="jstree-leaf"><a href="#">问卷安排</a></li>
+						<li class="jstree-leaf"><a class="blacked" href="${basePath}admin/intoQuestionnairePage.action">显示问卷</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getAddQuestionnairePage.action">增加问卷</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getQuestionnaireArrangementListPage.action">问卷安排</a></li>
 					</ul>
 				</li>
 				<li class="jstree-open">

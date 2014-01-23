@@ -2,12 +2,38 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="questionnaire" namespace="/" extends="json-default">
-		<action name="questionnaire_*" class="questionnarieAction" method="{1}">
-		<result type="json" name="success">
-		<param name="root">dataMap</param>
-		</result>
-		<result name="json" type="json"></result>
-		<result name="intoQuestionnairePage">/WEB-INF/jsp/backend/questionnaire/manage-show.jsp</result>
+		
+	</package>
+	
+	<package name="questionnaireAdmin" namespace="/admin" extends="system">
+		<action name="intoQuestionnairePage" class="questionnarieAction" method="intoQuestionnairePage">
+			<result>/WEB-INF/jsp/backend/questionnaire/questionnaireList.jsp</result>
 		</action>
+		<action name="findAllQuestionnare" class="questionnarieAction" method="findAllQuestionnare">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="updateQuestion" class="questionnarieAction" method="updateQuestion">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="getQuestionnaireById" class="questionnarieAction" method="getQuestionnaireById">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="deleteQuestionaire" class="questionnarieAction" method="deleteQuestionaire">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="getAddQuestionnairePage" class="questionnarieAction" method="getAddQuestionnairePage">
+			<result>/WEB-INF/jsp/backend/questionnaire/addQuestionnaire.jsp</result>
+		</action>
+		<action name="addQuestionnaire" class="questionnarieAction" method="addQuestionnaire">
+			<result>/WEB-INF/jsp/backend/questionnaire/addQuestionnaireRubric.jsp</result>
+		</action>		
 	</package>
 </struts>    

@@ -19,5 +19,11 @@
         <property name="questionnaireRubricContent" type="java.lang.String">
             <column name="questionnaireRubricContent" length="500" />
         </property>
+        <property name="questionnaireRubricWeight" type="java.lang.Integer">
+        	<column name="questionnaireRubricWeight"></column>
+        </property>
+        <property name="questionnaireRubricIntroduce" type="java.lang.String">
+        	<column name="questionnaireRubricIntroduce" length="500"></column>
+        </property>
     </class>
 </hibernate-mapping>

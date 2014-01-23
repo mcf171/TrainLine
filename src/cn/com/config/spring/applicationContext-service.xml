@@ -35,6 +35,10 @@
 		<property name="resourceDAO" ref="ResourceDAO"></property>
 	</bean>
 	
+	<bean id="messageService" class="cn.com.service.MessageService">
+		<property name="messageDAO" ref="MessageDAO"></property>
+	</bean>
+	
     <bean id="noticeService" class="cn.com.service.NoticeService" scope="prototype">
         <property name="noticeDAO" ref="noticeDAO"></property>
         <property name="noticeTypeDAO" ref="NoticetypeDAO"></property>
@@ -115,6 +119,12 @@
 	</bean>
 	
 	<bean id="reportService" class="cn.com.service.ReportService">
+	</bean>
+	
+	<bean id="questionnaireArrangementService" class="cn.com.service.QuestionnaireArrangementService">
+		<property name="questionnaireArrangementDAO" ref="QuestionnaireArrangementDAO"></property>
+		<property name="messageService" ref="messageService"></property>
+		<property name="userService" ref="userService"></property>
 	</bean>
 	
 	</beans>

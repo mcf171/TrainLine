@@ -37,15 +37,17 @@ public class QuestionnaireDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
-	public void save(Questionnaire transientInstance) {
+	public int save(Questionnaire transientInstance) {
 		log.debug("saving Questionnaire instance");
+		int questionnaireId;
 		try {
-			getHibernateTemplate().save(transientInstance);
+			questionnaireId = (Integer) getHibernateTemplate().save(transientInstance);
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
 			throw re;
 		}
+		return questionnaireId;
 	}
 
 	public void delete(Questionnaire persistentInstance) {

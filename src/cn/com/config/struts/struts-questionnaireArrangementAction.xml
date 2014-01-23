@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="questionnaireArrangement" namespace="/" extends="json-default">
+		
+		<action name="getQuestionnaireArrangePage" class="questionnaireArrangementAction" method="getQuestionnaireArrangePage">
+			<result>/WEB-INF/jsp/questionnaire.jsp</result>
+		</action>
+		
+	</package>
+	
+	<package name="questionnaireArrangementAdmin" namespace="/admin" extends="system">
+		<action name="getAddQuestionnaireArrangementPage" class="questionnaireArrangementAction" method="getAddQuestionnaireArrangementPage">
+			<result>/WEB-INF/jsp/backend/questionnaire/addQuestionnaireArrangement.jsp</result>
+		</action>
+		
+		<action name="getQuestionnaireArrangementListPage" class="questionnaireArrangementAction" method="getQuestionnaireArrangementListPage">
+			<result>/WEB-INF/jsp/backend/questionnaire/questionnaireArrangementList.jsp</result>
+		</action>
+		
+		<action name="getQuestionnaireArrangementList" class="questionnaireArrangementAction" method="getQuestionnaireArrangementList">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="deleteQuestionnaireArrangement" class="questionnaireArrangementAction" method="deleteQuestionnaireArrangement">
+				<result type="json">
+					<param name="root">dataMap</param>
+				</result>
+		</action>
+		
+		<action name="addQuestionnaireArrangement" class="questionnaireArrangementAction" method="addQuestionnaireArrangement">
+			<result type="json">
+					<param name="root">dataMap</param>
+				</result>
+			</action>
+	</package>
+</struts>    

@@ -1,6 +1,5 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
-
 <link rel="stylesheet" type="text/css"
 	href="${basePath}styles/mmgrid.css" />
 <link rel="stylesheet" type="text/css"
@@ -18,8 +17,16 @@
 <script type="text/javascript" src="${basePath}scripts/addTestArrangement.js"></script>
 <script type="text/javascript">
 	//        
+	
 	var mmGirdTable;
 	$(document).ready(function() {
+		$("#userChoose").change(function(){
+			var valueTest = parseInt($("#userChoose").val()); 
+			switch(valueTest){
+			case 2: $("#userList").fadeOut();break;
+			case 1: $("#userList").fadeIn();break;
+			}
+		});
 		/*
 		$( "#hours" ).slider({
 			range: "min",
@@ -36,136 +43,77 @@
 		$('#time-from').css('background', 'none').datepicker();
 
 		mmGirdTable = $('#grid').mmGrid({
-			url: '${basePath}admin/findOpenTestPaper.action',
+			url:'${basePath}admin/findAllQuestionnare.action',
 			height: 410,
 			autoLoad: true,
 			checkCol: true,
-			
+			root:'qList',
 			fullWidthRows: true,
-			root:'list',
 			cols: [
-				{ title: '试卷编号', sortable: true, width: 150, name: 'testPaperId' },
-				{ title: '试卷名称', sortable: true, width: 210, name: 'testPaperName' },
-				{ title: '试卷状态', sortable: true, width: 120,
-					
-					renderer: function (val, item, row)
-					{
-						switch (item.testPaperState)
-						{
-							case 1: return '发布';
-							case 2: return '保留';
-							case 3: return '回收';
-							
-						}
-					}
-				}
-				
-			],
+	     { title: 'ID', sortable: true, width: 40, name: 'questionnaireId' },  
+	     { title: '问卷标题', sortable: true, width: 110, name:'questionnaireTitle' },
+	     { title: '发起人', sortable: true, width: 100, name:'questionnaireAuthor' },
+	     { title: '问卷编号', sortable: true, width: 110, name:'questionnaireNumber' },
+	     { title: '是否公开', sortable: true, width: 110, 
+	       renderer: function (val, item, row) {
+	       return item.open==1? '开卷':'闭卷';
+	       }
+	     }
+	       ],
 			plugins: [
 				$('#page').mmPaginator({})
 			]
 		});
+		
 	//
 		mmClass = $('#grid2').mmGrid({
-			url: '${basePath}getNormalTrainClassList.action',
+			url: '${basePath}admin/getAllUser.action',
 			height: 280,
 			autoLoad: true,
 			checkCol: true,
-			fullWithRows: true,
-			root:'trainList',
+			fullWidthRows: true,
+			root:'list',
+			multiSelect: true,
 			cols: [
-				{ title: '班级编号', sortable: true, width: 150, name: 'trainingClassId' },
-				{ title: '班级名称', sortable: true, width: 150, name: 'trainingClassName' },
-				{ title: '培训内容', sortable: true, width: 150, 
-					renderer: function (val, item, row)
-					{
-						if(item.classcases[0]!=null){
-						return item.classcases[0].classContent;
-						}else{
-							return "暂无培训内容";
-						}
-					}
-				},
-				{ title: '培训地点', sortable: true, width: 150, 
-					renderer: function (val, item, row)
-					{
-						if(item.classcases[0]!=null){
-						return item.classcases[0].trainAddress;
-						}else{
-							return "暂未培训地点";
-						}
-					}	
-				},
-				{ title: '学时', sortable: true, width: 100, 
-					renderer: function (val, item, row)
-					{
-						if(item.classcases[0]!=null){
-						return item.classcases[0].trainHour;
-						}else{
-							return "暂未学时";
-						}
-					}	
-				},
-				{ title: '培训机构', sortable: true, width: 150, 
-					renderer: function (val, item, row)
-					{
-						if(item.classcases[0]!=null){
-						return item.classcases[0].trainUnit;
-						}else{
-							return "暂未培训机构";
-						}
-					}	
-				},
-				{ title: '开始时间', sortable: true, width: 180,
-					renderer: function (val, item, row)
-					{
-						if(item.classcases[0]!=null){
-						return item.classcases[0].classStartTime;
-						}else{
-							return "暂未确定开始时间";
-						}
-					}
-				},	
-				{ title: '结束时间', sortable: true, width: 180, 
-					renderer: function (val, item, row)
-					{
-						if(item.classcases[0]!=null){
-						return item.classcases[0].classEndtTime;
-						}else{
-							return "暂未确定结束时间";
-						}
-					}	
-				}
+				{ title: '用户名', sortable: true, width: 150, name: 'userName' }
+				
 			],
 			plugins: [
-				$('#page').mmPaginator({})
+				$('#pageUser').mmPaginator({})
 			]
 		});
 
 	
 	
-	var array;
 	$("#submit").click(
 					function() {
 
 						arrayPaper = mmGirdTable.selectedRowsIndex();
 						arrayClass = mmClass.selectedRowsIndex();
+						questionArrangementIntro = "&questionnaireArrangement.questionArrangementIntro="+$("#questionArrangementIntro").val();
 						
-						testPlace ="testArrangement.testArrangementPlace="+ $("#testPlace").val();
-						testShouldNumber = "&testArrangement.testSumPerson=" + $("#testShouldNumber").val();
-						testPassScore ="&testArrangement.passMark=" +$("#testPassScore").val();
-						testStartTime = "&testArrangement.testStartTime=" +$("#time-from").val()+ " "+$("#startTimeHour").val()+":"+$("#startTimeMinutes").val()+":"+"00";
-						testEndTime = "&testArrangement.attributestStartTimete51=" +$("#time-to").val()+ " "+$("#endTimeHour").val()+":"+$("#endTimeMinutes").val()+":"+"00";
+						questionArrangementName ="questionnaireArrangement.questionArrangementName="+ $("#questionArrangementName").val();
+						
+						testStartTime = "&questionnaireArrangement.questionArrangementBeginTime=" +$("#time-from").val()+ " "+$("#startTimeHour").val()+":"+$("#startTimeMinutes").val()+":"+"00";
+						testEndTime = "&questionnaireArrangement.questionArrangementOverTime=" +$("#time-to").val()+ " "+$("#endTimeHour").val()+":"+$("#endTimeMinutes").val()+":"+"00";
 						//	alert(testPaperName)
 
 							//alert(mmGirdTable.row(array[i]).testQuestionId);
-						testPaperId = "&testPaperId="+ mmGirdTable.row(arrayPaper[0]).testPaperId;
-						testClassId = "&trainClassId="+ mmClass.row(arrayClass[0]).trainingClassId;
-						dataConfirm = testPlace + testShouldNumber + testPassScore + testStartTime + testEndTime + testPaperId + testClassId;
+						questionnaireId = "&questionnaireArrangement.questionnaire.questionnaireId="+ mmGirdTable.row(arrayPaper[0]).questionnaireId;
+						
+						var valueTest = parseInt($("#userChoose").val()); 
+						userId="";
+						if(valueTest == 1){
+							for(i = 0; i < arrayClass.length; i++){
+							
+								userId = "&userId=" + arrayClass[i]; 
+							}
+						}
+						dataConfirm = questionArrangementName + testStartTime + testEndTime + questionnaireId + userId + questionArrangementIntro;
 						console.log(dataConfirm);
 						$.ajax({
 									type : "post",
-									url : "${basePath}admin/addTestArrangment.action",
+									url : "${basePath}admin/addQuestionnaireArrangement.action",
 									data : dataConfirm,
 									success : function(msg) {
 										/*
@@ -173,7 +121,7 @@
 										 mmGirdTable.removeRow(mmGirdTable.selectedRowsIndex());
 										 */
 										alert("增加成功");
-										loadHTML("${basePath}admin/getOpenTestPaperPage.action");
+										loadHTML("${basePath}admin/getQuestionnaireArrangementListPage.action");
 									}
 								});
 					});
@@ -189,20 +137,16 @@
 					<span class="help-inline"><b>基本信息：</b> </span>
 				</div>
 				<div class="row-fluid">
-					<span class="help-inline">考试地点：</span> <input type="text"
-						class=" span2" id="testPlace" placeholder="请输入试卷名称"
+					<span class="help-inline">问卷安排名：</span> <input type="text"
+						class=" span2" id="questionArrangementName" placeholder="请输入问卷安排名"
 						name="testquestion.testQuestionName" />
 				</div>
 				<div class="row-fluid">
-					<span class="help-inline">应到人数：</span> <input type="text"
-						class=" span2" id="testShouldNumber" placeholder="请输入数量"
+					<span class="help-inline">问卷目的：</span> <input type="text"
+						class=" span2" id="questionArrangementIntro" placeholder="请输入问卷目的"
 						name="testquestion.testQuestionName" />
 				</div>
-				<div class="row-fluid">
-					<span class="help-inline">通过分数：</span> <input type="text"
-						class=" span2" id="testPassScore" placeholder="请输入分数"
-						name="testquestion.testQuestionName" />
-				</div>
+				
 				<div class="row-fluid">
 					<span class="help-inline">开始时间：</span> <input id="time-from"
 						class="span2" type="text" data-date-format="yyyy-mm-dd"
@@ -243,7 +187,7 @@
 				<hr class="seperator top-margin">
 				<div class="row word_style">
 				<div class="row-fluid line-margin">
-					<span class="help-inline"> <b>选择试卷：</b> </span>
+					<span class="help-inline"> <b>选择问卷：</b> </span>
 				</div>
 					<div class="row-fluid line-margin">
 						<span class="help-inline"> <b>过滤：</b> <b>类型</b> </span> <select
@@ -270,9 +214,14 @@
 				</div>
 				<hr class="seperator top-margin">
 				<div class="row-fluid line-margin">
-					<span class="help-inline"> <b>选择班级：</b> </span>
+					<span class="help-inline"> <b>选择用户：</b> </span>
+					<select id="userChoose">
+						<option value="1">发送部分人</option>
+						<option value="2">发送所有人</option>
+					</select>
 				</div>
-				<div class="row word_style">
+				<div id="userList">
+				<div class="row word_style" >
 					<div class="row-fluid line-margin">
 						<span class="help-inline"> <b>过滤：</b> <b>类型</b> </span> <select
 							class="input-medium">
@@ -292,17 +241,17 @@
 				<div class="row word_style">
 					<div class="row-fluid " style="margin-top:5px">
 						<table id="grid2"></table>
-						<button type="submit" class="btn" id="submit">
-							<i class="icon-ok"></i>确认
-						</button>
-						<div id="page" class="pull-right"></div>
+						
+						<div id="pageUser" class="pull-right"></div>
 					</div>
 				</div>
-				
+				</div>
+				<button type="submit" class="btn" id="submit">
+							<i class="icon-ok"></i>确认
+						</button>
 			</div>
 		</div>
 	</div>
 
 
-</body>
-</html>
+

@@ -2,12 +2,6 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="note" namespace="/" extends="system">
-		<action name="note_*" class="noteAction" method="{1}">
-			<result type="json" name="success">
-			<param name="root">dataMap</param>
-			</result>
-			<result name="showGonggao">/WEB-INF/jsp/backend/study.jsp</result>
-		</action>
 		
 		<action name="addNote" class="noteAction" method="addNote">
 			<result type="json">
@@ -25,6 +19,19 @@
 		<action name="showNotePage" class="noteAction" method="showNotePage">
 			<result>/WEB-INF/jsp/backend/note/note-overview.jsp</result>
 		</action>
+		
+		<action name="findAllNote" class="noteAction" method="findAllNote">
+			<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+		</action>
+		
+		<action name="deleteNote">
+			<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+		</action>
+		
 	</package>
 	
 </struts>    

@@ -46,6 +46,12 @@
 	<bean id="userAction" class="cn.com.action.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
 		<property name="recordService" ref="recordService"></property>
+		<property name="dataMap" ref="hashMap"></property>
+	</bean>
+	
+	<bean id="questionnaireArrangementAction" class="cn.com.action.QuestionnaireArrangementAction">
+		<property name="questionnaireArrangementService" ref="questionnaireArrangementService"></property>
+		<property name="dataMap" ref="hashMap"></property>
 	</bean>
 
 	<bean id="questionnarieAction" class="cn.com.action.QuestionnaireAction"
@@ -53,9 +59,10 @@
 		<property name="questionnairerService" ref="questionnairerService"></property>
 	</bean>
 
-	<bean id="questionnairerubricAction" class="cn.com.action.QuestionnaireRubricAction"
+	<bean id="questionnaireRubricAction" class="cn.com.action.QuestionnaireRubricAction"
 		scope="prototype">
 		<property name="questionnairerubricService" ref="questionnairerubricService"></property>
+		<property name="dataMap" ref="hashMap"></property>
 	</bean>
 
 	<bean id="courseAction" class="cn.com.action.CourseAction" scope="prototype">

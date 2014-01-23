@@ -22,6 +22,11 @@ public class UserService {
 		
 		return user;
 	}
+	
+	public List<User> getUserList(){
+		
+		return userDAO.findAll();
+	}
     
 	public User getUserById(User user){
 		

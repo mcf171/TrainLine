@@ -30,7 +30,7 @@ var PAGES = {
 function load_page(page)
 {
  	temp = PAGES[page];
-	$('#container').attr('src', temp);
+	$('#container').load(temp);
 }
 
 $(document).ready(function ()
@@ -65,7 +65,7 @@ $(document).ready(function ()
 </div>
 <div class="navbar">
 	<div class="navbar-inner">
-		<div class="row-fluid menu-container">
+		<div class="row-fluid">
 			<ul class="span12 nav nav-pills header-menu">
 				<li id="page_0" class="span1 header-menu-item active"><a href="#">首页</a></li>
 				<li id="page_1" class="span2 header-menu-item"><a href="#">学习中心</a></li>
@@ -79,8 +79,7 @@ $(document).ready(function ()
 	</div>
 </div>
 <div class="row-fluid" id="content">
-	<iframe id="container" scrolling="no" frameborder="0" class="span10 offset1">
-	</iframe>
+	<div id="container"></div>
 </div>
 <div class="push"></div>
 <div class="importantInfo">
@@ -98,11 +97,11 @@ $(document).ready(function ()
 					</div>
 					<hr class="seperator" />
 					
-					<c:forEach items="${user.notices}" var="item"  varStatus="s">
+					<c:forEach items="${user.message}" var="item"  varStatus="s">
 					<div class="row-fluid">
 						<div class="span12">
 						
-					        ${s.count}、<a href="#">${item.resourceName }</a>
+					        ${s.count}、<a href="${basePath}${item.url}">${item.messageTitle }</a>
 						</div>
 					</div>
 					</c:forEach>

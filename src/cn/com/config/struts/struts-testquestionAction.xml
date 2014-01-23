@@ -4,7 +4,7 @@
 	<package name="testquestion" namespace="/admin" extends="system">
 		
 		<action name="getQuestionsPage" class="testquestionAction" method="getQuestionsPage">
-			<result>/WEB-INF/jsp/backend/examinations/manage-questions.jsp</result>
+			<result>/WEB-INF/jsp/backend/testQuestion/manage-questions.jsp</result>
 		</action>
 		
 		<action name="getQuestions" class="testquestionAction" method="getQuestions">
@@ -14,7 +14,7 @@
 		</action>
 		
 		<action name="getAddQuestionPage" class="testquestionAction" method="getAddQuestionPage">
-			<result>/WEB-INF/jsp/backend/examinations/manage-questionItemAdd.jsp</result>
+			<result>/WEB-INF/jsp/backend/testQuestion/manage-questionItemAdd.jsp</result>
 		</action>
 		
 		<action name="addTestquestion" class="testquestionAction" method="addTestquestion">
@@ -30,11 +30,11 @@
 		</action>
 		
 		<action name ="getTestquestionById" class="testquestionAction" method="getTestquestionById">
-			<result>/WEB-INF/jsp/backend/examinations/manage-questionItemShow.jsp</result>
+			<result>/WEB-INF/jsp/backend/testQuestion/manage-questionItemShow.jsp</result>
 		</action>
 		
 		<action name ="getTestquestionModifyPage" class="testquestionAction" method="getTestquestionModifyPage">
-			<result>/WEB-INF/jsp/backend/examinations/manage-questionItemModify.jsp</result>
+			<result>/WEB-INF/jsp/backend/testQuestion/manage-questionItemModify.jsp</result>
 		</action>
 		
 		

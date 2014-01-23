@@ -34,15 +34,8 @@ public class QuestionarrangementDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
-	public void save(Questionarrangement transientInstance) {
-		log.debug("saving Questionarrangement instance");
-		try {
-			getHibernateTemplate().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
+	public int save(Questionarrangement transientInstance) {
+		return	(Integer) getHibernateTemplate().save(transientInstance);
 	}
 
 	public void delete(Questionarrangement persistentInstance) {

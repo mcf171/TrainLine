@@ -1,6 +1,8 @@
 package cn.com.action;
 
 import java.util.List;
+import java.util.Map;
+
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Questionnairerubric;
 import cn.com.service.QuestionnairerubricService;
@@ -10,9 +12,12 @@ import cn.com.service.QuestionnairerubricService;
  *
  */
 public class QuestionnaireRubricAction extends BaseActionSupport{
+	
 	private List<Questionnairerubric> qrList = null;
 	private QuestionnairerubricService questionnairerubricService;
+	private Questionnairerubric questionnaireRubric;
 	
+	private Map<String, Object>dataMap;
 	/**
 	 * 返回所有的问卷题目
 	 * @return
@@ -23,6 +28,31 @@ public class QuestionnaireRubricAction extends BaseActionSupport{
 		session.put("qrList", qrList);
 		return SUCCESS;
 	}
+	/***
+	 * 后台增加问卷题目
+	 * author:Apache
+	 * time:2014-1-20 17:35
+	 * @return
+	 */
+	public String addQuestionnaireRubric(){
+		
+		int questionnaireRubricId = questionnairerubricService.insert(questionnaireRubric);
+		dataMap.put("questionnaireRubricId", questionnaireRubricId);
+		return this.SUCCESS;
+	}
+	
+	/***
+	 * 后台通过Id删除QuestionnaireRubric
+	 * author:Apache
+	 * time:2014-1-20 19:34
+	 * @return
+	 */
+	public String deleteQuestionnaireRubric(){
+		
+		questionnairerubricService.delete(questionnaireRubric);
+		return this.SUCCESS;
+	}
+	
 
 	public QuestionnairerubricService getQuestionnairerubricService() {
 		return questionnairerubricService;
@@ -38,6 +68,20 @@ public class QuestionnaireRubricAction extends BaseActionSupport{
 
 	public void setQrList(List<Questionnairerubric> qrList) {
 		this.qrList = qrList;
+	}
+
+	public Questionnairerubric getQuestionnaireRubric() {
+		return questionnaireRubric;
+	}
+
+	public void setQuestionnaireRubric(Questionnairerubric questionnaireRubric) {
+		this.questionnaireRubric = questionnaireRubric;
+	}
+	public Map<String, Object> getDataMap() {
+		return dataMap;
+	}
+	public void setDataMap(Map<String, Object> dataMap) {
+		this.dataMap = dataMap;
 	}
 
 	

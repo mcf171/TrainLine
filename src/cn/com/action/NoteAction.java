@@ -22,7 +22,7 @@ public class NoteAction extends BaseActionSupport {
 	private NoteService noteService;
 	
 	private NoticeService noticeService;
-	private Map<String, List> dataMap;
+	private Map<String, Object> dataMap;
 	private Notice notice;
 
 	// **查询条件*/
@@ -102,7 +102,7 @@ public class NoteAction extends BaseActionSupport {
 		noticeList2=new ArrayList<Notice>();
 		noticeList3=new ArrayList<Notice>();
 		note =new Note();
-		dataMap = new HashMap<String, List>();
+		dataMap = new HashMap<String, Object>();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -151,9 +151,6 @@ public class NoteAction extends BaseActionSupport {
 		this.noteContent = noteContent;
 	}
 
-	public Map<String, List> getDataMap() {
-		return dataMap;
-	}
 
 	public String getNoticeList(){
 		List<Notice> noticeList = new ArrayList<Notice>();
@@ -173,12 +170,6 @@ public class NoteAction extends BaseActionSupport {
 		return this.SUCCESS;
 	}
 	
-	
-	
-	
-	public void setDataMap(Map<String, List> dataMap) {
-		this.dataMap = dataMap;
-	}
 
 	public List<Note> getnList() {
 		return nList;
@@ -241,6 +232,14 @@ public class NoteAction extends BaseActionSupport {
 	}
 	public void setNotice(Notice notice) {
 		this.notice = notice;
+	}
+
+	public Map<String, Object> getDataMap() {
+		return dataMap;
+	}
+
+	public void setDataMap(Map<String, Object> dataMap) {
+		this.dataMap = dataMap;
 	}
 
 }

@@ -57,7 +57,7 @@ var noteID;
 	function search() {
 	mmg=$('#grid').mmGrid(
 						{
-							url : "${basePath}note_findAllNote.action",
+							url : "${basePath}admin/findAllNote.action",
 							height : 410,
 							autoLoad : true,
 							root : 'nList',
@@ -106,7 +106,7 @@ var noteID;
 	
 	$.ajax({
 				type : "POST",
-				url : "${basePath}note_deleteNote.action?noteId="+noteID,
+				url : "${basePath}admin/deleteNote.action?noteId="+noteID,
 				dataType : "json",
 				success : function(json) {
 				mmg.load({page:1});

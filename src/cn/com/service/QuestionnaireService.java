@@ -8,8 +8,13 @@ import cn.com.model.Questionnaire;
 public class QuestionnaireService {
 	private QuestionnaireDAO questionnaireDAO;
 	
-	public void insert(Questionnaire questionnaire) {
-		questionnaireDAO.save(questionnaire);
+	/**
+	 * 增加questionnaire 并返回Id
+	 * @param questionnaire
+	 * @return
+	 */
+	public int insert(Questionnaire questionnaire) {
+		return questionnaireDAO.save(questionnaire);
 	}
 
 	public void delete(Questionnaire questionnaire)

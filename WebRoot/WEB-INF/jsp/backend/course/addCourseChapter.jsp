@@ -51,7 +51,7 @@
 			url:"${basePath}admin/deleteCatalogue.action",
 			data:"catalogue.catalogueId="+catalogueId,
 			success:function(msg){
-				
+				$("#catalogue"+catalogueId).hidden();
 			}
 		});
 	}
@@ -99,7 +99,7 @@
 							<hr class="seperator"/>
 						</div>
 						<c:forEach items="${list}" var="item" varStatus="index">
-							<div>
+							<div id="catalogue${item.catalogueId}">
 								<i class="icon-list"></i><span>章节名称：${item.catalogueName }</span> <i class="icon-stop"></i> <span>权重为：${item.cataloguaWeight}</span>
 								<button type="button" class="btn btn-default" onclick="deleteCatalogue(this)" value="${item.catalogueId}">删除</button>
 							</div>
