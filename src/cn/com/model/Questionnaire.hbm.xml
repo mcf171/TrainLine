@@ -22,17 +22,12 @@
         <property name="open" type="java.lang.Integer">
             <column name="open" />
         </property>
-        <set name="questionnairerubrics" inverse="true">
+        <set name="questionnairerubrics" inverse="true" lazy="false">
             <key>
                 <column name="questionnaireId" />
             </key>
             <one-to-many class="cn.com.model.Questionnairerubric" />
         </set>
-        <set name="questionarrangements" inverse="true">
-            <key>
-                <column name="questionnaireId" />
-            </key>
-            <one-to-many class="cn.com.model.Questionarrangement" />
-        </set>
+        
     </class>
 </hibernate-mapping>

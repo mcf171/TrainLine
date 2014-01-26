@@ -63,7 +63,7 @@ public class GlobalInterceptor extends AbstractInterceptor{
 		request.setAttribute("basePath", basePath);
 		request.setAttribute("rootPath", rootPath);
 		request.setAttribute("physicalPath", physicalPath);
-		
+		System.out.println(basePath);
 		User user = (User) ctx.getSession().get("user");
 		
 		String result;

@@ -2,7 +2,7 @@ package cn.com.model;
 
 import java.sql.Timestamp;
 
-public class Message {
+public class Message implements java.io.Serializable{
 
 
 	// Fields

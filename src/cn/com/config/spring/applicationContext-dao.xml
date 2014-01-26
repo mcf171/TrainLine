@@ -51,7 +51,7 @@
 				<value>cn/com/model/Mailaccessory.hbm.xml</value>
 				<value>cn/com/model/Trainingclass.hbm.xml</value>
 				<value>cn/com/model/Tieziaccessory.hbm.xml</value>
-				<value>cn/com/model/Questionarrangement.hbm.xml</value>
+				<value>cn/com/model/QuestionnaireArrangement.hbm.xml</value>
 				<value>cn/com/model/Mail.hbm.xml</value>
 				<value>cn/com/model/Jobtechnicalgrade.hbm.xml</value>
 				<value>cn/com/model/Questionnairerubric.hbm.xml</value>
@@ -151,11 +151,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="QuestionarrangementDAO" class="cn.com.dao.QuestionarrangementDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
+	
 	<bean id="MailDAO" class="cn.com.dao.MailDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -302,7 +298,7 @@
 		</property>
 	</bean>
 	
-	<bean id="QuestionnaireArrangementDAO" class="cn.com.dao.QuestionarrangementDAO">
+	<bean id="QuestionnaireArrangementDAO" class="cn.com.dao.QuestionnaireArrangementDAO">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	

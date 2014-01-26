@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>${testArrangement.testpaper.testPaperName}</title>
+<title>${questionnaireArrangement.questionArrangementName}</title>
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Cache-Control" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
@@ -58,17 +58,17 @@
             
             <div id="ctl00_ContentPlaceHolder1_JQ1_surveyContent">
               <fieldset class="fieldset" id="fieldset1">
-              <c:forEach var="item" items="${testArrangement.testpaper.testquestions}" varStatus="index">
+              <c:forEach var="item" items="${questionnaireArrangement.questionnaire.questionnairerubrics}" varStatus="index">
               		<div style="" class="div_question" id="div${index.index+1}">
                   <div class="div_title_question_all">
-                    <div id="divTitle1" class="div_title_question">${index.index +1}．${item.testQuestionName}<span style="color:red;">&nbsp;*</span></div>
+                    <div id="divTitle1" class="div_title_question">${index.index +1}．${item.questionnaireRubricIntroduce}<span style="color:red;">&nbsp;*</span></div>
                     <div style="clear:both;"></div>
                   </div>
                   
                   <div class="div_table_radio_question" id="divquestion${index.index+1}">
                   <script>
-                 	testType = ${item.testType};
-                  	var question = '${item.testAnswerIntroduce}';
+                 	testType = ${item.questionnaireRubricType};
+                  	var question = '${item.questionnaireRubricContent}';
                   	var questionIntroduce = question.split('~');
                   	var 
                   	insertHTML='<ul>';
@@ -156,7 +156,7 @@
                       </tr>
                       <tr id="ctl00_trPoweredBy">
                         <td style="color: #666666; font-family: Tahoma, 宋体;" align="center"><div style="height: 10px;"> </div>
-                          Pioneer™提供技术支持 </td>
+                          Pioneer™提供技术支持 ${basePath}</td>
                       </tr>
                       <tr>
                         <td></td>

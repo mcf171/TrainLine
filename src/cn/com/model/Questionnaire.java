@@ -17,7 +17,6 @@ public class Questionnaire implements java.io.Serializable {
 	private String questionnaireNumber;
 	private Integer open;
 	private Set questionnairerubrics = new HashSet(0);
-	private Set questionarrangements = new HashSet(0);
 
 	// Constructors
 
@@ -26,16 +25,7 @@ public class Questionnaire implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Questionnaire(String questionnaireTitle, String questionnaireAuthor,
-			String questionnaireNumber, Integer open, Set questionnairerubrics,
-			Set questionarrangements) {
-		this.questionnaireTitle = questionnaireTitle;
-		this.questionnaireAuthor = questionnaireAuthor;
-		this.questionnaireNumber = questionnaireNumber;
-		this.open = open;
-		this.questionnairerubrics = questionnairerubrics;
-		this.questionarrangements = questionarrangements;
-	}
+	
 
 	// Property accessors
 
@@ -87,12 +77,7 @@ public class Questionnaire implements java.io.Serializable {
 		this.questionnairerubrics = questionnairerubrics;
 	}
 
-	public Set getQuestionarrangements() {
-		return this.questionarrangements;
-	}
 
-	public void setQuestionarrangements(Set questionarrangements) {
-		this.questionarrangements = questionarrangements;
-	}
+
 
 }

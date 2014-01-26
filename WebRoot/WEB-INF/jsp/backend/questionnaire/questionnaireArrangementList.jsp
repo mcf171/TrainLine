@@ -23,7 +23,7 @@ $(document).ready(function ()
 		root:'list',
 		fullWidthRows: true,
 		cols: [
-     { title: 'ID', sortable: true, width: 40, name: 'questionArrangementId' },  
+     { title: 'ID', sortable: true, width: 40, name: 'questionnaireArrangementId' },  
      { title: '问卷安排名称', sortable: true, width: 110, name:'questionArrangementName' },
      { title: '问卷简介', sortable: true, width: 100, name:'questionArrangementIntro' },
      { title: '开始时间', sortable: true, 

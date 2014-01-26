@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import cn.com.model.Questionarrangement;
+import cn.com.model.QuestionnaireArrangement;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -18,13 +18,13 @@ import cn.com.model.Questionarrangement;
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
  * 
- * @see cn.com.model.Questionarrangement
+ * @see cn.com.model.QuestionnaireArrangement
  * @author MyEclipse Persistence Tools
  */
 
-public class QuestionarrangementDAO extends HibernateDaoSupport {
+public class QuestionnaireArrangementDAO extends HibernateDaoSupport {
 	private static final Logger log = LoggerFactory
-			.getLogger(QuestionarrangementDAO.class);
+			.getLogger(QuestionnaireArrangementDAO.class);
 	// property constants
 	public static final String QUESTION_ARRANGEMENT_NAME = "questionArrangementName";
 	public static final String QUESTION_ARRANGEMENT_STATE = "questionArrangementState";
@@ -34,12 +34,12 @@ public class QuestionarrangementDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
-	public int save(Questionarrangement transientInstance) {
+	public int save(QuestionnaireArrangement transientInstance) {
 		return	(Integer) getHibernateTemplate().save(transientInstance);
 	}
 
-	public void delete(Questionarrangement persistentInstance) {
-		log.debug("deleting Questionarrangement instance");
+	public void delete(QuestionnaireArrangement persistentInstance) {
+		log.debug("deleting QuestionnaireArrangement instance");
 		try {
 			getHibernateTemplate().delete(persistentInstance);
 			log.debug("delete successful");
@@ -49,11 +49,11 @@ public class QuestionarrangementDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public Questionarrangement findById(java.lang.Integer id) {
-		log.debug("getting Questionarrangement instance with id: " + id);
+	public QuestionnaireArrangement findById(java.lang.Integer id) {
+		log.debug("getting QuestionnaireArrangement instance with id: " + id);
 		try {
-			Questionarrangement instance = (Questionarrangement) getHibernateTemplate()
-					.get("cn.com.model.Questionarrangement", id);
+			QuestionnaireArrangement instance = (QuestionnaireArrangement) getHibernateTemplate()
+					.get("cn.com.model.QuestionnaireArrangement", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -61,8 +61,8 @@ public class QuestionarrangementDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByExample(Questionarrangement instance) {
-		log.debug("finding Questionarrangement instance by example");
+	public List findByExample(QuestionnaireArrangement instance) {
+		log.debug("finding QuestionnaireArrangement instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
 			log.debug("find by example successful, result size: "
@@ -75,10 +75,10 @@ public class QuestionarrangementDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Questionarrangement instance with property: "
+		log.debug("finding QuestionnaireArrangement instance with property: "
 				+ propertyName + ", value: " + value);
 		try {
-			String queryString = "from Questionarrangement as model where model."
+			String queryString = "from QuestionnaireArrangement as model where model."
 					+ propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
@@ -103,9 +103,9 @@ public class QuestionarrangementDAO extends HibernateDaoSupport {
 	}
 
 	public List findAll() {
-		log.debug("finding all Questionarrangement instances");
+		log.debug("finding all QuestionnaireArrangement instances");
 		try {
-			String queryString = "from Questionarrangement";
+			String queryString = "from QuestionnaireArrangement";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
@@ -113,10 +113,10 @@ public class QuestionarrangementDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public Questionarrangement merge(Questionarrangement detachedInstance) {
-		log.debug("merging Questionarrangement instance");
+	public QuestionnaireArrangement merge(QuestionnaireArrangement detachedInstance) {
+		log.debug("merging QuestionnaireArrangement instance");
 		try {
-			Questionarrangement result = (Questionarrangement) getHibernateTemplate()
+			QuestionnaireArrangement result = (QuestionnaireArrangement) getHibernateTemplate()
 					.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -126,8 +126,8 @@ public class QuestionarrangementDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void attachDirty(Questionarrangement instance) {
-		log.debug("attaching dirty Questionarrangement instance");
+	public void attachDirty(QuestionnaireArrangement instance) {
+		log.debug("attaching dirty QuestionnaireArrangement instance");
 		try {
 			getHibernateTemplate().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -137,8 +137,8 @@ public class QuestionarrangementDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void attachClean(Questionarrangement instance) {
-		log.debug("attaching clean Questionarrangement instance");
+	public void attachClean(QuestionnaireArrangement instance) {
+		log.debug("attaching clean QuestionnaireArrangement instance");
 		try {
 			getHibernateTemplate().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -148,8 +148,8 @@ public class QuestionarrangementDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public static QuestionarrangementDAO getFromApplicationContext(
+	public static QuestionnaireArrangementDAO getFromApplicationContext(
 			ApplicationContext ctx) {
-		return (QuestionarrangementDAO) ctx.getBean("QuestionarrangementDAO");
+		return (QuestionnaireArrangementDAO) ctx.getBean("QuestionnaireArrangementDAO");
 	}
 }

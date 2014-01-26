@@ -1,20 +1,18 @@
 package cn.com.action;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import cn.com.base.BaseActionSupport;
-import cn.com.model.Questionarrangement;
-import cn.com.model.Questionnaire;
+import cn.com.model.QuestionnaireArrangement;
 import cn.com.model.User;
 import cn.com.service.QuestionnaireArrangementService;
-import cn.com.service.QuestionnaireService;
 
 public class QuestionnaireArrangementAction extends BaseActionSupport{
 	
 	private Map<String,Object> dataMap;
 	private QuestionnaireArrangementService questionnaireArrangementService;
-	private Questionarrangement questionnaireArrangement;
+	private QuestionnaireArrangement questionnaireArrangement;
 	private String[] userId;
 	
 	/**后台获得增加问卷安排页面
@@ -46,7 +44,7 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 	 */
 	public String getQuestionnaireArrangementList(){
 		
-		List<Questionarrangement> list = questionnaireArrangementService.getAllQuestionnaireArrangement();
+		List<QuestionnaireArrangement> list = questionnaireArrangementService.getAllQuestionnaireArrangement();
 		
 		dataMap.put("list", list);
 		
@@ -91,6 +89,10 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 	 */
 	public String getQuestionnaireArrangePage(){
 		
+		questionnaireArrangement = questionnaireArrangementService.getQuestionnaireArrangementById(questionnaireArrangement.getQuestionnaireArrangementId());
+		
+		request.setAttribute("questionnaireArrangement", questionnaireArrangement);
+		
 		return this.SUCCESS;
 	}
 	
@@ -110,13 +112,13 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 			QuestionnaireArrangementService questionnaireArrangementService) {
 		this.questionnaireArrangementService = questionnaireArrangementService;
 	}
-
-	public Questionarrangement getQuestionnaireArrangement() {
+	
+	public QuestionnaireArrangement getQuestionnaireArrangement() {
 		return questionnaireArrangement;
 	}
 
 	public void setQuestionnaireArrangement(
-			Questionarrangement questionnaireArrangement) {
+			QuestionnaireArrangement questionnaireArrangement) {
 		this.questionnaireArrangement = questionnaireArrangement;
 	}
 

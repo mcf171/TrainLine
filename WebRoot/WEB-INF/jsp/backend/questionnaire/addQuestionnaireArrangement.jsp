@@ -106,11 +106,10 @@
 						if(valueTest == 1){
 							for(i = 0; i < arrayClass.length; i++){
 							
-								userId = "&userId=" + arrayClass[i]; 
+								userId = "&userId=" + mmClass.row(arrayClass[i]).userId; 
 							}
 						}
 						dataConfirm = questionArrangementName + testStartTime + testEndTime + questionnaireId + userId + questionArrangementIntro;
-						console.log(dataConfirm);
 						$.ajax({
 									type : "post",
 									url : "${basePath}admin/addQuestionnaireArrangement.action",

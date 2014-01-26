@@ -11,4 +11,11 @@
 		/queryModuleContent.action?contentId=$1&amp;moduleId=$2
 	</to>
 </rule> 
+<!-- 将问卷映射为/questionnaire/questionnaireArrangementId.html -->
+<rule>
+	<from>^/questionnaireArrangement/([0-9]+).action$</from>
+	<to type="forward">
+	/getQuestionnaireArrangePage.action?questionnaireArrangement.questionnaireArrangementId=$1
+	</to>
+</rule>
 </urlrewrite> 

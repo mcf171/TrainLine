@@ -6,7 +6,7 @@ import java.sql.Timestamp;
  * Questionarrangement entity. @author MyEclipse Persistence Tools
  */
 
-public class Questionarrangement implements java.io.Serializable {
+public class QuestionnaireArrangement implements java.io.Serializable {
 
 	// Fields
 
@@ -22,11 +22,11 @@ public class Questionarrangement implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public Questionarrangement() {
+	public QuestionnaireArrangement() {
 	}
 
 	/** full constructor */
-	public Questionarrangement(Questionnaire questionnaire,
+	public QuestionnaireArrangement(Questionnaire questionnaire,
 			String questionArrangementName, Integer questionArrangementState,
 			Timestamp questionArrangementBeginTime,
 			Timestamp questionArrangementOverTime,
