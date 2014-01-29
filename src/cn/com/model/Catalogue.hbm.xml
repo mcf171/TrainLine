@@ -27,7 +27,7 @@
         	<column name="cataloguaWeight"></column>
         </property>
         
-		<one-to-one name="note" property-ref="catalogue"/>         
+		<one-to-one name="note" property-ref="catalogue" cascade="all"/>         
         <set name="resource" inverse="true" table="resource" lazy="false" cascade="all">
             <key>
                 <column name="catalogueId" />

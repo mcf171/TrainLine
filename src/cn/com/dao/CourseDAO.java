@@ -50,10 +50,7 @@ public class CourseDAO extends HibernateDaoSupport {
 
 	public void delete(Course persistentInstance) {
 		try {
-			Session session = getHibernateTemplate().getSessionFactory()
-					.openSession();
-			session.delete(persistentInstance);
-			session.flush();
+			this.getHibernateTemplate().delete(persistentInstance);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

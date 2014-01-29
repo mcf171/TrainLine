@@ -2,20 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="trainingClass" namespace="/" extends="system">
-		<action name="trainingClass_*" class="trainingClassAction" method="{1}">
-		<result type="json" name="success">
-		<param name="root">dataMap</param>
-		</result>
-		<result type="json" name="json"></result>
-		<result name="getCourseByClassId" type="json">
-		<param name="root">dataMap</param>
-		</result>
-		<result name="intoClassInfoPage">/WEB-INF/jsp/backend/classes/ClassInfo.jsp</result>
-		<result name="intoClasspage">/WEB-INF/jsp/backend/classes.jsp</result>
-		<result name="classContent">/WEB-INF/jsp/backend/classes/classes.jsp</result>
-		<result name="intoAddClassPage">/WEB-INF/jsp/backend/classes/addClass1.jsp</result>
-		<result name="intoAddClassPage2">/WEB-INF/jsp/backend/classes/addClass2.jsp</result>
-		</action>
+		
 		
 		<action name="getNormalTrainClassPage" class="trainingClassAction" method="getNormalTrainClassPage">
 			<result>/WEB-INF/jsp/education.jsp</result>
@@ -31,4 +18,74 @@
 			<result>/WEB-INF/jsp/classes.jsp</result>
 		</action>
 	</package>
+	
+	<package name="trainingClassAdmin" namespace="/admin" extends="system">
+		
+			<action name="addClass" class="trainingClassAction" method="addClass">
+				<result type="json">
+					<param name="root">dataMap</param>
+				</result>
+			</action>
+			
+			<action name="getClassListPage"  class="trainingClassAction" method="getClassListPage">
+				<result >/WEB-INF/jsp/backend/classes/classes.jsp</result>
+			</action>
+			
+			<action name="findAllTrainingClass" class="trainingClassAction" method="findAllTrainingClass">
+				<result type="json">
+					<param name="root">dataMap</param>
+				</result>
+			</action>
+			
+			<action name="getClassManagerPage" class="trainingClassAction" method="getClassManagerPage">
+				<result >/WEB-INF/jsp/backend/classes.jsp</result>
+			</action>
+			
+			<action name="updateClass" class="trainingClassAction" method="updateClass">
+					<result type="json">
+					<param name="root">dataMap</param>
+				</result>
+			</action>
+			
+			<action name="getUpdateClassPage2" class="trainingClassAction" method="getUpdateClassPage2">
+				<result>/WEB-INF/jsp/backend/classes/updateClass2.jsp</result>
+			</action>
+			<action name="getAddClassPage1" class="trainingClassAction" method="getAddClassPage1">
+				<result>/WEB-INF/jsp/backend/classes/addClass1.jsp</result>
+			</action>
+			
+			<action name="getAddClassPage2" class="trainingClassAction" method="getAddClassPage2">
+				<result>/WEB-INF/jsp/backend/classes/addClass2.jsp</result>
+			</action>
+			
+			<action name="trainingClassAddCourse" class="trainingClassAction" method="trainingClassAddCourse">
+				<result type="json">
+					<param name="root">dataMap</param>
+				</result>
+			</action>
+			
+			<action name="deleteCourseFromTrainingClass" class="trainingClassAction" method="deleteCourseFromTrainingClass">
+				<result type="json">
+					<param name="root">dataMap</param>
+				</result>
+			</action>
+			
+			<action name="showTrainingClassInfoPage" class="trainingClassAction" method="showTrainingClassInfoPage">
+				<result>/WEB-INF/jsp/backend/classes/ClassInfo.jsp</result>
+			</action>
+			
+			<action name="getTrainingClassClassCase" class="trainingClassAction"	 method="getTrainingClassClassCase">
+				<result type="json">
+					<param name="root">dataMap</param>
+				</result>
+			</action>
+			
+			<action name="deleteClass" class="trainingClassAction" method="deleteClass">
+				<result type="json">
+					<param name="root">dataMap</param>
+				</result>
+			</action>
+			
+	</package>
+	
 </struts>    

@@ -17,7 +17,7 @@
 //<![CDATA[
 $(document).ready(function ()
 {
-	$('#content').load('${basePath}trainingClass_classContent.action');
+	$('#content').load('${basePath}admin/getClassListPage.action');
 });
 
 function loadHTML(name){
@@ -34,7 +34,7 @@ function loadHTML(name){
 				<li class="jstree-open">
 					<a href="#">班级管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="${basePath}trainingClass_classContent.action">班级管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getClassListPage.action">班级管理</a></li>
 					</ul>
 				</li>
 				<li class="jstree-open">

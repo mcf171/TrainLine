@@ -37,7 +37,7 @@ $(document).ready(function ()
 	});
 
 	$('#grid-available').mmGrid({
-		url: '${basePath}course_fbfindCourse.action',
+		url: '${basePath}fbfindCourse.action',
 		height: 230,
 		root:'cList',
 		autoLoad: true,

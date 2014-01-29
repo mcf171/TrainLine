@@ -30,6 +30,10 @@
     </tx:attributes>
   </tx:advice>
 	
+	<bean id="classCaseService" class="cn.com.service.ClassCaseService">
+		<property name="classCaseDAO" ref="ClasscaseDAO"></property>
+	</bean>
+	
 	<bean id="catalogueService" class="cn.com.service.CatalogueService">
 		<property name="catalogueDAO" ref="CatalogueDAO"></property>
 		<property name="resourceDAO" ref="ResourceDAO"></property>

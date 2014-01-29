@@ -13,7 +13,15 @@ public class TrainingClassService {
 	
 	public Integer insert(Trainingclass trainingclass)
 	{
-		return trainingclassDAO.save(trainingclass);
+		int trainingClassId;
+		try{
+			trainingClassId = trainingclassDAO.save(trainingclass);
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+		return trainingClassId;
 	}
 
 	public void delete(Trainingclass trainingclass)
@@ -23,7 +31,15 @@ public class TrainingClassService {
 	
 	public void update(Trainingclass trainingclass)
 	{
-		trainingclassDAO.update(trainingclass);
+		try {
+			
+			trainingclassDAO.merge(trainingclass);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+		
 	}
 
 	public Trainingclass getTrainingclass(Integer trainingclassId)

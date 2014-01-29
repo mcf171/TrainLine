@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="classCase" namespace="/" extends="system">
+		
+	</package>
+
+	<package name="classCaseAdmin" namespace="/admin" extends="system">
+		
+		<action name="getClassCaseByTrainingClassId" class="classCaseAction" method="getClassCaseByTrainingClassId">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="deleteClassCase" class="classCaseAction" method="deleteClassCase">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+	</package>
+
+</struts>    

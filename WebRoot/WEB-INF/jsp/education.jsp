@@ -41,8 +41,8 @@ $(document).ready(function ()
 			{ title: '培训内容', sortable: true, width: 150, 
 				renderer: function (val, item, row)
 				{
-					if(item.classcases[0]!=null){
-					return item.classcases[0].classContent;
+					if(item.classCases[0]!=null){
+					return item.classCases[0].classContent;
 					}else{
 						return "暂无培训内容";
 					}
@@ -51,8 +51,8 @@ $(document).ready(function ()
 			{ title: '培训地点', sortable: true, width: 150, 
 				renderer: function (val, item, row)
 				{
-					if(item.classcases[0]!=null){
-					return item.classcases[0].trainAddress;
+					if(item.classCases[0]!=null){
+					return item.classCases[0].trainAddress;
 					}else{
 						return "暂未培训地点";
 					}
@@ -61,8 +61,8 @@ $(document).ready(function ()
 			{ title: '学时', sortable: true, width: 100, 
 				renderer: function (val, item, row)
 				{
-					if(item.classcases[0]!=null){
-					return item.classcases[0].trainHour;
+					if(item.classCases[0]!=null){
+					return item.classCases[0].trainHour;
 					}else{
 						return "暂未学时";
 					}
@@ -71,8 +71,8 @@ $(document).ready(function ()
 			{ title: '培训机构', sortable: true, width: 150, 
 				renderer: function (val, item, row)
 				{
-					if(item.classcases[0]!=null){
-					return item.classcases[0].trainUnit;
+					if(item.classCases[0]!=null){
+					return item.classCases[0].trainUnit;
 					}else{
 						return "暂未培训机构";
 					}
@@ -81,8 +81,8 @@ $(document).ready(function ()
 			{ title: '开始时间', sortable: true, width: 180,
 				renderer: function (val, item, row)
 				{
-					if(item.classcases[0]!=null){
-					return item.classcases[0].classStartTime;
+					if(item.classCases[0]!=null){
+					return item.classCases[0].classStartTime;
 					}else{
 						return "暂未确定开始时间";
 					}
@@ -91,8 +91,8 @@ $(document).ready(function ()
 			{ title: '结束时间', sortable: true, width: 180, 
 				renderer: function (val, item, row)
 				{
-					if(item.classcases[0]!=null){
-					return item.classcases[0].classEndtTime;
+					if(item.classCases[0]!=null){
+					return item.classCases[0].classEndtTime;
 					}else{
 						return "暂未确定结束时间";
 					}

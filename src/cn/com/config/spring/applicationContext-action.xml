@@ -8,6 +8,11 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 	
+	<bean id="classCaseAction" class="cn.com.action.ClassCaseAction">
+		<property name="dataMap" ref="hashMap"></property>
+		<property name="classCaseService" ref="classCaseService"></property>
+	</bean>
+	
 	<bean id="catalogueAction" class="cn.com.action.CatalogueAction">
 		<property name="catalogueService" ref="catalogueService"></property>
 		<property name="dataMap" ref="hashMap"></property>
@@ -102,6 +107,8 @@
 	<bean id="trainingClassAction" class="cn.com.action.TrainingClassAction"
 		scope="prototype">
 		<property name="trainingClassService" ref="trainingClassService"></property>
+		<property name="courseService" ref="courseService"></property>
+		<property name="dataMap" ref="hashMap"></property>
 	</bean>
 
 	<bean id="credentialAction" class="cn.com.action.CredentialAction"

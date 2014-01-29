@@ -19,9 +19,9 @@ public class Course implements java.io.Serializable {
 	private Integer courseState;
 	private Integer courseKind;
 	private Set users = new HashSet(0);
-	private Set classandcourses = new HashSet(0);
 	private Set userandcourses = new HashSet(0);
 	private Set<Catalogue> catalogues = new HashSet<Catalogue>(0);
+	private Set<Trainingclass> trainingClasss = new HashSet<Trainingclass>(0);
 	private Set testquestions = new HashSet(0);
 
 	// Constructors
@@ -74,13 +74,24 @@ public class Course implements java.io.Serializable {
 		this.courseState = courseState;
 	}
 
-	public Set getClassandcourses() {
-		return this.classandcourses;
+
+	public Set<Trainingclass> getTrainingClasss() {
+		return trainingClasss;
 	}
 
-	public void setClassandcourses(Set classandcourses) {
-		this.classandcourses = classandcourses;
+
+
+	public void setTrainingClasss(Set<Trainingclass> trainingClasss) {
+		this.trainingClasss = trainingClasss;
 	}
+
+
+
+	public void setCatalogues(Set<Catalogue> catalogues) {
+		this.catalogues = catalogues;
+	}
+
+
 
 	public Set getUserandcourses() {
 		return this.userandcourses;
@@ -94,9 +105,7 @@ public class Course implements java.io.Serializable {
 		return this.catalogues;
 	}
 
-	public void setCatalogues(Set catalogues) {
-		this.catalogues = catalogues;
-	}
+
 
 	public Set getTestquestions() {
 		return this.testquestions;

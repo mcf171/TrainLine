@@ -4,17 +4,34 @@
 	<constant name="struts.multipart.maxSize" value="100000000" />
 
 	<package name="course" namespace="/" extends="json-default">
-		<action name="course_*" class="courseAction" method="{1}">
-			<result type="json" name="success">
+
+		<action name="fbfindCourse" class="courseAction" method="fbfindCourse">
+			<result type="json">
 				<param name="root">dataMap</param>
 			</result>
-			<result name="detailCourseInfo">/WEB-INF/jsp/courseDetailInfo.jsp</result>
-			<result name="intoStudyCenter">/WEB-INF/jsp/course.jsp</result>
-
-			<result type="json" name="json"></result>
-			<param name="savePath">/upload</param>
+		</action>
+		
+		<action name="fbFindMyCourse" class="courseAction" method="fbFindMyCourse">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
 		</action>
 
+		<action name="fbFindExampleCourse" class="courseAction" method="fbFindExampleCourse">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="fbfindCourse" class="courseAction" method="fbfindCourse">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="getStudyCenterPage" class="courseAction" method="getStudyCenterPage">
+			<result>/WEB-INF/jsp/course.jsp</result>
+		</action>
 		<action name="getCourseStudyPage" class="courseAction" method="getCourseStudyPage">
 			<result >/WEB-INF/jsp/study.jsp</result>
 		</action>
@@ -58,10 +75,31 @@
 			</result>
 		</action>
 
-
+		<action name="fbfindCourse" class="courseAction" method="fbfindCourse">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
 	</package>
 
 	<package name="courseAdmin" namespace="/admin" extends="system">
+	
+		<action name="updateCourse" class="courseAction" method="updateCourse">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="getCourseById" class="courseAction" method="getCourseById">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="getCourseByExample" class="courseAction" method="getCourseByExample">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
 
 		<action name="intoAddcoursePage" class="courseAction" method="intoAddcoursePage">
 			<result>/WEB-INF/jsp/backend/course/addCourse.jsp</result>
@@ -94,6 +132,12 @@
 				<param name="actionName">getNoticeList</param>
 			</result>
 			<result name="continueAdd">/WEB-INF/jsp/backend/course/addCourseChapter.jsp</result>
+		</action>
+		
+		<action name="findAllCourse" class="courseAction" method="findAllCourse">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
 		</action>
 
 	</package>

@@ -38,10 +38,12 @@ public class CourseService {
 	public void delete(Course course)
 	{
 		course = courseDAO.findById(course.getCourseId());
+		/*
 		for(Catalogue item : course.getCatalogues()){
 			
 			catalogueService.deleteCatalogue(item);
 		}
+		*/
 		courseDAO.delete(course);
 	}
 	

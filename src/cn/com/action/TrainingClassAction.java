@@ -12,26 +12,32 @@ import cn.com.model.ClassandcourseId;
 import cn.com.model.Classcase;
 import cn.com.model.Course;
 import cn.com.model.Trainingclass;
+import cn.com.service.ClassCaseService;
+import cn.com.service.CourseService;
 import cn.com.service.TrainingClassService;
 
 public class TrainingClassAction extends BaseActionSupport {
-	private List<Trainingclass> tcList;
 	private TrainingClassService trainingClassService;
-	private Map<String, List> dataMap;
-	private Trainingclass trainingclass;
-	private Integer classId;
-	private Integer courseId;
-	private Classcase classcase;
+	private CourseService courseService;
+	private Map<String, Object> dataMap;
+	private Trainingclass trainingClass;
+	private Course course;
+	private Classcase classCase;
 
-	public TrainingClassAction() {
-		dataMap = new HashMap<String, List>();
-	}
 
+	/**
+	 * 后台获取所有课程信息
+	 * author:Apache
+	 * modifyTime : 2014-1-26 19:40
+	 * @return
+	 */
 	public String findAllTrainingClass() {
-		if (trainingclass == null) {
+		
+		List<Trainingclass> tcList;
+		if (trainingClass == null) {
 			tcList = trainingClassService.findAll();
 		} else {
-			tcList = trainingClassService.findByConditions(trainingclass);
+			tcList = trainingClassService.findByConditions(trainingClass);
 		}
 
 		dataMap.put("tcList",tcList);
@@ -65,168 +71,216 @@ public class TrainingClassAction extends BaseActionSupport {
 		
 		return this.SUCCESS;
 	}
-	public String geTrainClass()
-	{
-		classId = (Integer) session.get("classId");
-		if(classId!=null)
-		{
-			trainingclass = trainingClassService.getTrainingclass(classId);
-		}
-		return JSON;
-	}
 
 	public String deleteClass(){
-		if (trainingclass.getTrainingClassId() != null) {
-			trainingClassService.delete(trainingclass);
+		if (trainingClass != null) {
+			trainingClassService.delete(trainingClass);
 		}
-		return JSON;
+		return this.SUCCESS;
 	}
 
+	/**
+	 * 后台增加课程
+	 * author:Acpache
+	 * modifyTime:2014-1-26 19:21
+	 * @return
+	 */
 	public String addClass() {
-		if (trainingclass != null) {
-			trainingclass.setTrainingClassStatus(new Integer(1));
-			classId = trainingClassService.insert(trainingclass);
-			super.session.put("classId",classId);
-		}
-		return JSON;
-	}
-	
-	public String addClassAndCourse()
-	{
-		classId = (Integer) session.get("classId");
-		if(classId!=null&&courseId!=null)
-		{
-			Classandcourse classandcourse = new Classandcourse();
-			classandcourse.setId(new ClassandcourseId(classId, courseId));
-			trainingClassService.saveClassAndCourse(classandcourse);
+		
+		if (trainingClass != null) {
+			trainingClass.setTrainingClassStatus(new Integer(1));
+			int trainingClassId = trainingClassService.insert(trainingClass);
+			request.setAttribute("trainingClassId", trainingClassId);
+			dataMap.put("trainingClassId", trainingClassId);
 		}
 		
-		return JSON;
+		return this.SUCCESS;
 	}
+	
 
-	public String getCourseByClassId()
-	{
-		classId = (Integer) session.get("classId");
-		if(classId!=null)
-		{
-			List<Course> courseList =trainingClassService.getCourseByClassId(classId);
-			dataMap.put("courseList",courseList);
-		}
+	
+	/**
+	 * 获取后台班级管理页面
+	 * author:Apache
+	 * time:2014-1-26 19:54
+	 * @return
+	 */
+	public String getClassManagerPage(){
 		
-		return "getCourseByClassId";
+		return this.SUCCESS;
 	}
 	
-	public String delCourseFrClass()
-	{
-		classId = (Integer) session.get("classId");
-		if(courseId!=null && classId!=null)
-		{
-			Classandcourse classandcourse = new Classandcourse();
-			classandcourse.setId(new ClassandcourseId(classId, courseId));
-			trainingClassService.delCourseFClass(classandcourse);
-		}
-		return  JSON;
+	/**
+	 * 后台获取显示班级列表页面
+	 * author :Apache
+	 * time : 2014-1-26 19:50
+	 * @return
+	 */
+	public String getClassListPage(){
+	
+		return this.SUCCESS;
+	}
+	/**
+	 * 后台更新TrainingClass
+	 * autho:Apache
+	 * time:2014-1-28 16:34
+	 * @return
+	 */
+	public String updateClass(){
+		
+		Trainingclass temp = trainingClassService.getTrainingclass(trainingClass.getTrainingClassId());
+		temp.setTrainingClassName(trainingClass.getTrainingClassName());
+		temp.setCredential(trainingClass.getCredential());
+		trainingClassService.update(temp);
+		return this.SUCCESS;
 	}
 	
-	public String updateClass() {
-		if (trainingclass != null) {
-			trainingClassService.update(trainingclass);
-		}
-		return JSON;
+	/**
+	 * 后台获取更新TrainingClass的第二个页面
+	 * autho:Apache
+	 * time:2014-1-28 16:34
+	 * @return
+	 */
+	public String getUpdateClassPage2(){
+		trainingClass = trainingClassService.getTrainingclass(trainingClass.getTrainingClassId());
+		request.setAttribute("trainingClass", trainingClass);
+		return this.SUCCESS;
 	}
-
-	public String getClassCase()
-	{
-		classId = (Integer) session.get("classId");
-		if(classId!=null)
-		{
-			classcase= trainingClassService.getClassCaseById(classId);
-		}
-		return JSON;
-	}
-	
-	public String intoClassInfoPage()
-	{
-		if(classId!=null)
-		{
-			super.session.put("classId",classId);
-		}
-		return "intoClassInfoPage";
+	/**
+	 * 获得增加班级的第一个页面
+	 * author:Apache
+	 * time:2014-1-26 20:02;
+	 * @return
+	 */
+	public String getAddClassPage1(){
+		
+		return this.SUCCESS;
 	}
 	
-	public String intoClasspage() {
-		return "intoClasspage";
+	/**
+	 * 获得增加班级的第二个页面
+	 * author:Apache
+	 * time:2014-1-26 20:02;
+	 * @return
+	 */
+	public String getAddClassPage2(){
+		
+		System.out.println(request.getAttribute("trainingClassId"));
+		request.setAttribute("trainingClass", trainingClass);
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 给班级增加课程
+	 * author:Apache
+	 * time:2014-1-26 20:37
+	 * @return
+	 */
+	public String trainingClassAddCourse(){
+		
+		course = courseService.getCourse(course);
+		trainingClass = trainingClassService.getTrainingclass(trainingClass.getTrainingClassId());
+		trainingClass.getCourses().add(course);
+		trainingClassService.insert(trainingClass);
+		
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 删除课程的Course
+	 * author:Apache
+	 * time:2014-1-27 11:40
+	 * @return
+	 */
+	public String deleteCourseFromTrainingClass(){
+		
+		course = courseService.getCourse(course);
+		trainingClass = trainingClassService.getTrainingclass(trainingClass.getTrainingClassId());
+		trainingClass.getCourses().remove(course);
+		trainingClassService.update(trainingClass);
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 后台获取显示TrainingClass详细信息页面，并将得到的trainingClass存储到request里面
+	 * author:Apache
+	 * time:2014-1-27 14:02
+	 * @return
+	 */
+	public String showTrainingClassInfoPage(){
+		
+		trainingClass = trainingClassService.getTrainingclass(trainingClass.getTrainingClassId());
+		request.setAttribute("trainingClass", trainingClass);
+		
+		return this.SUCCESS;
 	}
 
-	public String classContent() {
-		return "classContent";
+	/**
+	 * 获取trainingClass的ClassCase
+	 * author:Apacahe
+	 * time:2014-1-27 15:09
+	 * @return
+	 */
+	public String getTrainingClassClassCase(){
+		
+		trainingClass = trainingClassService.getTrainingclass(trainingClass.getTrainingClassId());
+		dataMap.put("list", trainingClass.getClassCases());
+		return this.SUCCESS;
 	}
-
-	public String intoAddClassPage() {
-		return "intoAddClassPage";
-	}
-
-	public String intoAddClassPage2() {
-		if(classId!=null)
-		{
-			super.session.put("classId",classId);
-		}
-		return "intoAddClassPage2";
-	}
-
-	public List<Trainingclass> getTcList() {
-		return tcList;
-	}
-
-	public void setTcList(List<Trainingclass> tcList) {
-		this.tcList = tcList;
-	}
-
+	
+	
 	public void setTrainingClassService(
 			TrainingClassService trainingClassService) {
 		this.trainingClassService = trainingClassService;
 	}
 
-	public Map<String, List> getDataMap() {
+	
+
+	public Map<String, Object> getDataMap() {
 		return dataMap;
 	}
 
-	public void setDataMap(Map<String, List> dataMap) {
+	public void setDataMap(Map<String, Object> dataMap) {
 		this.dataMap = dataMap;
 	}
 
-	public Trainingclass getTrainingclass() {
-		return trainingclass;
-	}
-
-	public void setTrainingclass(Trainingclass trainingclass) {
-		this.trainingclass = trainingclass;
-	}
-
-	public Integer getClassId() {
-		return classId;
-	}
-
-	public void setClassId(Integer classId) {
-		this.classId = classId;
+	public TrainingClassService getTrainingClassService() {
+		return trainingClassService;
 	}
 
 
-
-	public Integer getCourseId() {
-		return courseId;
+	public Trainingclass getTrainingClass() {
+		return trainingClass;
 	}
 
-	public void setCourseId(Integer courseId) {
-		this.courseId = courseId;
+	public void setTrainingClass(Trainingclass trainingClass) {
+		this.trainingClass = trainingClass;
 	}
 
-	public Classcase getClasscase() {
-		return classcase;
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setClasscase(Classcase classcase) {
-		this.classcase = classcase;
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+
+
+	public Classcase getClassCase() {
+		return classCase;
+	}
+
+	public void setClassCase(Classcase classCase) {
+		this.classCase = classCase;
+	}
+
+	public CourseService getCourseService() {
+		return courseService;
+	}
+
+	public void setCourseService(CourseService courseService) {
+		this.courseService = courseService;
 	}
 
 

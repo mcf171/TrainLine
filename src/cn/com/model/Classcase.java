@@ -13,7 +13,6 @@ public class Classcase implements java.io.Serializable {
 	// Fields
 
 	private Integer classCaseId;
-	private Integer trainingClassId;
 	private Integer personOfHierarchy;
 	private Integer personOfSum;
 	private Timestamp classStartTime;
@@ -37,47 +36,12 @@ public class Classcase implements java.io.Serializable {
 	private Float travelExpense;
 	private Float otherCost;
 	private String classCaseComment;
+	private Trainingclass trainingClass;
 
 	// Constructors
 
 	/** default constructor */
 	public Classcase() {
-	}
-
-	/** full constructor */
-	public Classcase(Integer trainingClassId, Integer personOfHierarchy,
-			Integer personOfSum, Timestamp classStartTime,
-			Timestamp classEndtTime, String classContent, Integer trainHour,
-			String trainChannel, String trainWay, String trainAgreementNunber,
-			String trainType, String trainCategory, String trainReason,
-			String trainAddress, String trainUnit, String trainUnitType,
-			String awarding, String recognition, Integer exitCountry,
-			Float trainCost, Float accreditationFees, Float travelExpense,
-			Float otherCost, String classCaseComment) {
-		this.trainingClassId = trainingClassId;
-		this.personOfHierarchy = personOfHierarchy;
-		this.personOfSum = personOfSum;
-		this.classStartTime = classStartTime;
-		this.classEndtTime = classEndtTime;
-		this.classContent = classContent;
-		this.trainHour = trainHour;
-		this.trainChannel = trainChannel;
-		this.trainWay = trainWay;
-		this.trainAgreementNunber = trainAgreementNunber;
-		this.trainType = trainType;
-		this.trainCategory = trainCategory;
-		this.trainReason = trainReason;
-		this.trainAddress = trainAddress;
-		this.trainUnit = trainUnit;
-		this.trainUnitType = trainUnitType;
-		this.awarding = awarding;
-		this.recognition = recognition;
-		this.exitCountry = exitCountry;
-		this.trainCost = trainCost;
-		this.accreditationFees = accreditationFees;
-		this.travelExpense = travelExpense;
-		this.otherCost = otherCost;
-		this.classCaseComment = classCaseComment;
 	}
 
 	// Property accessors
@@ -88,14 +52,6 @@ public class Classcase implements java.io.Serializable {
 
 	public void setClassCaseId(Integer classCaseId) {
 		this.classCaseId = classCaseId;
-	}
-
-	public Integer getTrainingClassId() {
-		return trainingClassId;
-	}
-
-	public void setTrainingClassId(Integer trainingClassId) {
-		this.trainingClassId = trainingClassId;
 	}
 
 	public Integer getPersonOfHierarchy() {
@@ -282,4 +238,33 @@ public class Classcase implements java.io.Serializable {
 		this.classCaseComment = classCaseComment;
 	}
 
+	public Trainingclass getTrainingClass() {
+		return trainingClass;
+	}
+
+	public void setTrainingClass(Trainingclass trainingClass) {
+		this.trainingClass = trainingClass;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		if (obj instanceof  Classcase){
+			Classcase item = (Classcase) obj;
+			//System.out.println("local id is :"+this.courseId);
+			//System.out.println("compare id is : "+ item.getCourseId());
+			if(item.getClassCaseId().equals(this.classCaseId)){
+				flag = true;
+			}
+		}
+		return flag;
+	}
+	
 }

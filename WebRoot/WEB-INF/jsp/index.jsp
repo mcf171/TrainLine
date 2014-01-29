@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //<![CDATA[
 var PAGES = {
 	page_0: '${basePath}getHomeNotice.action',
-	page_1: '${basePath}course_intoStudyCenter.action',
+	page_1: '${basePath}getStudyCenterPage.action',
 	page_2:'${basePath}getNormalTestArrangementPage.action',
 	page_3: '${basePath}showNetDangKePage.action',
 	page_4: '${basePath}getNormalTrainClassPage.action',

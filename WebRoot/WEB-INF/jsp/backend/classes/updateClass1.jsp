@@ -74,14 +74,15 @@ $(document).ready(function (){
 		$("#addClassBtn").click(function(){
 		$.ajax({
 					type : "POST",
-					url : "${basePath}admin/addClass.action",
-					data:"trainingClass.trainingClassName="+$("#classNmaeIID").val()+"&trainingClass.credential.credentialId="+$("#credentialIID").val(),
+					url : "${basePath}admin/getUpdateClassPage2.action",
+					data:"trainingClass.trainingClassId=${trainingClass.trainingClassId}&trainingClass.trainingClassName="+$("#classNmaeIID").val()+"&trainingClass.credential.credentialId="+$("#credentialIID").val(),
 					dataType : "json",
 					success : function(json) {
-						trainingClassId = json.trainingClassId;
-						loadHTML('${basepath}admin/getAddClassPage2.action?trainingClass.trainingClassId='+trainingClassId);
+						$("#content").html(json);
 					},
-					error : function() {
+					error : function(json) {
+						data = json.responseText;
+						$("#content").html(data);
 						return false;
 					}
 				});
@@ -89,9 +90,9 @@ $(document).ready(function (){
 		});
 		
 </script>
-<div class="container-fluid">
+<div class="container-fluid" id="content">
 	<div class="row-fluid" style="margin-left: -18px">
-		班级名称 <input type="text" id="classNmaeIID" class="span4  input-medium box">
+		班级名称 <input type="text" id="classNmaeIID" class="span4  input-medium box" value="${trainingClass.trainingClassName}">
 	</div>
 	<div class="row">
 	      班级证书: <select class="input-medium box" id="credentialIID">

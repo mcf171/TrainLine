@@ -1,4 +1,4 @@
-﻿
+﻿<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css"
 	href="${basePath}styles/mmgrid.css" />
 <link rel="stylesheet" type="text/css"
@@ -18,12 +18,49 @@
 	 console.log(trainingClassId);
 $(document).ready(function ()
 {
+	
+	$.ajax({
+		type : "POST",
+		url : "${basePath}credential_findAllCredential.action",
+		dataType : "json",
+		success : function(json) {
+		if(json.cList!=null)
+		{
+		addTypeName(json.cList)
+		}
+		},
+		error : function() {
+			return false;
+		}
+	});
+	
+function addTypeName(list)
+{
+$("#credentialIID > option").remove();
+var option ="<option>请选择</option>";
+for(var i=0;i<list.length;i++)
+{
+var credential  =list[i];
+option+="<option value="+credential.credentialId+">"+credential.credentialName+"</option>";
+}
+
+$("#credentialIID").append(option);
+}
+	
 	$('#time-to').css('background', 'none').datepicker();
 	$('#time-from').css('background', 'none').datepicker();
 
 	$("#finish").click(function(){
+		$.ajax({
+			
+			type:"post",
+			url:"${basePath}admin/updateClass.action",
+			data:"trainingClass.trainingClassId=${trainingClass.trainingClassId}&trainingClass.trainingClassName="+$("#classNmaeIID").val()+"&trainingClass.credential.credentialId="+$("#credentialIID").val(),
+			success : function(json) {
+				loadHTML("${basePath}admin/getClassListPage.action");
+			}
+		});
 		
-		loadHTML("${basePath}admin/getClassListPage.action");
 	});
 	
 //按条件查询
@@ -60,8 +97,13 @@ $(document).ready(function ()
 		]
 	});
 	
-	
-	
+	var dataArray = new Array();
+	<c:forEach items="${trainingClass.courses}" var="item">
+	temp={"courseName":"${item.courseName}","courseSpeaker":"${item.courseSpeaker}","courseIntro":"${item.courseIntro}"};
+	dataArray.push(temp);
+	</c:forEach>
+
+	console.log(dataArray);
 	mmg1 = $('#grid1').mmGrid({
 		//url: '${basePath}admin/getCourseByExample.action',
 		height: 410,
@@ -69,7 +111,7 @@ $(document).ready(function ()
 		checkCol: true,
 		//indexCol:true,
 		//root:'courseList',
-		items:[],
+		items:dataArray,
 		fullWidthRows: true,
 		cols: [
      { title: '课程名', sortable: true, width: 100, name:'courseName' },
@@ -170,8 +212,14 @@ function addToClass(courseId)
 </style>
 <body>
 	<div class="container-fluid">
-		<div class="row word_style" id="trainClassname">
-		</div>
+		<div class="row-fluid" style="margin-left: -18px">
+		班级名称 <input type="text" id="classNmaeIID" class="span4  input-medium box" value="${trainingClass.trainingClassName}">
+	</div>
+	<div class="row">
+	      班级证书: <select class="input-medium box" id="credentialIID">
+		</select>
+	</div>
+	<hr class="seperator">
 		<div class="row-fluid">
 			<div id="content" class="span10">
 				<div class="row word_style">可增加课程</div>

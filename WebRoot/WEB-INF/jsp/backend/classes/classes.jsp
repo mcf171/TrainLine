@@ -21,29 +21,28 @@ $(document).ready(function ()
 			$('#time-from').css('background', 'none').datepicker();
 
 			mmg = $('#grid').mmGrid({
-				url: '${basePath}trainingClass_findAllTrainingClass.action',
+				url: '${basePath}admin/findAllTrainingClass.action',
 				height: 410,
 				width:800,
 				cache:true,
 				autoLoad: true,
 				checkCol: true,
 				multiSelect: true,
-				indexCol:true,
+				//indexCol:true,
 				root:'tcList',
-				fullWithRows: false,
+				fullWidthRows: true,
 				cols: [
-					{ title: '班级ID', sortable: true, width: 90, name: 'trainingClassId' },	
-					{ title: '班级名称', sortable: true, width: 150, name: 'trainingClassName' },
-					{ title: '状态 ', sortable: true, width:90, name: 'trainingClassStatus' },
+					{ title: '班级ID', sortable: true,  name: 'trainingClassId' },	
+					{ title: '班级名称', sortable: true, name: 'trainingClassName' },
+					{ title: '状态 ', sortable: true,  name: 'trainingClassStatus' },
 								{
 						title: '操作',
-						width: 350,
+						width: 250,
 						renderer: function (val, item, row)
 						{
 						return '<input type="hidden" value="' + item.trainingClassId + '" />'+
-		        '<a href="#myModal0" onclick="updateClasss('+item.trainingClassId+')" role="button" class="btn" data-toggle="modal">修改</a>'+
-		        '<a href="#myModal1" onclick="deleteClasss('+item.trainingClassId+')" role="button" class="btn" data-toggle="modal">删除</a>'+
-		        '<a href="#" onclick="browseCourse('+item.trainingClassId+')" role="button" class="btn">查看课程</a>'+
+		        '<a href="javascript:void(0)" onclick="updateClasss('+item.trainingClassId+')" role="button" class="btn" data-toggle="modal">修改</a>'+
+		        '<a href="javascript:void(0)" onclick="deleteClasss('+item.trainingClassId+')" role="button" class="btn" data-toggle="modal">删除</a>'+
 		        '<a href="#" onclick="browseClassCase('+item.trainingClassId+')" role="button" class="btn">详细信息</a>';
 						}
 					}
@@ -63,7 +62,8 @@ $(document).ready(function ()
 				$("#myModal1").modal('hide');
 				$.ajax({
 					type : "POST",
-					url : "${basePath}trainingClass_deleteClass.action?trainingclass.trainingClassId="+trainingClassID,
+					url : "${basePath}admin/deleteClass.action?",
+					data:"trainingClass.trainingClassId="+trainingClassID,
 					dataType : "json",
 					success : function(json) {
 					mmg.load({page:1});
@@ -95,24 +95,19 @@ $(document).ready(function ()
 			});
 		});
 		function updateClasss(trainingClassId){
-			trainingClassID =trainingClassId;
-			$("#classIID").val(trainingClassId);
-			$("#classNameIID").val();
+			loadHTML('${basePath}admin/getUpdateClassPage2.action?trainingClass.trainingClassId='+trainingClassId);
 		}
 		
 		function deleteClasss(trainingClassId)
 		{
+			$("#myModal1").modal();
 			trainingClassID =trainingClassId;
 		}
-		
-		function browseCourse(trainingClassId)
-		{
-		 loadHTML('${basepath}trainingClass_intoAddClassPage2.action?classId='+trainingClassId);
-		}
+
 		
 		function browseClassCase(trainingClassId)
 		{
-		 loadHTML('${basepath}trainingClass_intoClassInfoPage.action?classId='+trainingClassId);
+		 loadHTML('${basepath}admin/showTrainingClassInfoPage.action?trainingClass.trainingClassId='+trainingClassId);
 		}
 </script>
 </head>
@@ -147,7 +142,7 @@ $(document).ready(function ()
 			<div id="content" class="span10">
 				<div class="row-fluid " style="margin-left: -13px">
 					<button class="btn" type="button"
-						onclick="loadHTML('${basePath}trainingClass_intoAddClassPage.action')">
+						onclick="loadHTML('${basePath}admin/getAddClassPage1.action')">
 						<i class="icon-plus"></i>添加
 					</button>
 					<button class="btn" type="button">

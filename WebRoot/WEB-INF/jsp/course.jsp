@@ -87,7 +87,7 @@ $(document).ready(function ()
 	
 	
 	mmg1 = $('#grid-available').mmGrid({
-		url: '${basePath}course_fbfindCourse.action?user.userId=${user.userId}',
+		url: '${basePath}fbfindCourse.action?user.userId=${user.userId}',
 		height: 230,
 		root:'cList',
 		autoLoad: true,
@@ -134,7 +134,7 @@ $(document).ready(function ()
 	
 	
 	mmg2 = $('#grid-kecheng').mmGrid({
-		url: '${basePath}course_fbFindMyCourse.action',
+		url: '${basePath}fbFindMyCourse.action',
 		height: 230,
 		root:'cList',
 		autoLoad: true,
@@ -184,7 +184,7 @@ $(document).ready(function ()
 	});
 	
 	mmg3 = $('#grid-jiaoxue').mmGrid({
-		url: '${basePath}course_fbFindExampleCourse.action',
+		url: '${basePath}fbFindExampleCourse.action',
 		height: 230,
 		root:'cList',
 		autoLoad: true,
@@ -222,7 +222,7 @@ $(document).ready(function ()
 	});
 	
 	mmg4 = $('#grid-cuotiji').mmGrid({
-		url: '${basePath}course_fbfindCourse.action',
+		url: '${basePath}fbfindCourse.action',
 		height: 230,
 		root:'cList',
 		autoLoad: true,

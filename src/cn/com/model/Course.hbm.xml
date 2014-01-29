@@ -28,12 +28,7 @@
         <property name="courseKind" type="java.lang.Integer">
             <column name="courseKind" />
         </property>
-        <set name="classandcourses" inverse="true" cascade="all-delete-orphan">
-            <key>
-                <column name="courseId" not-null="true" />
-            </key>
-            <one-to-many class="cn.com.model.Classandcourse" />
-        </set>
+      
         <set name="userandcourses" inverse="true" cascade="all-delete-orphan">
             <key>
                 <column name="courseId" not-null="true" />
@@ -59,5 +54,11 @@
             <many-to-many class="cn.com.model.User" column="userId"/>
         </set>
         
+        <set name="trainingClasss" inverse="false" table="trainingClassAndCourse" lazy="false" cascade="save-update">
+        	<key>
+        		<column name="courseId"/>
+        	</key>
+        	<many-to-many class="cn.com.model.Trainingclass" column="trainingClassId"/>
+        </set>
     </class>
 </hibernate-mapping>

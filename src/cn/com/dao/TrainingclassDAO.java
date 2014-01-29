@@ -42,17 +42,14 @@ public class TrainingclassDAO extends HibernateDaoSupport {
 	}
 
 	public Integer save(Trainingclass transientInstance) {
-			Session session  = getHibernateTemplate().getSessionFactory().openSession();
-			Integer id = (Integer) session.save(transientInstance);
+			int id = (Integer) this.getHibernateTemplate().save(transientInstance);
 		return id;
 	}
 
 	public void delete(Trainingclass persistentInstance) {
 		log.debug("deleting Trainingclass instance");
 		try {
-			Session session = getHibernateTemplate().getSessionFactory().openSession();
-			session.delete(persistentInstance);
-			session.flush();
+			getHibernateTemplate().delete(persistentInstance);
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
@@ -176,9 +173,6 @@ public class TrainingclassDAO extends HibernateDaoSupport {
 		return list;
 	}
 
-	public void update(Trainingclass trainingclass) {
-		attachDirty(trainingclass);
-	}
 
 	public void saveClassAndCourse(Classandcourse classandcourse) {
 		getHibernateTemplate().save(classandcourse);

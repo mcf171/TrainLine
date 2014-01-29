@@ -16,7 +16,7 @@
 var PAGES = {
 	page_0: '${basePath}admin/getNoticeList.action',
 	page_1: '${basePath}admin/getExaminations.action',
-	page_2: '${basePath}trainingClass_intoClasspage.action',
+	page_2: '${basePath}admin/getClassManagerPage.action',
 	page_3: '${basePath}showBackendResourceListPage.action',
 
 	page_4: '${basePath}showBackendHumanPage.action',
@@ -67,16 +67,16 @@ $(document).ready(function ()
 	<div class="navbar-inner">
 		<div class="row-fluid">
 			<ul class="span12 nav nav-pills header-menu">
-				<li id="page_0" class="header-menu-item active"><a href="#">学习管理</a></li>
-				<li id="page_1" class="header-menu-item"><a href="#">考试管理</a></li>
-				<li id="page_2" class="header-menu-item"><a href="#">班级管理</a></li>
-				<li id="page_3" class="header-menu-item"><a href="#">资源管理</a></li>
-				<li id="page_4" class="header-menu-item"><a href="#">人员管理</a></li>
-				<li id="page_5" class="header-menu-item"><a href="#">消息管理</a></li>
-				<li id="page_6" class="header-menu-item"><a href="#">报表管理</a></li>
-				<li id="page_7" class="header-menu-item"><a href="#">系统管理</a></li>
-				<li id="page_8" class="header-menu-item"><a href="#">社区管理</a></li>
-				<li id="page_9" class="header-menu-item"><a href="#">图书馆管理</a></li>
+				<li id="page_0" class="span2 header-menu-item active"><a href="#">学习管理</a></li>
+				<li id="page_1" class="span1 header-menu-item"><a href="#">考试管理</a></li>
+				<li id="page_2" class="span1 header-menu-item"><a href="#">班级管理</a></li>
+				<li id="page_3" class="span1 header-menu-item"><a href="#">资源管理</a></li>
+				<li id="page_4" class="span1 header-menu-item"><a href="#">人员管理</a></li>
+				<li id="page_5" class="span1  header-menu-item"><a href="#">消息管理</a></li>
+				<li id="page_6" class="span1 header-menu-item"><a href="#">报表管理</a></li>
+				<li id="page_7" class="span1 header-menu-item"><a href="#">系统管理</a></li>
+				<li id="page_8" class="span1 header-menu-item"><a href="#">社区管理</a></li>
+				<li id="page_9" class="span2 header-menu-item"><a href="#">图书馆管理</a></li>
 			</ul>
 		</div>
 	</div>

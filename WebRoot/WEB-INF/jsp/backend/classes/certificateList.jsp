@@ -26,7 +26,7 @@ $(document).ready(function ()
 				width:800,
 				autoLoad: true,
 				root:'cList',
-				fullWithRows: true,
+				fullWidthRows: true,
 				cols: [
 					{ title: '证书ID', sortable: true, name: 'credentialId' },	
 					{ title: '证书名称', sortable: true, name: 'credentialName' },
@@ -39,8 +39,8 @@ $(document).ready(function ()
 						renderer: function (val, item, row)
 						{
 						return '<input type="hidden" value="' + item.credentialId + '" />'+
-		        '<a href="#myModal0" onclick="updateCertificate('+item.credentialId+')" role="button" class="btn" data-toggle="modal">修改</a>'+
-		        '<a href="#myModal1" onclick="deleteCertificate('+item.credentialId+')" role="button" class="btn" data-toggle="modal">删除</a>';
+		        '<a href="javascript:void(0)" onclick="updateCertificate('+item.credentialId+')" role="button" class="btn" data-toggle="modal">修改</a>'+
+		        '<a href="javascript:void(0)" onclick="deleteCertificate('+item.credentialId+')" role="button" class="btn" data-toggle="modal">删除</a>';
 						}
 					}
 				],
@@ -76,8 +76,14 @@ $(document).ready(function ()
 			});
 		});	
 			
+		function updateCertificate (credentialId)
+		{
+			$("#myModal0").modal();
+		 credentialID = credentialId;
+		}
 		function deleteCertificate(credentialId)
 		{
+			$("#myModal1").modal();
 		 credentialID = credentialId;
 		}
 </script>

@@ -24,7 +24,7 @@ $(document).ready(function ()
 	});
 	
 	mmg = $('#grid').mmGrid({
-		url: '${basePath}course_findAllCourse.action',
+		url: '${basePath}admin/findAllCourse.action',
 		height: 410,
 		autoLoad: true,
 		indexCol:true,
@@ -54,8 +54,8 @@ $(document).ready(function ()
          {
          return '<input type="hidden" id="'+item.courseId+'" value="' + item.courseId + '" />' +
              '<a href="#" >查看</a>&nbsp;&nbsp;'+
-             '<a href="#myModal0" onclick="updateCourse('+item.courseId+')" role="button" class="btn" data-toggle="modal">修改</a>&nbsp;&nbsp;'+
-             '<a href="#myModal1" onclick="clickCourse('+item.courseId+')" role="button" class="btn" data-toggle="modal">删除</a>';
+             '<a href="javascript:void(0)" onclick="updateCourse('+item.courseId+')" role="button" class="btn" data-toggle="modal">修改</a>&nbsp;&nbsp;'+
+             '<a href="javascript:void(0)" onclick="clickCourse('+item.courseId+')" role="button" class="btn" data-toggle="modal">删除</a>';
          }
 
        }
@@ -92,7 +92,7 @@ $(document).ready(function ()
 	var courseState=$("#courseStateIID").val();
 		$.ajax({
 			type : "POST",
-			url : "${basePath}course_updateCourse.action",
+			url : "${basePath}admin/updateCourse.action",
 			data:"course.courseId="+courseId+"&course.courseName="+courseName+
 			"&course.courseSpeaker="+courseSpeaker+"&course.courseIntro="+courseIntro+
 			"&course.courseState="+courseState,
@@ -110,9 +110,10 @@ $(document).ready(function ()
 
 function updateCourse(courseId){
 	courseID=courseId;
+	$("#myModal0").modal();
 	$.ajax({
 			type : "POST",
-			url : "${basePath}course_getCourseById.action?course.courseId="+courseId,
+			url : "${basePath}admin/getCourseById.action?course.courseId="+courseId,
 			dataType : "json",
 			success : function(json) {
 				if(json.course!=null)
@@ -140,6 +141,7 @@ function setAttr(course)
 function clickCourse(courseId)
 	{
 	courseID=courseId;
+	$("#myModal1").modal();
 	}
 </script>
 <div class="row-fluid">

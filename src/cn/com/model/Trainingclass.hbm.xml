@@ -18,38 +18,29 @@
         <many-to-one name="credential" class="cn.com.model.Credential" fetch="select">
             <column name="credentialId" />
         </many-to-one>--> 
-         <property name="credentialId" type="java.lang.Integer">
-            <column name="credentialId" />
-        </property>
+
+        <many-to-one name="credential" class="cn.com.model.Credential" fetch="select" cascade="none" lazy="false">
+        	<column name="credentialId"></column>
+        </many-to-one>
+        
         <property name="trainingClassName" type="java.lang.String">
             <column name="trainingClassName" length="50" />
         </property>
         <property name="trainingClassStatus" type="java.lang.Integer">
             <column name="trainingClassStatus" />
         </property>
-        <set name="testarrangements" inverse="true">
-            <key>
-                <column name="trainingClassId" />
-            </key>
-            <one-to-many class="cn.com.model.Testarrangement" />
-        </set>
-        <set name="classcases" inverse="true">
-            <key>
+        
+       <set name="courses" inverse="false" table="trainingClassAndCourse" lazy="false" cascade="all">
+      	 	<key><column name="trainingClassId"/></key>
+       		<many-to-many class="cn.com.model.Course" column="courseId"></many-to-many>
+       </set>
+       
+       <set name="classCases"  inverse="false" table="trainingClass" lazy="false" cascade="save-update" >
+       	<key>
                 <column name="trainingClassId" />
             </key>
             <one-to-many class="cn.com.model.Classcase" />
-        </set>
-        <set name="classandusers" inverse="true">
-            <key>
-                <column name="trainingClassId" not-null="true" />
-            </key>
-            <one-to-many class="cn.com.model.Classanduser" />
-        </set>
-        <set name="classandcourses" inverse="true">
-            <key>
-                <column name="trainingClassId" not-null="true" />
-            </key>
-            <one-to-many class="cn.com.model.Classandcourse" />
-        </set>
+       </set>
+          
     </class>
 </hibernate-mapping>

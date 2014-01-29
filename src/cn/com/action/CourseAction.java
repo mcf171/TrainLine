@@ -66,7 +66,30 @@ public class CourseAction extends BaseActionSupport {
 	private String[] uploadContentTypeName;
 	private String savePath;
 
+	/**
+	 * 前台获取学习中心页面
+	 * author:Apache
+	 * time:2014-1-27 10:34
+	 * @return
+	 */
+	public String getStudyCenterPage(){
+		
+		return this.SUCCESS;
+	}
 	
+	/**
+	 * 模糊查询获取Course
+	 * author:Apache
+	 * time:2014-1-26 20:22
+	 * @return
+	 */
+	public String getCourseByExample(){
+		
+		List<Course> list = courseService.findByExample(course);
+		dataMap.put("list", list);
+		
+		return this.SUCCESS;
+	}
 	
 	/**
 	 * 上传文件 文件流控制
@@ -368,7 +391,9 @@ public class CourseAction extends BaseActionSupport {
 		if (course != null) {
 			course = courseService.getCourse(course);
 		}
-		return JSON;
+		request.setAttribute("course", course);
+		dataMap.put("course", course);
+		return this.SUCCESS;
 	}
 
 	/**
@@ -380,7 +405,9 @@ public class CourseAction extends BaseActionSupport {
 		if (course != null) {
 			courseService.update(course);
 		}
-		return JSON;
+		request.setAttribute("course", course);
+		dataMap.put("course", course);
+		return this.SUCCESS;
 	}
 
 	public String intoDetailCourseInfo() {

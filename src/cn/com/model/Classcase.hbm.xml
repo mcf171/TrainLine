@@ -10,10 +10,6 @@
             <column name="ClassCaseId" />
             <generator class="native" />
         </id>
-       
-        <property name="trainingClassId" type="java.lang.Integer">
-        <column name="trainingClassId"></column>
-        </property>
         <property name="personOfHierarchy" type="java.lang.Integer">
             <column name="PersonOfHierarchy" />
         </property>
@@ -83,6 +79,7 @@
         <property name="classCaseComment" type="java.lang.String">
             <column name="ClassCaseComment" length="50" />
         </property>
+        <many-to-one name="trainingClass" class="cn.com.model.Trainingclass" column="trainingClassId" lazy="false" cascade="all"  not-null="true"></many-to-one>
        <!-- <set name="trainingclasses" inverse="true">
             <key>
                 <column name="ClassCaseId" />
