@@ -76,6 +76,7 @@
 				<value>cn/com/model/Userandmail.hbm.xml</value>
 				<value>cn/com/model/Classcase.hbm.xml</value>
 				<value>cn/com/model/Questionnaire.hbm.xml</value>
+				<value>cn/com/model/QuestionnaireRubricResult.hbm.xml</value>
 				<value>cn/com/model/Testpaper.hbm.xml</value>
 				<value>cn/com/model/Resource.hbm.xml</value>
 				<value>cn/com/model/Book.hbm.xml</value>
@@ -163,6 +164,11 @@
 		</property>
 	</bean>
 	<bean id="QuestionnairerubricDAO" class="cn.com.dao.QuestionnairerubricDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="QuestionnaireRubricResultDAO" class="cn.com.dao.QuestionnaireRubricResultDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

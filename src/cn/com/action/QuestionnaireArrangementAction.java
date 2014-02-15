@@ -26,6 +26,40 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 	}
 	
 	/**
+	 * 后台获取问卷安排详细信息页面
+	 * author:Apache
+	 * time:2014-1-31 22:27
+	 * @return
+	 */
+	public String getShowQuestionnaireArrangmentInfoPage(){
+		
+		questionnaireArrangement = questionnaireArrangementService.getQuestionnaireArrangementById(questionnaireArrangement.getQuestionnaireArrangementId());
+		request.setAttribute("questionnaireArrangement", questionnaireArrangement);
+		return this.SUCCESS;
+	}
+	
+	public String getUpdateQuestionnaireArrangementPage(){
+		
+		questionnaireArrangement = questionnaireArrangementService.getQuestionnaireArrangementById(questionnaireArrangement.getQuestionnaireArrangementId());
+		request.setAttribute("questionnaireArrangement", questionnaireArrangement);
+		
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 更新QuestionnaireArrangment
+	 * author:Apache
+	 * time:2014-1-31 22:57
+	 * @return
+	 */
+	public String updateQuestionnaireArrangement(){
+		
+		questionnaireArrangementService.updateQuestionnaireArrangement(questionnaireArrangement);
+		questionnaireArrangement = questionnaireArrangementService.getQuestionnaireArrangementById(questionnaireArrangement.getQuestionnaireArrangementId());
+		questionnaireArrangementService.distributeQuestionnaireArrangementToUser(userId, questionnaireArrangement);
+		return this.SUCCESS;
+	}
+	/**
 	 * 获取后台显示所有问卷安排列表页面
 	 * author: Apache
 	 * time: 2014-1-22 17:01
@@ -95,6 +129,8 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 		
 		return this.SUCCESS;
 	}
+	
+
 	
 	public Map<String, Object> getDataMap() {
 		return dataMap;

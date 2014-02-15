@@ -6,6 +6,11 @@
 	</package>
 	
 	<package name="questionnaireAdmin" namespace="/admin" extends="system">
+		
+		<action name="showQuestionnaire" class="questionnarieAction" method="showQuestionnaire">
+			<result>/WEB-INF/jsp/backend/questionnaire/showQuestionnaire.jsp</result>
+		</action>
+	
 		<action name="intoQuestionnairePage" class="questionnarieAction" method="intoQuestionnairePage">
 			<result>/WEB-INF/jsp/backend/questionnaire/questionnaireList.jsp</result>
 		</action>

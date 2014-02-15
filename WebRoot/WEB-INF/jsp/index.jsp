@@ -30,7 +30,7 @@ var PAGES = {
 function load_page(page)
 {
  	temp = PAGES[page];
-	$('#container').load(temp);
+	$('#content').load(temp);
 }
 
 $(document).ready(function ()
@@ -43,15 +43,7 @@ $(document).ready(function ()
 	});
 
 	load_page('page_0');
-	setInterval(function ()
-	{
-		try
-		{
-			var h1 = $('#container').contents()[0].body.offsetHeight;
-			var h2 = $('#container').contents()[0].body.scrollHeight;
-			$('#container').height(h1 < h2 ? h1 : h2);
-		} catch (e) {}
-	}, 33);
+
 });
 //]]>
 </script>
@@ -121,9 +113,9 @@ $(document).ready(function ()
 			<a href="getBackendIndex.action" target="_blank">后台管理</a>
 			&nbsp;
 			</c:if>
-			<a href="javascript:alert('正在建设中')" >个人中心</a>
+			<a href="${basePath}getUserInfoPage.action" target="_blank" >个人中心</a>
 			&nbsp;
-			<a href="${basePath}email/index.html">收件箱</a>
+			<a href="${basePath}getEmailHomePage.action">收件箱</a>
 		</div>
 	</div>
 </div>

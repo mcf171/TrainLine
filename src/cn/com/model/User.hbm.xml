@@ -44,7 +44,7 @@
                 <column name="noticeId" not-null="true" />
             </many-to-many>
         </set>
-         <set name="message" inverse="false" table="message" lazy="false" cascade="save-update">
+         <set name="message" inverse="false" table="message" lazy="false" cascade="all">
             <key>
                 <column name="userId" />
             </key>

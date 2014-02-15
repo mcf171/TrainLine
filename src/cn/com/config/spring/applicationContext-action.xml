@@ -8,6 +8,12 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 	
+	<bean id="emailAction" class="cn.com.action.EmailAction"></bean>
+	
+	<bean id="questionnaireRubricResultAction" class="cn.com.action.QuestionnaireRubricResultAction">
+		<property name="dataMap" ref="hashMap"></property>
+	</bean>
+	
 	<bean id="classCaseAction" class="cn.com.action.ClassCaseAction">
 		<property name="dataMap" ref="hashMap"></property>
 		<property name="classCaseService" ref="classCaseService"></property>

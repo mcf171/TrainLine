@@ -108,6 +108,30 @@ public class QuestionnaireArrangementService {
 		
 	}
 	
+	/**
+	 * 更新QuestionnaireArrangment
+	 * author:Apache
+	 * time:2014-1-31 23:00
+	 * @param questionnaireArrangement
+	 */
+	public void updateQuestionnaireArrangement(QuestionnaireArrangement questionnaireArrangement){
+		
+		try {
+			
+			Message message = new Message();
+			QuestionnaireArrangement temp = questionnaireArrangementDAO.findById(questionnaireArrangement.getQuestionnaireArrangementId());
+			message.setMessageTitle(temp.getQuestionArrangementName());
+			List<Message> list = messageService.getMessageByExample(message);
+			messageService.batchDeleteMessage(list);
+			questionnaireArrangementDAO.merge(questionnaireArrangement);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+		
+	}
+	
 	public QuestionnaireArrangementDAO getQuestionnaireArrangementDAO() {
 		return questionnaireArrangementDAO;
 	}

@@ -1,11 +1,14 @@
-#Wed Jan 29 17:14:29 CST 2014
+#Sat Feb 08 17:36:05 CST 2014
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/jsp/backend/classes.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/classes/ClassInfo.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/backend/classes/addCertificate.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/classes/addClass1.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/classes/addClass2.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/classes/certificateList.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/classes/classes.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/backend/classes/showCertificate.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/backend/classes/updateCertificate.jsp=utf-8
 encoding//WebRoot/WEB-INF/jsp/backend/classes/updateClass1.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/classes/updateClass2.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/course/addCourse.jsp=UTF-8
@@ -13,5 +16,7 @@ encoding//WebRoot/WEB-INF/jsp/backend/course/addCourseChapter.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/course/class-system.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/questionnaire/questionnaireArrangementList.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/questionnaire/questionnaireList.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/backend/questionnaire/showQuestionnaireArrangement.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/backend/questionnaire/showQuestionnaireRubricResult.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/test/questionare.jsp=utf-8
 encoding//src/cn/com/base/IHibernateTemplate.java=UTF-8

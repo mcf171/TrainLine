@@ -53,9 +53,7 @@ public class QuestionnaireDAO extends HibernateDaoSupport {
 	public void delete(Questionnaire persistentInstance) {
 		log.debug("deleting Questionnaire instance");
 		try {
-			Session session =getHibernateTemplate().getSessionFactory().openSession();
-			session.delete(persistentInstance);
-			session.flush();
+			this.getHibernateTemplate().delete(persistentInstance);
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);

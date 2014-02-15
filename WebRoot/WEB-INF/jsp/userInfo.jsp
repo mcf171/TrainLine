@@ -12,8 +12,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<title>个人资料</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="styles/userInfo.css">	
-		<link rel="stylesheet" type="text/css" href="styles/common.css">
+		<link rel="stylesheet" type="text/css" href="${basePath}styles/userInfo.css">	
+		<link rel="stylesheet" type="text/css" href="${basePath}styles/common.css">
 	</head>
     
 	<div id="center">

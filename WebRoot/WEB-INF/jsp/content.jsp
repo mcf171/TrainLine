@@ -10,7 +10,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
-<link rel="stylesheet" href="styles/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="styles/global.css" />
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/bootstrap.js"></script>

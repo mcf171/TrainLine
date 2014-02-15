@@ -35,7 +35,8 @@
        		<many-to-many class="cn.com.model.Course" column="courseId"></many-to-many>
        </set>
        
-       <set name="classCases"  inverse="false" table="trainingClass" lazy="false" cascade="save-update" >
+       
+       <set name="classCases"  inverse="true" table="trainingClass" lazy="false" cascade="all" >
        	<key>
                 <column name="trainingClassId" />
             </key>

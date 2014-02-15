@@ -22,6 +22,17 @@ public class UserAction extends BaseActionSupport{
 	private User user;
 	private Map<String, Object> dataMap;
 	
+	/**
+	 * 显示用户信息页面
+	 * author:Apache
+	 * time:2014-2-14 22:15
+	 * @return
+	 */
+	public String getUserInfoPage(){
+		
+		return this.SUCCESS;
+	}
+	
 	public String login(){
 		
 		//user.getUserPassword();

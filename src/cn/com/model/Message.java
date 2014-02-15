@@ -66,6 +66,26 @@ public class Message implements java.io.Serializable{
 		this.url = url;
 	}
 
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		
+		if(obj instanceof Message){
+			
+			Message temp = (Message) obj;
+			flag = temp.getMessageId() == this.messageId ? true : false;
+		}
+		
+		return flag;
+	}
+
 
 	// Property accessors
 

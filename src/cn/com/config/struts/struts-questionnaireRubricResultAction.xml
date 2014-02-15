@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="questionnaireRubricResult" namespace="/" extends="json-default">
+		<action name="saveQuestionnaireRubricResult" class="questionnaireRubricResultAction" method="saveQuestionnaireRubricResult">
+			<result>/WEB-INF/jsp/index.jsp</result>
+		</action>
+	</package>
+	
+	<package name="questionnaireRubricResultAdmin" namespace="/admin" extends="system">
+		<action name="getQuestionnaireRubricResult" class="questionnaireRubricResultAction" method="getQuestionnaireRubricResult">
+			<result>/WEB-INF/jsp/backend/questionnaire/showQuestionnaireRubricResult.jsp</result>
+		</action>
+	</package>
+</struts>    

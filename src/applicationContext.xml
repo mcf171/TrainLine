@@ -9,10 +9,11 @@
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
 	<import resource="cn/com/config/spring/applicationContext-basic.xml" />
+	<import resource="cn/com/config/spring/applicationContext-util.xml" />
 	<import resource="cn/com/config/spring/applicationContext-dao.xml" />
 	<import resource="cn/com/config/spring/applicationContext-service.xml" />
 	<import resource="cn/com/config/spring/applicationContext-action.xml" />
-	<import resource="cn/com/config/spring/applicationContext-util.xml" />
+	
 	<import resource="cn/com/config/spring/applicationContext-aop.xml" />
 </beans>
 

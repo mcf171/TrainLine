@@ -58,8 +58,8 @@ $(document).ready(function ()
      {
      title: '操作',width: 150,renderer: function (val, item, row) 
        {        
-        return '<input type="hidden" value="' + item.questionnaireArrangementId + '" /><a href="read.jsp" target="_blank">查看</a> '+
-        '<a href="#myModal0" onclick="updateQ('+item.questionnaireArrangementId+')" role="button" class="btn" data-toggle="modal">修改</a>'+
+        return  '<a href="#myModal0" onclick="getDetial('+item.questionnaireArrangementId+')" role="button" class="btn" data-toggle="modal">查看</a>'+
+        '<a href="javascript:void(0)" onclick="updateQ('+item.questionnaireArrangementId+')" role="button" class="btn" data-toggle="modal">修改</a>'+
         '<a href="javascript:void(0)" onclick="deleteQ('+item.questionnaireArrangementId+')" role="button" class="btn" data-toggle="modal">删除</a>';
        }
        }
@@ -68,6 +68,8 @@ $(document).ready(function ()
 			$('#page').mmPaginator({})
 		]
 	});
+	
+
 	
 	$("#searchQuestionaireBtn").click(function(){
 		mmg.load({page:1,"questionnaireArrangement.questionnaireTitle":$("#questionnaireTitleID").val(),
@@ -121,8 +123,15 @@ $(document).ready(function ()
 	
 });
 
+function updateQ(questionnaireArrangementId){
+	
+	loadHTML("${basePath}admin/getUpdateQuestionnaireArrangementPage.action?questionnaireArrangement.questionnaireArrangementId="+questionnaireArrangementId);
+}
 
-
+function getDetial(questionnaireArrangmentId){
+	
+	loadHTML("${basePath}admin/getShowQuestionnaireArrangmentInfoPage.action?questionnaireArrangement.questionnaireArrangementId="+questionnaireArrangmentId);
+}
 function deleteQ(temp){
 //为全局变量赋值
 questionnaireArrangementId = temp;

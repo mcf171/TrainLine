@@ -16,4 +16,6 @@
 				
 			</property>
 		</bean>
+		
+		<bean id="questionnaireRubricSort" class="cn.com.sort.QuestionnaireRubricSort"></bean>
 	</beans>

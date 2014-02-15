@@ -56,6 +56,9 @@
 		<property name="uploadUtil" ref="uploadUtil"></property>
 	</bean>
 	
+	<bean id="questionnaireRubricResultService" class="cn.com.service.QuestionnaireRubricResultService" >
+		<property name="questionnaireRubricResultDAO" ref="QuestionnaireRubricResultDAO"></property>
+	</bean>
 	
 	<bean id="forumService" class="cn.com.service.ForumService" scope="prototype">
 	   <property name="themeDAO" ref="ThemeDAO"></property>
@@ -71,10 +74,9 @@
 		<property name="questionnaireDAO" ref="QuestionnaireDAO"></property>
 	</bean>
 	
-	
-
 	<bean id="questionnairerubricService" class="cn.com.service.QuestionnairerubricService">
 		<property name="questionnairerubricDAO" ref="QuestionnairerubricDAO"></property>
+		<property name="questionnaireRubricResultService" ref="questionnaireRubricResultService"></property>
 	</bean>
 
 	<bean id="courseService" class="cn.com.service.CourseService">
@@ -107,6 +109,7 @@
 
 	<bean id="credentialService" class="cn.com.service.CredentialService">
 		<property name="credentialDAO" ref="CredentialDAO"></property>
+		<property name="uploadUtil" ref="uploadUtil"></property>
 	</bean>
 	
 	<bean id="humanService" class="cn.com.service.HumanService">

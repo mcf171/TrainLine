@@ -35,9 +35,9 @@ $(document).ready(function ()
      {
      title: '操作',width: 150,renderer: function (val, item, row) 
        {        
-        return '<input type="hidden" value="' + item.questionnaireId + '" /><a href="read.jsp" target="_blank">阅读</a> '+
-        '<a href="#myModal0" onclick="updateQ('+item.questionnaireId+')" role="button" class="btn" data-toggle="modal">修改</a>'+
-        '<a href="#myModal1" onclick="deleteQ('+item.questionnaireId+')" role="button" class="btn" data-toggle="modal">删除</a>';
+        return '<input type="hidden" value="' + item.questionnaireId + '" /><a href="javascript:void(0)" onclick="readQ('+item.questionnaireId+')">阅读</a> '+
+        '<a href="javascript:void(0)" onclick="updateQ('+item.questionnaireId+')" role="button" class="btn" data-toggle="modal">修改</a>'+
+        '<a href="javascript:void(0)" onclick="deleteQ('+item.questionnaireId+')" role="button" class="btn" data-toggle="modal">删除</a>';
        }
        }
        ],
@@ -54,13 +54,14 @@ $(document).ready(function ()
 	});
 	
 	$("#sureDeleteBtn").click(function(){
-	$("#myModal1").modal('hide');
+	
 	$.ajax({
 		type : "POST",
 		url : "${basePath}admin/deleteQuestionaire.action?questionnaire.questionnaireId="+questionnaireID,
 		dataType : "json",
 		success : function(json) {
-		mmg.load({page:1});
+			$("#myModal1").modal('hide');
+			mmg.load({page:1});
 		},
 		error : function() {
 			alert("操作失败,请重试!");
@@ -97,6 +98,22 @@ $(document).ready(function ()
 	
 });
 
+function readQ(questionnaireId){
+	$.ajax({
+		type : "POST",
+		url : "${basePath}admin/showQuestionnaire.action?questionnaire.questionnaireId="+questionnaireId,
+		success : function(json) {
+			
+			$("#read").html(json);
+		},
+		error : function() {
+			alert("操作失败,请重试!");
+			return false;
+		}
+		});
+	
+}
+
 function updateQ(questionnaireId){
 questionnaireID = questionnaireId;
 $.ajax({
@@ -127,15 +144,16 @@ function setAttr(questionnaire)
 
 function deleteQ(questionnaireId){
 //为全局变量赋值
+$("#myModal1").modal();
 questionnaireID = questionnaireId;
 }
 
 
 </script>
 	
-            <div class="row-fluid ">
+            <div class="row-fluid " id="read">
 	            
-            </div>
+          
             <div class="row-fluid">
             	<div class="span12">
             		<form id="condition" class="span12 form-inline no-margin" action="javascript:void(0)">
@@ -208,3 +226,4 @@ questionnaireID = questionnaireId;
 		<button class="btn btn-primary" id="sureDeleteBtn">确定</button>
 	</div>
 </div>
+  </div>

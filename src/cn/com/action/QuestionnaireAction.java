@@ -19,6 +19,18 @@ public class QuestionnaireAction extends BaseActionSupport{
 		dataMap = new HashMap<String, Object>();
 	}
 
+	/**
+	 * 返回指定questionnaire页面
+	 * author:Apache
+	 * time:2014-2-13 18:17
+	 * @return
+	 */
+	public String showQuestionnaire(){
+		
+		questionnaire = questionnairerService.getQuestionnaire(questionnaire);
+		request.setAttribute("questionnaire", questionnaire);
+		return this.SUCCESS;
+	}
 	
 	public String findAllQuestionnare()throws Exception{
 		if(questionnaire!=null)

@@ -61,9 +61,9 @@ public class SecurityCode {
         
         switch(opertorIndex){
         	
-        case 0 : resultValue = codesIndex1 + codesIndex2;returnString = codesIndex1 + "+" + codesIndex2 +"=";
-        case 1 : resultValue = codesIndex1 - codesIndex2;returnString = codesIndex1 + "-" + codesIndex2 +"=";
-        case 2 : resultValue = codesIndex1 * codesIndex2;returnString = codesIndex1 + "*" + codesIndex2 +"=";
+        case 0 : resultValue = codesIndex1 + codesIndex2;returnString = codesIndex1 + "+" + codesIndex2 +"=";break;
+        case 1 : resultValue = codesIndex1 - codesIndex2;returnString = codesIndex1 + "-" + codesIndex2 +"=";break;
+        case 2 : resultValue = codesIndex1 * codesIndex2;returnString = codesIndex1 + "*" + codesIndex2 +"=";break;
         default: resultValue = codesIndex1 + codesIndex2;returnString = codesIndex1 + "+" + codesIndex2 +"=";
         
         }

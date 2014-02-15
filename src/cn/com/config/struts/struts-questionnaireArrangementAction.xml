@@ -10,6 +10,19 @@
 	</package>
 	
 	<package name="questionnaireArrangementAdmin" namespace="/admin" extends="system">
+		
+		<action name="updateQuestionnaireArrangement" class="questionnaireArrangementAction" method="updateQuestionnaireArrangement">
+			<result>/WEB-INF/jsp/backend/questionnaire/questionnaireArrangementList.jsp</result>
+		</action>
+		
+		<action name="getUpdateQuestionnaireArrangementPage" class="questionnaireArrangementAction" method="getUpdateQuestionnaireArrangementPage">
+			<result>/WEB-INF/jsp/backend/questionnaire/updateQuestionnaireArrangement.jsp</result>
+		</action>
+		
+		<action name="getShowQuestionnaireArrangmentInfoPage" class="questionnaireArrangementAction" method="getShowQuestionnaireArrangmentInfoPage">
+			<result>/WEB-INF/jsp/backend/questionnaire/showQuestionnaireArrangement.jsp</result>
+		</action>
+	
 		<action name="getAddQuestionnaireArrangementPage" class="questionnaireArrangementAction" method="getAddQuestionnaireArrangementPage">
 			<result>/WEB-INF/jsp/backend/questionnaire/addQuestionnaireArrangement.jsp</result>
 		</action>

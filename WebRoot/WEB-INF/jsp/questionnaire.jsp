@@ -57,7 +57,6 @@
             </div>
             
             <div id="ctl00_ContentPlaceHolder1_JQ1_surveyContent">
-              <fieldset class="fieldset" id="fieldset1">
               <c:forEach var="item" items="${questionnaireArrangement.questionnaire.questionnairerubrics}" varStatus="index">
               		<div style="" class="div_question" id="div${index.index+1}">
                   <div class="div_title_question_all">
@@ -124,9 +123,25 @@
               </c:forEach>
                               
                 <div class="register_div">
-                  <div style="display:none;" id="divpoweredby">Powered by <a href="http://www.sojump.com/" title="专业的问卷调查网站" class="link-06f" target="_blank"><strong>Pioneer</strong></a><span style="font-family:Tahoma">™</span></div>
+                	<input type="button" value="提交" id="confirm"/>
                 </div>
-              </fieldset>
+                <script>
+                $(document).ready(function(){
+                	$("#confirm").click(function(){
+                		confirmData="questionnaireRubricResults.questionnaireRubricResultId=1&questionnaireRubricResults.questionnaireRubricResultId=2"
+                		$.ajax({
+                			
+                			type:"post",
+                			url:"${basePath}saveQuestionnaireRubricResult.action",
+                			data:confirmData,
+                			success:function(){
+                				alert(1);
+                			}
+                		});
+                	});	
+                });
+                
+                </script>
             </div>
             
             

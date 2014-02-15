@@ -4,6 +4,9 @@
 	
 	<package name="user" extends="system" >
 	
+		<action name="getUserInfoPage" class="userAction" method="getUserInfoPage">
+			<result>/WEB-INF/jsp/userInfo.jsp</result>
+		</action>
    		<action name="login" class="userAction" method="login">
    			<result>/WEB-INF/jsp/index.jsp</result>
    			<result name="input">login.jsp</result>

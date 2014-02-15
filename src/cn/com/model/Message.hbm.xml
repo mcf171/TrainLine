@@ -10,7 +10,7 @@
             <column name="messageId" />
             <generator class="native" />
         </id>
-        <many-to-one name="user" class="cn.com.model.User" lazy="false" fetch="join">
+        <many-to-one name="user" class="cn.com.model.User" lazy="false" fetch="join" cascade="save-update">
             <column name="userId" />
         </many-to-one>
         <property name="messageTitle" type="java.lang.String">

@@ -14,6 +14,7 @@ public class Questionnairerubric implements java.io.Serializable {
 	private Integer questionnaireRubricWeight;
 	private String questionnaireRubricIntroduce;
 	private String questionnaireRubricContent;
+	private QuestionnaireRubricResult questionnaireRubricResult;
 
 	// Constructors
 
@@ -77,6 +78,15 @@ public class Questionnairerubric implements java.io.Serializable {
 
 	public void setQuestionnaireRubricIntroduce(String questionnaireRubricIntroduce) {
 		this.questionnaireRubricIntroduce = questionnaireRubricIntroduce;
+	}
+
+	public QuestionnaireRubricResult getQuestionnaireRubricResult() {
+		return questionnaireRubricResult;
+	}
+
+	public void setQuestionnaireRubricResult(
+			QuestionnaireRubricResult questionnaireRubricResult) {
+		this.questionnaireRubricResult = questionnaireRubricResult;
 	}
 
 }

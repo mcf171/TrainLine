@@ -10,7 +10,7 @@
             <column name="questionnaireRubricId" />
             <generator class="native" />
         </id>
-        <many-to-one name="questionnaire" class="cn.com.model.Questionnaire" fetch="select">
+        <many-to-one name="questionnaire" class="cn.com.model.Questionnaire" fetch="select" >
             <column name="questionnaireId" />
         </many-to-one>
         <property name="questionnaireRubricType" type="java.lang.Integer">
@@ -25,5 +25,7 @@
         <property name="questionnaireRubricIntroduce" type="java.lang.String">
         	<column name="questionnaireRubricIntroduce" length="500"></column>
         </property>
+        
+        <one-to-one name="questionnaireRubricResult" class="cn.com.model.QuestionnaireRubricResult" lazy="false" cascade="all" />
     </class>
 </hibernate-mapping>

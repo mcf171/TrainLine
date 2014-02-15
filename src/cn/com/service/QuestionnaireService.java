@@ -17,9 +17,22 @@ public class QuestionnaireService {
 		return questionnaireDAO.save(questionnaire);
 	}
 
+	/**
+	 * 删除Questionnaire
+	 * author:Apache
+	 * modifyTime:2014-2-1 17:53
+	 * @param questionnaire
+	 */
 	public void delete(Questionnaire questionnaire)
 	{
-		questionnaireDAO.delete(questionnaire);
+		try {
+		
+			questionnaireDAO.delete(questionnaire);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
 	}
 	
 	public void update(Questionnaire questionnaire)
@@ -45,6 +58,11 @@ public class QuestionnaireService {
 		return questionnaireDAO.findByConditions(questionnaire);
 	}
 
+	/**
+	 * 通过指定Id获取Questionnaire
+	 * @param questionnaire
+	 * @return
+	 */
 	public Questionnaire getQuestionnaire(Questionnaire questionnaire) {
 		return questionnaireDAO.findById(questionnaire.getQuestionnaireId());
 		

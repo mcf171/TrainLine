@@ -13,6 +13,9 @@
 
 	<include file="cn/com/config/struts/struts-global.xml"></include>
 	
+	<include file="cn/com/config/struts/struts-emailAction.xml"></include>
+	
+	<include file="cn/com/config/struts/struts-questionnaireRubricResultAction.xml"></include>
 	<include file="cn/com/config/struts/struts-classCaseAction.xml"></include>
 	<include file="cn/com/config/struts/struts-liberaryAction.xml"></include>
 		<include file="cn/com/config/struts/struts-noteAction.xml"></include>
