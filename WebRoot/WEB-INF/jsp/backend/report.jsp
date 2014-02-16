@@ -25,31 +25,31 @@
 						<li class="jstree-leaf"><a href="${basePath}admin/getPeiXunRenYuanBaoMingBiaoPage.action">培训人员报名表</a></li>
 						<li class="jstree-leaf"><a href="${basePath}admin/getGangWeiPeiXunBanBeiAnBiaoPage.action">岗位培训办班备案表（报建设厅）</a></li>
 						<li class="jstree-leaf"><a href="${basePath}admin/getNianDuPeiJiXunJiHuaShiShiQingKuang.action">年度培训计划及实施情况记录表</a></li>
-						<li class="jstree-leaf"><a href="report/niandupeixunwanchengqingkuang.html">年度培训完成情况报表（报股份公司、国资委）</a></li>
-						<li class="jstree-leaf"><a href="report/peixunbanbaoming.html">培训班报名表（如三类安全员）</a></li>
-						<li class="jstree-leaf"><a href="report/peixunrichenganpai.html">培训日程安排表</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getNianDuPeiXunWanChengQingKuangPage.action">年度培训完成情况报表（报股份公司、国资委）</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getPeiXunBanBaoMingPage.action">培训班报名表（如三类安全员）</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getPeiXunRiChengAnPaiPage.action">培训日程安排表</a></li>
 					</ul>
 				</li>
 				<li class="jstree-open">
 					<a href="#">技师报表</a>
 					<ul>
-						<li class="jstree-leaf"><a href="report/gaojijishupingshen.html">高级技师评审表</a></li>
-						<li class="jstree-leaf"><a href="report/jishipingshen.html">技师评审表A4</a></li>
-						<li class="jstree-leaf"><a href="report/zhiyejinengjianding">职业技能鉴定申请表</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getGaoJiJishuPingShenPage.action">高级技师评审表</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getJiShiPingShenPage.action">技师评审表A4</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getZhiYeJiNengJianDing.action">职业技能鉴定申请表</a></li>
 					</ul>
 				</li>
 				<li class="jstree-open">
 					<a href="#">五大员报表</a>
 					<ul>
-						<li class="jstree-leaf"><a href="report/wudayuanbaomingdengji.html">五大员报名登记表（报建设厅）</a></li>
-						<li class="jstree-leaf"><a href="report/wudayuanquzhengkaoshenghuamingce.html">五大员取证考生花名册（报建设厅）</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getWuDaYuanBaoMingDengJiPage.action">五大员报名登记表（报建设厅）</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getWuDayuanQuZhengKaoShengHuaMingCePage.action">五大员取证考生花名册（报建设厅）</a></li>
 					</ul>
 				</li>
 				<li class="jstree-open">
 					<a href="#">教师报表</a>
 					<ul>
-						<li class="jstree-leaf"><a href="report/jiaoshigongzuoqingkuang.html">教师工作情况表（报建设厅）</a></li>
-						<li class="jstree-leaf"><a href="report/jiaoshixinxidengji.html">教师信息登记表（报建设厅）</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getJiaoShiGongZuoQingKuangPage.action">教师工作情况表（报建设厅）</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getJiaoShiXinXiDengJiPage.action">教师信息登记表（报建设厅）</a></li>
 					</ul>
 				</li>
 			</ul>

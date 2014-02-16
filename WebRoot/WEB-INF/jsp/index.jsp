@@ -65,7 +65,7 @@ $(document).ready(function ()
 				<li id="page_4" class="span2 header-menu-item"><a href="#">培训班</a></li>
 				<li id="page_3" class="span2 header-menu-item"><a href="#">网上党校</a></li>
 				<li id="page_5" class="span2 header-menu-item"><a href="#">图书馆</a></li>
-				<li id="page_6" class="span1 header-menu-item"><a href="${rootPath}/jforum/jforum.page?module=user&action=validateLogin&username=${user.userName}&password=${user.userPassword }&login=%E7%99%BB%E5%85%A5" >社区</a></li>
+				<li id="page_6" class="span1 header-menu-item"><a href="${rootPath}/jforum/jforum.page?module=user&action=validateLogin&username=${user.userName}&password=admin&login=%E7%99%BB%E5%85%A5" >社区</a></li>
 			</ul>
 		</div>
 	</div>

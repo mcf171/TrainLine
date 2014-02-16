@@ -1,10 +1,11 @@
-<link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
-<link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
-<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
-<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
-<link rel="stylesheet" type="text/css" href="../styles/report.css" />
-<script type="text/javascript" src="../scripts/mmgrid.js"></script>
-<script type="text/javascript" src="../scripts/mmpaginator.js"></script>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<link rel="stylesheet" type="text/css" href="${basePath}styles/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/mmpaginator.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmpaginator.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/report.css" />
+<script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
+<script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
 
 <!-- <div class="row-fluid line-margin">
 	<div class="span12">
@@ -117,4 +118,6 @@
 <div>&nbsp;</div>
 </div>
 </div>
+	
+	
 	

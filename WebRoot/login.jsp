@@ -113,8 +113,7 @@
 	</c:if>
 	<div id="lay_bg" class="lay_background"
 		style="width: 1366px; height: 216px;">
-		<img id="lay_bg_img" class="backendgroundImg" alt=""
-			src="${basePath}images/bk5.jpg">
+		<img id="lay_bg_img" class="backendgroundImg" alt="" >
 	</div>
 
 

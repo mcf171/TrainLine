@@ -51,6 +51,9 @@ $(document).ready(function(){
 	$("#lay_bg_img").css("width",bkWidth);
 	$("#lay_bg_img").css("height",bkHeight);
 	
+	var bkNumber = Math.floor(Math.random()*5);
+	bkNumber = bkNumber+1;
+	$("#lay_bg_img").attr("src","images/bk"+bkNumber+".jpg");
 });
 function checkNull(){
 	

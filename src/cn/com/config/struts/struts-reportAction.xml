@@ -10,7 +10,7 @@
 		</action>
 		<action name="getNianDuPeiJiXunJiHuaShiShiQingKuang" class="reportAction" method="getNianDuPeiJiXunJiHuaShiShiQingKuang">
 			<result>
-			/WEB-INF/jsp/backend/report/niandupeixunwanchengqingkuang.jsp
+			/WEB-INF/jsp/backend/report/niandupeixunjihua.jsp
 			</result>
 		</action>
 		<action name="getPeiXunRenYuanBaoMingBiaoPage" class="reportAction" method="getPeiXunRenYuanBaoMingBiaoPage">
@@ -28,5 +28,38 @@
 			/WebRoot/WEB-INF/jsp/backend/report/gangweipeixunbanxiangxi.jsp
 			</result>
 		</action>
+		
+		<action name="getJiaoShiXinXiDengJiPage" class="reportAction" method="getJiaoShiXinXiDengJiPage">
+			<result>/WEB-INF/jsp/backend/report/jiaoshixinxidengji.jsp</result>
+		</action>
+		<action name="getJiaoShiGongZuoQingKuangPage" class="reportAction" method="getJiaoShiGongZuoQingKuangPage">
+			<result>/WEB-INF/jsp/backend/report/jiaoshigongzuoqingkuang.jsp</result>
+		</action>
+		
+		<action name="getWuDayuanQuZhengKaoShengHuaMingCePage" class="reportAction" method="getWuDayuanQuZhengKaoShengHuaMingCePage">
+			<result>/WEB-INF/jsp/backend/report/wudayuanquzhengkaoshenghuamingce.jsp</result>
+		</action>
+		<action name="getWuDaYuanBaoMingDengJiPage" class="reportAction" method="getWuDaYuanBaoMingDengJiPage">
+			<result>/WEB-INF/jsp/backend/report/wudayuanbaomingdengji.jsp</result>
+		</action>
+		<action name="getZhiYeJiNengJianDing" class="reportAction" method="getZhiYeJiNengJianDing">
+			<result>/WEB-INF/jsp/backend/report/zhiyejinengjianding.jsp</result>
+		</action>
+		<action name="getJiShiPingShenPage" class="reportAction" method="getJiShiPingShenPage">
+			<result>/WEB-INF/jsp/backend/report/jishipingshen.jsp</result>
+		</action>
+		<action name="getGaoJiJishuPingShenPage" class="reportAction" method="getGaoJiJishuPingShenPage">
+			<result>/WEB-INF/jsp/backend/report/gaojijishupingshen.jsp</result>
+		</action>
+		<action name="getPeiXunRiChengAnPaiPage" class="reportAction" method="getPeiXunRiChengAnPaiPage">
+			<result>/WEB-INF/jsp/backend/report/peixunrichenganpai.jsp</result>
+		</action>
+		<action name="getPeiXunBanBaoMingPage" class="reportAction" method="getPeiXunBanBaoMingPage">
+			<result>/WEB-INF/jsp/backend/report/peixunbanbaoming.jsp</result>
+		</action>
+		<action name="getNianDuPeiXunWanChengQingKuangPage" class="reportAction" method="getNianDuPeiXunWanChengQingKuangPage">
+			<result>/WEB-INF/jsp/backend/report/niandupeixunwanchengqingkuang.jsp</result>
+		</action>
+		
 	</package>
 </struts>    

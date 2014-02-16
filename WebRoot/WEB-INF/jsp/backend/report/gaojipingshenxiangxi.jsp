@@ -1,13 +1,20 @@
-<link rel="stylesheet" type="text/css" href="../styles/mmgrid.css" />
-<link rel="stylesheet" type="text/css" href="../styles/mmpaginator.css" />
-<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmgrid.css" />
-<link rel="stylesheet" type="text/css" href="../themes/mmgrid/mmpaginator.css" />
-<script type="text/javascript" src="../scripts/mmgrid.js"></script>
-<script type="text/javascript" src="../scripts/mmpaginator.js"></script>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+    <link rel="stylesheet" type="text/css" href="${basePath}styles/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/mmpaginator.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmpaginator.css" />
+<script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
+<script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
+
 
 <!-- <div class="row-fluid line-margin">
 	<div class="span12">
-		<img src="report/jiaoshigongzuoqingkuang.png" usemap="#Map2"/>
+		<a href="report/gaojipingshenxiangxi.html"><img src="report/gaojijishupingshen.png" usemap="#Map2"/></a>
 	</div>
 </div> -->
 
@@ -24,11 +31,11 @@ $(document).ready(function ()
 		fullWithRows: true,
 		cols: [
 			{ title: '序号', sortable: true, width: 100, name: '' },	
-			{ title: '姓名', sortable: true, width: 130, name: '' },
-			{ title: '性别', sortable: true, width: 130, name: '' },
-			{ title: '出生年月', sortable: true, width: 170, name: '' },
-			{ title: '文化程度', sortable: true, width: 130, name: '' },
-			{ title: '民族', sortable: true, width: 130, name: '' }
+			{ title: '姓名', sortable: true, width: 110, name: '' },
+			{ title: '性别', sortable: true, width: 110, name: '' },
+			{ title: '出生年月', sortable: true, width: 125, name: '' },
+			{ title: '籍贯', sortable: true, width: 200, name: '' },
+			{ title: '最高学历（学位）', sortable: true, width: 140, name: '' }
 		],
 		plugins: [
 			$('#page').mmPaginator({})
@@ -40,6 +47,9 @@ $(document).ready(function ()
 
 
 <div class="row-fluid">
+	<div class="span12">
+		<button class="btn" onclick="loadHTML('report/gaojipingshenxiangxi.html')"><i class="icon-plus"></i>添加</button>
+	</div>
 	    <div class="row-fluid">
             	<div class="span12">
             		<form id="condition" class="span12 form-inline no-margin">
@@ -82,5 +92,4 @@ $(document).ready(function ()
             	</div>
             </div>
 </div>
-	
-	
+
