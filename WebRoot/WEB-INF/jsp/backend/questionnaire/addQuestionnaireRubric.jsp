@@ -17,7 +17,7 @@ $("#confirmQuestionnaire").click(function(){
 
 $("#confirm").click(function (){
 	
-	var questionnaireRubricContent="";
+	var questionnaireChooses="";
 	var questionnaireId = ${questionnaireId};
 	var questionnaireRubricWeight = $("#questionnaireRubricWeight").val();
 	var questionnaireRubricIntroduce = $("#questionnaireRubricIntroduce").val();
@@ -25,21 +25,21 @@ $("#confirm").click(function (){
 		
 	case 1:
 		$(".danxuan").each(function(){
-			questionnaireRubricContent += $(this).val() + "~";
+			questionnaireChooses +=  "&questionnaireChooses="+$(this).val();
 		});
 		break;
 	case 2:
 		$(".duoxuan").each(function(){
-			questionnaireRubricContent += $(this).val() + "~";
+			questionnaireChooses +=  "&questionnaireChooses="+$(this).val();
 		});
 		break;
 	case 3:
-		questionnaireRubricContent = $("#questionnaireRubricContent").val();
+		questionnaireChooses = "&questionnaireChooses="+$("#questionnaireRubricContent").val();
 	};
 	$.ajax({
 		type:"post",
 		url:"${basePath}admin/addQuestionnaireRubric.action",
-		data:"questionnaireRubric.questionnaireRubricContent="+questionnaireRubricContent+"&questionnaireRubric.questionnaire.questionnaireId="+questionnaireId+"&questionnaireRubric.questionnaireRubricType="+testType+"&questionnaireRubric.questionnaireRubricWeight=" + questionnaireRubricWeight +"&questionnaireRubric.questionnaireRubricIntroduce=" + questionnaireRubricIntroduce,
+		data:"questionnaireRubric.questionnaire.questionnaireId="+questionnaireId+"&questionnaireRubric.questionnaireRubricType="+testType+"&questionnaireRubric.questionnaireRubricWeight=" + questionnaireRubricWeight +"&questionnaireRubric.questionnaireRubricIntroduce=" + questionnaireRubricIntroduce+questionnaireChooses,
 		success:function(msg){
 			
 			var questionnaireRubricId = msg.questionnaireRubricId;

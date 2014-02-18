@@ -4,20 +4,38 @@ import java.util.List;
 import java.util.Map;
 
 import cn.com.base.BaseActionSupport;
+import cn.com.model.Questionnaire;
 import cn.com.model.QuestionnaireArrangement;
 import cn.com.model.User;
 import cn.com.service.QuestionnaireArrangementService;
+import cn.com.service.QuestionnaireChooseService;
 
 public class QuestionnaireArrangementAction extends BaseActionSupport{
-	
+		
 	private Map<String,Object> dataMap;
 	private QuestionnaireArrangementService questionnaireArrangementService;
 	private QuestionnaireArrangement questionnaireArrangement;
+	private QuestionnaireChooseService questionnaireChooseService;
 	private String[] userId;
+	private String[] questionnaireChooseIds;
+	
+	/**
+	 * 完成一份问卷，暂时只包括选择题
+	 * @author:Apache
+	 * @time:2014-2-18 15:00
+	 * @return
+	 */
+	public String finishQuestionnaireArrangement(){
+		
+		questionnaireArrangementService.finishQuestionnaire(questionnaireArrangement);
+		questionnaireChooseService.update(questionnaireChooseIds);
+		
+		return this.SUCCESS;
+	}
 	
 	/**后台获得增加问卷安排页面
-	 * author:Apache
-	 * time:2014-1-20 21:50
+	 * @author:Apache
+	 * @time:2014-1-20 21:50
 	 * @return /WEB-INF/jsp/backend/questionnaire/addQuestionnaireArrangement.jsp
 	 */
 	public String getAddQuestionnaireArrangementPage(){
@@ -27,8 +45,8 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 	
 	/**
 	 * 后台获取问卷安排详细信息页面
-	 * author:Apache
-	 * time:2014-1-31 22:27
+	 * @author:Apache
+	 * @time:2014-1-31 22:27
 	 * @return
 	 */
 	public String getShowQuestionnaireArrangmentInfoPage(){
@@ -48,8 +66,8 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 	
 	/**
 	 * 更新QuestionnaireArrangment
-	 * author:Apache
-	 * time:2014-1-31 22:57
+	 * @author:Apache
+	 * @time:2014-1-31 22:57
 	 * @return
 	 */
 	public String updateQuestionnaireArrangement(){
@@ -62,7 +80,7 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 	/**
 	 * 获取后台显示所有问卷安排列表页面
 	 * author: Apache
-	 * time: 2014-1-22 17:01
+	 * @time: 2014-1-22 17:01
 	 * @return /WEB-INF/jsp/backend/questionnaire/questionnaireArrangementList.jsp
 	 */
 	public String getQuestionnaireArrangementListPage(){
@@ -72,8 +90,8 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 
 	/**
 	 * 后台获取所有问卷安排
-	 * author:Apache
-	 * time:2014-1-22 17:04
+	 * @author:Apache
+	 * @time:2014-1-22 17:04
 	 * @return
 	 */
 	public String getQuestionnaireArrangementList(){
@@ -87,8 +105,8 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 	
 	/**
 	 * 后台删除QuestinonaireArrangement
-	 * author:Apache
-	 * time: 2014-1-22 15:47
+	 * @author:Apache
+	 * @time: 2014-1-22 15:47
 	 * @return
 	 */
 	public String deleteQuestionnaireArrangement(){
@@ -100,8 +118,8 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 	
 	/**
 	 * 后台增加问卷安排
-	 * author:Apache
-	 * time:2014-1-23 12:00
+	 * @author:Apache
+	 * @time:2014-1-23 12:00
 	 * @return
 	 */
 	public String addQuestionnaireArrangement(){
@@ -164,6 +182,23 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 
 	public void setUserId(String[] userId) {
 		this.userId = userId;
+	}
+
+	public QuestionnaireChooseService getQuestionnaireChooseService() {
+		return questionnaireChooseService;
+	}
+
+	public void setQuestionnaireChooseService(
+			QuestionnaireChooseService questionnaireChooseService) {
+		this.questionnaireChooseService = questionnaireChooseService;
+	}
+
+	public String[] getQuestionnaireChooseIds() {
+		return questionnaireChooseIds;
+	}
+
+	public void setQuestionnaireChooseIds(String[] questionnaireChooseIds) {
+		this.questionnaireChooseIds = questionnaireChooseIds;
 	}
 
 	

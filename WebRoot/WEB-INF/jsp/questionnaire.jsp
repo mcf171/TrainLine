@@ -65,29 +65,29 @@
                   </div>
                   
                   <div class="div_table_radio_question" id="divquestion${index.index+1}">
+                  
                   <script>
                  	testType = ${item.questionnaireRubricType};
-                  	var question = '${item.questionnaireRubricContent}';
-                  	var questionIntroduce = question.split('~');
-                  	var 
-                  	insertHTML='<ul>';
-                  	for(i = 0 ; i < questionIntroduce.length; i++){
+                 	var i = 0;
+                  	var insertHTML='<ul>';
+                  	<c:forEach var="item_item" items="${item.questionnaireChoose }">
+                  	
                   		switch(testType){
                   		
                   		case 1:
 	                  		switch(i){
 	            			
-	                		case 0: insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="A" type="radio">'+
-	                					'<label for="q1_1">A.' + questionIntroduce[i] + '</label>' + '</li>';
+	                		case 0: insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="A" type="radio">'+
+	                					'<label for="q1_1">A.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
 	                		; break;
-	                		case 1:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="B" type="radio">'+
-	                					'<label for="q1_1">B.' + questionIntroduce[i] + '</label>' + '</li>';
+	                		case 1:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="B" type="radio">'+
+	                					'<label for="q1_1">B.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
 	                		; break;
-	                		case 2:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="C" type="radio">'+
-	                					'<label for="q1_1">C.' + questionIntroduce[i] + '</label>' + '</li>';
+	                		case 2:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="C" type="radio">'+
+	                					'<label for="q1_1">C.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
 	                		; break;
-	                		case 3:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="D" type="radio">'+
-	                					'<label for="q1_1">D.' + questionIntroduce[i] + '</label>' + '</li>';
+	                		case 3:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="D" type="radio">'+
+	                					'<label for="q1_1">D.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
 	                		; break;
 	                		default: chooseBianhao = 'I';
 	                		
@@ -95,17 +95,17 @@
                   		case 2:
 							switch(i){
 	            			
-							case 0: insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="A" type="checkbox">'+
-        					'<label for="q1_1">A.' + questionIntroduce[i] + '</label>' + '</li>';
+							case 0: insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="A" type="checkbox">'+
+        					'<label for="q1_1">A.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
         					; break;
-			        		case 1:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="B" type="checkbox">'+
-			        					'<label for="q1_1">B.' + questionIntroduce[i] + '</label>' + '</li>';
+			        		case 1:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="B" type="checkbox">'+
+			        					'<label for="q1_1">B.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
 			        		; break;
-			        		case 2:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="C" type="checkbox">'+
-			        					'<label for="q1_1">C.' + questionIntroduce[i] + '</label>' + '</li>';
+			        		case 2:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="C" type="checkbox">'+
+			        					'<label for="q1_1">C.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
 			        		; break;
-			        		case 3:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="D" type="checkbox">'+
-			        					'<label for="q1_1">D.' + questionIntroduce[i] + '</label>' + '</li>';
+			        		case 3:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="D" type="checkbox">'+
+			        					'<label for="q1_1">D.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
 			        		; break;
 	                		default: chooseBianhao = 'I';
 	                		
@@ -114,7 +114,8 @@
                   		}
                   		
                   		insertHTML += '<div style="clear:both;"></div></ul>';	
-                  	}
+                  		i++;
+                  	</c:forEach>
                   	$("#divquestion${index.index+1}").append(insertHTML);
                   </script>
                     
@@ -128,14 +129,31 @@
                 <script>
                 $(document).ready(function(){
                 	$("#confirm").click(function(){
-                		confirmData="questionnaireRubricResults.questionnaireRubricResultId=1&questionnaireRubricResults.questionnaireRubricResultId=2"
+                		
+                		var dataInfo="";
+                		$("input[type='radio']").each(function(){
+                			   var id= $(this).attr("id");
+                			   if($(this).prop("checked")==true){
+                				   dataInfo += "&questionnaireChooseIds=" + id;
+                			   }
+                			  });
+                		$("input[type='checkbox']").each(function(){
+             			   var id= $(this).attr("id");
+             			   if($("#"+id).prop("checked")==true){
+             				   dataInfo += "&questionnaireChooseIds=" + id;
+             			   }
+             			  });
+                		
+                		console.log(dataInfo);
+                		
                 		$.ajax({
                 			
                 			type:"post",
-                			url:"${basePath}saveQuestionnaireRubricResult.action",
-                			data:confirmData,
+                			url:"${basePath}finishQuestionnaireArrangement.action",
+                			data:"questionnaireArrangement.questionnaireArrangementId=${questionnaireArrangement.questionnaireArrangementId}"+dataInfo,
                 			success:function(){
-                				alert(1);
+                				alert("完成问卷");
+                				window.close();
                 			}
                 		});
                 	});	

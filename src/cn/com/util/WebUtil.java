@@ -8,6 +8,8 @@ import com.opensymphony.xwork2.ActionContext;
 
 public class WebUtil {
 
+	
+	
 	public static String getWebSitePhysalPath(){
 		String physicalPath;
 		ActionContext ac = ActionContext.getContext();   

@@ -112,7 +112,7 @@
 		</div>
 	</c:if>
 	<div id="lay_bg" class="lay_background"
-		style="width: 1366px; height: 216px;">
+		style="width: 1366px; height: 216px;display:none">
 		<img id="lay_bg_img" class="backendgroundImg" alt="" >
 	</div>
 

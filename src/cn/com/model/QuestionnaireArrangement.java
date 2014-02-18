@@ -18,6 +18,7 @@ public class QuestionnaireArrangement implements java.io.Serializable {
 	private Timestamp questionArrangementBeginTime;
 	private Timestamp questionArrangementOverTime;
 	private String questionArrangementIntro;
+	private int finishCount;
 
 	// Constructors
 
@@ -106,6 +107,14 @@ public class QuestionnaireArrangement implements java.io.Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public int getFinishCount() {
+		return finishCount;
+	}
+
+	public void setFinishCount(int finishCount) {
+		this.finishCount = finishCount;
 	}
 
 	

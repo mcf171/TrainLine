@@ -10,7 +10,6 @@ import cn.com.model.Questionnairerubric;
 public class QuestionnairerubricService {
 	
 	private QuestionnairerubricDAO questionnairerubricDAO;
-	private QuestionnaireRubricResultService questionnaireRubricResultService;
 
 	/**
 	 * 进行保存QuestionnaireRubric并同时保存结果
@@ -25,10 +24,6 @@ public class QuestionnairerubricService {
 		try {
 		
 			questionnaireRubricId = questionnairerubricDAO.save(questionnairerubric);
-			questionnairerubric = questionnairerubricDAO.findById(questionnaireRubricId);
-			QuestionnaireRubricResult result = new QuestionnaireRubricResult();
-			result.setQuestionnaireRubric(questionnairerubric);
-			questionnaireRubricResultService.insert(result);
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -47,9 +42,16 @@ public class QuestionnairerubricService {
 	{
 	}
 
-	public Questionnairerubric getQuestionnairerubric(Questionnairerubric questionnairerubric)
+	/**
+	 * 通过ID查询QuestionnaireRubric
+	 * @author: Apache
+	 * @time: 2014-2-18 12:12
+	 * @param questionnairerubric
+	 * @return
+	 */
+	public Questionnairerubric getQuestionnairerubric(int questionnaireRubricId)
 	{
-		return questionnairerubricDAO.findById(questionnairerubric.getQuestionnaireRubricId());
+		return questionnairerubricDAO.findById(questionnaireRubricId);
 	}
 	
 	public List<Questionnairerubric> findAll(){
@@ -66,14 +68,6 @@ public class QuestionnairerubricService {
 		this.questionnairerubricDAO = questionnairerubricDAO;
 	}
 
-	public QuestionnaireRubricResultService getQuestionnaireRubricResultService() {
-		return questionnaireRubricResultService;
-	}
-
-	public void setQuestionnaireRubricResultService(
-			QuestionnaireRubricResultService questionnaireRubricResultService) {
-		this.questionnaireRubricResultService = questionnaireRubricResultService;
-	}
 
 	
 }

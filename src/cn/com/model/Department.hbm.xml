@@ -22,7 +22,7 @@
         <property name="departmentShortName" type="java.lang.String">
             <column name="departmentShortName" length="20" />
         </property>
-        <property name="businessUnits" type="java.lang.String">
+        <property name="businessUnits" type="java.lang.String" >
             <column name="BusinessUnits" length="20" />
         </property>
         <property name="departmentCoding" type="java.lang.Integer">

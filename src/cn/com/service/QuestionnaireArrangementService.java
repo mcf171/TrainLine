@@ -82,7 +82,7 @@ public class QuestionnaireArrangementService {
 				Message message = new Message();
 				message.setMessageTime(new Timestamp(System.currentTimeMillis()));
 				message.setMessageTitle(questionnaireArrangement.getQuestionArrangementName());
-				message.setUrl("getQuestionnaireArrangePage.action?questionnaireArrangement.questionnaireArrangementId="+questionnaireArrangement.getQuestionnaireArrangementId());
+				message.setUrl("getQuestionnaireArrangePage.action?questionnaireArrangement.questionnaireArrangement.questionnaireArrangementId="+questionnaireArrangement.getQuestionnaireArrangementId());
 				message.setWeight(2);
 				message.setUser(item);
 				messageService.addMessage(message);
@@ -132,6 +132,20 @@ public class QuestionnaireArrangementService {
 		
 	}
 	
+
+	/**
+	 * 完成一份问卷
+	 * @author:Apache
+	 * @time:2014-2-18 15:47
+	 * @param questionnaireArrangement
+	 */
+	public void finishQuestionnaire(
+			QuestionnaireArrangement questionnaireArrangement) {
+		// TODO Auto-generated method stub
+		questionnaireArrangement = questionnaireArrangementDAO.findById(questionnaireArrangement.getQuestionnaireArrangementId());
+		questionnaireArrangement.setFinishCount(questionnaireArrangement.getFinishCount()+1);
+	}
+	
 	public QuestionnaireArrangementDAO getQuestionnaireArrangementDAO() {
 		return questionnaireArrangementDAO;
 	}
@@ -156,5 +170,6 @@ public class QuestionnaireArrangementService {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
+
 
 }

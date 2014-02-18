@@ -1,5 +1,7 @@
 package cn.com.model;
 
+import java.util.Set;
+
 /**
  * Questionnairerubric entity. @author MyEclipse Persistence Tools
  */
@@ -13,8 +15,7 @@ public class Questionnairerubric implements java.io.Serializable {
 	private Integer questionnaireRubricType;
 	private Integer questionnaireRubricWeight;
 	private String questionnaireRubricIntroduce;
-	private String questionnaireRubricContent;
-	private QuestionnaireRubricResult questionnaireRubricResult;
+	private Set<QuestionnaireChoose> questionnaireChoose;
 
 	// Constructors
 
@@ -23,13 +24,7 @@ public class Questionnairerubric implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Questionnairerubric(Questionnaire questionnaire,
-			Integer questionnaireRubricType, String questionnaireRubricContent) {
-		this.questionnaire = questionnaire;
-		this.questionnaireRubricType = questionnaireRubricType;
-		this.questionnaireRubricContent = questionnaireRubricContent;
-	}
-
+	
 	// Property accessors
 
 	public Integer getQuestionnaireRubricId() {
@@ -56,12 +51,14 @@ public class Questionnairerubric implements java.io.Serializable {
 		this.questionnaireRubricType = questionnaireRubricType;
 	}
 
-	public String getQuestionnaireRubricContent() {
-		return this.questionnaireRubricContent;
+	
+
+	public Set<QuestionnaireChoose> getQuestionnaireChoose() {
+		return questionnaireChoose;
 	}
 
-	public void setQuestionnaireRubricContent(String questionnaireRubricContent) {
-		this.questionnaireRubricContent = questionnaireRubricContent;
+	public void setQuestionnaireChoose(Set<QuestionnaireChoose> questionnaireChoose) {
+		this.questionnaireChoose = questionnaireChoose;
 	}
 
 	public Integer getQuestionnaireRubricWeight() {
@@ -80,13 +77,6 @@ public class Questionnairerubric implements java.io.Serializable {
 		this.questionnaireRubricIntroduce = questionnaireRubricIntroduce;
 	}
 
-	public QuestionnaireRubricResult getQuestionnaireRubricResult() {
-		return questionnaireRubricResult;
-	}
-
-	public void setQuestionnaireRubricResult(
-			QuestionnaireRubricResult questionnaireRubricResult) {
-		this.questionnaireRubricResult = questionnaireRubricResult;
-	}
+	
 
 }

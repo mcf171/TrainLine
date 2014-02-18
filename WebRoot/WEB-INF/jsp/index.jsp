@@ -45,6 +45,20 @@ $(document).ready(function ()
 	load_page('page_0');
 
 });
+
+function deleteMessage(messageId){
+	
+	var messageInfo = "message.messageId="+ messageId;
+	$.ajax({
+		
+		type:"post",
+		url:"deleteMessage.action",
+		data:	messageInfo,
+		success:function(){
+			$("#message"+messageId).fadeOut();
+		}
+	});
+}
 //]]>
 </script>
 </head>
@@ -90,10 +104,14 @@ $(document).ready(function ()
 					<hr class="seperator" />
 					
 					<c:forEach items="${user.message}" var="item"  varStatus="s">
-					<div class="row-fluid">
-						<div class="span12">
+					<div class="row-fluid" id="message${item.messageId}">
+						<div class="span10 pull-left">
 						
-					        ${s.count}、<a href="${basePath}${item.url}">${item.messageTitle }</a>
+					        ${s.count}、<a href="${basePath}${item.url}" target="_blank">${item.messageTitle }</a>
+						</div>
+						<div class="span2 pull-right">
+						
+					       <a href="javascript:void(0)" onclick="deleteMessage(${item.messageId})">删除</a>
 						</div>
 					</div>
 					</c:forEach>

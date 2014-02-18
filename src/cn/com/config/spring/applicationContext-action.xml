@@ -10,6 +10,11 @@
 	
 	<bean id="emailAction" class="cn.com.action.EmailAction"></bean>
 	
+	<bean id="messageAction" class="cn.com.action.MessageAction">
+		<property name="messageService" ref="messageService"></property>
+		<property name="dataMap" ref="hashMap"></property>
+	</bean>
+	
 	<bean id="questionnaireRubricResultAction" class="cn.com.action.QuestionnaireRubricResultAction">
 		<property name="dataMap" ref="hashMap"></property>
 	</bean>
@@ -62,6 +67,7 @@
 	
 	<bean id="questionnaireArrangementAction" class="cn.com.action.QuestionnaireArrangementAction">
 		<property name="questionnaireArrangementService" ref="questionnaireArrangementService"></property>
+		<property name="questionnaireChooseService" ref="questionnaireChooseService"></property>
 		<property name="dataMap" ref="hashMap"></property>
 	</bean>
 
@@ -72,6 +78,7 @@
 
 	<bean id="questionnaireRubricAction" class="cn.com.action.QuestionnaireRubricAction"
 		scope="prototype">
+		<property name="questionnaireChooseService" ref="questionnaireChooseService"></property>
 		<property name="questionnairerubricService" ref="questionnairerubricService"></property>
 		<property name="dataMap" ref="hashMap"></property>
 	</bean>

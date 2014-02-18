@@ -30,6 +30,10 @@
     </tx:attributes>
   </tx:advice>
 	
+	<bean id="questionnaireChooseService" class="cn.com.service.QuestionnaireChooseService">
+		<property name="questionnaireChooseDAO" ref="QuestionnaireChooseDAO"></property>
+	</bean>
+	
 	<bean id="classCaseService" class="cn.com.service.ClassCaseService">
 		<property name="classCaseDAO" ref="ClasscaseDAO"></property>
 	</bean>
@@ -76,7 +80,6 @@
 	
 	<bean id="questionnairerubricService" class="cn.com.service.QuestionnairerubricService">
 		<property name="questionnairerubricDAO" ref="QuestionnairerubricDAO"></property>
-		<property name="questionnaireRubricResultService" ref="questionnaireRubricResultService"></property>
 	</bean>
 
 	<bean id="courseService" class="cn.com.service.CourseService">

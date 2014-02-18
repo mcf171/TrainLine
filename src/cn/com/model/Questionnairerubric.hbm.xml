@@ -16,9 +16,7 @@
         <property name="questionnaireRubricType" type="java.lang.Integer">
             <column name="questionnaireRubricType" />
         </property>
-        <property name="questionnaireRubricContent" type="java.lang.String">
-            <column name="questionnaireRubricContent" length="500" />
-        </property>
+        
         <property name="questionnaireRubricWeight" type="java.lang.Integer">
         	<column name="questionnaireRubricWeight"></column>
         </property>
@@ -26,6 +24,13 @@
         	<column name="questionnaireRubricIntroduce" length="500"></column>
         </property>
         
-        <one-to-one name="questionnaireRubricResult" class="cn.com.model.QuestionnaireRubricResult" lazy="false" cascade="all" />
+        <set name="questionnaireChoose" inverse="true" lazy="false" cascade="all" order-by="questionnaireChooseId asc"> 
+            <key>
+                <column name="questionnaireRubricId" />
+            </key>
+            <one-to-many class="cn.com.model.QuestionnaireChoose" />
+        </set>
+        
+        <!-- <one-to-one name="questionnaireRubricResult" class="cn.com.model.QuestionnaireRubricResult" lazy="false" cascade="all" /> -->
     </class>
 </hibernate-mapping>

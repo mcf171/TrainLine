@@ -5,6 +5,7 @@ import java.util.Map;
 
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Questionnairerubric;
+import cn.com.service.QuestionnaireChooseService;
 import cn.com.service.QuestionnairerubricService;
 /**
  * 
@@ -15,7 +16,9 @@ public class QuestionnaireRubricAction extends BaseActionSupport{
 	
 	private List<Questionnairerubric> qrList = null;
 	private QuestionnairerubricService questionnairerubricService;
+	private QuestionnaireChooseService questionnaireChooseService;
 	private Questionnairerubric questionnaireRubric;
+	private String[] questionnaireChooses;
 	
 	private Map<String, Object>dataMap;
 	/**
@@ -37,6 +40,8 @@ public class QuestionnaireRubricAction extends BaseActionSupport{
 	public String addQuestionnaireRubric(){
 		
 		int questionnaireRubricId = questionnairerubricService.insert(questionnaireRubric);
+		questionnaireRubric = questionnairerubricService.getQuestionnairerubric(questionnaireRubricId);
+		questionnaireChooseService.insert(questionnaireChooses,questionnaireRubric);
 		dataMap.put("questionnaireRubricId", questionnaireRubricId);
 		return this.SUCCESS;
 	}
@@ -83,6 +88,20 @@ public class QuestionnaireRubricAction extends BaseActionSupport{
 	public void setDataMap(Map<String, Object> dataMap) {
 		this.dataMap = dataMap;
 	}
-
+	public String[] getQuestionnaireChooses() {
+		return questionnaireChooses;
+	}
+	public void setQuestionnaireChooses(String[] questionnaireChooses) {
+		this.questionnaireChooses = questionnaireChooses;
+	}
+	public QuestionnaireChooseService getQuestionnaireChooseService() {
+		return questionnaireChooseService;
+	}
+	public void setQuestionnaireChooseService(
+			QuestionnaireChooseService questionnaireChooseService) {
+		this.questionnaireChooseService = questionnaireChooseService;
+	}
+	
+	
 	
 }

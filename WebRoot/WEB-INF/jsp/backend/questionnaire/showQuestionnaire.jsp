@@ -43,7 +43,6 @@ $("#submit").click(function(){
 <span>题型：单选题</span>
 <i class="icon-stop"></i>
 <span>权重为：1</span>
-<button class="btn btn-default" value="20" onclick="deleteQuestionnaireRubric(this)" type="button">删除</button>
 </div>
 <hr class="seperator">
 				

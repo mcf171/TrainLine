@@ -54,6 +54,7 @@ $(document).ready(function(){
 	var bkNumber = Math.floor(Math.random()*5);
 	bkNumber = bkNumber+1;
 	$("#lay_bg_img").attr("src","images/bk"+bkNumber+".jpg");
+	$("#lay_bg").fadeIn("slow");
 });
 function checkNull(){
 	
