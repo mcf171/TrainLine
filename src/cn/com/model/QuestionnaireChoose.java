@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class QuestionnaireChoose implements Serializable{
 
-	private int questionnaireChooseId;
+	private Integer questionnaireChooseId;
 	private String questionnaireChooseContent;
 	private Questionnairerubric questionnaireRubric;
-	private int count;
-	public int getQuestionnaireChooseId() {
+	private Integer count;
+	public Integer getQuestionnaireChooseId() {
 		return questionnaireChooseId;
 	}
-	public void setQuestionnaireChooseId(int questionnaireChooseId) {
+	public void setQuestionnaireChooseId(Integer questionnaireChooseId) {
 		this.questionnaireChooseId = questionnaireChooseId;
 	}
 	public String getQuestionnaireChooseContent() {
@@ -20,17 +20,17 @@ public class QuestionnaireChoose implements Serializable{
 	public void setQuestionnaireChooseContent(String questionnaireChooseContent) {
 		this.questionnaireChooseContent = questionnaireChooseContent;
 	}
-	public int getCount() {
-		return count;
-	}
-	public void setCount(int count) {
-		this.count = count;
-	}
 	public Questionnairerubric getQuestionnaireRubric() {
 		return questionnaireRubric;
 	}
 	public void setQuestionnaireRubric(Questionnairerubric questionnaireRubric) {
 		this.questionnaireRubric = questionnaireRubric;
+	}
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 	
 	

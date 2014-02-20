@@ -7,6 +7,10 @@
 	
 	<package name="questionnaireAdmin" namespace="/admin" extends="system">
 		
+		<action name="getUpdateQuestionnairePage" class="questionnarieAction" method="getUpdateQuestionnairePage">
+			<result>/WEB-INF/jsp/backend/questionnaire/updateQuestionnaire.jsp</result>
+		</action>
+		
 		<action name="showQuestionnaire" class="questionnarieAction" method="showQuestionnaire">
 			<result>/WEB-INF/jsp/backend/questionnaire/showQuestionnaire.jsp</result>
 		</action>

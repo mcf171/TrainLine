@@ -23,7 +23,8 @@
             <column name="open" />
         </property>
         <!-- <set name="questionnairerubrics" inverse="true" lazy="false" cascade="all" sort="cn.com.sort.QuestionnaireRubricSort"> -->
-        <set name="questionnairerubrics" inverse="true" lazy="false" cascade="all" order-by="questionnaireId asc"> 
+    
+        <set name="questionnairerubrics" inverse="true" lazy="false" cascade="delete" order-by="questionnaireId asc"> 
             <key>
                 <column name="questionnaireId" />
             </key>

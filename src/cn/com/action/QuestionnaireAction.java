@@ -20,6 +20,19 @@ public class QuestionnaireAction extends BaseActionSupport{
 	}
 
 	/**
+	 * 获取updateQuestionnaire页面
+	 * @author Apache
+	 * @time 2014-2-19 14:07
+	 * @return
+	 */
+	public String getUpdateQuestionnairePage(){
+		
+		questionnaire = questionnairerService.getQuestionnaire(questionnaire.getQuestionnaireId());
+		request.setAttribute("questionnaire", questionnaire);
+		return this.SUCCESS;
+	}
+	
+	/**
 	 * 返回指定questionnaire页面
 	 * author:Apache
 	 * time:2014-2-13 18:17
@@ -27,7 +40,7 @@ public class QuestionnaireAction extends BaseActionSupport{
 	 */
 	public String showQuestionnaire(){
 		
-		questionnaire = questionnairerService.getQuestionnaire(questionnaire);
+		questionnaire = questionnairerService.getQuestionnaire(questionnaire.getQuestionnaireId());
 		request.setAttribute("questionnaire", questionnaire);
 		return this.SUCCESS;
 	}
@@ -47,7 +60,7 @@ public class QuestionnaireAction extends BaseActionSupport{
 	public String getQuestionnaireById()
 	{
 		if(questionnaire!=null){
-			questionnaire =questionnairerService.getQuestionnaire(questionnaire);
+			questionnaire =questionnairerService.getQuestionnaire(questionnaire.getQuestionnaireId());
 		}
 		dataMap.put("questionnaire", questionnaire);
 		return this.SUCCESS;

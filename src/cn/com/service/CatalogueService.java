@@ -41,6 +41,7 @@ public class CatalogueService {
 				//resourceDAO.delete(item);
 			}
 			
+			catalogue.getCourse().getCatalogues().remove(catalogue);
 			catalogueDAO.delete(catalogue);
 			
 		} catch (Exception e) {

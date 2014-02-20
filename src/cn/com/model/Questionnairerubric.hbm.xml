@@ -10,7 +10,7 @@
             <column name="questionnaireRubricId" />
             <generator class="native" />
         </id>
-        <many-to-one name="questionnaire" class="cn.com.model.Questionnaire" fetch="select" >
+        <many-to-one name="questionnaire" class="cn.com.model.Questionnaire" fetch="select" cascade="all">
             <column name="questionnaireId" />
         </many-to-one>
         <property name="questionnaireRubricType" type="java.lang.Integer">

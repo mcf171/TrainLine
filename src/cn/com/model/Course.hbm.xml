@@ -35,7 +35,7 @@
             </key>
             <one-to-many class="cn.com.model.Userandcourse" />
         </set>
-        <set name="catalogues" inverse="true" cascade="all" lazy="false">
+        <set name="catalogues" inverse="true" cascade="all" lazy="false" order-by="cataloguaWeight asc">
             <key>
                 <column name="courseId" />
             </key>

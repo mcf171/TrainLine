@@ -110,11 +110,13 @@
 			
 		</action>
 		<action name="addCourse" class="courseAction" method="addCourse">
-			<result type="redirectAction">
+			<result>/utill.jsp</result>
+			<!-- <result type="redirectAction">
 				<param name="actionName">intoaddChapterPage.action</param>
 				<param name="courseId">${courseId}</param>
 				<param name="course.courseKind">${course.courseKind}</param>
 			</result>
+			 -->
 		</action>
 
 		<action name="intoaddChapterPage" class="courseAction" method="intoaddChapterPage">
@@ -128,10 +130,12 @@
 		</action>
 
 		<action name="addRescourse" class="courseAction" method="addRescourse">
-			<result type="redirectAction">
+			<result>/utill.jsp</result>
+		<!-- 	<result type="redirectAction">
 				<param name="actionName">getNoticeList</param>
 			</result>
 			<result name="continueAdd">/WEB-INF/jsp/backend/course/addCourseChapter.jsp</result>
+			 -->
 		</action>
 		
 		<action name="findAllCourse" class="courseAction" method="findAllCourse">

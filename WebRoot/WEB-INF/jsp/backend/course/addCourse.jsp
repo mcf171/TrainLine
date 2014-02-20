@@ -2,8 +2,17 @@
 <script type="text/javascript">
 var courseID ;
 
+function callback(msg){
+	
+	var info = msg.split("~");
+	loadHTML("${basePath}admin/intoaddChapterPage.action?courseId="+info[0]+"&course.courseKind=${course.courseKind}"+info[1]);
+}
+
 $(document).ready(function()
 {
+	
+	
+	/*
    function addBtn()
 	{
 	var btn = '<button class="btn btn-default" id="addChapter_Btn">去添加章节?</button>';
@@ -13,7 +22,7 @@ $(document).ready(function()
 	 window.location.href = "${basePath}admin/intoaddChapterPage.action?courseId="+courseID;
 	});
 	}
-	
+	*/
 	
 	/*
 	$("#addCourseAndSrcBtn").click(function(){
@@ -45,7 +54,7 @@ $(document).ready(function()
 		</div>
 
 		<form role="form" class="form-horizontal" action="${basePath}admin/addCourse.action" 
-		method="post">
+		method="post" target="hidden_frame">
 			<div class="control-group">
 				<label class="control-label" for="courseNameInput">课程名称:</label>
 				<div class="controls">
@@ -94,6 +103,6 @@ $(document).ready(function()
 				<button type="submit" class="btn btn-default" id="addCourseAndSrcBtn">添加</button>
 			</div>
 		</form>
-
+		<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
 	</div>
 </div>

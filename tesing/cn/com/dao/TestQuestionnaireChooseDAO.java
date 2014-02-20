@@ -22,8 +22,8 @@ public class TestQuestionnaireChooseDAO extends TestCase{
 		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 		QuestionnaireChooseDAO dao = (QuestionnaireChooseDAO) ac.getBean("QuestionnaireChooseDAO");
 		QuestionnaireChoose data = new QuestionnaireChoose();
-		data.setQuestionnaireChooseId(9);
+		data.setQuestionnaireChooseId(1);
 		data.setCount(3);
-		dao.merge(data);
+		dao.getHibernateTemplate().merge(data);
 	}
 }

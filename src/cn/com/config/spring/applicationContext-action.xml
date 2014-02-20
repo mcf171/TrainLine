@@ -10,21 +10,21 @@
 	
 	<bean id="emailAction" class="cn.com.action.EmailAction"></bean>
 	
-	<bean id="messageAction" class="cn.com.action.MessageAction">
+	<bean id="messageAction" class="cn.com.action.MessageAction" scope="prototype">
 		<property name="messageService" ref="messageService"></property>
 		<property name="dataMap" ref="hashMap"></property>
 	</bean>
 	
-	<bean id="questionnaireRubricResultAction" class="cn.com.action.QuestionnaireRubricResultAction">
+	<bean id="questionnaireRubricResultAction" class="cn.com.action.QuestionnaireRubricResultAction" scope="prototype">
 		<property name="dataMap" ref="hashMap"></property>
 	</bean>
 	
-	<bean id="classCaseAction" class="cn.com.action.ClassCaseAction">
+	<bean id="classCaseAction" class="cn.com.action.ClassCaseAction" scope="prototype">
 		<property name="dataMap" ref="hashMap"></property>
 		<property name="classCaseService" ref="classCaseService"></property>
 	</bean>
 	
-	<bean id="catalogueAction" class="cn.com.action.CatalogueAction">
+	<bean id="catalogueAction" class="cn.com.action.CatalogueAction" scope="prototype">
 		<property name="catalogueService" ref="catalogueService"></property>
 		<property name="dataMap" ref="hashMap"></property>
 	</bean>
@@ -65,7 +65,7 @@
 		<property name="dataMap" ref="hashMap"></property>
 	</bean>
 	
-	<bean id="questionnaireArrangementAction" class="cn.com.action.QuestionnaireArrangementAction">
+	<bean id="questionnaireArrangementAction" class="cn.com.action.QuestionnaireArrangementAction" scope="prototype">
 		<property name="questionnaireArrangementService" ref="questionnaireArrangementService"></property>
 		<property name="questionnaireChooseService" ref="questionnaireChooseService"></property>
 		<property name="dataMap" ref="hashMap"></property>

@@ -1,9 +1,6 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
 <link rel="stylesheet" type="text/css"
 	href="${basePath}styles/bootstrap.css" />
 <link rel="stylesheet" type="text/css"
@@ -37,7 +34,7 @@
 											$("#chResourceDiv").append(div);
 										});
 
-						$("$resetbtn").click(function showPage() {
+						$("#resetbtn").click(function showPage() {
 							alert(1);
 							//loadHtml('${basePath}course_intoCoursePage.action');
 						});
@@ -51,7 +48,7 @@
 			url:"${basePath}admin/deleteCatalogue.action",
 			data:"catalogue.catalogueId="+catalogueId,
 			success:function(msg){
-				$("#catalogue"+catalogueId).hidden();
+				$("#catalogue"+catalogueId).fadeOut();
 			}
 		});
 	}
@@ -61,35 +58,7 @@
 
 <div class="container-fluid">
 	<div class="row-fluid">
-		<div id="sidebar" class="span2 tree-container">
-			<ul>
-				<li class="jstree-open"><a href="#">问卷管理</a>
-					<ul>
-						<li class="jstree-leaf"><a class="blacked"
-							href="${basePath}questionnaire_intoQuestionnairePage.action">显示问卷</a>
-						</li>
-						<li class="jstree-leaf"><a
-							href="questionnaire/manage-add1.html">增加问卷</a>
-						</li>
-						<li class="jstree-leaf"><a href="#">问卷安排</a>
-						</li>
-					</ul></li>
-				<li class="jstree-open"><a href="#">学习管理</a>
-					<ul>
-						<li class="jstree-leaf"><a
-							href="${basePath}course_intoCoursePage.action">课程管理</a>
-						</li>
-					</ul></li>
-
-				<li class="jstree-open"><a href="#">学习成效管理</a>
-					<ul>
-						<li class="jstree-leaf"><a
-							href="${basePath}note_showNotePage.action">笔记总览</a>
-						</li>
-					</ul></li>
-
-			</ul>
-		</div>
+		
 		<div id="content" class="span10">
 			<div class="row-fluid">
 				<div class="span12 resources">
@@ -112,8 +81,8 @@
 				<div class="span12 resources">
 					
 					<form role="form" class="form-horizontal"
-						action="${basePath}admin/addRescourse.action?courseId=${requestScope.courseId}"
-						enctype="multipart/form-data" method="post">
+						action="${basePath}admin/addRescourse.action?courseId=${courseId}"
+						enctype="multipart/form-data" method="post" target="hidden_frame">
 						<div class="control-group">
 							<input type="hidden" name="courseId" value="${courseId}"/>
 							<div class="control-group">
@@ -139,8 +108,8 @@
 							<div class="control-group">
 								<label class="control-label" for="chNameInput">章节权重:</label>
 								<div class="controls">
-									<input type="number" id="chNameInput" name="catalogue.cataloguaWeight"
-										placeholder="请输入章节权重" required min="1" max="10" >
+									<input type="text" id="chNameInput" name="catalogue.cataloguaWeight"
+										placeholder="请输入章节权重" required >
 								</div>
 							</div>
 
@@ -162,7 +131,7 @@
 							</div>
 							<div class="control-group">
 								<label class="control-label">继续添加新章节：</label>
-								<div class="control-group">是：<input type="radio"name="continueAdd" value="yes" checked="checked" /> 否：<input type="radio" name="continueAdd" value="no" /></div><br>
+								<div class="control-group">是：<input type="radio"name="continueAdd" value="yes" checked="checked"  id="1"/> 否：<input type="radio" name="continueAdd" value="no" /></div><br>
 							</div>
 
 							<div class="control-group offset2">
@@ -178,7 +147,28 @@
 		</div>
 	</div>
 </div>
-
+<<script type="text/javascript">
+<!--
+function callback(){
+	
+	var flag = false;
+	$("input[type=radio]").each(function(){
+		
+		if($(this).prop("checked")){
+			flag = $(this).attr("id") == 1 ? true : false;
+		}
+	});
+	
+	if(flag){
+		
+		loadHTML("${basePath}admin/intoaddChapterPage.action?courseId=${courseId}&course.courseKind=${course.courseKind}");
+	}else{
+		
+		loadHTML("${basePath}admin/intoCoursePage.action");
+	}
+}
+//-->
+</script>
+<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
 
 <div class="row-fluid line-margin"></div>
-</html>

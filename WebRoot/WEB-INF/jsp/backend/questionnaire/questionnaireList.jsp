@@ -115,23 +115,8 @@ function readQ(questionnaireId){
 }
 
 function updateQ(questionnaireId){
-questionnaireID = questionnaireId;
-$.ajax({
-			type : "POST",
-			url : "${basePath}admin/getQuestionnaireById.action?questionnaire.questionnaireId="+questionnaireId,
-			dataType : "json",
-			success : function(json) {
-				if(json.questionnaire!=null)
-				{
-				var questionnaire =json.questionnaire;
-				setAttr(questionnaire);
-				}
-			},
-			error : function() {
-				alert("操作失败,请重试!");
-				return false;
-			}
-			});
+	
+	loadHTML("${basePath}admin/getUpdateQuestionnairePage.action?questionnaire.questionnaireId="+questionnaireId);
 }
 
 function setAttr(questionnaire)

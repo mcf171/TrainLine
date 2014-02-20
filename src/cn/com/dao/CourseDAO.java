@@ -306,7 +306,7 @@ public class CourseDAO extends HibernateDaoSupport {
 	}
 
 	public List<Catalogue> getCataloguDetail(Integer courseId) {
-		String hql ="from Catalogue where courseId = "+courseId + " order by catalogueWeight ";
+		String hql ="from Catalogue where courseId = "+courseId + " order by cataloguaWeight ";
 		List<Catalogue> catalogues = getHibernateTemplate().find(hql);
 		return catalogues;
 	}

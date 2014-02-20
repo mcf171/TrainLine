@@ -232,8 +232,10 @@ public class CourseAction extends BaseActionSupport {
 		catalogue.setUploading(timestamp);
 		catalogue.setResource(set);
 		courseId = (Integer) request.getAttribute("courseId");
-		Course course = new Course();
+		
 		if (courseId != null) {
+			Course course = new Course();
+			course.setCourseId(courseId);
 			catalogue.setCourse(course);
 		}
 		try {
@@ -241,15 +243,13 @@ public class CourseAction extends BaseActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(continueAdd.equals("no")){
-			return this.SUCCESS;
-		}else{
-			List list;
-			list = courseService.getCataloguDetail(courseId);
-			request.setAttribute("list", list);
+		
+//			List list;
+//			list = courseService.getCataloguDetail(courseId);
+//			request.setAttribute("list", list);
 			request.setAttribute("courseId", courseId);
-			return "continueAdd";
-		}
+			return this.SUCCESS;
+		
 		
 	}
 
@@ -274,8 +274,7 @@ public class CourseAction extends BaseActionSupport {
 		if (course != null) {
 			courseId = courseService.insert(course);
 		}
-		request.setAttribute("courseId", courseId);
-		request.setAttribute("course", course);
+		request.setAttribute("msg", courseId + "~" + course.getCourseKind());
 		return this.SUCCESS;
 	}
 

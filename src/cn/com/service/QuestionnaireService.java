@@ -63,8 +63,8 @@ public class QuestionnaireService {
 	 * @param questionnaire
 	 * @return
 	 */
-	public Questionnaire getQuestionnaire(Questionnaire questionnaire) {
-		return questionnaireDAO.findById(questionnaire.getQuestionnaireId());
+	public Questionnaire getQuestionnaire(int questionnaireId) {
+		return questionnaireDAO.findById(questionnaireId);
 		
 	}
 }
