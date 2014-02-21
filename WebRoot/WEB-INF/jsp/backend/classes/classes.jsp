@@ -22,8 +22,6 @@ $(document).ready(function ()
 
 			mmg = $('#grid').mmGrid({
 				url: '${basePath}admin/findAllTrainingClass.action',
-				height: 410,
-				width:800,
 				cache:true,
 				autoLoad: true,
 				checkCol: true,
@@ -111,35 +109,11 @@ $(document).ready(function ()
 		}
 </script>
 </head>
-<style>
-.edit {
-	width: 700px;
-	margin-top: 10px;
-	margin-left: 60px;
-}
 
-#editor {
-	max-height: 150px;
-	height: 180px;
-	background-color: white;
-	border-collapse: separate;
-	border: 1px solid rgb(204, 204, 204);
-	padding: 4px;
-	box-sizing: content-box;
-	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
-	box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px;
-	border-top-left-radius: 3px;
-	overflow: scroll;
-	outline: none;
-}
-</style>
 <body>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div id="content" class="span10">
+			<div id="content" class="span12">
 				<div class="row-fluid " style="margin-left: -13px">
 					<button class="btn" type="button"
 						onclick="loadHTML('${basePath}admin/getAddClassPage1.action')">

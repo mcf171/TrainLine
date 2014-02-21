@@ -8,7 +8,7 @@
 //<![CDATA[
 $(document).ready(function ()
 {
-	$('#grid').mmGrid({
+	mmGridTable = $('#grid').mmGrid({
 		url: '${basePath}getTestArrangementList.action',
 		height: 280,
 		nowrap:true,
@@ -71,12 +71,8 @@ $(document).ready(function ()
 				{
 					return '<input type="hidden" value="' + item.id + '" />' +
 						'<a href="#">查看</a>&nbsp;&nbsp;' +
-						'<a href="#">复制</a>&nbsp;&nbsp;' +
-						(item.status != 0 ? '' : '<a href="#">修改</a>&nbsp;&nbsp;') +
-						(item.status != 2 ? '' : '<a href="#">查看结果</a>&nbsp;&nbsp;') +
-						(item.status != 2 ? '' : '<a href="#">回应</a>&nbsp;&nbsp;') +
-						(item.status != 0 ? '' : '<a href="#">发布</a>&nbsp;&nbsp;') +
-						(item.status >= 3 ? '' : '<a href="#">撤销</a>');
+						'<a href="javascript:void(0)" onclick="updateTestArrangement(' + item.testArrangementId + ')">修改</a>&nbsp;&nbsp;' +
+						'<a href="javascript:void(0)" onclick="showConfirm(' + item.testArrangementId +')">删除</a>';
 				}
 			}
 		],
@@ -85,6 +81,33 @@ $(document).ready(function ()
 		]
 	});
 });
+
+function updateTestArrangement(testArrangementId){
+	
+	loadHTML("${basePath}admin/getUpdateTestArrangementPage.action?testArrangement.testArrangementId="+testArrangementId);
+		
+}
+var testArrangementId;
+function showConfirm(id){
+	
+	testArrangementId = id;
+	$("#myModal").modal();
+}
+
+function deleteTestArrangement(){
+	
+	$("#myModal").modal("hide");
+	dataInfo = "testArrangement.testArrangementId=" + testArrangementId;
+	$.ajax({
+		
+		type:"post",
+		url:"${basePath}admin/deleteTestArrangement.action",
+		data:dataInfo,
+		success:function(msg){
+			mmGridTable.removeRow(mmGridTable.selectedRowsIndex());	
+		}
+	});
+}
 //]]>
 </script>
 <div class="row-fluid line-margin">
@@ -121,4 +144,18 @@ $(document).ready(function ()
 		<table id="grid"></table>
 		<div id="page" class="pull-right"></div>
 	</div>
+</div>
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">确认删除</h3>
+</div>
+<div class="modal-body">
+<p>是否真的删除？</p>
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+<button class="btn btn-primary" onclick="deleteTestArrangement()">确认</button>
+</div>
 </div>

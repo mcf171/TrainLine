@@ -10,7 +10,6 @@
     <script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
     <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
     <script type="text/javascript" src="${basePath}scripts/datepicker.js"></script>
-	<script type="text/javascript" src="${basePath}scripts/library.js"></script>
 	<script type="text/javascript">
 //<![CDATA[
            var mmGirdTable;
@@ -34,8 +33,8 @@ $(document).ready(function ()
 					width: 100,
 					renderer: function (val, item, row)
 					{
-						onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
-						return '<a href="javascript:loadHTML(\'${basePath}modifyBookPage.action?book.bookId=' +item.bookId + '\')">修改</a> ' + '&nbsp' + '<a href="javascript:showConfirm(' +item.bookId + ',' +'\'${basePath}\''+')" >删除</a> ';
+					
+						return '<a href="javascript:loadHTML(\'${basePath}updateResource.action?book.bookId=' +item.resourceId + '\')">修改</a> ' + '&nbsp' + '<a href="javascript:showConfirm(' +item.bookId + ',' +'\'${basePath}\''+')" >删除</a> ';
 					}
 				}
 			],
@@ -61,12 +60,16 @@ $(document).ready(function ()
 		mmGirdTable.load(
 				{"resource.resourceName":resourceName,
 				 "resource.resourcePath":resourcePath,
-				 "resource。resourceType":resourceType
+				 "resource.resourceType":resourceType
 				}
 				);
 	});
 });
 
+function deletDoc(){
+	
+	
+}
 
 //]]>
 </script>
@@ -78,7 +81,7 @@ $(document).ready(function ()
             	<div class="span12">
             		
             		<div class="span12">
-						<button class="btn" onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"><i class="icon-plus"></i>&nbsp;添加</button>
+						<button class="btn" onclick="loadHTML('${basePath}GetAddResourcePage.action?book.bookState=1')"><i class="icon-plus"></i>&nbsp;添加</button>
 					</div>			
             			<div class="row-fluid line-margin">
 			               <span class="help-inline"><b>基本过滤：</b>类型</span>
@@ -125,6 +128,6 @@ $(document).ready(function ()
 </div>
 <div class="modal-footer">
 <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-<button class="btn btn-primary" onclick="deleteBook()">确认</button>
+<button class="btn btn-primary" onclick="deletDoc()">确认</button>
 </div>
 </div>	

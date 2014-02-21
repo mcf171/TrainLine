@@ -17,13 +17,27 @@ public class TestArrangementService{
 		testarrangementDAO.delete(testarrangement);
 	}
 	
+	/**
+	 * 更新TestArrangement
+	 * @author:Apache
+	 * @time:2014-2-21 14:28
+	 * @param testarrangement
+	 */
 	public void update(Testarrangement testarrangement)
 	{
+		testarrangementDAO.merge(testarrangement);
 	}
 
-	public Testarrangement getTestarrangement(Testarrangement testarrangement)
+	/**
+	 * 通过Id获取TestArrangement
+	 * @author:Apache
+	 * @time:2014-2-21 11:26
+	 * @param testarrangementId
+	 * @return
+	 */
+	public Testarrangement getTestarrangement(int testarrangementId)
 	{
-		return testarrangementDAO.findById(testarrangement.getTestArrangementId());
+		return testarrangementDAO.findById(testarrangementId);
 		
 	}
 	

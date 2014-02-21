@@ -9,7 +9,6 @@ import org.hibernate.LockMode;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import cn.com.model.Company;
 import cn.com.model.Department;
 
 /**

@@ -24,6 +24,46 @@ public class TestArrangementAction extends BaseActionSupport{
 		dataMap = new HashMap<String, Object>();
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * 删除TestArrangement
+	 * @author:Apache
+	 * @time:2014-2-21 15:01
+	 * @return
+	 */
+	public String deleteTestArrangement(){
+		
+		testArrangementService.delete(testArrangement);
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 更新TestArrangement
+	 * @author:Apache
+	 * @time:2014-2-21 14:30
+	 * @return
+	 */
+	public String updateTestArrangment(){
+		
+		testArrangementService.update(testArrangement);
+		
+		return this.SUCCESS;
+	}
+	
+	
+	/**
+	 * 获取testArrangement更新页面
+	 * @author:Apache
+	 * @time:2014-2-21 14:14
+	 * @return
+	 */
+	public String getUpdateTestArrangementPage(){
+		
+		testArrangement = testArrangementService.getTestarrangement(testArrangement.getTestArrangementId());
+		request.setAttribute("testArrangement", testArrangement);
+		return this.SUCCESS;
+	}
+	
 	public String addTestArrangment(){
 		
 		testArrangement.setTestpaper(new Testpaper());
@@ -60,7 +100,7 @@ public class TestArrangementAction extends BaseActionSupport{
 	 */
 	public String getTestPage(){
 		
-		testArrangement = testArrangementService.getTestarrangement(testArrangement);
+		testArrangement = testArrangementService.getTestarrangement(testArrangement.getTestArrangementId());
 		request.setAttribute("testArrangement", testArrangement);
 		
 		return this.SUCCESS;

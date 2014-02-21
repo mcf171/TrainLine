@@ -22,8 +22,6 @@ $(document).ready(function ()
 		
 			mmg = $('#grid').mmGrid({
 				url: '${basePath}admin/findAllCredential.action',
-				height: 410,
-				width:800,
 				autoLoad: true,
 				root:'cList',
 				fullWidthRows: true,
@@ -96,7 +94,7 @@ $(document).ready(function ()
 <body>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div id="content" class="span10">
+			<div id="content" class="span12">
 				<div class="row-fluid " style="margin-left: -13px">
 					<button class="btn" type="button"
 						onclick="loadHTML('${basePath}admin/getAddCertificatePage.action')">

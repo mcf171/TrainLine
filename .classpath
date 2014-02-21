@@ -18,4 +18,6 @@
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.struts2.MYECLIPSE_STRUTS21_SPRING"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/sigar.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jsp-api.jar"/>
 </classpath>

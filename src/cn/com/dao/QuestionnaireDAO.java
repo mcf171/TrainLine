@@ -188,8 +188,5 @@ public class QuestionnaireDAO extends HibernateDaoSupport {
 		return list;
 	}
 
-	public void update(Questionnaire questionnaire) {
-		getHibernateTemplate().saveOrUpdate(questionnaire);
-		getHibernateTemplate().flush();
-	}
+	
 }

@@ -14,6 +14,7 @@ function loadHTML(name){
 	$('#content').load(name);
 }
 
+
 function idLoadHTML(id,url){
 	$('#'+id).load(url);
 }

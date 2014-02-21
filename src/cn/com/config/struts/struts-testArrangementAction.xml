@@ -33,5 +33,22 @@
 			<action name="addTestArrangment" class="testArrangementAction" method="addTestArrangment">
 				<result>/WEB-INF/jsp/backend/test/questionare.jsp</result>
 			</action>
+			
+			<action name="getUpdateTestArrangementPage" class="testArrangementAction" method="getUpdateTestArrangementPage">
+				<result>/WEB-INF/jsp/backend/test/updateTestArrangement.jsp</result>
+			</action>
+			
+			<action name="updateTestArrangment" class="testArrangementAction" method="updateTestArrangment">
+				<result type="json">
+					<param name="root">dataMap</param>
+				</result>
+			</action>
+			
+			<action name="deleteTestArrangement" class="testArrangementAction" method="deleteTestArrangement">
+				<result type="json">
+					<param name="root">dataMap</param>
+				</result>
+			</action>
+			
 	</package>
 </struts>    

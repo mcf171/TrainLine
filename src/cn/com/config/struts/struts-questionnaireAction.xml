@@ -24,9 +24,7 @@
 			</result>
 		</action>
 		<action name="updateQuestion" class="questionnarieAction" method="updateQuestion">
-			<result type="json">
-				<param name="root">dataMap</param>
-			</result>
+			<result>/WEB-INF/jsp/backend/questionnaire/questionnaireList.jsp</result>
 		</action>
 		<action name="getQuestionnaireById" class="questionnarieAction" method="getQuestionnaireById">
 			<result type="json">

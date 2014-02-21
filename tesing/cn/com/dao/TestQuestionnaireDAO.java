@@ -35,14 +35,14 @@ public class TestQuestionnaireDAO extends TestCase {
 	
 	/**
 	 * 测试更新Questionnaire是否删除QuestionnaireRubric
-	 * @result true
+	 * @result flase
 	 * @author Apache
 	 * @time 2014-2-19 14:00
 	 */
 	public void testUpdate(){
 		
 		Questionnaire questionnaire = new Questionnaire();
-		questionnaire.setOpen(1);
+		questionnaire.setOpen(0);
 		questionnaire.setQuestionnaireId(52);
 		questionnaire.setQuestionnaireAuthor("53");
 		questionnaireDAO.merge(questionnaire);

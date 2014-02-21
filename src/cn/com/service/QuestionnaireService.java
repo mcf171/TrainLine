@@ -35,9 +35,15 @@ public class QuestionnaireService {
 		}
 	}
 	
+	/**
+	 * 更新Questionnaire
+	 * @author:Apache
+	 * @time:2014-2-21 11:05
+	 * @param questionnaire
+	 */
 	public void update(Questionnaire questionnaire)
 	{
-		questionnaireDAO.update(questionnaire);
+		questionnaireDAO.merge(questionnaire);
 	}
 
 	

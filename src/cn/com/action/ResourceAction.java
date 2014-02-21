@@ -1,5 +1,6 @@
 package cn.com.action;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,15 @@ import cn.com.service.ResourceService;
 public class ResourceAction extends BaseActionSupport {
 	private ResourceService resourceService;
 	private Map<String, Object> dataMap;
+	private Resource resource;
 
+	// 封装上传文件域的属性
+    private File image;
+    // 封装上传文件类型的属性
+    private String imageContentType;
+    // 封装上传文件名的属性
+    private String imageFileName;
+    
 	public ResourceService getResourceService() {
 		return resourceService;
 	}
@@ -19,6 +28,60 @@ public class ResourceAction extends BaseActionSupport {
 		this.resourceService = resourceService;
 	}
 
+	/**
+	 * 更新Resource
+	 * @author:Apache
+	 * @time:2014-2-21 20:56
+	 * @return
+	 */
+	public String updateResource(){
+		
+		return this.SUCCESS;
+	}
+	/**
+	 * 获取更新资源页面
+	 * @author:Apache
+	 * @time:2014-2-21 20:54
+	 * @return
+	 */
+	public String getUpdateResoucePage(){
+		
+		return this.SUCCESS;
+	}
+	/**
+	 * 获取增加资源页面
+	 * @author:Apache
+	 * @time:2014-2-21 20:03
+	 * @return
+	 */
+	public String getAddResourcePage(){
+		
+		request.setAttribute("resource", resource);
+		
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 增加资源
+	 * @author:Apache
+	 * @time:2014-2-21 20:04
+	 * @return
+	 */
+	public String addResource(){
+		
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 删除资源
+	 * @author:Apache
+	 * @time:2014-2-21 20:06
+	 * @return
+	 */
+	public String deleteResource(){
+		
+		return this.SUCCESS;
+	}
 	/**
 	 * 展示视频资源管理页面
 	 * @return
@@ -86,4 +149,37 @@ public class ResourceAction extends BaseActionSupport {
 		this.dataMap = dataMap;
 	}
 
+	public File getImage() {
+		return image;
+	}
+
+	public void setImage(File image) {
+		this.image = image;
+	}
+
+	public String getImageContentType() {
+		return imageContentType;
+	}
+
+	public void setImageContentType(String imageContentType) {
+		this.imageContentType = imageContentType;
+	}
+
+	public String getImageFileName() {
+		return imageFileName;
+	}
+
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
+	}
+
+	public Resource getResource() {
+		return resource;
+	}
+
+	public void setResource(Resource resource) {
+		this.resource = resource;
+	}
+
+	
 }

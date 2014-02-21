@@ -11,7 +11,7 @@
 			<div class="row-fluid">
 				<span class="help-inline">问卷标题：</span> <input type="text"
 					class=" span2" id="questionnaireTitle" placeholder="请输入问卷标题"
-					name="testquestion.testQuestionName" value=${questionnaire.questionnaireTitle }/>
+					name="testquestion.testQuestionName" value="${questionnaire.questionnaireTitle }"/>
 			</div>
 
 			<div class="row-fluid">
@@ -40,7 +40,7 @@
 					var questionnaireAuthor = $("#questionnaireAuthor").val();
 					$.ajax({
 								type : "post",
-								url : "${basePath}admin/addQuestionnaire.action",
+								url : "${basePath}admin/updateQuestion.action",
 								data : "questionnaire.questionnaireId=${questionnaire.questionnaireId}&questionnaire.questionnaireTitle="
 										+ questionnaireTitle
 										+ "&questionnaire.questionnaireNumber="
@@ -48,6 +48,7 @@
 										+ "&questionnaire.questionnaireAuthor="
 										+ questionnaireAuthor,
 								success : function(msg) {
+									alert("更新成功");
 									$("#content").html(msg);
 								}
 							});

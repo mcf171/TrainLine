@@ -191,17 +191,17 @@
 				<div class="row-fluid">
 					<span class="help-inline">考试地点：</span> <input type="text"
 						class=" span2" id="testPlace" placeholder="请输入试卷名称"
-						name="testquestion.testQuestionName" />
+						name="testquestion.testQuestionName"  value="${testArrangement.testArrangementPlace}"/>
 				</div>
 				<div class="row-fluid">
 					<span class="help-inline">应到人数：</span> <input type="text"
 						class=" span2" id="testShouldNumber" placeholder="请输入数量"
-						name="testquestion.testQuestionName" />
+						name="testquestion.testQuestionName"  value="${testArrangement.testSumPerson}"/>
 				</div>
 				<div class="row-fluid">
 					<span class="help-inline">通过分数：</span> <input type="text"
 						class=" span2" id="testPassScore" placeholder="请输入分数"
-						name="testquestion.testQuestionName" />
+						name="testquestion.testQuestionName" value="${testArrangement.passMark}"/>
 				</div>
 				<div class="row-fluid">
 					<span class="help-inline">开始时间：</span> <input id="time-from"

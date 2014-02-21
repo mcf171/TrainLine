@@ -25,18 +25,14 @@ SessionAware, ServletResponseAware, ServletRequestAware{
 	public static final String FAIL="fail";
 	public static final String INPUT="input";
 
-	/**
-	 * @Fields session:TODO
-	 */
+	
 	protected Map session;
 
 	protected HttpServletResponse response;
 
 	protected HttpServletRequest request;
 	
-	/**
-	 * 绕过Template,直接输出内容的简便函数.
-	 */
+	
 	private String render(String text, String contentType) {
 		try {
 			HttpServletResponse response = ServletActionContext.getResponse();
@@ -48,9 +44,6 @@ SessionAware, ServletResponseAware, ServletRequestAware{
 		return null;
 	}
 
-	/**
-	 * 直接输出字符串.
-	 */
 	protected String renderText(String text) {
 		return render(text, "text/plain;charset=UTF-8");
 	}
@@ -72,7 +65,7 @@ SessionAware, ServletResponseAware, ServletRequestAware{
 	}
 
 	
-	//得到 siteid 的方法
+
 	protected long formSiteId(){
 		return 1;
 	}

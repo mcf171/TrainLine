@@ -1,18 +1,12 @@
 package cn.com.action;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.swing.internal.plaf.metal.resources.metal;
-
 import cn.com.base.BaseActionSupport;
-import cn.com.model.Classandcourse;
-import cn.com.model.ClassandcourseId;
 import cn.com.model.Classcase;
 import cn.com.model.Course;
 import cn.com.model.Trainingclass;
-import cn.com.service.ClassCaseService;
 import cn.com.service.CourseService;
 import cn.com.service.TrainingClassService;
 
