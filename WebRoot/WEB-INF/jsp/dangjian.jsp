@@ -24,6 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //<![CDATA[
 $(document).ready(function ()
 {
+	$("#dangke1").fadeIn(500);
+	$("#list-available").fadeIn(600);
 	$('#course-switcher a[href="#selected"]').click(function ()
 	{
 		$('#list-selected, #filter-selected, #button-remove').removeClass('hidden');
@@ -160,7 +162,7 @@ $(document).ready(function ()
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span12">
-			<div class="row-fluid resources">
+			<div class="row-fluid resources hide" id="dangke1">
 				<form class="span12 form-inline no-margin">
 					<ul id="course-switcher" class="row-fluid nav nav-pills line-margin">
 						<li class="active"><a href="#available" data-toggle="tab">党建课程</a></li>
@@ -263,7 +265,7 @@ $(document).ready(function ()
 					
 				</form>
 			</div>
-			<div id="list-available" class="row-fluid">
+			<div id="list-available" class="row-fluid hide">
 				<div class="span12">
 					<table id="grid-available"></table>
 					<div id="page-available" class="pull-right"></div>

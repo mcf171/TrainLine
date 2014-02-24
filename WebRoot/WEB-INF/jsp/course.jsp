@@ -53,6 +53,8 @@ function selectCourse(){
 
 $(document).ready(function ()
 {
+	$("#div1").fadeIn(500);
+	$("#div2").fadeIn(500);
 	$('#course-switcher a[href="#kecheng"]').click(function ()
 	{
 		$('#list-kecheng, #filter-kecheng, #button-remove,#page-selected-kecheng').removeClass('hidden');
@@ -359,7 +361,7 @@ $(document).ready(function ()
 	<div class="container-fluid" id="content">
 		<div class="row-fluid">
 			<div class="span12">
-				<div class="row-fluid resources">
+				<div class="row-fluid resources hide" id="div1">
 					<form class="span12 form-inline no-margin">
 						<ul id="course-switcher"
 							class="row-fluid nav nav-pills line-margin">
@@ -482,7 +484,7 @@ $(document).ready(function ()
 				</div>
 
 				<div id="list-available" class="row-fluid">
-					<div class="span12">
+					<div class="span12 hide" id="div2">
 						<table id="grid-available"></table>
 						<div id="page-available" class="pull-right"></div>
 					</div>

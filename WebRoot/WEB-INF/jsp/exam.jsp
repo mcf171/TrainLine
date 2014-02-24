@@ -25,6 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //<![CDATA[
 $(document).ready(function ()
 {
+	$("#exam1").fadeIn(500);
+	$("#exam2").fadeIn(600);
 	$(window).resize(function ()
 	{
 		;
@@ -103,7 +105,7 @@ $(document).ready(function ()
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span12">
-			<div class="row-fluid resources">
+			<div class="row-fluid resources hide" id="exam1">
 				<div class="span12">
 					<div class="row-fluid">
 						<div class="span12">
@@ -141,8 +143,8 @@ $(document).ready(function ()
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid">
-				<div id="grid-container" class="span12">
+			<div class="row-fluid hide" id="exam2">
+				<div id="grid-container" class="span12"   >
 					<table id="grid"></table>
 					<div id="page" class="pull-right"></div>
 				</div>

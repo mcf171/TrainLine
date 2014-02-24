@@ -24,6 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //<![CDATA[
 $(document).ready(function ()
 {
+	$("#lib1").fadeIn(500);
+	$("#lib2").fadeIn(600);
 	$('#course-switcher a[href="#selected"]').click(function ()
 			{
 				$('#list-selected, #filter-selected, #button-remove').removeClass('hidden');
@@ -112,7 +114,7 @@ $(document).ready(function ()
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span12">
-      <div class="row-fluid resources">
+      <div class="row-fluid resources hide" id="lib1">
         <ul id="course-switcher" class="row-fluid nav nav-pills line-margin">
 						
 						<li class="active"><a href="#available" data-toggle="tab">内部图书</a></li>
@@ -157,7 +159,7 @@ $(document).ready(function ()
         
         
       </div>
-      <div class="row-fluid">
+      <div class="row-fluid hide" id="lib2">
 				<div id="grid-container" class="span12">
 					<div id="list-available" class="row-fluid">
 						<div class="span12">

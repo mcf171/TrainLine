@@ -35,6 +35,10 @@ function load_page(page)
 
 $(document).ready(function ()
 {
+	$("#indexnotice").slideDown(800);
+	$("#removeSign").click(function(){
+		$("#indexnotice").slideUp(slow);
+	});
 	$('.header-menu-item > a').click(function ()
 	{
 		$('.header-menu-item').removeClass('active');
@@ -90,13 +94,13 @@ function deleteMessage(messageId){
 <div class="push"></div>
 <div class="importantInfo">
 	<div class="span4">
-			<div class="row-fluid resources">
+			<div class="row-fluid resources hide" id="indexnotice">
 				<div class="span12">
 					<div class="row-fluid">
 						<div class="span12">
 							<b>通知</b>
-							  
-							<a href="javascript:hiddenClass('importantInfo')" class="more"><i class=" icon-remove"></i></a>
+							
+							<a href="javascript:hiddenClass('importantInfo')" class="more" id="removeSign"><i class=" icon-remove" ></i></a>
 							<a target="_blank" href="#" class="more">更多</a> 
 							
 						</div>

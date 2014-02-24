@@ -24,6 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //<![CDATA[
 $(document).ready(function ()
 {
+	$("#edu1").fadeIn();
+	$("#edu2").fadeIn();
 	$(window).resize(function ()
 	{
 		;
@@ -121,7 +123,7 @@ $(document).ready(function ()
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span12">
-      <div class="row-fluid resources">
+      <div class="row-fluid resources hide" id="edu1">
         <ul id="course-switcher" class="breadcrumb">
           <li class=""> <a data-toggle="tab" href="#available">班级计划</a> </li>
         </ul>
@@ -160,8 +162,8 @@ $(document).ready(function ()
         
         
       </div>
-      <div class="row-fluid">
-				<div id="grid-container" class="span12">
+      <div class="row-fluid hide" id="edu2">
+				<div id="grid-container" class="span12 ">
 					<table id="grid"></table>
 					<div id="page" class="pull-right"></div>
 				</div>
