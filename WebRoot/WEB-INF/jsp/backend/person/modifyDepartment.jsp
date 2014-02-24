@@ -21,13 +21,13 @@ $(document).ready(function(){
 
 
 $("#cancle").click(function(){
-	loadHTML('${basePath}showBackendDepartmentPage.action');
+	loadHTML('${basePath}admin/showBackendDepartmentPage.action');
 })
 //-->
 </script>
 
 <div class="row-fluid">
-	<form action="${basePath}modifyDepartment.action"  enctype="multipart/form-data" method="post">
+	<form action="${basePath}admin/modifyDepartment.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin" style="display: none;">
 			<span class="help-inline">部门ID：</span>
 			<input type="text" class=" span2" placeholder="请输入内容" name="department.departmentId" value="${department.departmentId}"/>

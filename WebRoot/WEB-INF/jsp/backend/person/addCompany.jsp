@@ -6,13 +6,13 @@
 <script type="text/javascript">
 //<!--
 $("#cancle").click(function(){
-	loadHTML('${basePath}showBackendCompanyPage.action');
+	loadHTML('${basePath}admin/showBackendCompanyPage.action');
 })
 //-->
 </script>
 
 <div class="row-fluid">
-	<form action="addCompany.action"  enctype="multipart/form-data" method="post">
+	<form action="${basePath}admin/addCompany.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司名称：</span>
 			<input type="text" class=" span2" placeholder="请输入公司名称" name="company.companyName" />

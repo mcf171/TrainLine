@@ -15,13 +15,12 @@
 <script type="text/javascript">
 	var mmg;
 	var mmg1;
-	 console.log(trainingClassId);
 $(document).ready(function ()
 {
 	
 	$.ajax({
 		type : "POST",
-		url : "${basePath}credential_findAllCredential.action",
+		url : "${basePath}admin/findAllCredential.action",
 		dataType : "json",
 		success : function(json) {
 		if(json.cList!=null)

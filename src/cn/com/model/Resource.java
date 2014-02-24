@@ -23,6 +23,9 @@ public class Resource implements java.io.Serializable {
 
 	/** default constructor */
 	public Resource() {
+		Catalogue item = new Catalogue();
+		item.setCatalogueId(0);
+		catalogue = item;
 	}
 
 	/** full constructor */

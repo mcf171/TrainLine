@@ -27,14 +27,14 @@ $(document).ready(function ()
 		cols: [
 				{ title: '文档名称', sortable: true,  name: 'resourceName' },
 				{ title: '文档简介', sortable: true, name: 'resourcePath' },
-				{ title: '文档类别', sortable: true, name: 'resourceType' },
+				{ title: '下载次数', sortable: true, name: 'downloundCount' },
 				{
 					title: '操作',
 					width: 100,
 					renderer: function (val, item, row)
 					{
 					
-						return '<a href="javascript:loadHTML(\'${basePath}updateResource.action?book.bookId=' +item.resourceId + '\')">修改</a> ' + '&nbsp' + '<a href="javascript:showConfirm(' +item.bookId + ',' +'\'${basePath}\''+')" >删除</a> ';
+						return '<a href="javascript:updateDoc(' +item.resourceId + ')">修改</a> ' + '&nbsp' + '<a href="javascript:showConfirm(' +item.resourceId + ')" >删除</a> ';
 					}
 				}
 			],
@@ -45,7 +45,7 @@ $(document).ready(function ()
 	
 	var optionString = "";
 		<c:forEach items="${resourceList}" var="item">
-				optionString += "<option name='bookTypeName' value='" + ${item.resourceId} + "'>" + "${item.resourceName}" +"</option>"
+				optionString += "<option name='resourceTypeName' value='" + ${item.resourceId} + "'>" + "${item.resourceName}" +"</option>"
 		</c:forEach>
 	
 	$("#resourceType").append(optionString);
@@ -53,10 +53,10 @@ $(document).ready(function ()
 		mmGirdTable.load();
 	});
 	$("#search").click(function(){
-		var bookName = $("#resourceName").val();
-		var bookClassIndex = $("#bookClassIndex").val();
-		var bookType = $("#bookType").val();
-		//mmGirdTable.load([{"book.bookName":bookName },{"book.bookContent":checkValue}]);
+		var resourceName = $("#resourceName").val();
+		var resourceClassIndex = $("#resourceClassIndex").val();
+		var resourceType = $("#resourceType").val();
+		//mmGirdTable.load([{"resource.resourceName":resourceName },{"resource.resourceContent":checkValue}]);
 		mmGirdTable.load(
 				{"resource.resourceName":resourceName,
 				 "resource.resourcePath":resourcePath,
@@ -66,9 +66,30 @@ $(document).ready(function ()
 	});
 });
 
+function updateDoc(id){
+	
+	loadHTML('${basePath}admin/getUpdateResoucePage.action?resource.resourceId='+id);
+}
+
+var resourceId;
+function showConfirm(id){
+	
+	resourceId = id;
+	$("#myModal").modal();
+}
+
 function deletDoc(){
 	
-	
+	var dataInfo = "resource.resourceId=" +resourceId; 
+	$.ajax({
+		type:"post",
+		url:"${basePath}admin/deleteResource.action",
+		data:dataInfo,
+		success:function(msg){
+			$("#myModal").modal("hide");
+			 mmGirdTable.removeRow(mmGirdTable.selectedRowsIndex());
+		}
+	});
 }
 
 //]]>
@@ -81,15 +102,15 @@ function deletDoc(){
             	<div class="span12">
             		
             		<div class="span12">
-						<button class="btn" onclick="loadHTML('${basePath}GetAddResourcePage.action?book.bookState=1')"><i class="icon-plus"></i>&nbsp;添加</button>
+						<button class="btn" onclick="loadHTML('${basePath}admin/getAddResourcePage.action?resource.resourceType=2')"><i class="icon-plus"></i>&nbsp;添加</button>
 					</div>			
             			<div class="row-fluid line-margin">
 			               <span class="help-inline"><b>基本过滤：</b>类型</span>
-			                <select class="input-small" id="bookType">
+			                <select class="input-small" id="resourceType">
 				               
 			                </select>
 			                 <span class="help-inline">编号：</span>
-			                <select class="input-small" id="bookType">
+			                <select class="input-small" id="resourceType">
 				               
 			                </select>
 			               <input

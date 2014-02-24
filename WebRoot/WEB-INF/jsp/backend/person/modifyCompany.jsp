@@ -12,13 +12,13 @@ $(document).ready(
 });
 
 $("#cancle").click(function(){
-	loadHTML('${basePath}showBackendCompanyPage.action');
+	loadHTML('${basePath}admin/showBackendCompanyPage.action');
 })
 //-->
 </script>
 
 <div class="row-fluid">
-	<form action="modifyCompany.action"  enctype="multipart/form-data" method="post">
+	<form action="${basePath}admin/modifyCompany.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin" style="display:none">
 			<span class="help-inline">公司ID：</span>
 			<input type="text" class=" span2" placeholder="请输入内容" name="company.companyId" value="${company.companyId}"/>

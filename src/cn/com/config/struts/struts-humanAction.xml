@@ -2,6 +2,31 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="human" extends="system">
+		
+	</package>
+	
+	<package name="humanActionAdmin" namespace="/admin" extends="system">
+		
+		<action name="showBackendPersonPage" class="humanAction" method="showBackendPersonPage">
+			<result>/WEB-INF/jsp/backend/person/person.jsp</result>
+		</action>
+		
+		<action name="showBackendHumanPage" class="humanAction" method="showBackendHumanPage">
+			<result>/WEB-INF/jsp/backend/human.jsp</result>
+		</action>
+
+		<action name="showBackendCompanyPage" class="humanAction" method="showBackendCompanyPage">
+			<result>/WEB-INF/jsp/backend/person/company.jsp</result>
+		</action>
+		
+		<action name="showBackendDepartmentPage" class="humanAction" method="showBackendDepartmentPage">
+			<result>/WEB-INF/jsp/backend/person/department.jsp</result>
+		</action>
+		
+		<action name="showBackendPositionPage" class="humanAction" method="showBackendPositionPage">
+			<result>/WEB-INF/jsp/backend/person/position.jsp</result>
+		</action>
+		
 		<action name="getPersonList" class="humanAction" method="getPersonList">
 				<result type="json">
 				<param name="root">dataMap</param>
@@ -26,25 +51,7 @@
 				</result>
 	   	</action>
 	
-		<action name="showBackendHumanPage" class="humanAction" method="showBackendHumanPage">
-			<result>/WEB-INF/jsp/backend/human.jsp</result>
-		</action>
 		
-		<action name="showBackendPersonPage" class="humanAction" method="showBackendPersonPage">
-			<result>/WEB-INF/jsp/backend/person/person.jsp</result>
-		</action>
-		
-		<action name="showBackendCompanyPage" class="humanAction" method="showBackendCompanyPage">
-			<result>/WEB-INF/jsp/backend/person/company.jsp</result>
-		</action>
-		
-		<action name="showBackendDepartmentPage" class="humanAction" method="showBackendDepartmentPage">
-			<result>/WEB-INF/jsp/backend/person/department.jsp</result>
-		</action>
-		
-		<action name="showBackendPositionPage" class="humanAction" method="showBackendPositionPage">
-			<result>/WEB-INF/jsp/backend/person/position.jsp</result>
-		</action>
 		
 		<action name="addPersonPage" class="humanAction" method="addPersonPage">
 			<result>/WEB-INF/jsp/backend/person/addPerson.jsp</result>
@@ -149,5 +156,6 @@
 				<param name="root">dataMap</param>
 			</result>
 		</action>
+		
 	</package>
 </struts>    

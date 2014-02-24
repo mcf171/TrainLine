@@ -21,7 +21,7 @@
 				test = "ready";
 				mmGirdTable = $('#grid').mmGrid(
 						{
-							url : '${basePath}getPersonList.action',
+							url : '${basePath}admin/getPersonList.action',
 							height : 410,
 							autoLoad : true,
 							checkCol : true,
@@ -40,9 +40,18 @@
 										name : 'userName'
 									},
 									{
-										title : '密码',
-										sortable : true,
-										name : 'userPassword'
+										title:'用户级别',sortable:true,name:'userState',
+										renderer: function (val, item, row){
+											userState  = parseInt(item.userState);
+											var returnString;
+											switch(userState){
+											case 1: returnString = "超级管理员";break;
+											case 2: returnString = "教师"; break;
+											case 3: returnString = "学员"; break;
+											default: returnString = "身份未知";
+											}
+											return returnString;
+										}
 									},
 									{
 										title : '真实姓名',
@@ -64,7 +73,7 @@
 										title : '操作',
 										renderer : function(val, item, row) {
 											onclick = "#";
-											return  '<a href="javascript:loadHTML(\'${basePath}modifyPersonPage.action?user.userId=' +item.userId + '\')")">修改</a> '
+											return  '<a href="javascript:loadHTML(\'${basePath}admin/modifyPersonPage.action?user.userId=' +item.userId + '\')")">修改</a> '
 													+ '&nbsp'
 													+ '<a href="javascript:showConfirm(' +item.userId + ',' +'\'${basePath}\''+')" >删除</a>';
 										}
@@ -96,7 +105,7 @@
 	<div class="span12">
 		<div class="span12">
 			<button class="btn"
-				onclick="loadHTML('${basePath}addPersonPage.action')">
+				onclick="loadHTML('${basePath}admin/addPersonPage.action')">
 				<i class="icon-plus"></i>新增
 			</button>
 		</div>

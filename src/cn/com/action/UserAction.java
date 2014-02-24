@@ -3,25 +3,31 @@ package cn.com.action;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
-
-import org.apache.struts2.ServletActionContext;
-
 import cn.com.base.BaseActionSupport;
-import cn.com.model.Record;
 import cn.com.model.User;
 import cn.com.service.RecordService;
 import cn.com.service.UserService;
-
-import com.opensymphony.xwork2.ActionContext;
 
 public class UserAction extends BaseActionSupport{
 
 	private UserService userService;
 	private RecordService recordService;
 	private User user;
+	private String[] positionIds;
 	private Map<String, Object> dataMap;
 	
+	/**
+	 * 添加用户
+	 * @author Apache
+	 * @time 2014-2-22 20:58
+	 * @return
+	 */
+	public String addUser(){
+		
+		userService.add(user,positionIds);
+		
+		return this.SUCCESS;
+	}
 	/**
 	 * 显示用户信息页面
 	 * author:Apache
@@ -65,14 +71,7 @@ public class UserAction extends BaseActionSupport{
 		session.remove("user");
 		return this.LOGIN;
 	}
-   public String show(){
-	    user = (User)session.get("user");
-	    Record record= recordService.getRecordById(user.getUserId());
-		String path = user == null ? this.INPUT : this.SUCCESS;
-		session.put("record", record);
-		return path;
-		
-	}
+	
    
    /**
     * 获取所有用户List
@@ -133,7 +132,11 @@ public class UserAction extends BaseActionSupport{
 	public void setDataMap(Map<String, Object> dataMap) {
 		this.dataMap = dataMap;
 	}
-	
-	
-	
+	public String[] getPositionIds() {
+		return positionIds;
+	}
+	public void setPositionIds(String[] positionIds) {
+		this.positionIds = positionIds;
+	}
+
 }

@@ -126,6 +126,7 @@
 	</bean>
     <bean id="resourceService" class="cn.com.service.ResourceService">
 		<property name="resourceDAO" ref="ResourceDAO"></property>
+		<property name="uploadUtil" ref="uploadUtil"></property>
 	</bean>
 	
 	<bean id="reportService" class="cn.com.service.ReportService">

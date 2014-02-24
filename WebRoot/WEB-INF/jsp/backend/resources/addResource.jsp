@@ -9,70 +9,40 @@
 <script type="text/javascript">
 //<!--
 $(document).ready(function(){
-	
-
-var optionString = "";
-<c:forEach items="${bookTypeList}" var="item">
-		optionString += "<option name='bookTypeName' value='" + ${item.bookTypeId} + "'>" + "${item.bookTypeName}" +"</option>"
-</c:forEach>
-
-$("#bookType").append(optionString);
 
 });
-$("#bookURLChoose").change(function(){
-	var boj = $("#bookURL");
-	boj.text($("#bookURLChoose").val());
-	$("#hiddenBookURL").val($("#bookURLChoose").val());
-
+$("#resourceURLChoose").change(function(){
+	console.log("1");
+	var boj = $("#resourcePath");
+	boj.text($("#resourceURLChoose").val());
+	$("#modifyResource").val(1);
 });
 
 $("#cancle").click(function(){
-	loadHTML('${basePath}showBackendInsideLiberaryListPage.action');
+	loadHTML('${basePath}admin/showBackendDocResourcePage.action');
 });
-function addBook(){
 
-		$.ajax({
-		 	 type: "post",
-		 	 url: basePath+"addBook.action",
-		 	 data:"book.bookId=" + bookId,
-		  	success: function(msg){
-			 
-			  $('#myModal').modal('hide')
-			  mmGirdTable.removeRow(mmGirdTable.selectedRowsIndex());
-		  }
-		});
+
+function callback(msg){
+	alert("增加成功");
+	loadHTML('${basePath}admin/showBackendDocResourcePage.action');
 }
 //-->
 </script>
 	<div class="row-fluid">
 	
-	<form action="${basePath}addBook.action"  enctype="multipart/form-data" method="post">
-	<input type="hidden"  value="${book.bookState}" name="book.bookState"/>
+	<form action="${basePath}admin/addResource.action"  enctype="multipart/form-data" method="post" target="hidden_frame">
+	<input type="hidden"  value="${resource.resourceType}" name="resource.resourceType"/>
 		<div class="row-fluid line-margin">
-			<span class="help-inline">图书名称：</span>
-			<input type="text" class=" span2" placeholder="请输入图书名称" name="book.bookName" />
-		</div>
-		
-		<div class="row-fluid line-margin">
-			<span class="help-inline">图书简介：</span>
-			<input type="text" class=" span2" placeholder="请输入图书简介" name="book.bookContent"/>
+			<span class="help-inline">资源名称：</span>
+			<input type="text" class=" span2" placeholder="请输入图书名称" name="resource.resourceName" value="${resource.resourceName}"/>
 		</div>
 		<div class="row-fluid line-margin">
-			<span class="help-inline">图书编号：</span>
-			<input type="text" class=" span2" placeholder="请输入图书编号" name="book.bookClassIndex"/>
-		</div>
-		<div class="row-fluid line-margin">
-			<span class="help-inline">图书类别：</span>
-			<select class="input-small " id="bookType" name="book.bookType.bookTypeId">
-			</select>
-		</div>
-		<div class="row-fluid line-margin">
-			<span class="help-inline">图书URL：</span>
-			</div>
-		<div class="row-fluid line-margin">
+			<span class="help-inline">资源URL：</span>
+
 			
-           	<span class=" span2 uneditable-input" id="bookURL" >${book.bookURL}</span>
-           	<input type="file" id="bookURLChoose" style="width: 65px;" name="image" class=" span2 " placeholder="请选择上传图书">
+           	<span class=" span2 uneditable-input" id="resourcePath" >${resource.resourcePath}</span>
+           	<input type="file" id="resourceURLChoose" style="width: 65px;" name="image" class=" span2 " placeholder="请选择上传图书">
 
 		</div>
 		
@@ -86,3 +56,5 @@ function addBook(){
 			</button>
 		</div>
 		</form>
+		
+		<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>

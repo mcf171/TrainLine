@@ -19,7 +19,7 @@
 	$(document).ready(function() {
 		test = "ready";
 		mmGridTable = $('#grid').mmGrid({
-			url : '${basePath}getPositionList.action',
+			url : '${basePath}admin/getPositionList.action',
 			height : 410,
 			autoLoad : true,
 			checkCol : true,
@@ -63,9 +63,9 @@
 				title : '操作',
 				renderer : function(val, item, row) {
 					onclick = "#";
-					return '<a href="javascript:loadHTML(\'${basePath}modifyPositionPage.action?position.positionId=' +item.positionId + '\')")">修改</a> '
+					return '<a href="javascript:loadHTML(\'modifyPositionPage.action?position.positionId=' +item.positionId + '\')")">修改</a> '
 					+ '&nbsp'
-					+ '<a href="javascript:showConfirm(' +item.positionId + ',' +'\'${basePath}\''+')" >删除</a>  ';
+					+ '<a href="javascript:showConfirm(' +item.positionId + ',' +'\'\''+')" >删除</a>  ';
 				}
 			} ],
 			plugins : [ $('#page').mmPaginator({}) ]
@@ -91,7 +91,7 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<button class="btn" onclick="loadHTML('${basePath}addPositionPage.action')">
+		<button class="btn" onclick="loadHTML('addPositionPage.action')">
 			<i class="icon-plus"></i>新增
 		</button>
 	</div>

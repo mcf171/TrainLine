@@ -7,11 +7,13 @@ import java.util.Map;
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Resource;
 import cn.com.service.ResourceService;
+import cn.com.util.GlobalConstant;
 
 public class ResourceAction extends BaseActionSupport {
 	private ResourceService resourceService;
 	private Map<String, Object> dataMap;
 	private Resource resource;
+	private String modifyResource;//如果为1则修改了ResourceURL
 
 	// 封装上传文件域的属性
     private File image;
@@ -36,6 +38,14 @@ public class ResourceAction extends BaseActionSupport {
 	 */
 	public String updateResource(){
 		
+		if(GlobalConstant.MODIFYURL.equals(modifyResource)){
+			
+			resourceService.updateResource(resource, image, imageContentType, imageFileName);
+		}else{
+			
+			resourceService.updateResource(resource);
+		}
+		
 		return this.SUCCESS;
 	}
 	/**
@@ -45,6 +55,10 @@ public class ResourceAction extends BaseActionSupport {
 	 * @return
 	 */
 	public String getUpdateResoucePage(){
+		
+		resource = resourceService.getResourceById(resource.getResourceId());
+		
+		request.setAttribute("resource", resource);
 		
 		return this.SUCCESS;
 	}
@@ -62,12 +76,25 @@ public class ResourceAction extends BaseActionSupport {
 	}
 	
 	/**
+	 * 获取视频资源页面
+	 * @author Apache
+	 * @time 2014-2-22 16:33
+	 * @return
+	 */
+	public String showBackendVideoResourcePage(){
+		
+		return this.SUCCESS;
+	}
+	
+	/**
 	 * 增加资源
 	 * @author:Apache
 	 * @time:2014-2-21 20:04
 	 * @return
 	 */
 	public String addResource(){
+		
+		resourceService.addResource(resource, image, imageContentType, imageFileName);
 		
 		return this.SUCCESS;
 	}
@@ -79,6 +106,8 @@ public class ResourceAction extends BaseActionSupport {
 	 * @return
 	 */
 	public String deleteResource(){
+		
+		resourceService.deleteResource(resource);
 		
 		return this.SUCCESS;
 	}
@@ -179,6 +208,14 @@ public class ResourceAction extends BaseActionSupport {
 
 	public void setResource(Resource resource) {
 		this.resource = resource;
+	}
+
+	public String getModifyResource() {
+		return modifyResource;
+	}
+
+	public void setModifyResource(String modifyResource) {
+		this.modifyResource = modifyResource;
 	}
 
 	

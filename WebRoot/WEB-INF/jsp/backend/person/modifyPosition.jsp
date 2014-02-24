@@ -27,7 +27,7 @@ $(document).ready(function(){
 
 $("#cancle").click(function(){
 
-	loadHTML('${basePath}showBackendPositionPage.action');
+	loadHTML('${basePath}admin/showBackendPositionPage.action');
 });
 
 $("#companyName").change(function(){
@@ -73,7 +73,7 @@ function getDepartmentNameByCompanyId() {
 
 
 <div class="row-fluid">
-	<form action="modifyPosition.action"  enctype="multipart/form-data" method="post">
+	<form action="${basePath}admin/modifyPosition.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin">
 			<span class="help-inline">职位ID：</span>
 			<input type="text" class=" span2" placeholder="请输入内容" name="position.positionId" value="${position.positionId}"/>

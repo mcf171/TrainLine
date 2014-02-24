@@ -19,7 +19,7 @@ var PAGES = {
 	page_2: '${basePath}admin/getClassManagerPage.action',
 	page_3: '${basePath}showBackendResourceListPage.action',
 
-	page_4: '${basePath}showBackendHumanPage.action',
+	page_4: '${basePath}admin/showBackendHumanPage.action',
 	page_5: '${basePath}newMessageAction.action',
 	page_6: '${basePath}/admin/getBackendReportPage.action',
 	page_7: '${basePath}conductSystemaction.action',

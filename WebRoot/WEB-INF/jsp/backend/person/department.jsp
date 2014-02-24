@@ -21,7 +21,7 @@
 	$(document).ready(function() {
 		test = "ready";
 		mmGirdTable = $('#grid').mmGrid({
-			url : '${basePath}getDepartmentList.action',
+			url : '${basePath}admin/getDepartmentList.action',
 			height : 410,
 			autoLoad : true,
 			checkCol : true,
@@ -75,9 +75,9 @@
 				title : '操作',
 				renderer : function(val, item, row) {
 					onclick = "#";
-					return '<a href="javascript:loadHTML(\'${basePath}modifyDepartmentPage.action?department.departmentId=' +item.departmentId + '\')")">修改</a> '
+					return '<a href="javascript:loadHTML(\'${basePath}admin/modifyDepartmentPage.action?department.departmentId=' +item.departmentId + '\')")">修改</a> '
 							+ '&nbsp'
-							+ '<a href="javascript:showConfirm(' +item.departmentId + ',' +'\'${basePath}\''+')" >删除</a> ';
+							+ '<a href="javascript:showConfirm(' +item.departmentId + ',' +'\'${basePath}admin/\''+')" >删除</a> ';
 				}
 			} ],
 			plugins : [ $('#page').mmPaginator({}) ]
@@ -106,7 +106,7 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<button class="btn" onclick="loadHTML('${basePath}addDepartmentPage.action')">
+		<button class="btn" onclick="loadHTML('${basePath}admin/addDepartmentPage.action')">
 			<i class="icon-plus"></i>新增
 		</button>
 	</div>

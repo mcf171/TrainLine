@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="${basePath}styles/edit.css" type="text/css"></link>
 <link href="${basePath}styles/font-awesome.css" rel="stylesheet"></link>
 <link rel="stylesheet" type="text/css"  href="${basePath}styles/mmgrid.css" />
 <link rel="stylesheet" type="text/css" href="${basePath}styles/mmpaginator.css" />
@@ -8,41 +7,45 @@
 <link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmpaginator.css" />
 <script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
 <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
-<script type="text/javascript" src="${basePath}scripts/jquery.js"></script>
 
 <script type="text/javascript">
 	//         
+	var mmGridTable;
 	$(document).ready(function() {
 		
-		$('#grid').mmGrid({
-			url : '/api/peixunrenyuan',
+		mmGridTable = $('#grid').mmGrid({
 			height : 410,
 			autoLoad : true,
 			checkCol : true,
 			multiSelect : true,
-			fullWithRows : true,
-			cols : [ {
-				title : '用户ID',
+			fullWidthRows : true,
+			cols : [
+					{
+						title : '编号',
+						sortable : true,
+						name : 'positionId'
+					},
+			        {
+				title : '公司',
 				sortable : true,
-				width : 150,
-				name : ''
+				name : 'companyName'
 			}, {
-				title : '用户名',
+				title : '部门',
 				sortable : true,
-				width : 150,
-				name : ''
+				name : 'departmentName'
 			}, {
-				title : '密码',
+				title : '职位',
 				sortable : true,
-				width : 150,
-				name : ''
-			}, {
-				title : '真实姓名',
-				sortable : true,
-				width : 150,
-				name : ''
-			}],
-			plugins : [ $('#page').mmPaginator({}) ]
+				name : 'positionName'
+			},
+			{
+				title:'操作',
+				renderer: function (val, item, row){
+					
+					return '<a href="javascript:deleteDepartment()">删除</a>';
+				}
+			}
+			]
 		});
 		
 		var optionString = "";
@@ -61,7 +64,7 @@
 		var value = $("#companyName").val();
 		$("#departmentName").find("option").remove();
 			$.ajax({
-					 url : 'getDepartmentList.action',
+					 url : '${basePath}admin/getDepartmentList.action',
 					data : 'department.company.companyId=' + value,
 					success : function(msg) {
 						var optionString = "";
@@ -77,7 +80,7 @@
 				var departmentId = $("#departmentName").val();
 				$("#positionName").find("option").remove();
 				$.ajax({
-					 url : 'getPositionList.action',
+					 url : '${basePath}admin/getPositionList.action',
 					data : 'position.department.departmentId=' + departmentId,
 					success : function(msg) {
 						var optionString = "";
@@ -95,7 +98,7 @@
 		var departmentId = $("#departmentName").val();
 		$("#positionName").find("option").remove();
 		$.ajax({
-			 url : 'getPositionList.action',
+			 url : '${basePath}admin/getPositionList.action',
 			data : 'position.department.departmentId=' + departmentId,
 			success : function(msg) {
 				var optionString = "";
@@ -107,33 +110,83 @@
 			}
 	});
 	}
+	
+$("#addPosition").click(function(){
+		
+		var companyName=$("#companyName").find("option:selected").text();  //获取Select选择的Text
+		var departmentName=$("#departmentName").find("option:selected").text();  //获取Select选择的Text
+		var positionName=$("#positionName").find("option:selected").text();  //获取Select选择的Text
+		var positionId=$("#positionName").val();  //获取Select选择的Value
+		var rowData = {"positionId":positionId,"companyName":companyName,"departmentName":departmentName,"positionName":positionName};
+		mmGridTable.addRow(rowData);
+	});
+
+	$("#addPeroson").click(function addPeroson(){
+		
+		var userName = $("#userName").val();
+		var userPassword = $("#userPassword").val();
+		var realName = $("#realName").val();
+		var userState = $("#userState").val();
+		var sex = $("#sex").val();
+		
+		var positionIds="";
+		mmGridTable.select(function(item,index){
+			
+			positionIds += "&positionIds=" + item.positionId;
+		});
+		
+		dataInfo = "user.userName="+userName+"&user.userPassword=" + userPassword + "&user.personalinformation.realName=" + realName + "&user.personalinformation.sex=" + sex +"&user.userState=" + userState + positionIds;
+		
+		$.ajax({
+			type:"post",
+			data : dataInfo,
+			url:"${basePath}admin/addUser.action",
+			success:function(msg){
+				loadHTML("${basePath}admin/showBackendPersonPage.action");
+			}
+		});
+	});
+	
+	function deleteDepartment(){
+		
+		mmGridTable.removeRow(mmGridTable.selectedRowsIndex());
+	}
 	//
 </script>
 
 <div class="row-fluid">
-	<form action="addPerson.action"  enctype="multipart/form-data" method="post">
-		<div class="row-fluid line-margin">
+<div class="row-fluid line-margin">
 			<span class="help-inline"><b>基本信息：</b></span>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">人员名称：</span>
-			<input type="text" class=" span2" placeholder="请输入内容" name="user.userName" value="${user.userName}" />
+			<input type="text" class=" span2" placeholder="请输入内容" name="user.userName" id="userName" value="${user.userName}"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">密码：</span>
-			<input type="text" class=" span2" placeholder="请输入内容" name="user.userPassword" value="${user.userPassword }" />
+			<input type="password" class=" span2" placeholder="请输入内容" value="${user.userPassword}" value="1"  id="userPassword"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">真实姓名：</span>
-			<input type="text" class=" span2" placeholder="请输入内容" name="user.personalinformation.realName" value="${user.personalinformation.realName}"/>
+			<input type="text" class=" span2" placeholder="请输入内容" value="${user.personalinformation.realName}" id="realName"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">人员性别：</span>
-			<select class="input-small " name="user.personalinformation.sex" value="${user.personalinformation.sex}">
+			<select class="input-small " name="user.personalinformation.sex" id="sex">
 				<option>男</option>
 				<option>女</option>
 			</select>
 		</div>
+		
+		<div class="row-fluid line-margin">
+			<span class="help-inline">权限级别：</span>
+			<select class="input-small " name="user.userState" id="userState">
+				<option value="1">超级管理员</option>
+				<option value="2">教师</option>
+				<option value="3">学员</option>
+			</select>
+		</div>
+		
 		<div class="row-fluid line-margin">
 			<span class="help-inline"><b>可增加职位：</b></span>
 		</div>
@@ -153,11 +206,8 @@
 			</select>
 		</div>
 		<div class="row-fluid line-margin">
-			<button class="btn span1 " type="submit">
+			<button class="btn span1 " type="button"  id="addPosition">
 				添加
-			</button>
-			<button class="btn span1" type="button" id="cancle">
-				取消
 			</button>
 		</div>
 		<div class="row-fluid line-margin">
@@ -170,12 +220,11 @@
 			</div>
 		</div>
 		<div class="row-fluid line-margin">
-			<button class="btn span1 offset1 " type="submit">
+			<button class="btn span1 offset1 " type="submit" id="addPeroson">
 				确定
 			</button>
 			<button class="btn span1 offset1" type="button" id="cancle">
 				取消
 			</button>
 		</div>
-	</form>
 </div>

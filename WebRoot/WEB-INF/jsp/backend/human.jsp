@@ -17,7 +17,7 @@
 //<![CDATA[
 $(document).ready(function ()
 {
-	$('#content').load('showBackendPersonPage.action');
+	$('#content').load('${basePath}admin/showBackendPersonPage.action');
 });
 //]]>
 </script>
@@ -30,16 +30,16 @@ $(document).ready(function ()
 				<li class="jstree-open">
 					<a href="#">人员管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="showBackendPersonPage.action">人员管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/showBackendPersonPage.action">人员管理</a></li>
 			
 					</ul>
 				</li>
 				<li class="jstree-open">
 					<a href="#">组织管理</a>
 					<ul>
-						<li class="jstree-leaf"><a href="showBackendCompanyPage.action">公司管理</a></li>
-						<li class="jstree-leaf"><a href="showBackendDepartmentPage.action">部门管理</a></li>
-						<li class="jstree-leaf"><a href="showBackendPositionPage.action">岗位管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/showBackendCompanyPage.action">公司管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/showBackendDepartmentPage.action">部门管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/showBackendPositionPage.action">岗位管理</a></li>
 					</ul>
 				</li>
 			</ul>

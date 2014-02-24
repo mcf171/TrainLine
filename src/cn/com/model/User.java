@@ -17,6 +17,7 @@ public class User implements java.io.Serializable {
 	private String userName;
 	private String userPassword;
 	private Integer userState;
+	private Set<Position> positions = new HashSet<Position>(0);
 	private Set courses = new HashSet(0);
 	private Set notices = new HashSet(0);
 	private Set message  = new HashSet(0);
@@ -129,6 +130,14 @@ public class User implements java.io.Serializable {
 
 	public void setMessage(Set message) {
 		this.message = message;
+	}
+
+	public Set<Position> getPositions() {
+		return positions;
+	}
+
+	public void setPositions(Set<Position> positions) {
+		this.positions = positions;
 	}
 
 

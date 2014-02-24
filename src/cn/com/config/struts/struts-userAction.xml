@@ -40,6 +40,10 @@
    				<param name="root">dataMap</param>
    			</result>
    		</action>
+   		
+   		<action name="addUser" class="userAction" method="addUser">
+   			<result>/utill.jsp</result>
+   		</action>
    	
    	</package>
 </struts>    

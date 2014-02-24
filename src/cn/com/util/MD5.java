@@ -7,6 +7,8 @@ import java.lang.reflect.*;
  * message-digest 算法。
  */
 public class MD5 {
+	
+	private static MD5 md5;
 
 	// 下面这些S11-S44实际上是一个4*4的矩阵，在原始的C实现中是用#define 实现的，这里把它们实现成为static
 	// final是表示了只读，切能在同一个进程空间内的多个Instance间共享
@@ -59,9 +61,20 @@ public class MD5 {
 	}
 
 	// 这是MD5这个类的标准构造函数，JavaBean要求有一个public的并且没有参数的构造函数
-	public MD5() {
+	private MD5() {
 		md5Init();
 		return;
+	}
+	
+	public static MD5 getInstance(){
+		
+		if(md5 == null){
+			
+			md5 = new MD5();
+			md5.md5Init();
+		}
+		
+		return md5;
 	}
 
 	// md5Init是一个初始化函数，初始化核心变量，装入标准的幻数
@@ -314,7 +327,7 @@ public class MD5 {
 	}
 
 	public static void main(String args[]) {
-		MD5 m = new MD5();
+		MD5 m = MD5.getInstance();
 		if (Array.getLength(args) == 0) {
 			// 如果没有参数，执行标准的Test Suite
 			System.out.println("MD5(\"admin\"):" + m.getMD5ofStr("admin"));

@@ -13,31 +13,7 @@
 <script type="text/javascript" src="${basePath}scripts/mousewheel.js"></script>
 <script type="text/javascript" src="${basePath}scripts/global.js"></script>
 <script type="text/javascript" src="${basePath}scripts/backend.js"></script>
-<style>
-.edit {
-	width: 700px;
-	margin-top: 10px;
-	margin-left: 60px;
-}
 
-#editor {
-	max-height: 150px;
-	height: 180px;
-	background-color: white;
-	border-collapse: separate;
-	border: 1px solid rgb(204, 204, 204);
-	padding: 4px;
-	box-sizing: content-box;
-	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
-	box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px;
-	border-top-left-radius: 3px;
-	overflow: scroll;
-	outline: none;
-}
-</style>
 <script>
 
 var trainingClassId;

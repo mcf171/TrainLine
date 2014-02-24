@@ -20,7 +20,7 @@ $(document).ready(function(){
 
 $("#cancle").click(function(){
 
-	loadHTML('${basePath}showBackendPositionPage.action');
+	loadHTML('${basePath}admin/showBackendPositionPage.action');
 });
 
 $("#companyName").change(function(){
@@ -61,7 +61,7 @@ $("#companyName").change(function(){
 
 
 <div class="row-fluid">
-	<form action="addPosition.action"  enctype="multipart/form-data" method="post">
+	<form action="${basePath}admin/addPosition.action"  enctype="multipart/form-data" method="post">
 		<div class="row-fluid line-margin">
 			<span class="help-inline">职位名：</span>
 			<input type="text" class=" span2" placeholder="请输入职位名称" name="position.positionName" />
