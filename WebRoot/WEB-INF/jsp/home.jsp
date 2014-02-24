@@ -67,6 +67,10 @@ $(document).ready(function(){
 	console.log(htmlContent1);
 	console.log(htmlContent2);
 	console.log(htmlContent3);
+	
+	$("#classnotice").fadeIn(500);
+	$("#testnotice").fadeIn(600);
+	$("#resource").fadeIn(700);
 });
 
 function changeResource(obj){
@@ -97,7 +101,7 @@ function changeResource(obj){
 <div class="container-fluid" id="content">
 	<div class="row-fluid">
 		<div class="span8">
-			<div class="row-fluid resources fixed-box">
+			<div class="row-fluid resources fixed-box hide"   id="classnotice">
 				<div class="span12">
 					<div class="row-fluid">
 						<div class="span12">
@@ -118,7 +122,7 @@ function changeResource(obj){
 							</c:if>			
 				</div>
 			</div>
-			<div class="row-fluid resources fixed-box">
+			<div class="row-fluid resources fixed-box hide"   id="testnotice">
 				<div class="span12">
 					<div class="row-fluid">
 						<div class="span12">
@@ -142,7 +146,7 @@ function changeResource(obj){
 			</div>
 		</div>
 		<div class="span4">
-			<div class="row-fluid resources">
+			<div class="row-fluid resources hide" id="resource">
 				<div class="span12">
 					<div class="row-fluid">
 						<div class="span12">
