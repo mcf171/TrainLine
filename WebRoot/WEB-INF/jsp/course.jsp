@@ -1,10 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -46,7 +41,10 @@ function selectCourse(){
 		  success: function(msg){
 			 
 			  $('#myModal').modal();
+			  console.log(mmg2);
 			  mmg1.removeRow(mmg1.selectedRowsIndex());
+			  mmg2.addRow(mmg1.selectedRows());
+			  console.log(mmg2);
 		  }
 		});
 }
@@ -87,9 +85,18 @@ $(document).ready(function ()
 		$('#list-cuotiji, #filter-cuotiji, #button-select,#page-selected-cuotiji').removeClass('hidden');
 			});
 	
+	var rowDatas = new Array();
+	
+	<c:forEach items="${user.positions}" var="position">
+		<c:forEach items="${position.courses}" var="course">
+			var rowData = {"courseId" : "${course.courseId}" , "courseName": "${course.courseName}", "courseSpeaker" : "${course.courseSpeaker}" ,"courseIntro" : "${course.courseIntro}"};
+			rowDatas.push(rowData);
+		</c:forEach>
+	</c:forEach>
 	
 	mmg1 = $('#grid-available').mmGrid({
-		url: '${basePath}fbfindCourse.action?user.userId=${user.userId}',
+		items:rowDatas,
+		noDataText:"你的职位没有课程",
 		height: 230,
 		root:'cList',
 		autoLoad: true,
@@ -101,21 +108,16 @@ $(document).ready(function ()
 			{ title: '课程名称', sortable: true,  name: 'courseName' },
 			{ title: '讲师', sortable: true,  name: 'courseSpeaker' },
 			{ title: '课程介绍', sortable: true,  name: 'courseIntro' },
-			{
-				title: '课程状态',
-				sortable: true,
-				
+			{ title: '上课方式', sortable: true,  
 				renderer: function (val,item,row)
 				{
-					switch(item.courseState){
+					switch(item.courseKind){
 					
-					case 1:return "选课中心";
-					case 2:return "案例教学";
-					case 3:return "党建课程";
-					case 4:return "党建讲座";
+					case 1: return "二分屏";break;
+					case 2: return "三分屏";break;
 					}
 					
-				}
+				}	
 			},
 			{
 				title: '操作',
@@ -133,10 +135,16 @@ $(document).ready(function ()
 		]
 	});
 	
+var rowDatas2 = new Array();
 	
+		<c:forEach items="${user.courses}" var="course">
+			var rowData = {"courseKind": "${course.courseKind}","courseId" : "${course.courseId}" , "courseName": "${course.courseName}", "courseSpeaker" : "${course.courseSpeaker}" ,"courseIntro" : "${course.courseIntro}"};
+			rowDatas2.push(rowData);
+		</c:forEach>
 	
 	mmg2 = $('#grid-kecheng').mmGrid({
-		url: '${basePath}fbFindMyCourse.action',
+		items:rowDatas2,
+		noDataText:"你还没有选课",
 		height: 230,
 		root:'cList',
 		autoLoad: true,
@@ -148,7 +156,7 @@ $(document).ready(function ()
 			{ title: '课程名称', sortable: true,  name: 'courseName' },
 			{ title: '讲师', sortable: true,  name: 'courseSpeaker' },
 			{ title: '课程介绍', sortable: true,  name: 'courseIntro' },
-			{ title: '课程介绍', sortable: true,  
+			{ title: '上课方式', sortable: true,  
 				renderer: function (val,item,row)
 				{
 					switch(item.courseKind){
@@ -160,15 +168,6 @@ $(document).ready(function ()
 				}	
 			},
 			{
-				title: '课程状态',
-				sortable: true,
-				
-				renderer: function (val,item,row)
-				{
-					return item.isSelect==1 ? '已选' : '未选';
-				}
-			},
-			{
 				title: '操作',
 				
 				renderer: function (val, item, row)
@@ -176,7 +175,7 @@ $(document).ready(function ()
 					
 					return '<input type="hidden" value="' + item.courseId + '" />' +
 						'<a target="_blank" href="${basePath}getCourseStudyPage.action?course.courseId=' + item.courseId + '">学习</a>&nbsp;&nbsp;' +
-					'<a href="javascript:dropCourse(\'' + item.courseId + '\')">退选</a>' 
+					'<a href="javascript:dropCourse(\'' + item.courseId + '\')">退选</a>' ;
 				}
 			}
 		],
@@ -224,41 +223,90 @@ $(document).ready(function ()
 	});
 	
 	mmg4 = $('#grid-cuotiji').mmGrid({
-		url: '${basePath}fbfindCourse.action',
-		height: 230,
-		root:'cList',
-		autoLoad: true,
-		checkCol: true,
-		multiSelect: true,
-		fullWidthRows: true,
-		cols: [
-			{ title: '课程编号', sortable: true,  name: 'courseId' },
-			{ title: '课程名称', sortable: true,  name: 'courseName' },
-			{ title: '讲师', sortable: true,  name: 'courseSpeaker' },
-			{ title: '课程介绍', sortable: true,  name: 'courseIntro' },
-			{
-				title: '课程状态',
-				sortable: true,
-				
-				renderer: function (val,item,row)
+		url : '${basePath}admin/getQuestions.action',
+		height : 410,
+		autoLoad : true,
+		checkCol : true,
+		multiSelect : true,
+		fullWidthRows : true,
+		root : 'testquestionList',
+		cols : [
 				{
-					return item.isSelect==1 ? '已选' : '未选';
-				}
-			},
-			{
-				title: '操作',
-				
-				renderer: function (val, item, row)
+					title : '题目编号',
+					sortable : true,
+					name : 'testQuestionId'
+				},
 				{
-					return '<input type="hidden" value="' + item.courseId + '" />' +
-						'<a href="#">详细信息</a>&nbsp;&nbsp;' +
-						 '<a target="_blank" href="${basePath}getCourseStudyPage.action?course.courseId=' + item.courseId + '">学习</a>';
-				}
-			}
-		],
-		plugins: [
-			$('#page-selected-cuotiji').mmPaginator({})
-		]
+					title : '课程ID',
+					sortable : true,
+					renderer : function(
+							val, item, row) {
+						//onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
+						return item.course.courseId;
+					}
+				},
+				{
+					title : '课程名称',
+					sortable : true,
+					renderer : function(
+							val, item, row) {
+						//onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
+						return item.course.courseName;
+					}
+				},
+				{
+					title : '试题名 ',
+					sortable : true,
+					name : 'testQuestionName'
+				},
+				{
+					title : '试题难度 ',
+					sortable : true,
+					name : 'degreeOfDifficulty'
+				},
+				{
+					title : '总分 ',
+					sortable : true,
+					name : 'score'
+				},
+				{
+					title : '类型 ',
+					sortable : true,
+					renderer : function(
+							val, item, row) {
+						//onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
+						testType = parseInt(item.testType);
+
+						switch (testType) {
+
+						case 1:
+							return "单选题";
+						case 2:
+							return "多选题";
+						case 3:
+							return "主观题";
+						default:
+							return "未知题型";
+						}
+
+					}
+				},
+				{
+					title : '操作 ',
+					sortable : true,
+
+					renderer : function(
+							val, item, row) {
+						//onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
+						return '<a href="javascript:loadHTML(\'${basePath}admin/getTestquestionById.action?testquestion.testQuestionId='
+								+ item.testQuestionId
+								+ '\')" > 查看</a> <a href="javascript:loadHTML(\'${basePath}admin/getTestquestionModifyPage.action?testquestion.testQuestionId='
+								+ item.testQuestionId
+								+ '\')" > 修改</a> <a href="javascript:showConfirm(' +item.testQuestionId + ',' +'\'${basePath}\''+')" >删除</a>';
+					}
+				} ],
+		plugins : [ $('#page').mmPaginator(
+				{}) ]
 	});
 	
 	
@@ -307,7 +355,7 @@ $(document).ready(function ()
 
 	function detail(courseId)
 	{
-	loadHTML('${basePath}course_intoDetailCourseInfo.action?courseId='+courseId);
+	loadHTML('${basePath}intoDetailCourseInfo.action?courseId='+courseId);
 	}
 	/**
 	*批量退选

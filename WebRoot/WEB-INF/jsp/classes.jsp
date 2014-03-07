@@ -1,8 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -20,6 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="scripts/mmgrid.js"></script>
 <script type="text/javascript" src="scripts/mmpaginator.js"></script>
 <title>学习中心</title>
+
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function ()
@@ -36,8 +34,17 @@ $(document).ready(function ()
 		$('#list-available, #filter-available, #button-select').removeClass('hidden');
 	});
 
-	$('#grid-available').mmGrid({
-		url: '${basePath}fbfindCourse.action',
+	var rowDatas = new Array();
+	
+	<c:forEach items="${trainingClass.courses}" var="courses">
+			var rowData = {"courseId" : "${course.courseId}" , "courseName": "${course.courseName}", "courseSpeaker" : "${course.courseSpeaker}" ,"courseIntro" : "${course.courseIntro}"};
+			rowDatas.push(rowData);
+	</c:forEach>
+	
+	$('#grid-available').mmGrid(
+			{
+		items:rowDatas,
+		noDataText:"你的班级没有安排课程",
 		height: 230,
 		root:'cList',
 		autoLoad: true,

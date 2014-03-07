@@ -30,7 +30,7 @@ $(document).ready(function(){
 		case 3: htmlContent1 = htmlContent1+'<div class="badge badge-info">'+index1+'</div>';break;
 		default : htmlContent1 = htmlContent1+'<div class="badge">'+index1+'</div>';
 		}
-		htmlContent1 = htmlContent1 +'<a href="${basePath}${item.resourcePath}">${item.resourceName }</a>';
+		htmlContent1 = htmlContent1 +'<a href="${basePath}getFile/${item.resourcePath}">${item.resourceName }</a>';
 		htmlContent1 = htmlContent1 +'<span class="time muted">${item.downloundCount}</span></div></div>';
 		index1 ++;
 	</c:if>
@@ -42,7 +42,7 @@ $(document).ready(function(){
 	case 3: htmlContent2 = htmlContent2+'<div class="badge badge-info">'+index2+'</div>';break;
 	default : htmlContent2 = htmlContent2+'<div class="badge">'+index2+'</div>';
 	}
-	htmlContent2 = htmlContent2 +'<a href="${basePath}${item.resourcePath}">${item.resourceName }</a>';
+	htmlContent2 = htmlContent2 +'<a href="${basePath}getFile/${item.resourcePath}">${item.resourceName }</a>';
 	htmlContent2 = htmlContent2 +'<span class="time muted">${item.downloundCount}</span></div></div>';
 	index2 ++;
 	</c:if>
@@ -55,7 +55,7 @@ $(document).ready(function(){
 	case 3: htmlContent3 = htmlContent3+'<div class="badge badge-info">'+index3+'</div>';break;
 	default : htmlContent3 = htmlContent3+'<div class="badge">'+index3+'</div>';
 	}
-	htmlContent3 = htmlContent3 +'<a href="${basePath}${item.resourcePath}">${item.resourceName }</a>';
+	htmlContent3 = htmlContent3 +'<a href="${basePath}getFile/${item.resourcePath}">${item.resourceName }</a>';
 	htmlContent3 = htmlContent3 +'<span class="time muted">${item.downloundCount}</span></div></div>';
 	index3 ++;
 	</c:if>
@@ -63,10 +63,7 @@ $(document).ready(function(){
 	$("#resource1").html(htmlContent1);
 	$("#resource2").html(htmlContent2);
 	$("#resource3").html(htmlContent3);
-	
-	console.log(htmlContent1);
-	console.log(htmlContent2);
-	console.log(htmlContent3);
+
 	
 	$("#classnotice").fadeIn(500);
 	$("#testnotice").fadeIn(600);
@@ -115,7 +112,7 @@ function changeResource(obj){
 							   <div class="row-fluid">
 								<div class="span12">
 									<i class="icon-info-sign"></i>
-									<a href="javascript:loadHTML('${basePath}getNoticeContent.action?notice.noticeId=${item.noticeId}&notice.noticetype.noticeTypeId=${item.noticetype.noticeTypeId}')">${item.noticeContent}</a>
+									<a href="javascript:loadHTML('${basePath}getNoticeContent.action?notice.noticeId=${item.noticeId}&notice.noticetype.noticeTypeId=${item.noticetype.noticeTypeId}')">${item.noticeTitle}</a>
 								</div>
 							</div>
 							  </c:forEach>
@@ -136,7 +133,7 @@ function changeResource(obj){
 							   <div class="row-fluid">
 								<div class="span12">
 									<i class="icon-info-sign"></i>
-									<a href="javascript:loadHTML('${basePath}getNoticeContent.action?notice.noticeId=${item.noticeId}&notice.noticetype.noticeTypeId=${item.noticetype.noticeTypeId}')">${item.noticeContent}</a>
+									<a href="javascript:loadHTML('${basePath}getNoticeContent.action?notice.noticeId=${item.noticeId}&notice.noticetype.noticeTypeId=${item.noticetype.noticeTypeId}')">${item.noticeTitle}</a>
 								</div>
 							</div>
 							  </c:forEach>
@@ -156,7 +153,7 @@ function changeResource(obj){
 							 <select class="input-small more" onchange="changeResource(this)">
 					              <option value="1">视频资源</option>
 					              <option value="2">文档资源</option>
-					              <option value="3"> 动画资源</option>
+					              <option value="3"> 其他资源</option>
 					            </select>
 						</div>
 					</div>

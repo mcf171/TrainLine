@@ -7,9 +7,19 @@
 		<action name="getUserInfoPage" class="userAction" method="getUserInfoPage">
 			<result>/WEB-INF/jsp/userInfo.jsp</result>
 		</action>
+		
+		<action name="checkUser" class="userAction" method="checkUser">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
    		<action name="login" class="userAction" method="login">
+   			<result>/utill.jsp</result>
+   		</action>
+   		
+   		<action name="getIndex" class="userAction" method="getIndex">
    			<result>/WEB-INF/jsp/index.jsp</result>
-   			<result name="input">login.jsp</result>
    		</action>
    		
    		<action name="logout"	class="userAction"	method="logout">

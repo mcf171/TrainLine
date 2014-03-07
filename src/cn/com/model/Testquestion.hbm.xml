@@ -10,7 +10,7 @@
             <column name="testQuestionId" />
             <generator class="native" />
         </id>
-        <many-to-one name="course" class="cn.com.model.Course" fetch="join" lazy="false">
+        <many-to-one name="course" class="cn.com.model.Course" fetch="join" lazy="false" not-found="ignore">
             <column name="courseId" />
         </many-to-one>
         <property name="testQuestionName" type="java.lang.String">
@@ -25,12 +25,7 @@
         <property name="testType" type="java.lang.String">
             <column name="testType" length="50" />
         </property>
-        <property name="testAnswerIntroduce" type="java.lang.String">
-            <column name="testAnswerIntroduce" length="50" />
-        </property>
-        <property name="standardAnswer" type="java.lang.String">
-            <column name="standardAnswer" length="50" />
-        </property>
+       
         <property name="testIndex" type="java.lang.Integer">
             <column name="testIndex" length="50" />
         </property>
@@ -43,6 +38,14 @@
                 <column name="testPaperId" not-null="true" />
             </many-to-many>
         </set>
+        
+        <set name="testQuestionChooses" inverse="true" lazy="false" cascade="delete" order-by="testQuestionItemId asc">
+        	<key>
+        		<column name="testQuestionId"></column>
+        	</key>
+        	<one-to-many class="cn.com.model.TestQuestionItem"/>
+        </set>
+        
         <!-- 
         <set name="users" inverse="true" table="userandquestion" catalog="trainline">
             <key>

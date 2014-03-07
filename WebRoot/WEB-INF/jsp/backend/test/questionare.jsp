@@ -70,7 +70,7 @@ $(document).ready(function ()
 				renderer: function (val, item, row)
 				{
 					return '<input type="hidden" value="' + item.id + '" />' +
-						'<a href="#">查看</a>&nbsp;&nbsp;' +
+						'<a href="javascript:void(0)" onclick="showTestArrangementPage(' + item.testArrangementId + ')">查看</a>&nbsp;&nbsp;' +
 						'<a href="javascript:void(0)" onclick="updateTestArrangement(' + item.testArrangementId + ')">修改</a>&nbsp;&nbsp;' +
 						'<a href="javascript:void(0)" onclick="showConfirm(' + item.testArrangementId +')">删除</a>';
 				}
@@ -81,6 +81,11 @@ $(document).ready(function ()
 		]
 	});
 });
+
+function showTestArrangementPage(testArrangementId){
+	console.log(1);
+	loadHTML("${basePath}admin/showTestArrangementPage.action?testArrangement.testArrangementId="+ testArrangementId);
+}
 
 function updateTestArrangement(testArrangementId){
 	

@@ -8,14 +8,20 @@
 $("#cancle").click(function(){
 	loadHTML('${basePath}admin/showBackendCompanyPage.action');
 })
+
+function callback(msg){
+	alert("增加成功");
+	loadHTML('${basePath}admin/showBackendCompanyPage.action');
+}
+
 //-->
 </script>
 
 <div class="row-fluid">
-	<form action="${basePath}admin/addCompany.action"  enctype="multipart/form-data" method="post">
+	<form action="${basePath}admin/addCompany.action"  enctype="multipart/form-data" method="post" target="hidden_frame">
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司名称：</span>
-			<input type="text" class=" span2" placeholder="请输入公司名称" name="company.companyName" />
+			<input type="text" class=" span2" placeholder="请输入公司名称" name="company.companyName" required="required"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司等级：</span>
@@ -29,11 +35,11 @@ $("#cancle").click(function(){
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司介绍：</span>
-			<textarea class=" span2" placeholder="请输入内容" name="company.companyIntro"/>
+			<textarea class=" span2" placeholder="请输入内容" name="company.companyIntro" draggable="false"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司简称：</span>
-			<input type="text" class=" span2" placeholder="请输入公司简称" name="company.companyShortName" />
+			<input type="text" class=" span2" placeholder="请输入公司简称" name="company.companyShortName" required="required" />
 		</div>
 		<div class="row-fluid line-margin">
 			<button class="btn span1" type="submit">
@@ -44,4 +50,5 @@ $("#cancle").click(function(){
 			</button>
 		</div>
 	</form>
+	<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
 </div>

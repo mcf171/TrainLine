@@ -10,7 +10,7 @@
             <column name="catalogueId" />
             <generator class="native" />
         </id>
-         <many-to-one name="course" column="courseId" lazy="false"  cascade="save-update"></many-to-one>
+         <many-to-one name="course" column="courseId" lazy="false"  cascade="none"></many-to-one>
         <property name="catalogueName" type="java.lang.String">
             <column name="catalogueName" length="50" />
         </property>

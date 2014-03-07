@@ -62,12 +62,9 @@ public class CredentialAction extends BaseActionSupport {
 	 */
 	public String updateCredential(){
 		
-		Credential temp = credentialService.getCredentialById(credential);
-		if (credential.getCredentiaPath() == null) {
-			
-			credential.setCredentiaPath(temp.getCredentiaPath());
-		}
-		credentialService.update(credential);
+		
+		credentialService.update(credential, image, imageContentType, imageFileName,(String)request.getAttribute("physicalPath"));
+	
 		return this.SUCCESS;
 	}
 	/**
@@ -105,7 +102,7 @@ public class CredentialAction extends BaseActionSupport {
 			{
 				credentialService.delete(credential);
 			}
-		return JSON;
+		return this.SUCCESS;
 	}
 	
 	/**

@@ -36,7 +36,7 @@ $(document).ready(function ()
 						<ul>
 						<li class="jstree-leaf"><a href="${basePath}admin/showBackendVideoResourcePage.action">视频资源管理</a></li>
 						<li class="jstree-leaf"><a href="${basePath}admin/showBackendDocResourcePage.action">文档资源管理</a></li>
-						<li class="jstree-leaf"><a href="${basePath}admin/showBackendDongTaiResourcePage.action">动态图片资源管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/showBackendDongTaiResourcePage.action">其他资源管理</a></li>
 					</ul>
 				</li>
 				

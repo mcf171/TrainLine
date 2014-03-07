@@ -12,6 +12,18 @@ import cn.com.model.User;
 
 public class TestCourseDAO extends TestCase{
 
+	private ApplicationContext context;
+	private CourseDAO courseDAO;
+	
+	
+	public TestCourseDAO() {
+		super();
+		// TODO Auto-generated constructor stub
+		context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		courseDAO = (CourseDAO)context.getBean("CourseDAO");
+	}
+
+
 	@Test
 	public void testUpdate(){
 		
@@ -27,12 +39,18 @@ public class TestCourseDAO extends TestCase{
 	@Test
 	public void testGetCourseById(){
 		
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		CourseDAO courseDAO = (CourseDAO)context.getBean("CourseDAO");
+		
 		Course course = courseDAO.findById(91);
 		for(Catalogue item: course.getCatalogues()){
 			System.out.println(item.getCatalogueId());
 			this.assertNotNull(item.getNote());
 		}
+	}
+	
+	@Test
+	public void testDeleteCourse(){
+		
+		Course course = courseDAO.findById(104);
+		courseDAO.delete(course);
 	}
 }

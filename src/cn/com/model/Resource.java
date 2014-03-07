@@ -91,4 +91,25 @@ public class Resource implements java.io.Serializable {
 		this.catalogue = catalogue;
 	}
 
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		
+		if(obj instanceof Resource){
+			
+			Resource temp = (Resource)obj;
+			flag = temp.getResourceId().equals(this.resourceId);
+		}
+		
+		return flag;
+	}
+
+	
 }

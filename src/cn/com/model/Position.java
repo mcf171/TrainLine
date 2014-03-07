@@ -14,6 +14,7 @@ public class Position implements java.io.Serializable {
 	private Integer positionId;
 	private Department department;
 	private String positionName;
+	private Set<Course> courses = new HashSet<Course>();
 	private Set users = new HashSet(0);
 
 	// Constructors
@@ -61,6 +62,14 @@ public class Position implements java.io.Serializable {
 
 	public void setUsers(Set users) {
 		this.users = users;
+	}
+
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
 	}
 
 }

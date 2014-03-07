@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<script type="text/javascript" src="${basePath}scripts/global.js"></script>
 <script type="text/javascript" src="${basePath}scripts/jquery.js"></script>
+<div id="content">
 <script>
 
 $(document).ready( function(){
@@ -39,8 +40,10 @@ $(document).ready( function(){
 	$("#addChoose").click(function(){
 		
 		
+		
 		if(indexNumber <=5){
 		var chooseBianhao;
+		var inputValue = indexNumber + 4;
 		switch(indexNumber){
 			
 		case 1: chooseBianhao = 'E'; break;
@@ -58,7 +61,7 @@ $(document).ready( function(){
 									'<label class="control-label" >' + chooseBianhao + '：</label>'+
 										'<div class="controls">'+
 											'<input type="text" class=" " placeholder="请输入人员名称" name="" /> '+
-											'<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" value="' + chooseBianhao + '"> 正确答案'+
+											'<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" value="' + inputValue+ + '"> 正确答案'+
 										'</div>'+
 								'</div>';break;
 		case 2:
@@ -66,7 +69,7 @@ $(document).ready( function(){
 			'<label class="control-label" >' + chooseBianhao + '：</label>'+
 				'<div class="controls">'+
 					'<input type="text" class=" " placeholder="请输入人员名称" name="" /> '+
-					'<input type="checkbox" class="standardAnswer" name="duoxuanstandardAnswer" value="' + chooseBianhao + '"> 正确答案'+
+					'<input type="checkbox" class="standardAnswer" name="duoxuanstandardAnswer" value="' + inputValue + '"> 正确答案'+
 				'</div>'+
 		'</div>';break;
 		}
@@ -84,7 +87,7 @@ $(document).ready( function(){
 		if(courseId !=""){
 		$.ajax({
 			  type: "post",
-			  url: "${basePath}course_getCourseById.action",
+			  url: "${basePath}admin/getCourseById.action",
 			  data:'course.courseId='+courseId,
 			  success:function(msg){
 				  if(msg.course !=null){
@@ -106,9 +109,34 @@ $(document).ready( function(){
 	
 });
 
+function checkForm(){
+	
+
+	if($("#testName").val() == ""){
+		$("#name").fadeIn();
+		$("#score").fadeOut();
+		$("#courseIds").fadeOut();
+		return false;
+	}
+	var reg = new RegExp("^[0-9]+$");
+	
+	if(!reg.test($("#testScore").val())){
+		$("#name").fadeOut();
+		$("#score").fadeIn();
+		$("#courseIds").fadeOut();
+		return false;
+	}
+	if($("#courseId").val()==""){
+		$("#name").fadeOut();
+		$("#score").fadeOut();
+		$("#courseIds").fadeIn();
+		return false;
+	}
+}
+
 </script>
 
-<form class="form-horizontal"  action="${basePath}admin/addTestquestion.action" method="post">
+<form class="form-horizontal"  action="${basePath}admin/addTestquestion.action" method="post" target="hidden_frame" onsubmit="return checkForm();">
 
 	<div class="row-fluid line-margin">
 		<span class="help-inline"><b>基本信息：</b>
@@ -118,7 +146,8 @@ $(document).ready( function(){
 		<label class="control-label" >试题名：</label>
 		<div class="controls">
 			<input type="text"
-			class=" span2" placeholder="请输入人员名称" name="testquestion.testQuestionName" />
+			class=" span2" placeholder="请输入人员名称" name="testquestion.testQuestionName"  id="testName"/>
+			<font color="red" class="hide" id="name">*必须填写</font>
 		</div>
 	</div>
 	<div class="control-group">
@@ -149,7 +178,8 @@ $(document).ready( function(){
 		<label class="control-label" >分数：</label>
 		<div class="controls">
 			<input type="text"
-			class=" span2" placeholder="请输入人员名称" name="testquestion.score" />
+			class=" span2" placeholder="请输入人员名称" name="testquestion.score" id="testScore"/>
+			<font color="red" class="hide" id="score">*必须填写数字</font>
 		</div>
 	</div>
 	
@@ -157,8 +187,9 @@ $(document).ready( function(){
 		<label class="control-label" >输入课程ID：</label>
 		<div class="controls">
 			<input type="text"
-			class=" span2" placeholder="请输入人员名称" name="testquestion.course.courseId"  id="courseId"/>
+			class=" span2" placeholder="请输入人员名称" name="testquestion.course.courseId"  id="courseId" required="required" />
 			<font color="green" id="courseInfo"></font>
+			<font color="red" class="hide" id="courseIds">*必须填写</font>
 		</div>
 		
 	</div>
@@ -182,8 +213,8 @@ $(document).ready( function(){
 				<label class="control-label" >A：</label>
 				<div class="controls">
 					<input type="text"
-					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" />
-					<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" value="A"/> 正确答案
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" required="required"/>
+					<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" value="1" checked="checked"/> 正确答案
 				</div>
 			</div>
 			<div class="control-group">
@@ -191,7 +222,7 @@ $(document).ready( function(){
 				<div class="controls">
 					<input type="text"
 					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" />
-					<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" value="B"/> 正确答案
+					<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" value="2"/> 正确答案
 				</div>
 			</div>
 			<div class="control-group">
@@ -199,7 +230,7 @@ $(document).ready( function(){
 				<div class="controls">
 					<input type="text"
 					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" />
-					<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" value="C"/> 正确答案
+					<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" value="3"/> 正确答案
 				</div>
 			</div>
 			<div class="control-group" >
@@ -207,7 +238,7 @@ $(document).ready( function(){
 				<div class="controls">
 					<input type="text"
 					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" />
-					<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" value="D"/> 正确答案
+					<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" value="4"/> 正确答案
 				</div>
 			</div>
 		
@@ -220,7 +251,7 @@ $(document).ready( function(){
 				<div class="controls">
 					<input type="text"
 					class=" " placeholder="请输入人员名称" name="duoxuantestAnswerIntroduce" />
-					<input type="checkbox" class="standardAnswer" name="duoxuanstandardAnswer" value="A"/> 正确答案
+					<input type="checkbox" class="standardAnswer" name="duoxuanstandardAnswer" value="1" checked="checked"/> 正确答案
 				</div>
 			</div>
 			<div class="control-group">
@@ -228,7 +259,7 @@ $(document).ready( function(){
 				<div class="controls">
 					<input type="text"
 					class=" " placeholder="请输入人员名称" name="duoxuantestAnswerIntroduce" />
-					<input type="checkbox" class="standardAnswer" name="duoxuanstandardAnswer" value="B"/> 正确答案
+					<input type="checkbox" class="standardAnswer" name="duoxuanstandardAnswer" value="2"/> 正确答案
 				</div>
 			</div>
 			<div class="control-group">
@@ -236,7 +267,7 @@ $(document).ready( function(){
 				<div class="controls">
 					<input type="text"
 					class=" " placeholder="请输入人员名称" name="duoxuantestAnswerIntroduce" />
-					<input type="checkbox" class="standardAnswer" name="duoxuanstandardAnswer" value="C"/> 正确答案
+					<input type="checkbox" class="standardAnswer" name="duoxuanstandardAnswer" value="3"/> 正确答案
 				</div>
 			</div>
 			<div class="control-group" >
@@ -244,7 +275,7 @@ $(document).ready( function(){
 				<div class="controls">
 					<input type="text"
 					class=" " placeholder="请输入人员名称" name="duoxuantestAnswerIntroduce" />
-					<input type="checkbox" class="standardAnswer" name="duoxuanstandardAnswer" value="D"/> 正确答案
+					<input type="checkbox" class="standardAnswer" name="duoxuanstandardAnswer" value="4"/> 正确答案
 				</div>
 			</div>
 		
@@ -268,6 +299,13 @@ $(document).ready( function(){
 		</div>
 	</div>
 </form>
-
-</body>
-</html>
+<script type="text/javascript">
+<!--
+function callback(){
+	
+	$("#content").load("${basePath}admin/getQuestionsPage.action");
+}
+//-->
+</script>
+<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
+</div>

@@ -18,6 +18,8 @@ public class User implements java.io.Serializable {
 	private String userPassword;
 	private Integer userState;
 	private Set<Position> positions = new HashSet<Position>(0);
+	private Set<Mail> reviceMail = new HashSet<Mail>(0);
+	private Set<Mail> sendMail = new HashSet<Mail>(0);
 	private Set courses = new HashSet(0);
 	private Set notices = new HashSet(0);
 	private Set message  = new HashSet(0);
@@ -138,6 +140,43 @@ public class User implements java.io.Serializable {
 
 	public void setPositions(Set<Position> positions) {
 		this.positions = positions;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		
+		if(obj instanceof User){
+			
+			User compare = (User)obj;
+			
+			flag = compare.getUserId().equals(this.userId)  ? true : false;
+			
+		}
+		return flag;
+	}
+
+	public Set<Mail> getReviceMail() {
+		return reviceMail;
+	}
+
+	public void setReviceMail(Set<Mail> reviceMail) {
+		this.reviceMail = reviceMail;
+	}
+
+	public Set<Mail> getSendMail() {
+		return sendMail;
+	}
+
+	public void setSendMail(Set<Mail> sendMail) {
+		this.sendMail = sendMail;
 	}
 
 

@@ -186,7 +186,7 @@ $(document).ready( function(){
 			</span>
 		</div>
 		
-		<c:forEach items="${testAnswerIntroduce}" var="item" varStatus="index">
+		<c:forEach items="${testquestion.testQuestionChooses}" var="item" varStatus="index">
 		
 		
 			<c:if test="${index.index ==0}">
@@ -194,7 +194,7 @@ $(document).ready( function(){
 					<label class="control-label" >A：</label>
 					<div class="controls">
 					<input type="text"
-					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item.testQuestionItemContent}"/>
 						<c:if test="${testquestion.testType =='1'}">
 							<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="A" value="A" selected/> 正确答案
 						</c:if>
@@ -209,7 +209,7 @@ $(document).ready( function(){
 					<label class="control-label" >B：</label>
 					<div class="controls">
 					<input type="text"
-					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item.testQuestionItemContent}"/>
 						
 						<c:if test="${testquestion.testType =='1'}">
 						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="B" value="B"/> 正确答案
@@ -225,7 +225,7 @@ $(document).ready( function(){
 					<label class="control-label" >C：</label>
 					<div class="controls">
 					<input type="text"
-					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item.testQuestionItemContent}"/>
 						
 						<c:if test="${testquestion.testType =='1'}">
 						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="C" value="C"/> 正确答案
@@ -241,7 +241,7 @@ $(document).ready( function(){
 					<label class="control-label" >D：</label>
 					<div class="controls">
 					<input type="text"
-					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item.testQuestionItemContent}"/>
 						
 						<c:if test="${testquestion.testType =='1'}">
 						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="D" value="D"/> 正确答案
@@ -257,7 +257,7 @@ $(document).ready( function(){
 					<label class="control-label" >E：</label>
 					<div class="controls">
 					<input type="text"
-					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item.testQuestionItemContent}"/>
 						
 						<c:if test="${testquestion.testType =='1'}">
 						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="E" value="E"/> 正确答案
@@ -274,7 +274,7 @@ $(document).ready( function(){
 					<label class="control-label" >F：</label>
 					<div class="controls">
 					<input type="text"
-					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item.testQuestionItemContent}"/>
 						
 						
 						<c:if test="${testquestion.testType =='1'}">
@@ -292,7 +292,7 @@ $(document).ready( function(){
 					<label class="control-label" >G：</label>
 					<div class="controls">
 					<input type="text"
-					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item.testQuestionItemContent}"/>
 						
 						<c:if test="${testquestion.testType =='1'}">
 						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="G" value="G"/> 正确答案
@@ -309,7 +309,7 @@ $(document).ready( function(){
 					<label class="control-label" >H：</label>
 					<div class="controls">
 					<input type="text"
-					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item}"/>
+					class=" " placeholder="请输入人员名称" name="danxuantestAnswerIntroduce" value="${item.testQuestionItemContent}"/>
 
 						<c:if test="${testquestion.testType =='1'}">
 						<input type="radio" class="standardAnswer" name="danxuanstandardAnswer" id="H" value="H"/> 正确答案

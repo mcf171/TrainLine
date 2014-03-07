@@ -51,14 +51,7 @@ public class CredentialDAO extends HibernateDaoSupport {
 	}
 
 	public void delete(Credential persistentInstance) {
-		try {
-			Session session = getHibernateTemplate().getSessionFactory().openSession();
-			session.delete(persistentInstance);
-			session.flush();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-			
+			this.getHibernateTemplate().delete(persistentInstance);
 	}
 
 	public Credential findById(java.lang.Integer id) {

@@ -8,12 +8,26 @@
 <script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
 <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
 
+
+
 <script type="text/javascript">
 	//         
 	var mmGridTable;
 	$(document).ready(function() {
 		
+		var rowDatas = new Array();
+		
+		<c:forEach items="${user.positions}" var="item">
+
+		var rowData = {"positionId":"${item.positionId}","companyName":"${item.department.company.companyName}","departmentName":"${item.department.departmentName}","positionName":"${item.positionName}"};
+		rowDatas.push(rowData);
+		
+		</c:forEach>
+		
+		console.log(rowDatas);
+		
 		mmGridTable = $('#grid').mmGrid({
+			items:rowDatas,
 			height : 410,
 			autoLoad : true,
 			checkCol : true,
@@ -135,12 +149,12 @@ $("#addPosition").click(function(){
 			positionIds += "&positionIds=" + item.positionId;
 		});
 		
-		dataInfo = "user.userName="+userName+"&user.userPassword=" + userPassword + "&user.personalinformation.realName=" + realName + "&user.personalinformation.sex=" + sex +"&user.userState=" + userState + positionIds;
+		dataInfo = "user.userId=${user.userId}&user.userName="+userName+"&user.userPassword=" + userPassword + "&user.personalinformation.realName=" + realName + "&user.personalinformation.sex=" + sex +"&user.userState=" + userState + positionIds;
 		
 		$.ajax({
 			type:"post",
 			data : dataInfo,
-			url:"${basePath}admin/addUser.action",
+			url:"${basePath}admin/modifyPerson.action",
 			success:function(msg){
 				loadHTML("${basePath}admin/showBackendPersonPage.action");
 			}

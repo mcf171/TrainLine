@@ -13,6 +13,22 @@
 <script type="text/javascript" src="${basePath}scripts/mousewheel.js"></script>
 <script type="text/javascript" src="${basePath}scripts/global.js"></script>
 <script type="text/javascript" src="${basePath}scripts/backend.js"></script>
+<script >
+
+function getWriter(){
+	
+	loadHTML("${basePath}getWriteEmailPage.action");
+}
+
+function getSendMail(){
+	
+	loadHTML("${basePath}getSendEmail.action");
+}
+function getReciveMail(){
+
+loadHTML("${basePath}getReciveEmail.action");
+}
+</script>
 <title>系统 管理</title>
 </head>
 <body>
@@ -34,10 +50,9 @@
 				<li class="jstree-open">
 					<a href="#">站内信</a>
 					<ul>
-						<li class="jstree-leaf"><a href="system/mywrite.jsp">写信</a></li>
-						<li class="jstree-leaf"><a href="system/shoujian.html">收件箱</a></li>
-						<li class="jstree-leaf"><a href="system/fajian.html">发件箱</a></li>
-						<li class="jstree-leaf"><a href="system/huishou.html">垃圾箱</a></li>
+						<li class="jstree-leaf"><a href="javascript:void(0)" onclick="getWriter()">写信</a></li>
+						<li class="jstree-leaf"><a href="javascript:void(0)" onclick="getReciveMail()">收件箱</a></li>
+						<li class="jstree-leaf"> <a href="javascript:void(0)" onclick="getSendMail()">发件箱</a></li>
 					</ul>
 				</li>
 				

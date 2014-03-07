@@ -1,6 +1,7 @@
 package cn.com.service;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -85,8 +86,9 @@ public class LiberaryService {
 	public boolean addBook(Book book , File image, String imageContentType, String imageFileName,String physicalPath){
 		
 		boolean flag = false;
-		
-		String swfName = imageFileName.substring(0,imageFileName.indexOf(".")) + ".swf";
+		String time = Calendar.getInstance().getTimeInMillis() + "";
+		imageFileName = time + imageFileName.substring(imageFileName.lastIndexOf("."));
+		String swfName = time + ".swf";
 		String bookURL = uploadUtil.getSavePath()+"/"+swfName;
 		book.setBookURL(bookURL);
 		uploadUtil.setFlie(image);
@@ -125,6 +127,7 @@ public class LiberaryService {
 		
 		if(image != null && imageContentType != null && imageFileName != null){
 			
+			imageFileName = Calendar.getInstance().getTimeInMillis() + ".swf";
 			String bookURL = uploadUtil.getSavePath()+"/"+imageFileName;
 			book.setBookURL(bookURL);
 			uploadUtil.setFlie(image);

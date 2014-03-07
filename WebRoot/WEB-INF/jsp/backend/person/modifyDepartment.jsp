@@ -5,10 +5,20 @@
 
 <script type="text/javascript">
 //<!--
+var flag = false;
+function callback(msg){
+	alert("修改成功");
+	loadHTML('${basePath}admin/showBackendDepartmentPage.action');
+}
+
 $(document).ready(function(){
 	var optionString = "";
+	flag = false;
+	$("#noCompany").fadeIn();
 	<c:forEach items="${allCompanyList}" var="item">
 			optionString += "<option name='companyName' value='" + ${item.companyId} + "'>" + "${item.companyName}" +"</option>";
+			flag = true;
+			$("#noCompany").fadeOut();
 	</c:forEach>
 	$("#companyName").append(optionString);
 	
@@ -23,11 +33,23 @@ $(document).ready(function(){
 $("#cancle").click(function(){
 	loadHTML('${basePath}admin/showBackendDepartmentPage.action');
 })
+
+function checkForm(){
+	
+
+	if(flag){
+		
+	}else{
+		
+		alert("存在非法项");
+		return flag;
+	}
+}
 //-->
 </script>
 
 <div class="row-fluid">
-	<form action="${basePath}admin/modifyDepartment.action"  enctype="multipart/form-data" method="post">
+	<form action="${basePath}admin/modifyDepartment.action"  enctype="multipart/form-data" method="post" target="hidden_frame" onsubmit="return checkForm();">
 		<div class="row-fluid line-margin" style="display: none;">
 			<span class="help-inline">部门ID：</span>
 			<input type="text" class=" span2" placeholder="请输入内容" name="department.departmentId" value="${department.departmentId}"/>
@@ -76,4 +98,5 @@ $("#cancle").click(function(){
 			</button>
 		</div>
 	</form>
+	<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
 </div>

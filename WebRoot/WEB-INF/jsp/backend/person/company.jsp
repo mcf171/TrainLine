@@ -76,6 +76,18 @@
 			});
 	});
 });
+function deleteCompany(){
+	$.ajax({
+		  type: "post",
+		  url: "${basePath}admin/deleteCompany.action",
+		  data:"company.companyId=" + id,
+		  success: function(msg){
+			  $('#myModal').modal('hide')
+			  mmGirdTable.removeRow(mmGirdTable.selectedRowsIndex());
+		  }
+		});
+	
+}
 	//
 </script>
 

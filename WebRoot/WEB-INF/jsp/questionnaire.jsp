@@ -20,6 +20,18 @@
      html{ overflow-x:hidden;}
      </style>
      <script type="text/javascript" src="${basePath}scripts/jquery.js"></script>
+     <script >
+     <c:choose>
+     	<c:when test="${questionnaireArrangement.questionArrangementState==1}">
+     		alert("问卷还未开始");
+     		window.close();
+     	</c:when>
+     	<c:when test="${questionnaireArrangement.questionArrangementState==3}">
+     		alert("问卷已经结束");
+     		window.close();
+     	</c:when>
+     </c:choose>
+     </script>
 </head>
 
 <body style="">
@@ -78,16 +90,16 @@
 	                  		switch(i){
 	            			
 	                		case 0: insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="A" type="radio">'+
-	                					'<label for="q1_1">A.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
+	                					'<label for="q1_1">A.' + '${item_item.questionnaireChooseContent}' + '</label>' + '</li>';
 	                		; break;
 	                		case 1:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="B" type="radio">'+
-	                					'<label for="q1_1">B.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
+	                					'<label for="q1_1">B.' + '${item_item.questionnaireChooseContent}' + '</label>' + '</li>';
 	                		; break;
 	                		case 2:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="C" type="radio">'+
-	                					'<label for="q1_1">C.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
+	                					'<label for="q1_1">C.' + '${item_item.questionnaireChooseContent}' + '</label>' + '</li>';
 	                		; break;
 	                		case 3:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="D" type="radio">'+
-	                					'<label for="q1_1">D.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
+	                					'<label for="q1_1">D.' + '${item_item.questionnaireChooseContent}' + '</label>' + '</li>';
 	                		; break;
 	                		default: chooseBianhao = 'I';
 	                		
@@ -96,16 +108,16 @@
 							switch(i){
 	            			
 							case 0: insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="A" type="checkbox">'+
-        					'<label for="q1_1">A.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
+        					'<label for="q1_1">A.' + '${item_item.questionnaireChooseContent}' + '</label>' + '</li>';
         					; break;
 			        		case 1:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="B" type="checkbox">'+
-			        					'<label for="q1_1">B.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
+			        					'<label for="q1_1">B.' + '${item_item.questionnaireChooseContent}' + '</label>' + '</li>';
 			        		; break;
 			        		case 2:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="C" type="checkbox">'+
-			        					'<label for="q1_1">C.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
+			        					'<label for="q1_1">C.' + '${item_item.questionnaireChooseContent}' + '</label>' + '</li>';
 			        		; break;
 			        		case 3:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="${item_item.questionnaireChooseId}" value="D" type="checkbox">'+
-			        					'<label for="q1_1">D.' + ${item_item.questionnaireChooseContent} + '</label>' + '</li>';
+			        					'<label for="q1_1">D.' + '${item_item.questionnaireChooseContent}' + '</label>' + '</li>';
 			        		; break;
 	                		default: chooseBianhao = 'I';
 	                		

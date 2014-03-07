@@ -45,12 +45,8 @@ public class TestquestionAction extends BaseActionSupport {
 	public String getTestquestionById(){
 		
 		testquestion = testQuestionService.getTestquestionById(testquestion);
-		String[] testAnswerIntroduce = testquestion.getTestAnswerIntroduce().split("~");
-		String[] standardAnswer = testquestion.getStandardAnswer().split("~");
 		
 		request.setAttribute("testquestion", testquestion);
-		request.setAttribute("testAnswerIntroduce", testAnswerIntroduce);
-		request.setAttribute("standardAnswer", standardAnswer);
 		
 		return this.SUCCESS;
 	}
@@ -69,38 +65,7 @@ public class TestquestionAction extends BaseActionSupport {
 	 */
 	public String addTestquestion(){
 		
-		String standardAnswer="";
-		
-		if(duoxuanstandardAnswer !=null){
-		
-			for(String item : duoxuanstandardAnswer){
-				
-				standardAnswer += item + "~";
-			}
-		}else{
-			
-			standardAnswer = danxuanstandardAnswer ;
-		}
-		
-		String testAnswerIntroduce = "";
-		if(!"".equals(duoxuantestAnswerIntroduce[0])){
-			
-			for(String item : duoxuantestAnswerIntroduce){
-				
-				testAnswerIntroduce += item + "~";
-			}
-		}else{
-			
-			for(String item : danxuantestAnswerIntroduce){
-				
-				testAnswerIntroduce += item + "~";
-			}
-		}
-		
-		testquestion.setStandardAnswer(standardAnswer);
-		testquestion.setTestAnswerIntroduce(testAnswerIntroduce);
-		
-		testQuestionService.insert(testquestion);
+		testQuestionService.insert(testquestion, danxuanstandardAnswer, danxuantestAnswerIntroduce, duoxuanstandardAnswer, duoxuantestAnswerIntroduce);
 		
 		return this.SUCCESS;
 	}
@@ -120,12 +85,8 @@ public class TestquestionAction extends BaseActionSupport {
 	public String getTestquestionModifyPage(){
 		
 		testquestion = testQuestionService.getTestquestionById(testquestion);
-		String[] testAnswerIntroduce = testquestion.getTestAnswerIntroduce().split("~");
-		String[] standardAnswer = testquestion.getStandardAnswer().split("~");
 		
 		request.setAttribute("testquestion", testquestion);
-		request.setAttribute("testAnswerIntroduce", testAnswerIntroduce);
-		request.setAttribute("standardAnswer", standardAnswer);
 		return this.SUCCESS;
 	}
 	public String deleteTestquestion(){

@@ -70,9 +70,10 @@
   
   <filter>
   	<filter-name>struts2</filter-name>
-  	<filter-class>
-  		org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
-  	</filter-class>
+<!--   	<filter-class> -->
+<!--   		org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter -->
+<!--   	</filter-class> -->
+	<filter-class>cn.com.interceptor.UploadInterceptor</filter-class>
   </filter>
   <filter-mapping>
   	<filter-name>struts2</filter-name>
@@ -82,9 +83,10 @@
    <dispatcher>INCLUDE</dispatcher>
   </filter-mapping>
   
-  <error-page>
-<error-code>404</error-code>
-<location>/404.html</location>
-</error-page>
+<!--   <error-page> -->
+<!-- <error-code>404</error-code> -->
+<!-- <location>/404.html</location> -->
+<!-- </error-page> -->
+ 
   
   </web-app>

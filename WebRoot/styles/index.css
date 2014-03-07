@@ -3,10 +3,12 @@
 .header-item
 {
 	display: inline-block;
+	float:left;
 }
 
 .header-title
 {
+	float:right;
 	left: 359px;
 	right: 0px;
 	color: #E9FCF8;

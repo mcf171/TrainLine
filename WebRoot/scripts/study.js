@@ -272,9 +272,9 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType){
   return ret;
 }
 
-function changeCatalogue(catalogueId,cataloguaWeight){
+function changeCatalogue(catalogueId,cataloguaWeight,url){
 	
-	window.location="getCourseStudyPage.action?course.courseId="+catalogueId + "&cataloguaWeight="+cataloguaWeight;
+	window.location=url +catalogueId + "&cataloguaWeight="+cataloguaWeight;
 }
 
 function addNote(){

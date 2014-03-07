@@ -19,7 +19,7 @@
             <column name="credentialId" />
         </many-to-one>--> 
 
-        <many-to-one name="credential" class="cn.com.model.Credential" fetch="select" cascade="none" lazy="false">
+        <many-to-one name="credential" class="cn.com.model.Credential" fetch="select" cascade="none" lazy="false" not-found="ignore">
         	<column name="credentialId"></column>
         </many-to-one>
         

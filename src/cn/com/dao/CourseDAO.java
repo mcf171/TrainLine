@@ -49,11 +49,7 @@ public class CourseDAO extends HibernateDaoSupport {
 	}
 
 	public void delete(Course persistentInstance) {
-		try {
 			this.getHibernateTemplate().delete(persistentInstance);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void update(Course course) {

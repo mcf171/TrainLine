@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="mail" namespace="/" extends="system">
+		
+		
+		<action name="deleteMail" class="mailAction" method="deleteMail">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="showMail" class="mailAction" method="showMail">
+			<result>/WEB-INF/jsp/email/show.jsp</result>
+		</action>
+		
+		<action name="addMail" class="mailAction" method="addMail">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="getEmailHomePage" class="mailAction" method="getEmailHomePage">
+			<result>/WEB-INF/jsp/email/index.jsp</result>
+		</action>
+		
+		<action name="getSendEmail" class="mailAction" method="getSendEmail">
+			<result>/WEB-INF/jsp/email/fajian.jsp</result>
+		</action>
+		
+		<action name="getReciveEmail" class="mailAction" method="getReciveEmail">
+			<result>/WEB-INF/jsp/email/shoujian.jsp</result>
+		</action>
+			
+		<action name="getWriteEmailPage" class="mailAction" method="getWriteEmailPage">
+			<result>/WEB-INF/jsp/email/write.jsp</result>
+		</action>
+		
+	</package>
+
+	<package name="mailAdmin" namespace="/admin" extends="system">
+		
+		
+	</package>
+
+</struts>    

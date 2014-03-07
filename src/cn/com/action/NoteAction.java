@@ -44,7 +44,7 @@ public class NoteAction extends BaseActionSupport {
 	 */
 	public String getNoticeContent(){
 		
-		notice = noticeService.getNoticeById(notice);
+		notice = noticeService.getNoticeById(notice.getNoticeId());
 		Notice temp = new Notice();
 		temp.setNoticetype(notice.getNoticetype());
 		List<Notice> list = noticeService.findByNoticeExample(temp);

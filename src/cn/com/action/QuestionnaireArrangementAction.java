@@ -51,14 +51,14 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 	 */
 	public String getShowQuestionnaireArrangmentInfoPage(){
 		
-		questionnaireArrangement = questionnaireArrangementService.getQuestionnaireArrangementById(questionnaireArrangement.getQuestionnaireArrangementId());
+		questionnaireArrangement = questionnaireArrangementService.modifyGetQuestionnaireArrangementById(questionnaireArrangement.getQuestionnaireArrangementId());
 		request.setAttribute("questionnaireArrangement", questionnaireArrangement);
 		return this.SUCCESS;
 	}
 	
 	public String getUpdateQuestionnaireArrangementPage(){
 		
-		questionnaireArrangement = questionnaireArrangementService.getQuestionnaireArrangementById(questionnaireArrangement.getQuestionnaireArrangementId());
+		questionnaireArrangement = questionnaireArrangementService.modifyGetQuestionnaireArrangementById(questionnaireArrangement.getQuestionnaireArrangementId());
 		request.setAttribute("questionnaireArrangement", questionnaireArrangement);
 		
 		return this.SUCCESS;
@@ -73,7 +73,7 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 	public String updateQuestionnaireArrangement(){
 		
 		questionnaireArrangementService.updateQuestionnaireArrangement(questionnaireArrangement);
-		questionnaireArrangement = questionnaireArrangementService.getQuestionnaireArrangementById(questionnaireArrangement.getQuestionnaireArrangementId());
+		questionnaireArrangement = questionnaireArrangementService.modifyGetQuestionnaireArrangementById(questionnaireArrangement.getQuestionnaireArrangementId());
 		questionnaireArrangementService.distributeQuestionnaireArrangementToUser(userId, questionnaireArrangement);
 		return this.SUCCESS;
 	}
@@ -141,7 +141,7 @@ public class QuestionnaireArrangementAction extends BaseActionSupport{
 	 */
 	public String getQuestionnaireArrangePage(){
 		
-		questionnaireArrangement = questionnaireArrangementService.getQuestionnaireArrangementById(questionnaireArrangement.getQuestionnaireArrangementId());
+		questionnaireArrangement = questionnaireArrangementService.modifyGetQuestionnaireArrangementById(questionnaireArrangement.getQuestionnaireArrangementId());
 		
 		request.setAttribute("questionnaireArrangement", questionnaireArrangement);
 		

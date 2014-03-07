@@ -1,4 +1,4 @@
-#Fri Feb 21 11:31:53 CST 2014
+#Mon Mar 03 23:16:57 CST 2014
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/jsp/backend/classes.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/classes/ClassInfo.jsp=UTF-8
@@ -19,4 +19,6 @@ encoding//WebRoot/WEB-INF/jsp/backend/questionnaire/questionnaireList.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/questionnaire/showQuestionnaireArrangement.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/questionnaire/showQuestionnaireRubricResult.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/backend/test/questionare.jsp=utf-8
+encoding//WebRoot/WEB-INF/jsp/email/fajian.jsp=utf-8
+encoding//WebRoot/WEB-INF/jsp/email/shoujian.jsp=utf-8
 encoding//src/cn/com/base/BaseActionSupport.java=UTF-8

@@ -39,26 +39,55 @@ public class UserAction extends BaseActionSupport{
 		return this.SUCCESS;
 	}
 	
+	/**
+	 * 检验是否存在用户
+	 * @return
+	 */
+	public String checkUser(){
+		
+		List<User> list =  userService.findUser(user);
+		
+		boolean flag = list.size() == 0 ? false : true;
+		
+		dataMap.put("flag", flag);
+		
+		return this.SUCCESS;
+	}
+	/**
+	 * 验证登陆是否成功
+	 * @author Apache
+	 * @time 2014-3-4 22:51
+	 * @return
+	 */
 	public String login(){
 		
 		//user.getUserPassword();
 		User temp = (User) session.get("user");
 		boolean exitUser = temp == null ? false : true;
-		String path;
 		if(!exitUser){
 		
 			user = userService.login(user);
 			
-			path = user == null ? this.INPUT : this.SUCCESS;
+			 boolean flag = user == null ? false : true;
 			session.put("user", user);
-			request.setAttribute("error", "用户名或密码错误");
-			
+			request.setAttribute("msg", flag);
 		}else{
 			
-			path=this.SUCCESS;
+			request.setAttribute("msg", true);
 		}
-		return path;
 		
+		return this.SUCCESS;
+		
+	}
+	/**
+	 * 获取首页
+	 * @author Apache
+	 * @time 2014-3-4 22:58
+	 * @return
+	 */
+	public String getIndex(){
+		
+		return this.SUCCESS;
 	}
 	/**
 	 * 前台注销

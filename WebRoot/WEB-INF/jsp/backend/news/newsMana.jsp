@@ -30,15 +30,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<script type="text/javascript">
 //<![CDATA[
-var mmGirdTable;
+var mmGridTable;
 $(document).ready(function ()
 { 
 	$('#time-to').css('background', 'none').datepicker();
 	$('#time-from').css('background', 'none').datepicker();
 
-	mmGirdTable=$('#grid').mmGrid({
+	mmGridTable=$('#grid').mmGrid({
 		url:'${basePath}showNoticeAction.action',
-		height: 'auto',
+		height : 410,
 		autoLoad: true,
 		nowrap:true,
 		fullWidthRows: true,
@@ -48,7 +48,11 @@ $(document).ready(function ()
 			{ 
 			  title: '公告类型', 
 			  renderer:function(val,item,row){
-			    return item.noticetype.noticeTypeName;
+				  var returnString = "";
+				  if(item.noticetype !== null){
+					  returnString = item.noticetype.noticeTypeName;
+				  }
+			    return returnString;
 			  }
 			  },
 			{ title: '公告标题', sortable: true, name: 'noticeTitle' },
@@ -59,7 +63,8 @@ $(document).ready(function ()
 			    title: '操作',sortable: true, 
 			    renderer: function (val, item, row)
 					{
-					return item.noticetype.noticeTypeName;	
+			    	var returnString = "<a href='javascript:void(0)' onclick='modifyNotice(" + item.noticeId + ")'>修改</a>" + " <a href='javascript:void(0)' onclick='deleteNotice(" + item.noticeId + ")'>删除</a>" 
+					return returnString;	
 					}
 			     }
 		],
@@ -68,6 +73,9 @@ $(document).ready(function ()
 		]
 	});
 });
+
+
+
 $("#checkAll").click(function(){
    $("#noticeTypeSearch").val(-1);
    $("#noticeIdSearch").val("");
@@ -88,7 +96,7 @@ $("#baseCheck").click(function(){
     if(noticeType==-1){
        noticeType=0;
     }
-    mmGirdTable.load(
+    mmGridTable.load(
     {
        "notice.noticeId":noticeId,
        "notice.noticetype.noticeTypeId":noticeType,
@@ -104,7 +112,7 @@ var fromTime = $("#time-from").val();
 var toTime = $("#time-to").val();
 if((fromTime!="")&&(toTime!="")){
    flag=1;
-   mmGirdTable.load(
+   mmGridTable.load(
     {
        "fromTime":fromTime,
        "toTime":toTime,
@@ -113,33 +121,35 @@ if((fromTime!="")&&(toTime!="")){
     );
 }
 });
+
+function modifyNotice(noticeId){
+	
+	loadHTML("${basePath}admin/getModifyNoticePage.action?notice.noticeId="+noticeId);
+}
+var deleteId;
+function deleteNotice(noticeId){
+	deleteId = noticeId;
+	$("#myModal").modal();
+}
+
+function deleteConfirm(){
+	
+	dataInfo = "notice.noticeId="+deleteId;
+	$.ajax({
+		type:'post',
+		url:'${basePath}admin/deleteNotice.action',
+		data:dataInfo,
+		success:function(msg){
+			$("#myModal").modal('hide');
+			mmGridTable.removeRow(mmGridTable.selectedRowsIndex());	
+			
+		}
+	});
+}
 //]]>
 </script>
   </head>
-  <style>
- 
-  .edit{
-      
-      width:700px;
-      margin-top:10px;
-      margin-left:60px;
-     }
- #editor {
-	max-height: 150px;
-	height: 180px;
-	background-color: white;
-	border-collapse: separate; 
-	border: 1px solid rgb(204, 204, 204); 
-	padding: 4px; 
-	box-sizing: content-box; 
-	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset; 
-	box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
-	border-top-right-radius: 3px; border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px; border-top-left-radius: 3px;
-	overflow: scroll;
-	outline: none;
-}
-</style>
+
 <body>
 <div class="container-fluid">
 	<div class="row-fluid">
@@ -185,5 +195,20 @@ if((fromTime!="")&&(toTime!="")){
 						</div>
 					</div>
 
+
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">确认删除</h3>
+</div>
+<div class="modal-body">
+<p>是否真的删除？</p>
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+<button class="btn btn-primary" onclick="deleteConfirm()">确认</button>
+</div>
+</div>
 </body>
 </html>

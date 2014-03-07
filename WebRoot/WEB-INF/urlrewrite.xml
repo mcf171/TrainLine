@@ -18,4 +18,11 @@
 	/getQuestionnaireArrangePage.action?questionnaireArrangement.questionnaireArrangementId=$1
 	</to>
 </rule>
+
+<rule>
+	<from>^/getFile/(upload/\w+/[0-9]+\..+)$</from>
+	<to type="forward">
+	/getDownloadFile.action?fileName=$1
+	</to>
+</rule>
 </urlrewrite> 

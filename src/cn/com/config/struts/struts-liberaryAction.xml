@@ -36,9 +36,7 @@
    		</action>
    		
    		<action name="modifyBook" class="liberaryAction" method="modifyBook">
-   			<result type="redirectAction">
-   				<param name="actionName">showBackendLiberaryListPage</param>
-   			</result>
+   			<result>/utill.jsp</result>
    		</action>
    		
    		<action name="addBookPage" class="liberaryAction" method="addBookPage">
@@ -46,9 +44,7 @@
    		</action>
    		
    		<action name="addBook" class="liberaryAction" method="addBook">
-   			<result type="redirectAction">
-   				<param name="actionName">showBackendLiberaryListPage</param>
-   			</result>
+   			<result>/utill.jsp</result>
    			<interceptor-ref name="fileUpload">
                 <!-- 文件过滤 -->
 				<param name="allowedTypes">

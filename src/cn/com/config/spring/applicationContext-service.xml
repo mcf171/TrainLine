@@ -30,6 +30,17 @@
     </tx:attributes>
   </tx:advice>
 	
+	<bean id="testGradeService" class="cn.com.service.TestGradeService">
+		<property name="testGradeDAO" ref="TestGradeDAO"></property>
+	</bean>
+	<bean id="mailService" class="cn.com.service.MailService">
+		<property name="mailDAO" ref="MailDAO"></property>
+	</bean>
+	
+	
+	<bean id="testQuestionItemService" class="cn.com.service.TestQuestionItemService">
+		<property name="testQuestionItemDAO" ref="TestQuestionItemDAO"></property>
+	</bean>
 	<bean id="questionnaireChooseService" class="cn.com.service.QuestionnaireChooseService">
 		<property name="questionnaireChooseDAO" ref="QuestionnaireChooseDAO"></property>
 	</bean>
@@ -72,6 +83,7 @@
 	
 	<bean id="userService" class="cn.com.service.UserService" scope="prototype">
 		<property name="userDAO" ref="UserDAO"></property>
+		<property name="positionDAO" ref="PositionDAO"></property>
 	</bean>
 	
 	<bean id="questionnairerService" class="cn.com.service.QuestionnaireService" scope="prototype">
@@ -87,6 +99,7 @@
 		<property name="catalogueDAO" ref="CatalogueDAO"></property>
 		<property name="resourseandcatelogueDAO" ref="ResourseandcatelogueDAO"></property>
 		<property name="catalogueService" ref="catalogueService"></property>
+		<property name="resourceService" ref="resourceService"></property>
 	</bean>
 
 	<bean id="noteService" class="cn.com.service.NoteService">
@@ -95,6 +108,7 @@
 
 	<bean id="testQuestionService" class="cn.com.service.TestQuestionService">
 		<property name="testquestionDAO" ref="TestquestionDAO"></property>
+		<property name="testQuestionItemService" ref="testQuestionItemService"></property>
 	</bean>
 
 	<bean id="testPaperService" class="cn.com.service.TestPaperService">
@@ -104,6 +118,8 @@
 
 	<bean id="testArrangementService" class="cn.com.service.TestArrangementService">
 		<property name="testarrangementDAO" ref="TestarrangementDAO"></property>
+		<property name="testQuestionItemService" ref="testQuestionItemService"></property>
+		<property name="testGradeService" ref="testGradeService"></property>
 	</bean>
 
 	<bean id="trainingClassService" class="cn.com.service.TrainingClassService">
@@ -123,6 +139,7 @@
 		<property name="personalinformationDAO" ref="PersonalinformationDAO"></property>
 		<property name="majorqualificationDAO" ref="MajorqualificationDAO"></property>
 		<property name="educationbackgroundDAO" ref="EducationbackgroundDAO"></property>
+		<property name="courseService" ref="courseService"></property>
 	</bean>
     <bean id="resourceService" class="cn.com.service.ResourceService">
 		<property name="resourceDAO" ref="ResourceDAO"></property>
@@ -130,6 +147,7 @@
 	</bean>
 	
 	<bean id="reportService" class="cn.com.service.ReportService">
+		<property name="peiXunRenYuanBaoMingBiaoDAO" ref="PeiXunRenYuanBaoMingBiaoDAO"></property>
 	</bean>
 	
 	<bean id="questionnaireArrangementService" class="cn.com.service.QuestionnaireArrangementService">

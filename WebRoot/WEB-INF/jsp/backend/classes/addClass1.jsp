@@ -36,7 +36,9 @@ $(document).ready(function (){
 	 function addTypeName(list)
 		{
 		$("#credentialIID > option").remove();
-		var option ="<option>请选择</option>";
+		var option ="";
+		if(list.length==0)
+			option +="<option value='0'>暂无证书</option>"
 		for(var i=0;i<list.length;i++)
 		{
 		var credential  =list[i];

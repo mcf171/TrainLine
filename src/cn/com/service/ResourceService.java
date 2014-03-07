@@ -4,11 +4,14 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+
 import cn.com.dao.ResourceDAO;
 import cn.com.model.Book;
 import cn.com.model.Catalogue;
 import cn.com.model.Resource;
 import cn.com.util.FlexpaperUtil;
+import cn.com.util.GlobalConstant;
 import cn.com.util.UploadUtil;
 import cn.com.util.WebUtil;
 
@@ -56,7 +59,7 @@ public class ResourceService {
 			flag = true;
 		} catch (Exception e) {
 			// TODO: handle exception
-			
+			e.printStackTrace();
 			throw new RuntimeException();
 		}
 		
@@ -102,6 +105,84 @@ public class ResourceService {
 		
 		return flag;
 		
+	}
+	
+	/**
+	 * 上传文件；
+	 * @author Apache
+	 * @time 2014-3-6 21:22
+	 * @param resource
+	 * @param file
+	 */
+	public void addResource(Resource resource,File file,String fileName){
+		
+		int resourceType = resource.getResourceType();
+		String path  = "upload/";
+		String fileType =   fileName.substring(fileName.lastIndexOf("."));
+		Calendar rightNow = Calendar.getInstance();
+		fileName =  "" + rightNow.getTimeInMillis() + fileType;
+		switch(resourceType){
+		
+		case 1: path += GlobalConstant.RESOURCE_VIDEO +fileName;break;
+		case 2: path += GlobalConstant.RESOURCE_DOCUMENT +fileName;break;
+		case 3:path += GlobalConstant.RESOURCE_OTHERS + fileName;break;
+		}
+		String dsSavePath = ServletActionContext.getServletContext().getRealPath(path);
+		File dsFile = new File(dsSavePath);
+		try {
+			
+			UploadUtil.copyFile(file, dsFile);
+			
+			resource.setResourcePath(path);
+			resource.setDownloundCount(0);
+			resourceDAO.save(resource);
+
+		} catch (Exception e) {
+		// TODO: handle exception
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+	
+	public boolean updateResource(Resource resource , File file, String fileName){
+		
+		boolean flag = false;
+		
+		try {
+			if(file !=null){
+				
+				int resourceType = resource.getResourceType();
+				String path  = "upload\\";
+				String fileType = "." + fileName.substring(fileName.lastIndexOf("."));
+				Calendar rightNow = Calendar.getInstance();
+				switch(resourceType){
+				
+				case 1: path += GlobalConstant.RESOURCE_VIDEO + rightNow.getTimeInMillis() + fileType;break;
+				case 2: path += GlobalConstant.RESOURCE_DOCUMENT + rightNow.getTimeInMillis() + fileType;break;
+				case 3:path += GlobalConstant.RESOURCE_OTHERS + rightNow.getTimeInMillis() + fileType;break;
+				}
+				String dsSavePath = ServletActionContext.getServletContext().getRealPath(path);
+				File dsFile = new File(dsSavePath);
+				
+				UploadUtil.copyFile(file, dsFile);
+				resource.setResourcePath(path);
+				resourceDAO.save(resource);
+				flag = true;
+				
+			}else{
+				Resource temp = resourceDAO.findById(resource.getResourceId());
+				resource.setResourcePath(temp.getResourcePath());
+				resourceDAO.merge(resource);
+			}
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+				flag = false;
+				e.printStackTrace();
+				throw new RuntimeException();
+			}
+		
+		return flag;
 	}
 	
 	/**
@@ -169,7 +250,8 @@ public class ResourceService {
 		
 		boolean flag = false;
 		
-		flag = this.updateResource(resource, null, null, null);
+		//flag = this.updateResource(resource, null, null, null);
+		flag = this.updateResource(resource, null ,null);
 		
 		return flag;
 		

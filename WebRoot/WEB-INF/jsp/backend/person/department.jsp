@@ -101,6 +101,19 @@
 			});
 		});
 	});
+
+	function deleteDepartment(){
+		$.ajax({
+			  type: "post",
+			  url: "${basePath}admin/deleteDepartment.action",
+			  data:"department.departmentId=" + id,
+			  success: function(msg){
+				  $('#myModal').modal('hide');
+				  mmGirdTable.removeRow(mmGirdTable.selectedRowsIndex());
+			  }
+			});
+	}
+
 	//
 </script>
 

@@ -50,6 +50,18 @@
             </key>
             <one-to-many class="cn.com.model.Message" />
         </set>
+         <set name="reviceMail" inverse="true" table="mail" lazy="false" cascade="all" order-by="mailTime desc">
+            <key>
+                <column name="reviceUserId" />
+            </key>
+            <one-to-many class="cn.com.model.Mail" />
+        </set>
+         <set name="sendMail" inverse="true" table="mail" lazy="false" cascade="all" order-by="mailTime desc">
+            <key>
+                <column name="sendUserId" />
+            </key>
+            <one-to-many class="cn.com.model.Mail" />
+        </set>
         <set name="positions" inverse="false" table="userandposition" lazy="false" cascade="save-update">
             <key>
                 <column name="userId" />

@@ -8,6 +8,7 @@
 <meta http-equiv="Cache-Control" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
 <link type="text/css" rel="stylesheet" href="${basePath}styles/NewDefault.css"></link>
 <link href="${basePath}styles/q.css" rel="stylesheet" type="text/css"></link>
 <link href="${basePath}styles/newsolid_38.css" rel="stylesheet" type="text/css"></link>
@@ -20,6 +21,58 @@
      html{ overflow-x:hidden;}
      </style>
      <script type="text/javascript" src="${basePath}scripts/jquery.js"></script>
+     <script >
+     <c:choose>
+     	<c:when test="${testArrangement.questionArrangementState==1}">
+     		alert("考试还未开始");
+     		window.close();
+     	</c:when>
+     	<c:when test="${testArrangement.questionArrangementState==3}">
+     		alert("考试已经结束");
+     		window.close();
+     	</c:when>
+     </c:choose>
+     </script>
+     <script type="text/javascript">
+     
+     $(document).ready(function(){
+    	
+    	 var testQuestionItemIds = "";
+    	 $("#fishTest").click(function(){
+    		
+    		 console.log(1);
+    		 $("input[type='radio']").each(function(){
+    			 
+    			 var id= $(this).attr("id");
+    			   if($("#"+id).prop("checked") == true){
+    				   testQuestionItemIds += "&testQuestionItemIds="+$(this).val();
+    			   }
+    			  });
+    	 	$("input[type='checkbox']").each(function(){
+    	 		 var id= $(this).attr("id");
+  			   if($("#"+id).prop("checked") == true){
+  				   testQuestionItemIds += "&testQuestionItemIds=" + $(this).val();
+  			   }
+  			  });
+    	 
+    	 	console.log(testQuestionItemIds);
+    	 	
+    	 	$.ajax({
+    	 		
+    	 		type:"post",
+    	 		data:"testArrangement.testArrangementId=${c.testArrangementId}"+testQuestionItemIds,
+    	 		url:"${basePath}finishTest.action",
+    	 		success:function(msg){
+    	 			alert("提交成功");
+    	 			window.close();
+    	 		}
+    	 	});
+    	 	
+    	 });
+     });
+     
+     </script>
+     
 </head>
 
 <body style="">
@@ -68,27 +121,27 @@
                   <div class="div_table_radio_question" id="divquestion${index.index+1}">
                   <script>
                  	testType = ${item.testType};
-                  	var question = '${item.testAnswerIntroduce}';
-                  	var questionIntroduce = question.split('~');
                   	var 
                   	insertHTML='<ul>';
-                  	for(i = 0 ; i < questionIntroduce.length; i++){
+                  	var i = 0;
+                  	<c:forEach items="${item.testQuestionChooses}" var="testQuestionChoose">
+                  	
                   		switch(testType){
                   		
                   		case 1:
 	                  		switch(i){
 	            			
-	                		case 0: insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="A" type="radio">'+
-	                					'<label for="q1_1">A.' + questionIntroduce[i] + '</label>' + '</li>';
+	                		case 0: insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="${testQuestionChoose.testQuestionItemId}" type="radio">'+
+	                					'<label for="q1_1">A.' +"${testQuestionChoose.testQuestionItemContent}" + '</label>' + '</li>';
 	                		; break;
-	                		case 1:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="B" type="radio">'+
-	                					'<label for="q1_1">B.' + questionIntroduce[i] + '</label>' + '</li>';
+	                		case 1:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="${testQuestionChoose.testQuestionItemId}" type="radio">'+
+	                					'<label for="q1_1">B.' +"${testQuestionChoose.testQuestionItemContent}" + '</label>' + '</li>';
 	                		; break;
-	                		case 2:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="C" type="radio">'+
-	                					'<label for="q1_1">C.' + questionIntroduce[i] + '</label>' + '</li>';
+	                		case 2:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="${testQuestionChoose.testQuestionItemId}" type="radio">'+
+	                					'<label for="q1_1">C.' +"${testQuestionChoose.testQuestionItemContent}" + '</label>' + '</li>';
 	                		; break;
-	                		case 3:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="D" type="radio">'+
-	                					'<label for="q1_1">D.' + questionIntroduce[i] + '</label>' + '</li>';
+	                		case 3:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="${testQuestionChoose.testQuestionItemId}" type="radio">'+
+	                					'<label for="q1_1">D.' +"${testQuestionChoose.testQuestionItemContent}" + '</label>' + '</li>';
 	                		; break;
 	                		default: chooseBianhao = 'I';
 	                		
@@ -96,26 +149,27 @@
                   		case 2:
 							switch(i){
 	            			
-							case 0: insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="A" type="checkbox">'+
-        					'<label for="q1_1">A.' + questionIntroduce[i] + '</label>' + '</li>';
+							case 0: insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="${testQuestionChoose.testQuestionItemId}" type="checkbox">'+
+        					'<label for="q1_1">A.' +"${testQuestionChoose.testQuestionItemContent}" + '</label>' + '</li>';
         					; break;
-			        		case 1:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="B" type="checkbox">'+
-			        					'<label for="q1_1">B.' + questionIntroduce[i] + '</label>' + '</li>';
+			        		case 1:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="${testQuestionChoose.testQuestionItemId}" type="checkbox">'+
+			        					'<label for="q1_1">B.' +"${testQuestionChoose.testQuestionItemContent}" + '</label>' + '</li>';
 			        		; break;
-			        		case 2:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="C" type="checkbox">'+
-			        					'<label for="q1_1">C.' + questionIntroduce[i] + '</label>' + '</li>';
+			        		case 2:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="${testQuestionChoose.testQuestionItemId}" type="checkbox">'+
+			        					'<label for="q1_1">C.' +"${testQuestionChoose.testQuestionItemContent}" + '</label>' + '</li>';
 			        		; break;
-			        		case 3:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="D" type="checkbox">'+
-			        					'<label for="q1_1">D.' + questionIntroduce[i] + '</label>' + '</li>';
+			        		case 3:  insertHTML += ' <li style="width:99%;">' +' <input name="q${index.index+1}" id="qq${index.index+1}_' + i + '" value="${testQuestionChoose.testQuestionItemId}" type="checkbox">'+
+			        					'<label for="q1_1">D.' +"${testQuestionChoose.testQuestionItemContent}" + '</label>' + '</li>';
 			        		; break;
 	                		default: chooseBianhao = 'I';
 	                		
 	                		};
                   			break;
-                  		}
-                  		
+                  	
                   		insertHTML += '<div style="clear:both;"></div></ul>';	
                   	}
+                  		i++;
+                  		</c:forEach>
                   	$("#divquestion${index.index+1}").append(insertHTML);
                   </script>
                     
@@ -127,6 +181,9 @@
                   <div style="display:none;" id="divpoweredby">Powered by <a href="http://www.sojump.com/" title="专业的问卷调查网站" class="link-06f" target="_blank"><strong>Pioneer</strong></a><span style="font-family:Tahoma">™</span></div>
                 </div>
               </fieldset>
+               <div >
+        	<input  type="button" value="提交"  id="fishTest"/>
+        </div>
             </div>
             
             
@@ -140,6 +197,7 @@
           
           <div style="clear: both;"> </div>
         </div>
+       
         <div style="margin:30px auto 0; padding-top:30px; overflow: hidden; width:100%;">
           <div style="border-top: 1px solid #bbbbbb; font-size: 0; height: 1px; line-height: 1px;
                             width: 98%; margin: 0 auto;"> </div>

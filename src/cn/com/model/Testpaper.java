@@ -14,7 +14,7 @@ public class Testpaper implements java.io.Serializable {
 	private Integer testPaperId;
 	private Integer testPaperState;
 	private String testPaperName;
-	private Set testquestions = new HashSet(0);
+	private Set<Testquestion> testquestions = new HashSet<Testquestion>(0);
 ;
 
 	// Constructors
@@ -44,11 +44,16 @@ public class Testpaper implements java.io.Serializable {
 		this.testPaperName = testPaperName;
 	}
 
-	public Set getTestquestions() {
-		return this.testquestions;
+	
+
+
+	public Set<Testquestion> getTestquestions() {
+		return testquestions;
 	}
 
-	public void setTestquestions(Set testquestions) {
+
+
+	public void setTestquestions(Set<Testquestion> testquestions) {
 		this.testquestions = testquestions;
 	}
 

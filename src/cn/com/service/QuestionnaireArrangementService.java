@@ -61,9 +61,23 @@ public class QuestionnaireArrangementService {
 	 * @param questionnaireArrangementId
 	 * @return
 	 */
-	public QuestionnaireArrangement getQuestionnaireArrangementById(int questionnaireArrangementId){
+	public QuestionnaireArrangement modifyGetQuestionnaireArrangementById(int questionnaireArrangementId){
 		
-		return questionnaireArrangementDAO.findById(questionnaireArrangementId);
+		QuestionnaireArrangement questionnaireArrangement = questionnaireArrangementDAO.findById(questionnaireArrangementId);
+		try {
+			
+		Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+		int flag =  questionnaireArrangement.getQuestionArrangementOverTime().compareTo(currentTime) < 0 ? 3 : questionnaireArrangement.getQuestionArrangementBeginTime().compareTo(currentTime) > 0 ? 1 : 2;
+		questionnaireArrangement.setQuestionArrangementState(flag);
+		questionnaireArrangementDAO.merge(questionnaireArrangement);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+		return questionnaireArrangement;
+		
 	}
 	
 	/**
@@ -82,7 +96,7 @@ public class QuestionnaireArrangementService {
 				Message message = new Message();
 				message.setMessageTime(new Timestamp(System.currentTimeMillis()));
 				message.setMessageTitle(questionnaireArrangement.getQuestionArrangementName());
-				message.setUrl("getQuestionnaireArrangePage.action?questionnaireArrangement.questionnaireArrangement.questionnaireArrangementId="+questionnaireArrangement.getQuestionnaireArrangementId());
+				message.setUrl("getQuestionnaireArrangePage.action?questionnaireArrangement.questionnaireArrangementId="+questionnaireArrangement.getQuestionnaireArrangementId());
 				message.setWeight(2);
 				message.setUser(item);
 				messageService.addMessage(message);
@@ -94,7 +108,7 @@ public class QuestionnaireArrangementService {
 				Message message = new Message();
 				message.setMessageTime(new Timestamp(System.currentTimeMillis()));
 				message.setMessageTitle(questionnaireArrangement.getQuestionArrangementName());
-				message.setUrl("getQuestionnaireArrangePage.action?questionnaireArrangementId="+questionnaireArrangement.getQuestionnaireArrangementId());
+				message.setUrl("getQuestionnaireArrangePage.action?questionnaireArrangement.questionnaireArrangementId="+questionnaireArrangement.getQuestionnaireArrangementId());
 				message.setWeight(2);
 				
 				User user = new User();

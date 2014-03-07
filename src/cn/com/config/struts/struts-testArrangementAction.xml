@@ -18,12 +18,22 @@
 			<result>/WEB-INF/jsp/test.jsp</result>
 		</action>
 		
+		<action name="finishTest" class="testArrangementAction" method="finishTest">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
 	</package>
 	
 	<package name="testArrangementAdmin" namespace="/admin" extends="system">
 		
 			<action name="getBackendTestArrangementPage" class="testArrangementAction" method="getBackendTestArrangementPage">
 				<result>/WEB-INF/jsp/backend/test/questionare.jsp</result>
+			</action>
+			
+			<action name="showTestArrangementPage" class="testArrangementAction" method="showTestArrangementPage">
+				<result>/WEB-INF/jsp/backend/test/showTestArrangement.jsp</result>
 			</action>
 			
 			<action name="getAddTestArrangementPage" class="testArrangementAction" method="getAddTestArrangementPage">

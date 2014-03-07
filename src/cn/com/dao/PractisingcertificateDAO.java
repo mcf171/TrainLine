@@ -1,7 +1,7 @@
 package cn.com.dao;
 
-import java.sql.Timestamp;
 import java.util.List;
+
 import org.hibernate.LockMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

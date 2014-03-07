@@ -12,6 +12,12 @@
 <script type="text/javascript">
 var mmg;
 var courseID;
+
+function pretest(id){
+	
+	loadHTML("${basePath}admin/preTestCourse.action?course.courseId="+id);
+}
+
 $(document).ready(function ()
 {
 	$('#time-to').css('background', 'none').datepicker();
@@ -53,7 +59,7 @@ $(document).ready(function ()
          renderer: function (val, item, row)
          {
          return '<input type="hidden" id="'+item.courseId+'" value="' + item.courseId + '" />' +
-             '<a href="#" >查看</a>&nbsp;&nbsp;'+
+             '<a href="${basePath}admin/preTestCourse.action?course.courseId=' + item.courseId + '" target="_blank">预览</a>&nbsp;&nbsp;'+
              '<a href="javascript:void(0)" onclick="updateCourse('+item.courseId+')" role="button" class="btn" data-toggle="modal">修改</a>&nbsp;&nbsp;'+
              '<a href="javascript:void(0)" onclick="clickCourse('+item.courseId+')" role="button" class="btn" data-toggle="modal">删除</a>';
          }
@@ -191,11 +197,7 @@ function clickCourse(courseId)
 		 <input type="text" id="courseSpeakerIID" name="courseSpeaker">
 		  <label>课程内容描述</label>
 		 <textarea rows="3" cols="5" id="courseIntroIID" name="courseIntro"></textarea>
-		  <label>是否开卷</label>
-		  <select name="courseState" id="courseStateIID">
-		 <option value="1">开卷</option>
-		  <option value="0">闭卷</option>
-		 </select>
+		  
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>

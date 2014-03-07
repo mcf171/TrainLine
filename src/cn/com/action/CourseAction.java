@@ -67,6 +67,40 @@ public class CourseAction extends BaseActionSupport {
 	private String savePath;
 
 	/**
+	 * 预览课程
+	 * @author
+	 * @time 2014-3-5 19:20
+	 * @return
+	 */
+	public String preTestCourse(){
+
+		course = courseService.getCourse(course);
+		
+		Catalogue catalogue = null;
+		
+		if(cataloguaWeight == 0){
+			
+			catalogue = (Catalogue) course.getCatalogues().toArray()[0];
+		} else{
+			
+			for(Catalogue item : course.getCatalogues()){
+				if(item.getCataloguaWeight() == cataloguaWeight){
+					
+					catalogue = item;
+				}
+			}
+		}
+		request.setAttribute("course", course);
+		request.setAttribute("catalogue", catalogue);
+		
+		if(course.getCourseKind() ==1){
+			request.setAttribute("type", 2);
+		}else{
+			request.setAttribute("type", 3);
+		}
+		return this.SUCCESS;
+	}
+	/**
 	 * 前台获取学习中心页面
 	 * author:Apache
 	 * time:2014-1-27 10:34
@@ -215,9 +249,9 @@ public class CourseAction extends BaseActionSupport {
 					e.printStackTrace();
 				}
 				resource.setResourceType(1);
-			}else if(resource.getResourceName().contains(".swf")){
+			}else {
 				
-				String swfName =  this.getUploadFileName()[i].substring(0, this.getUploadFileName()[i].indexOf("."));
+				String swfName =  this.getUploadFileName()[i];
 				swfName = uploadUtil.getSavePath()+"/"+swfName;
 				resource.setResourcePath(swfName);
 				resource.setResourceType(2);
@@ -323,15 +357,11 @@ public class CourseAction extends BaseActionSupport {
 		user = (User) session.get("user");
 		if (user != null) {
 
-			if (course != null) {
-				cList = courseService.fgFindMyAllCourse(user.getUserId(),
-						course);
-			} else {
-				cList = courseService.fgFindMyAllCourse(user.getUserId());
-			}
+			user = userService.findById(user.getUserId());
+			dataMap.put("cList", user.getCourses());
+
 		}
 
-		dataMap.put("cList", cList);
 		return SUCCESS;
 	}
 
@@ -413,7 +443,7 @@ public class CourseAction extends BaseActionSupport {
 		if (courseId != null) {
 			request.setAttribute("courseId", courseId);
 		}
-		return "detailCourseInfo";
+		return this.SUCCESS;
 	}
 
 	/**

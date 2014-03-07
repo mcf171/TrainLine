@@ -43,19 +43,14 @@
 </head>
 
 <body>
-	<c:if test="${!empty request.error }">
-		<script>
-	 $.scojs_message('${request.error}', $.scojs_message.TYPE_ERROR);
-	 </script>
-	</c:if>
+<div id="body">
 	<c:if test="${empty session.user }">
 		<div class="modal">
 			<div class="modal-header" id="model-header">
 				<h3>中铁四局集团远程培训及管理平台登陆</h3>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" action="login.action" method="post"
-					onsubmit="checkNull()">
+				<form class="form-horizontal" action="login.action" method="post" onsubmit="checkNull()" target="hidden_frame">
 					<div class="control-group">
 						<label class="control-label" for="inputEmail"> 用户名 </label>
 						<div class="controls">
@@ -99,13 +94,13 @@
 			</div>
 			<div class="modal-body" style="height: 200px;">
 				<div id="left">
-					<img alt="headimage" src="images/qq.jpg">
+					<img alt="headimage" src="images/head.png">
 				</div>
 				<div id="right">
 					${user.userName }，您好！！ <br> <br> 欢迎你！ <br> <br>
 					<button type="button" class="btn btn-primary"
 						style="width: 150px; height: 30px;"
-						onclick="window.location.href='${basePath}login.action'">
+						onclick="window.location.href='${basePath}getIndex.action'">
 						进入系统...</button>
 				</div>
 			</div>
@@ -115,8 +110,24 @@
 		style="width: 1366px; height: 216px;display:none">
 		<img id="lay_bg_img" class="backendgroundImg" alt="" >
 	</div>
-
-
+	</div>
+<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
+<script type="text/javascript">
+<!--
+function callback(msg){
+	console.log(1);
+	console.log(msg)
+	var flag = msg;
+	
+	if(flag=="true"){
+		
+		$("#body").load("${basePath}getIndex.action");
+	}else{
+		$.scojs_message('用户名或密码错误', $.scojs_message.TYPE_ERROR);
+	}
+}
+//-->
+</script>
 </body>
 </html>
 

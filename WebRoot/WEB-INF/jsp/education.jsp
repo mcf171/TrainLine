@@ -106,7 +106,7 @@ $(document).ready(function ()
 				width: 100,
 				renderer: function (val, item, row)
 				{
-					return '<input type="hidden" value="' + item.id + '" /><a href="${basePath}getDetialInfoPage.action">进入</a>';
+					return '<input type="hidden" value="' + item.id + '" /><a href="#" onclick="javascript:loadHTML(\'${basePath}getDetialInfoPage.action?trainingClass.trainingClassId=' + item.trainingClassId + '\')">进入</a>';
 				}
 			}
 		],

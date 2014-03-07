@@ -46,6 +46,17 @@ public class GlobalInterceptor extends AbstractInterceptor{
 		String url = InterceptorUtil.getURL(request);
 		boolean flag = avoidAction.contains(url);
 		
+		if (request.getRequestURI().contains("/admin/") || url.contains("getBackendIndex")) {
+			
+			User user = (User) request.getSession().getAttribute("user");
+			
+			if(user.getUserState() != 1){
+				
+				flag = false;
+			}
+			
+		}
+		
 		if(rootPath == null){
 			
 			rootPath = InterceptorUtil.getRootPath(request);
@@ -63,7 +74,6 @@ public class GlobalInterceptor extends AbstractInterceptor{
 		request.setAttribute("basePath", basePath);
 		request.setAttribute("rootPath", rootPath);
 		request.setAttribute("physicalPath", physicalPath);
-		System.out.println(basePath);
 		User user = (User) ctx.getSession().get("user");
 		
 		String result;

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<constant name="struts.multipart.maxSize" value="100000000" />
+	
 
-	<package name="course" namespace="/" extends="json-default">
+	<package name="course" namespace="/" extends="system">
 
 		<action name="fbfindCourse" class="courseAction" method="fbfindCourse">
 			<result type="json">
 				<param name="root">dataMap</param>
 			</result>
+		</action>
+		
+		
+		<action name="intoDetailCourseInfo" class="courseAction" method="intoDetailCourseInfo">
+			<result>/WEB-INF/jsp/courseDetailInfo.jsp</result>
 		</action>
 		
 		<action name="fbFindMyCourse" class="courseAction" method="fbFindMyCourse">
@@ -83,6 +88,10 @@
 	</package>
 
 	<package name="courseAdmin" namespace="/admin" extends="system">
+	
+			<action name="preTestCourse" class="courseAction" method="preTestCourse">
+			<result>/WEB-INF/jsp/backend/course/pretest.jsp</result>
+		</action>
 	
 		<action name="updateCourse" class="courseAction" method="updateCourse">
 			<result type="json">

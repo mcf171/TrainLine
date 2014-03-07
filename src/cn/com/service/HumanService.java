@@ -12,14 +12,18 @@ import cn.com.dao.PersonalinformationDAO;
 import cn.com.dao.PositionDAO;
 import cn.com.dao.UserDAO;
 import cn.com.model.Company;
+import cn.com.model.Course;
 import cn.com.model.Department;
 import cn.com.model.Educationbackground;
 import cn.com.model.Majorqualification;
 import cn.com.model.Personalinformation;
 import cn.com.model.Position;
 import cn.com.model.User;
+import cn.com.util.MD5;
 
 public class HumanService {
+	
+	private CourseService courseService;
 	private UserDAO userDAO;
 	private CompanyDAO companyDAO;
 	private DepartmentDAO departmentDAO;
@@ -69,9 +73,21 @@ public class HumanService {
 		return flag;
 	}
 	
-	public boolean modifyUser(User user){
+	public boolean modifyUser(User user,String[] positions){
 		boolean flag = false;
 		try{
+			
+			for(String item : positions){
+				
+				Position position = new Position();
+				position.setPositionId(Integer.parseInt(item));
+				user.getPositions().add(position);
+			}
+			User temp = userDAO.findById(user.getUserId());
+			if(!temp.getUserPassword().equals(user.getUserPassword())){
+				
+				user.setUserPassword(MD5.getInstance().getMD5ofStr(user.getUserPassword()));
+			}
 			userDAO.merge(user);
 			flag = true;
 		}catch (Exception e) {
@@ -82,16 +98,26 @@ public class HumanService {
 	}
 	
 	public void deleteUser(User user){
-		if(user.getPersonalinformation().getPersonalInformationId() != null){
-			personalinformationDAO.delete(user.getPersonalinformation());
-		}
-		if(user.getMajorqualification() != null){
-			majorqualificationDAO.delete(user.getMajorqualification());
-		}
-		if(user.getEducationbackground() != null){
-			educationbackgroundDAO.delete(user.getEducationbackground());
-		}
+		
+		try {
+			
+//		
+//		if(user.getPersonalinformation().getPersonalInformationId() != null){
+//			personalinformationDAO.delete(user.getPersonalinformation());
+//		}
+//		if(user.getMajorqualification() != null){
+//			majorqualificationDAO.delete(user.getMajorqualification());
+//		}
+//		if(user.getEducationbackground() != null){
+//			educationbackgroundDAO.delete(user.getEducationbackground());
+//		}
 		userDAO.delete(user);
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
 	}
 	
 	public List<Company> getCompanyList(){
@@ -211,9 +237,22 @@ public class HumanService {
 		return positionDAO.findById(positionId);
 	}
 	
-	public boolean addPosition(Position position){
+	/**
+	 * 增加Position
+	 * @author Apache
+	 * @time 2014-3-5 10:00
+	 * @param position
+	 * @param courseIds
+	 * @return
+	 */
+	public boolean addPosition(Position position, String[] courseIds){
 		boolean flag = false;
 		try{
+			for(String courseId : courseIds){
+				
+				Course course = courseService.getCourse(Integer.parseInt(courseId));
+				position.getCourses().add(course);
+			}
 			positionDAO.save(position);
 			flag = true;
 		}catch (Exception e) {
@@ -224,9 +263,14 @@ public class HumanService {
 		return flag;
 	}
 	
-	public boolean modifyPosition(Position position){
+	public boolean modifyPosition(Position position, String[] courseIds){
 		boolean flag = false;
 		try{
+			for(String courseId : courseIds){
+				
+				Course course = courseService.getCourse(Integer.parseInt(courseId));
+				position.getCourses().add(course);
+			}
 			positionDAO.merge(position);
 			flag = true;
 		}catch (Exception e) {
@@ -421,4 +465,15 @@ public class HumanService {
 			EducationbackgroundDAO educationbackgroundDAO) {
 		this.educationbackgroundDAO = educationbackgroundDAO;
 	}
+
+	public CourseService getCourseService() {
+		return courseService;
+	}
+
+	public void setCourseService(CourseService courseService) {
+		this.courseService = courseService;
+	}
+	
+	
+	
 }

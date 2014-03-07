@@ -37,7 +37,7 @@ $(document).ready(function ()
 {
 	$("#indexnotice").slideDown(800);
 	$("#removeSign").click(function(){
-		$("#indexnotice").slideUp(slow);
+		$("#indexnotice").slideUp("slow");
 	});
 	$('.header-menu-item > a').click(function ()
 	{
@@ -77,12 +77,12 @@ function deleteMessage(messageId){
 	<div class="navbar-inner">
 		<div class="row-fluid">
 			<ul class="span12 nav nav-pills header-menu">
-				<li id="page_0" class="span1 header-menu-item active"><a href="#">首页</a></li>
-				<li id="page_1" class="span2 header-menu-item"><a href="#">学习中心</a></li>
-				<li id="page_2" class="span2 header-menu-item"><a href="#">考试中心</a></li>
-				<li id="page_4" class="span2 header-menu-item"><a href="#">培训班</a></li>
-				<li id="page_3" class="span2 header-menu-item"><a href="#">网上党校</a></li>
-				<li id="page_5" class="span2 header-menu-item"><a href="#">图书馆</a></li>
+				<li id="page_0" class="span1 header-menu-item active"><a href="javascript:;">首页</a></li>
+				<li id="page_1" class="span2 header-menu-item"><a href="javascript:;">学习中心</a></li>
+				<li id="page_2" class="span2 header-menu-item"><a href="javascript:;">考试中心</a></li>
+				<li id="page_4" class="span2 header-menu-item"><a href="javascript:;">培训班</a></li>
+				<li id="page_3" class="span2 header-menu-item"><a href="javascript:;">网上党校</a></li>
+				<li id="page_5" class="span2 header-menu-item"><a href="javascript:;">图书馆</a></li>
 				<li id="page_6" class="span1 header-menu-item"><a href="${rootPath}/jforum/jforum.page?module=user&action=validateLogin&username=${user.userName}&password=admin&login=%E7%99%BB%E5%85%A5" >社区</a></li>
 			</ul>
 		</div>
@@ -94,14 +94,14 @@ function deleteMessage(messageId){
 <div class="push"></div>
 <div class="importantInfo">
 	<div class="span4">
-			<div class="row-fluid resources hide" id="indexnotice">
+			<div class="row-fluid resources hide" style="background-color: #FFFFFF;" id="indexnotice">
 				<div class="span12">
 					<div class="row-fluid">
 						<div class="span12">
 							<b>通知</b>
 							
 							<a href="javascript:hiddenClass('importantInfo')" class="more" id="removeSign"><i class=" icon-remove" ></i></a>
-							<a target="_blank" href="#" class="more">更多</a> 
+							<a target="_blank" href="javascript:;" class="more">更多</a> 
 							
 						</div>
 					</div>

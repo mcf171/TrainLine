@@ -23,6 +23,7 @@ public class Testarrangement implements java.io.Serializable {
 	private Integer testPersonOfHierarchy;
 	private Integer passMark;
 	private Integer testState;
+	private Set<TestGrade> testGrades = new HashSet<TestGrade>();
 	//private Set testpapers = new HashSet(0);
 
 	// Constructors
@@ -56,6 +57,17 @@ public class Testarrangement implements java.io.Serializable {
 
 	public void setTrainingclass(Trainingclass trainingclass) {
 		this.trainingclass = trainingclass;
+	}
+
+
+
+	public Set<TestGrade> getTestGrades() {
+		return testGrades;
+	}
+
+
+	public void setTestGrades(Set<TestGrade> testGrades) {
+		this.testGrades = testGrades;
 	}
 
 
@@ -121,6 +133,27 @@ public class Testarrangement implements java.io.Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		
+		if(obj instanceof Testarrangement){
+			
+			flag  = ((Testarrangement)obj).getTestArrangementId().equals(this.testArrangementId) ? true:false;
+		}
+		
+		return flag;
 	}
 
 

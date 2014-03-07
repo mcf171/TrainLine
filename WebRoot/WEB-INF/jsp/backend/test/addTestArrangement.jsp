@@ -151,13 +151,65 @@
 						arrayPaper = mmGirdTable.selectedRowsIndex();
 						arrayClass = mmClass.selectedRowsIndex();
 						
+				if(arrayPaper.length==0||arrayClass.length==0){
+							
+							alert("必须选择一个试卷和班级");
+							return ;
+						}
+						
 						testPlace ="testArrangement.testArrangementPlace="+ $("#testPlace").val();
 						testShouldNumber = "&testArrangement.testSumPerson=" + $("#testShouldNumber").val();
 						testPassScore ="&testArrangement.passMark=" +$("#testPassScore").val();
 						testStartTime = "&testArrangement.testStartTime=" +$("#time-from").val()+ " "+$("#startTimeHour").val()+":"+$("#startTimeMinutes").val()+":"+"00";
 						testEndTime = "&testArrangement.attributestStartTimete51=" +$("#time-to").val()+ " "+$("#endTimeHour").val()+":"+$("#endTimeMinutes").val()+":"+"00";
 						//	alert(testPaperName)
-
+			
+						var reg = new RegExp("^[0-9]*$");
+						if($("#testPlace").val() == ""){
+							
+							$("#place").fadeIn();
+							$("#people").fadeOut();
+							$("#score").fadeOut();
+							$("#time1").fadeOut();
+							$("#time2").fadeOut();
+							return ;
+						}
+						if(!reg.test($("#testShouldNumber").val())){
+							
+							$("#people").fadeIn();
+							$("#place").fadeOut();
+							$("#score").fadeOut();
+							$("#time1").fadeOut();
+							$("#time2").fadeOut();
+							return ;
+						}
+						if(!reg.test($("#testPassScore").val())){
+							
+							$("#score").fadeIn();
+							$("#people").fadeOut();
+							$("#place").fadeOut();
+							$("#time1").fadeOut();
+							$("#time2").fadeOut();
+							return ;
+							}
+						if($("#time-from").val() == ""){
+							
+							$("#time1").fadeIn();
+							$("#people").fadeOut();
+							$("#score").fadeOut();
+							$("#place").fadeOut();
+							$("#time2").fadeOut();
+							return;
+						}
+						if($("#time-to").val() == ""){
+							
+							$("#time2").fadeIn();
+							$("#people").fadeOut();
+							$("#score").fadeOut();
+							$("#time1").fadeOut();
+							$("#place").fadeOut();
+							return ;
+						}
 							//alert(mmGirdTable.row(array[i]).testQuestionId);
 						testPaperId = "&testPaperId="+ mmGirdTable.row(arrayPaper[0]).testPaperId;
 						testClassId = "&trainClassId="+ mmClass.row(arrayClass[0]).trainingClassId;
@@ -192,16 +244,19 @@
 					<span class="help-inline">考试地点：</span> <input type="text"
 						class=" span2" id="testPlace" placeholder="请输入试卷名称"
 						name="testquestion.testQuestionName" />
+						<font color="red" class="hide" id="place">*必须填写</font>
 				</div>
 				<div class="row-fluid">
 					<span class="help-inline">应到人数：</span> <input type="text"
 						class=" span2" id="testShouldNumber" placeholder="请输入数量"
 						name="testquestion.testQuestionName" />
+						<font color="red" class="hide" id="people">*必须填写数字</font>
 				</div>
 				<div class="row-fluid">
 					<span class="help-inline">通过分数：</span> <input type="text"
 						class=" span2" id="testPassScore" placeholder="请输入分数"
 						name="testquestion.testQuestionName" />
+						<font color="red" class="hide" id="score">*必须填写数字</font>
 				</div>
 				<div class="row-fluid">
 					<span class="help-inline">开始时间：</span> <input id="time-from"
@@ -221,6 +276,7 @@
 						<button type="submit" class="btn" id="reduceStartTimeMinutes">
 							 -
 						</button>
+						<font color="red" class="hide" id="time1">*必须填写</font>
 				</div>
 				<div class="row-fluid">
 					<span class="help-inline">结束时间：</span> </span> <input id="time-to" class="span2"
@@ -239,6 +295,7 @@
 						<button type="submit" class="btn" id="reduceEndTimeMinutes">
 							 -
 						</button>
+						<font color="red" class="hide" id="time2">*必须填写</font>
 				</div>
 				<hr class="seperator top-margin">
 				<div class="row word_style">

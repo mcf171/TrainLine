@@ -23,7 +23,7 @@ var PAGES = {
 	page_5: '${basePath}newMessageAction.action',
 	page_6: '${basePath}/admin/getBackendReportPage.action',
 	page_7: '${basePath}conductSystemaction.action',
-	page_8: '${basePath}showBackendforumListPage.action',
+	//page_8: '${basePath}showBackendforumListPage.action',
 	page_9:'${basePath}showBackendLiberaryListPage.action'
 };
 
@@ -67,16 +67,16 @@ $(document).ready(function ()
 	<div class="navbar-inner">
 		<div class="row-fluid">
 			<ul class="span12 nav nav-pills header-menu">
-				<li id="page_0" class="span2 header-menu-item active"><a href="#">学习管理</a></li>
-				<li id="page_1" class="span1 header-menu-item"><a href="#">考试管理</a></li>
-				<li id="page_2" class="span1 header-menu-item"><a href="#">班级管理</a></li>
-				<li id="page_3" class="span1 header-menu-item"><a href="#">资源管理</a></li>
-				<li id="page_4" class="span1 header-menu-item"><a href="#">人员管理</a></li>
-				<li id="page_5" class="span1  header-menu-item"><a href="#">消息管理</a></li>
-				<li id="page_6" class="span1 header-menu-item"><a href="#">报表管理</a></li>
-				<li id="page_7" class="span1 header-menu-item"><a href="#">系统管理</a></li>
-				<li id="page_8" class="span1 header-menu-item"><a href="#">社区管理</a></li>
-				<li id="page_9" class="span2 header-menu-item"><a href="#">图书馆管理</a></li>
+				<li id="page_0" class="offset1 span1 header-menu-item active"><a href="javascript:;">学习管理</a></li>
+				<li id="page_1" class="span1 header-menu-item"><a href="javascript:;">考试管理</a></li>
+				<li id="page_2" class="span1 header-menu-item"><a href="javascript:;">班级管理</a></li>
+				<li id="page_3" class="span1 header-menu-item"><a href="javascript:;">资源管理</a></li>
+				<li id="page_4" class="span1 header-menu-item"><a href="javascript:;">人员管理</a></li>
+				<li id="page_5" class="span1  header-menu-item"><a href="javascript:;">消息管理</a></li>
+				<li id="page_6" class="span1 header-menu-item"><a href="javascript:;">报表管理</a></li>
+				<li id="page_7" class="span1 header-menu-item"><a href="javascript:;">系统管理</a></li>
+<%--				<li id="page_8" class="span1 header-menu-item"><a href="javascript:;">社区管理</a></li>--%>
+				<li id="page_9" class="span1 header-menu-item"><a href="javascript:;">图书馆管理</a></li>
 			</ul>
 		</div>
 	</div>

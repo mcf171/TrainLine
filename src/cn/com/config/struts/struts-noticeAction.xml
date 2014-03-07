@@ -17,5 +17,27 @@
 		</action>
 	</package>
 	
+	<package name="noticeAdmin"  extends="system" namespace="/admin">
 	
+		<action name="addNotice" class="noticeAction" method="addNotice">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="getModifyNoticePage" class="noticeAction"  method="getModifyNoticePage">
+			<result>/WEB-INF/jsp/backend/news/noticeModify.jsp</result>
+		</action>
+		<action name="modifyNotice" class="noticeAction"  method="modifyNotice">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="deleteNotice" class="noticeAction"  method="deleteNotice">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+	</package>
+	 
 </struts>    

@@ -16,6 +16,7 @@ public class TestArrangementAction extends BaseActionSupport{
 	private TestArrangementService testArrangementService;
 	private Map<String, Object> dataMap;
 	private Testarrangement testArrangement;
+	private String[] testQuestionItemIds;
 	private int testPaperId;
 	private int trainClassId;
 	
@@ -23,6 +24,31 @@ public class TestArrangementAction extends BaseActionSupport{
 		super();
 		dataMap = new HashMap<String, Object>();
 		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * 显示TestArrangement情况。
+	 * @author Apache
+	 * @time 2014-3-1 2:18
+	 * @return
+	 */
+	public String showTestArrangementPage(){
+		
+		testArrangement = testArrangementService.getTestarrangement(testArrangement.getTestArrangementId());
+		request.setAttribute("testArrangement", testArrangement);
+		return this.SUCCESS;
+	}
+	/**
+	 * 完成考试，并进行相关操作
+	 * @author Apache
+	 * @time 2014-2-26 22:29
+	 * @return
+	 */
+	public String finishTest(){
+		
+		User user = (User) session.get("user");
+		testArrangementService.finishTest(testArrangement, testQuestionItemIds, user);
+		return this.SUCCESS;
 	}
 	
 	/**
@@ -170,6 +196,14 @@ public class TestArrangementAction extends BaseActionSupport{
 	}
 	public void setTrainClassId(int trainClassId) {
 		this.trainClassId = trainClassId;
+	}
+
+	public String[] getTestQuestionItemIds() {
+		return testQuestionItemIds;
+	}
+
+	public void setTestQuestionItemIds(String[] testQuestionItemIds) {
+		this.testQuestionItemIds = testQuestionItemIds;
 	}
 
 	

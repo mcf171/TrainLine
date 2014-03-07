@@ -7,14 +7,19 @@ $("#submit").click(function(){
 	var questionnaireTitle = $("#questionnaireTitle").val();
 	var questionnaireNumber = $("#questionnaireNumber").val();
 	var questionnaireAuthor = $("#questionnaireAuthor").val();
-	$.ajax({
-		type:"post",
-		url:"${basePath}admin/addQuestionnaire.action",
-		data:"questionnaire.questionnaireTitle="+questionnaireTitle+"&questionnaire.questionnaireNumber=" + questionnaireNumber + "&questionnaire.questionnaireAuthor="+questionnaireAuthor,
-		success:function(msg){
-			$("#content").html(msg);
-		}
-	});
+	if(questionnaireTitle!="" && questionnaireNumber!= "" && questionnaireAuthor!=null){
+		$.ajax({
+			type:"post",
+			url:"${basePath}admin/addQuestionnaire.action",
+			data:"questionnaire.questionnaireTitle="+questionnaireTitle+"&questionnaire.questionnaireNumber=" + questionnaireNumber + "&questionnaire.questionnaireAuthor="+questionnaireAuthor,
+			success:function(msg){
+				$("#content").html(msg);
+			}
+		});
+	}else{
+		
+		alert("所有字段必须填写");
+	}
 });
 //-->
 </script>

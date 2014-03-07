@@ -15,12 +15,20 @@ public class ResourceAction extends BaseActionSupport {
 	private Resource resource;
 	private String modifyResource;//如果为1则修改了ResourceURL
 
+	/*
 	// 封装上传文件域的属性
     private File image;
     // 封装上传文件类型的属性
     private String imageContentType;
     // 封装上传文件名的属性
     private String imageFileName;
+    */
+	
+	private String title;
+	private File upload;
+	private String uploadFileName;
+	private String[] uploadContentTypeName;
+	private String savePath;
     
 	public ResourceService getResourceService() {
 		return resourceService;
@@ -40,7 +48,8 @@ public class ResourceAction extends BaseActionSupport {
 		
 		if(GlobalConstant.MODIFYURL.equals(modifyResource)){
 			
-			resourceService.updateResource(resource, image, imageContentType, imageFileName);
+			resourceService.updateResource(resource,upload,uploadFileName);
+			//resourceService.updateResource(resource, image, imageContentType, imageFileName);
 		}else{
 			
 			resourceService.updateResource(resource);
@@ -94,7 +103,7 @@ public class ResourceAction extends BaseActionSupport {
 	 */
 	public String addResource(){
 		
-		resourceService.addResource(resource, image, imageContentType, imageFileName);
+		resourceService.addResource(resource, upload,uploadFileName);
 		
 		return this.SUCCESS;
 	}
@@ -178,30 +187,6 @@ public class ResourceAction extends BaseActionSupport {
 		this.dataMap = dataMap;
 	}
 
-	public File getImage() {
-		return image;
-	}
-
-	public void setImage(File image) {
-		this.image = image;
-	}
-
-	public String getImageContentType() {
-		return imageContentType;
-	}
-
-	public void setImageContentType(String imageContentType) {
-		this.imageContentType = imageContentType;
-	}
-
-	public String getImageFileName() {
-		return imageFileName;
-	}
-
-	public void setImageFileName(String imageFileName) {
-		this.imageFileName = imageFileName;
-	}
-
 	public Resource getResource() {
 		return resource;
 	}
@@ -217,6 +202,48 @@ public class ResourceAction extends BaseActionSupport {
 	public void setModifyResource(String modifyResource) {
 		this.modifyResource = modifyResource;
 	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	public String[] getUploadContentTypeName() {
+		return uploadContentTypeName;
+	}
+
+	public void setUploadContentTypeName(String[] uploadContentTypeName) {
+		this.uploadContentTypeName = uploadContentTypeName;
+	}
+
+	public String getSavePath() {
+		return savePath;
+	}
+
+	public void setSavePath(String savePath) {
+		this.savePath = savePath;
+	}
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
 
 	
 }

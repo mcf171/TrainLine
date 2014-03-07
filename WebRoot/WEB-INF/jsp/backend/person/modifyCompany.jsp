@@ -14,18 +14,24 @@ $(document).ready(
 $("#cancle").click(function(){
 	loadHTML('${basePath}admin/showBackendCompanyPage.action');
 })
+
+
+function callback(msg){
+	alert("修改成功");
+	loadHTML('${basePath}admin/showBackendCompanyPage.action');
+}
 //-->
 </script>
 
 <div class="row-fluid">
-	<form action="${basePath}admin/modifyCompany.action"  enctype="multipart/form-data" method="post">
+	<form action="${basePath}admin/modifyCompany.action"  enctype="multipart/form-data" method="post" target="hidden_frame">
 		<div class="row-fluid line-margin" style="display:none">
 			<span class="help-inline">公司ID：</span>
-			<input type="text" class=" span2" placeholder="请输入内容" name="company.companyId" value="${company.companyId}"/>
+			<input type="text" class=" span2" placeholder="请输入内容" name="company.companyId" value="${company.companyId}" required="required"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司名称：</span>
-			<input type="text" class=" span2" placeholder="请输入内容" name="company.companyName" value="${company.companyName}"/>
+			<input type="text" class=" span2" placeholder="请输入内容" name="company.companyName" value="${company.companyName}" required="required"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司等级：</span>
@@ -43,7 +49,7 @@ $("#cancle").click(function(){
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">公司简称：</span>
-			<input type="text" class=" span2" placeholder="请输入公司简称" name="company.companyShortName" value="${company.companyShortName}"/>
+			<input type="text" class=" span2" placeholder="请输入公司简称" name="company.companyShortName" value="${company.companyShortName}" required="required"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<button class="btn span1" type="submit">
@@ -54,4 +60,5 @@ $("#cancle").click(function(){
 			</button>
 		</div>
 	</form>
+	<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
 </div>

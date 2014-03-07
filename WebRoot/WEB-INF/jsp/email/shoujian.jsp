@@ -1,37 +1,113 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-    
-    <title>Email</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+<link rel="stylesheet" type="text/css" href="${basePath}styles/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}styles/mmpaginator.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmgrid.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}themes/mmgrid/mmpaginator.css" />
+<script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
+<script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
 
-  </head>
-  <link rel="stylesheet" type="text/css" href="${basePath}styles/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="${basePath}styles/global.css" />
-<script type="text/javascript" src="${basePath}scripts/jquery.js"></script>
-<script type="text/javascript" src="${basePath}scripts/bootstrap.js"></script>
-<script type="text/javascript" src="${basePath}scripts/global.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+var rowDatas = new Array();
+<c:forEach items="${user.sendMail}" var="item">
+	var rowData = {"mailId":"${item.mailId}","mailState":"${item.mailState}","userName":"${item.sendUser.userName}","mailContent":'${item.mailContent}',"mailTime":'<fmt:formatDate value="${item.mailTime}" type="both"/>'};
+	rowDatas.push(rowData);
+</c:forEach>           
 
-<div class="row-fluid line-margin text-center">
+$(document).ready(function ()
+{
+	mmGridTable = $('#grid').mmGrid({
+		items:rowDatas,
+		height: 280,
+		nowrap:true,
+		autoLoad: true,
+		checkCol: true,
+		multiSelect: true,
+		root:'testArrangementList',
+		fullWidthRows: true,
+		cols: [
+			{ title: '状态', sortable: true,
+				renderer: function (val, item, row)
+				{
+					var mailState = parseInt(item.mailState);
+					var returnString = "";
+					switch(mailState)
+					{
+					case 1: returnString = "未读";break;
+					case 2 : returnString ="已读";break;
+					}
+					return returnString;
+				}		
+			},
+			{ title: '发件人', sortable: true, name:'userName'},
+			{ title: '邮件内容', sortable: true, name:'mailContent'},
+			{ title: '收件时间', sortable: true, name:'mailTime'},
+			
+			{
+				title: '操作',
+				width: 280,
+				renderer: function (val, item, row)
+				{
+					return '<input type="hidden" value="' + item.id + '" />' +
+						'<a href="javascript:void(0)" onclick="showMail(' + item.mailId + ')">查看</a>&nbsp;&nbsp;' +
+						'<a href="javascript:void(0)" onclick="showConfirm(' + item.mailId +')">删除</a>';
+				}
+			}
+		],
+		plugins: [
+			$('#page').mmPaginator({})
+		]
+	});
+});
+
+function showMail(mailId){
+	loadHTML("${basePath}showMail.action?mail.mailId="+ mailId);
+}
+
+var mailId;
+function showConfirm(id){
+	
+	mailId = id;
+	$("#myModal").modal();
+}
+
+function deleteTestArrangement(){
+	
+	$("#myModal").modal("hide");
+	dataInfo = "mail.mailId=" + mailId;
+	$.ajax({
+		
+		type:"post",
+		url:"${basePath}deleteMail.action",
+		data:dataInfo,
+		success:function(msg){
+			mmGridTable.removeRow(mmGridTable.selectedRowsIndex());	
+		}
+	});
+}
+//]]>
+</script>
+
+
+<div class="row-fluid">
 	<div class="span12">
-	<img src="${basePath}email/shoujian.png" usemap="#Map2"/>
-		 <map name="Map2" id="Map2">
-           <area shape="rect" coords="22,81,71,97" href="${basePath}getWriteEmailPage.action" />
-          <area shape="rect" coords="24,109,74,128" href="${basePath}getCollectionPage.action" />
-          <area shape="rect" coords="23,141,81,158" href="${basePath}getRelationShipaPage.action" />
-          <area shape="rect" coords="23,190,75,207" href="${basePath}getCollectionPage.action" />
-        </map>
+		<table id="grid"></table>
+		<div id="page" class="pull-right"></div>
 	</div>
 </div>
-	
-</html>
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">确认删除</h3>
+</div>
+<div class="modal-body">
+<p>是否真的删除？</p>
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+<button class="btn btn-primary" onclick="deleteTestArrangement()">确认</button>
+</div>
+</div>

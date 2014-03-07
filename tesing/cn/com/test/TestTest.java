@@ -22,4 +22,9 @@ public class TestTest extends TestCase {
 		System.out.println(rightNow.getTimeInMillis());
 	
 	}
+	
+	@Test
+	public void testConverterDocumentToPDF(){
+		
+	}
 }

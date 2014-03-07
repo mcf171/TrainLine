@@ -49,6 +49,8 @@
 														renderer : function(
 																val, item, row) {
 															//onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
+															if(item.course==null)
+																return "课程不存在";
 															return item.course.courseId;
 														}
 													},
@@ -58,6 +60,8 @@
 														renderer : function(
 																val, item, row) {
 															//onclick="loadHTML('${basePath}addBookPage.action?book.bookState=1')"
+															if(item.course==null)
+																return "课程不存在";
 															return item.course.courseName;
 														}
 													},

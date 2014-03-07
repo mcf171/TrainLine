@@ -24,26 +24,34 @@ $("#cancle").click(function(){
 
 
 function callback(msg){
+	$("#porcess").animate({width:'100%'});
 	alert("增加成功");
-	loadHTML('${basePath}admin/showBackendDocResourcePage.action');
+	var resourceType = parseInt("${resource.resourceType}");
+	switch(resourceType){
+	case 1:loadHTML('${basePath}admin/showBackendVideoResourcePage.action');break;
+	case 2:loadHTML('${basePath}admin/showBackendDocResourcePage.action'); break; 
+	case 3:loadHTML('${basePath}admin/showBackendDongTaiResourcePage.action'); break;
+	}
+	
 }
+
+
 //-->
 </script>
 	<div class="row-fluid">
 	
-	<form action="${basePath}admin/addResource.action"  enctype="multipart/form-data" method="post" target="hidden_frame">
+	<form action="${basePath}admin/addResource.action"  enctype="multipart/form-data" method="post" target="hidden_frame"  onsubmit="checkForm()">
 	<input type="hidden"  value="${resource.resourceType}" name="resource.resourceType"/>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">资源名称：</span>
-			<input type="text" class=" span2" placeholder="请输入图书名称" name="resource.resourceName" value="${resource.resourceName}"/>
+			<input type="text" class=" span2" placeholder="请输入图书名称" name="resource.resourceName" value="${resource.resourceName}" required="required"/>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">资源URL：</span>
 
 			
            	<span class=" span2 uneditable-input" id="resourcePath" >${resource.resourcePath}</span>
-           	<input type="file" id="resourceURLChoose" style="width: 65px;" name="image" class=" span2 " placeholder="请选择上传图书">
-
+           	<input type="file" id="resourceURLChoose" style="width: 65px;" name="upload" class=" span2 " placeholder="请选择上传" required="required">
 		</div>
 		
 		
@@ -55,6 +63,17 @@ function callback(msg){
 				取消
 			</button>
 		</div>
+		<div class="row-fluid">
+						    <div class="progress progress-striped active">
+							    <div class="bar" style="width:0;" id="porcess"></div>
+							    </div>
+					</div>
+					<script>
+						function checkForm(){
+							
+							$("#porcess").animate({width:'90%'});
+						}
+					</script>
 		</form>
 		
 		<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>

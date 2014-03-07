@@ -12,7 +12,8 @@
 	</package>
 
 	<include file="cn/com/config/struts/struts-global.xml"></include>
-	
+	<include file="cn/com/config/struts/struts-fileDownloadAction.xml"></include>
+	<include file="cn/com/config/struts/struts-mailAction.xml"></include>
 	<include file="cn/com/config/struts/struts-emailAction.xml"></include>
 	<include file="cn/com/config/struts/struts-messageAction.xml"></include>
 	

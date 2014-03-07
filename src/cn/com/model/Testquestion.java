@@ -17,9 +17,9 @@ public class Testquestion implements java.io.Serializable {
 	private Integer degreeOfDifficulty;
 	private Integer score;
 	private String testType;
-	private String testAnswerIntroduce;
-	private String standardAnswer;
 	private Integer testIndex;
+	private Set<TestQuestionItem> testQuestionChooses = new HashSet<TestQuestionItem>();
+
 	
 	
 	private Set testpapers = new HashSet(0);
@@ -84,22 +84,6 @@ public class Testquestion implements java.io.Serializable {
 		this.testType = testType;
 	}
 
-	public String getTestAnswerIntroduce() {
-		return this.testAnswerIntroduce;
-	}
-
-	public void setTestAnswerIntroduce(String testAnswerIntroduce) {
-		this.testAnswerIntroduce = testAnswerIntroduce;
-	}
-
-	public String getStandardAnswer() {
-		return this.standardAnswer;
-	}
-
-	public void setStandardAnswer(String standardAnswer) {
-		this.standardAnswer = standardAnswer;
-	}
-
 
 
 	public Integer getTestIndex() {
@@ -123,6 +107,20 @@ public class Testquestion implements java.io.Serializable {
 	public void setTestpapers(Set testpapers) {
 		this.testpapers = testpapers;
 	}
+
+
+
+	public Set<TestQuestionItem> getTestQuestionChooses() {
+		return testQuestionChooses;
+	}
+
+
+
+	public void setTestQuestionChooses(Set<TestQuestionItem> testQuestionChooses) {
+		this.testQuestionChooses = testQuestionChooses;
+	}
+
+
 
 
 }

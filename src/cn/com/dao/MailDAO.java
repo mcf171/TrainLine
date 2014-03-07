@@ -33,15 +33,8 @@ public class MailDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
-	public void save(Mail transientInstance) {
-		log.debug("saving Mail instance");
-		try {
-			getHibernateTemplate().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
+	public int save(Mail transientInstance) {
+			return (Integer) getHibernateTemplate().save(transientInstance);
 	}
 
 	public void delete(Mail persistentInstance) {

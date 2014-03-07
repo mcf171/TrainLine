@@ -1,5 +1,6 @@
 package cn.com.action;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,7 @@ import cn.com.model.Note;
 import cn.com.model.Notice;
 import cn.com.model.Noticetype;
 import cn.com.model.Resource;
+import cn.com.model.User;
 import cn.com.service.NoticeService;
 import cn.com.service.ResourceService;
 import cn.com.util.Page;
@@ -24,6 +26,61 @@ public class NoticeAction extends BaseActionSupport {
 	private int length = 5;
 	
 	/**
+	 * 获取修改Notice页面
+	 * @author Apache
+	 * @time 2014-3-1 15:53
+	 * @return
+	 */
+	public String getModifyNoticePage(){
+		
+		notice = noticeService.getNoticeById(notice.getNoticeId());
+		List<Noticetype> noticeTypeList = noticeService.getAllNoticeType();
+		 request.setAttribute("typeList", noticeTypeList);
+		request.setAttribute("notice", notice);
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 修改Notice
+	 * @author Apache
+	 * @time 2014-3-1 15:58
+	 * @return
+	 */
+	public String modifyNotice(){
+		
+		noticeService.update(notice);
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 删除Notice
+	 * @author Apache
+	 * @time 2014-3-1 15:56
+	 * @return
+	 */
+	public String deleteNotice(){
+		
+		noticeService.delete(notice);
+		
+		return this.SUCCESS;
+	}
+	
+	public String addNotice(){
+		
+		 if(notice!=null){		
+			 Timestamp nowDate =new Timestamp(System.currentTimeMillis());
+			 notice.setNoticeTime(nowDate);
+			 Noticetype noticeType = noticeService.findNoticetypeById(notice.getNoticetype().getNoticeTypeId());
+			 notice.setNoticetype(noticeType);
+			 User  user=(User) session.get("user");
+			 notice.setNoticeAuthor(user.getUserName());
+			 noticeService.addNotice(notice);
+		 }
+		return this.SUCCESS;
+	}
+	
+	
+	/**
 	 * 获取note内容
 	 * author: Apache
 	 * time:2014-1-12 23:00
@@ -31,7 +88,7 @@ public class NoticeAction extends BaseActionSupport {
 	 */
 	public String getNoticeContent(){
 		
-		notice = noticeService.getNoticeById(notice);
+		notice = noticeService.getNoticeById(notice.getNoticeId());
 		Notice temp = new Notice();
 		temp.setNoticetype(notice.getNoticetype());
 		List<Notice> list = noticeService.findByNoticeExample(temp);

@@ -10,6 +10,11 @@
 
 <script type="text/javascript">
 	//         
+	
+	function callback(msg){
+	alert("增加成功");
+	loadHTML('${basePath}admin/showBackendPersonPage.action');
+}
 	var mmGridTable;
 	$(document).ready(function() {
 		mmGridTable = $('#grid').mmGrid({
@@ -49,13 +54,17 @@
 		});
 		
 		var optionString = "";
+
+		flag = false;
+		$("#noCompany").fadeIn();
 		$("#companyName").find("option").remove();
 		<c:forEach items="${allCompanyList}" var="item">			
 			optionString += "<option name='companyName' value='" + ${item.companyId} + "'>" + "${item.companyName}" +"</option>";
+			flag = true;
+			$("#noCompany").fadeOut();
 		</c:forEach>
 
 		$("#companyName").append(optionString);
-		console.log($("#companyName"));
 		getDepartmentNameByCompanyId();
 		
 	});
@@ -68,12 +77,25 @@
 					data : 'department.company.companyId=' + value,
 					success : function(msg) {
 						var optionString = "";
+
+						flag = false;
+						$("#noDepartment").fadeIn();
 						for ( var i = 0; i < msg.human.length; i++) {	
 							optionString += "<option name='departmentName' value='" + msg.human[i].departmentId + "'>"
 								+ msg.human[i].departmentName + "</option>";
+
+							flag = true;
+							$("#noDepartment").fadeOut();
 						}
 						$("#departmentName").append(optionString);
+					},
+					error:function(msg){
+						
+						flag = false;
+						$("#noDepartment").fadeIn();
 					}
+					 
+					 
 			});
 			
 			setTimeout(function(){
@@ -84,11 +106,20 @@
 					data : 'position.department.departmentId=' + departmentId,
 					success : function(msg) {
 						var optionString = "";
+						flag = false;
+						$("noPosition").fadeIn();
 						for ( var i = 0; i < msg.human.length; i++) {	
 							optionString += "<option name='positionName' value='" + msg.human[i].positionId + "'>"
 								+ msg.human[i].positionName + "</option>";
+								flag  = true;
+								$("noPosition").fadeOut();
 						}
 						$("#positionName").append(optionString);
+					},
+					error:function(){
+						flag = false;
+						$("#noPosition").fadeIn();
+						
 					}
 			});
 		}, 600);
@@ -102,11 +133,20 @@
 			data : 'position.department.departmentId=' + departmentId,
 			success : function(msg) {
 				var optionString = "";
+				flag = false;
+				$("#noPosition").fadeIn();
 				for ( var i = 0; i < msg.human.length; i++) {	
 					optionString += "<option name='positionName' value='" + msg.human[i].positionId + "'>"
 						+ msg.human[i].positionName + "</option>";
+						flag  = true;
+						$("#noPosition").fadeOut();
 				}
 				$("#positionName").append(optionString);
+			},
+			error:function(){
+				flag = false;
+				$("#noPosition").fadeIn();
+				
 			}
 	});
 	}
@@ -127,7 +167,22 @@
 		var realName = $("#realName").val();
 		var userState = $("#userState").val();
 		var sex = $("#sex").val();
+	
+		if(userName==""){
+			
+			$("#name").fadeIn();
+			
+			$("#password").fadeOut();
+			flag = false;
+		}
+		if(userPassword==""){
+			
+			$("#password").fadeIn();
+			$("#name").fadeOut();
+			flag = false;
+		}
 		
+		if(flag){
 		var positionIds="";
 		mmGridTable.select(function(item,index){
 			
@@ -144,11 +199,36 @@
 				loadHTML("${basePath}admin/showBackendPersonPage.action");
 			}
 		});
+		}else{
+			alert("存在非法项");
+			
+		}
 	});
-	
+	var  flag = false;
 	function deleteDepartment(){
 		
 		mmGridTable.removeRow(mmGridTable.selectedRowsIndex());
+	}
+	
+	function existUser(){
+		
+		var userName = $("#userName").val();
+		dataInfo="user.userName=" + userName;
+		$.ajax({
+			
+			type:"post",
+			url:"${basePath}checkUser.action",
+			data:dataInfo,
+			success:function(msg){
+				if(msg.flag){
+					$("#exist").fadeIn();
+					flag = false;
+				}else{
+					$("#exist").fadeOut();
+					flag = true;
+				}
+			}
+		});
 	}
 	//
 </script>
@@ -159,11 +239,13 @@
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">人员名称：</span>
-			<input type="text" class=" span2" placeholder="请输入内容" name="user.userName" id="userName"/>
+			<input type="text" class=" span2" placeholder="请输入内容" name="user.userName" id="userName" onchange="existUser()"/>
+			<font colro="red" class="hide" id="name" color="red">*必须填写</font><font color="red" class="hide" id="exist">*用户名已经存在</font>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">密码：</span>
 			<input type="text" class=" span2" placeholder="请输入内容" name="user.userPassword" value="1"  id="userPassword"/>
+			<font colro="red" class="hide" id="password">*必须填写</font>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">真实姓名：</span>
@@ -180,7 +262,9 @@
 		<div class="row-fluid line-margin">
 			<span class="help-inline">权限级别：</span>
 			<select class="input-small " name="user.userState" id="userState">
+			<c:if test="${user.userState==1}">
 				<option value="1">超级管理员</option>
+				</c:if>
 				<option value="2">教师</option>
 				<option value="3">学员</option>
 			</select>
@@ -193,16 +277,19 @@
 			<span class="help-inline">公司：</span>
 			<select class="input-small " id="companyName" onchange="getDepartmentNameByCompanyId() , getPositionNameByDepartmentId()">
 			</select>
+			<font color="red" class="hide" id="noCompany">*暂无公司</font>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">部门：</span>
 			<select class="input-small " id="departmentName" onchange="getPositionNameByDepartmentId()">
 			</select>
+			<font color="red" class="hide" id="noDepartment">*暂无部门</font>
 		</div>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">职位：</span>
 			<select class="input-small " id="positionName" >
 			</select>
+			<font color="red" class="hide" id="noPosition">*暂无职位</font>
 		</div>
 		<div class="row-fluid line-margin">
 			<button class="btn span1 " type="button"  id="addPosition">

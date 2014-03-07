@@ -41,5 +41,13 @@
         <property name="testState" type="java.lang.Integer">
             <column name="testState" />
         </property>
+        
+        <set name="testGrades" inverse="true" lazy="false" cascade="delete" order-by="testGradeId asc">
+            <key>
+                <column name="testArrangementId" not-null="true" />
+            </key>
+             <one-to-many class="cn.com.model.TestGrade" />
+        </set>
+        
     </class>
 </hibernate-mapping>

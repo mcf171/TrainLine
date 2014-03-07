@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <li> <div class="pull-left"><a href="#">And many more with Custom CSS</a></div><span class="label label-important pull-left">重要</span></li>
            -->
            <c:forEach items="${list}" var="item">
-           		<li> <div class="pull-left"><a href="javascript:loadHTML('${basePath}getNoticeContent.action?notice.noticeId=${item.noticeId}&notice.noticetype.noticeTypeId=${item.noticetype.noticeTypeId}')">${item.noticeTitle}</a></div></li>
+           		<li> <div><a href="javascript:loadHTML('${basePath}getNoticeContent.action?notice.noticeId=${item.noticeId}&notice.noticetype.noticeTypeId=${item.noticetype.noticeTypeId}')">${item.noticeTitle}</a></div></li>
            </c:forEach>
         </ul>
       </div>

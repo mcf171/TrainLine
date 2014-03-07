@@ -15,6 +15,7 @@
     <constant name="struts.i18n.encoding" value="UTF-8" />
     <!-- 指定允许上传的文件最大字节数。默认值是2097152(2M) -->
     <constant name="struts.multipart.maxSize" value="1000000000"/>
+    
     <!-- 设置上传文件的临时文件夹,默认使用javax.servlet.context.tempdir -->
     <constant name="struts.multipart.saveDir " value="d:/tmp" />
 

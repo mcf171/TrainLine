@@ -10,7 +10,7 @@
             <column name="positionId" />
             <generator class="native" />
         </id>
-        <many-to-one name="department" class="cn.com.model.Department" lazy="false" fetch="join">
+        <many-to-one name="department" class="cn.com.model.Department" lazy="false" fetch="join" cascade="none" >
             <column name="departmentId" />
         </many-to-one>
         <property name="positionName" type="java.lang.String">
@@ -23,6 +23,13 @@
             <many-to-many entity-name="cn.com.model.User">
                 <column name="userId" not-null="true" />
             </many-to-many>
+        </set>
+        
+         <set name="courses" inverse="false" table="positionandcourse" lazy="false" cascade="save-update">
+            <key>
+                <column name="positionId" />
+            </key>
+            <many-to-many class="cn.com.model.Course" column="courseId"/>
         </set>
     </class>
 </hibernate-mapping>

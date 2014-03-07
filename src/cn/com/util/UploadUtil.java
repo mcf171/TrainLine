@@ -1,14 +1,20 @@
 package cn.com.util;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.apache.struts2.ServletActionContext;
 
 public class UploadUtil {
 
+	public static final int BUFFER_SIZE = 1024 * 6;
+	
 	 // 封装上传文件域的属性
     private File flie;
     // 封装上传文件类型的属性
@@ -110,5 +116,35 @@ public class UploadUtil {
 		this.fis = fis;
 	}
 
+	public static void copyFile(File src, File dst) {
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+		try {
+
+			inputStream = new BufferedInputStream(new FileInputStream(src),
+					BUFFER_SIZE);
+			outputStream = new BufferedOutputStream(new FileOutputStream(dst),
+					BUFFER_SIZE);
+			byte[] buffer = new byte[BUFFER_SIZE];
+			int len = 0;
+			while ((len = inputStream.read(buffer)) > 0) {
+				outputStream.write(buffer, 0, len);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (null != inputStream) {
+					inputStream.close();
+				}
+				if (null != outputStream) {
+					outputStream.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 }

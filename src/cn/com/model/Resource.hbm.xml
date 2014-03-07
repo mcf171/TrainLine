@@ -22,8 +22,8 @@
         <property name="downloundCount" type="java.lang.Integer">
             <column name="downloundCount" />
         </property>
-		<many-to-one name="catalogue" column="catalogueId" class="cn.com.model.Catalogue" not-found="ignore" lazy="false"></many-to-one>        
-        <set name="resourseandcatelogues" inverse="true">
+		<many-to-one name="catalogue" column="catalogueId" class="cn.com.model.Catalogue" not-found="ignore" lazy="false" cascade="none"></many-to-one>        
+        <set name="resourseandcatelogues" inverse="true" >
             <key>
                 <column name="resourceId" not-null="true" />
             </key>

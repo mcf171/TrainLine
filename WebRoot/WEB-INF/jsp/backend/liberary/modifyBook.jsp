@@ -44,11 +44,15 @@ function addBook(){
 		  }
 		});
 }
+function callback(msg){
+	
+	loadHTML('showBackendInsideLiberaryListPage.action');
+}
 //-->
 </script>
 	<div class="row-fluid">
 	
-	<form action="${basePath}modifyBook.action"  enctype="multipart/form-data" method="post">
+	<form action="${basePath}modifyBook.action"  enctype="multipart/form-data" method="post" target="hidden_frame">
 	<input type="hidden"  value="0" name="modifyBookURL" id="modifyBookURL"/>
 	<input type="hidden"   name="book.bookId"  value="${book.bookId}"/>
 	<input type="hidden"   name="book.bookState"  value="${book.bookState}"/>
@@ -91,3 +95,4 @@ function addBook(){
 			</button>
 		</div>
 		</form>
+		<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>

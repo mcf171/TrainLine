@@ -10,7 +10,7 @@
             <column name="questionnaireArrangementId" />
             <generator class="native" />
         </id>
-        <many-to-one name="questionnaire" class="cn.com.model.Questionnaire" fetch="select" cascade="save-update" lazy="false">
+        <many-to-one name="questionnaire" class="cn.com.model.Questionnaire" fetch="select" cascade="none" lazy="false">
             <column name="questionnaireId" />
         </many-to-one>
         <property name="questionArrangementName" type="java.lang.String">

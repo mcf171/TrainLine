@@ -42,6 +42,28 @@ public class NoticeService {
 	}
 	
 	/**
+	 * 删除Notice
+	 * @author Apache
+	 * @time 2014-3-1 15:56
+	 * @param notice
+	 */
+	public void delete(Notice notice){
+		
+		noticeDAO.delete(notice);
+	}
+	
+	/**
+	 * 更新Notice
+	 * @author Apache
+	 * @time 2014-3-1 15:57
+	 * @param notice
+	 */
+	public void update(Notice notice){
+		
+		noticeDAO.merge(notice);
+	}
+	
+	/**
 	 * 获取前一个Notice
 	 * author: Apache
 	 * time:2014-1-13 10:00
@@ -123,9 +145,9 @@ public class NoticeService {
 	 * time:2014-1-12 23:00
 	 * @return
 	 */
-	public Notice getNoticeById(Notice notice){
+	public Notice getNoticeById(int noticeId){
 		
-		return noticeDAO.findById(notice.getNoticeId());
+		return noticeDAO.findById(noticeId);
 	}
 	
 	public void addNotice(Notice notice){

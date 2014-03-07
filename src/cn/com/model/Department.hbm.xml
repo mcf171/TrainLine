@@ -10,7 +10,7 @@
             <column name="departmentId" />
             <generator class="native" />
         </id>
-        <many-to-one name="company" class="cn.com.model.Company" lazy="false" fetch="join">
+        <many-to-one name="company" class="cn.com.model.Company" lazy="false" fetch="join" cascade="none">
             <column name="companyId" />
         </many-to-one>
         <property name="departmentName" type="java.lang.String">

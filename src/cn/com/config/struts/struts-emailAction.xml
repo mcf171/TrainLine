@@ -4,21 +4,7 @@
 
 	<package name="email" namespace="/" extends="system">
 		
-		<action name="getEmailHomePage" class="emailAction" method="getEmailHomePage">
-			<result>/WEB-INF/jsp/email/index.jsp</result>
-		</action>
 		
-		<action name="getRelationShipaPage" class="emailAction" method="getRelationShipaPage">
-			<result>/WEB-INF/jsp/email/tongxunlu.jsp</result>
-		</action>
-		
-		<action name="getCollectionPage" class="emailAction" method="getCollectionPage">
-			<result>/WEB-INF/jsp/email/shoujian.jsp</result>
-		</action>
-			
-		<action name="getWriteEmailPage" class="emailAction" method="getWriteEmailPage">
-			<result>/WEB-INF/jsp/email/write.jsp</result>
-		</action>
 		
 	</package>
 

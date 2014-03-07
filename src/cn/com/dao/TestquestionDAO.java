@@ -35,15 +35,8 @@ public class TestquestionDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
-	public void save(Testquestion transientInstance) {
-		log.debug("saving Testquestion instance");
-		try {
-			getHibernateTemplate().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
+	public int save(Testquestion transientInstance) {
+			return (Integer) getHibernateTemplate().save(transientInstance);
 	}
 
 	public void delete(Testquestion persistentInstance) {

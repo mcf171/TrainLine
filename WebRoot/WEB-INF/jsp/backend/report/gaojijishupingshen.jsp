@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td><input type="text" /></td>
 					<td>出生年月</td>
 					<td><input type="text" /></td>
-					<td rowspan="4" colspan="2"><textarea></textarea></td>
+					<td rowspan="4" colspan="2"><textarea style="width: 91px; height: 47px;" draggable="false"></textarea></td>
 				</tr>
 				<tr>
 					<td>籍贯</td>
@@ -98,34 +98,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				<tr>
 					<td>个人学习、工作简历</td>
-					<td colspan="7"><textarea></textarea></td>
+					<td colspan="7">
+	<textarea style="margin: 0px 0px 10px; width: 711px; height: 71px;"></textarea>
+	</td>
 				</tr>
 				<tr>
 					<td rowspan="3">子、分公司人力资源部门意见</td>
-					<td colspan="7" class="borderNone"><textarea></textarea></td>
+					<td colspan="7" class="borderNone">
+				<textarea style="margin: 0px 0px 10px; height: 35px; width: 717px;"></textarea>
+</td>
 				</tr>
 				<tr>
 					<td colspan="7" class="gaizhang">（公章）</td>
 				</tr>
 				<tr>
 					<td colspan="7" class="bottomBorder textCenter"><input
-						type="date">年 <input type="month">月<input
-						type="month">日</td>
+						type="text">年 <input type="text">月<input
+						type="text">日</td>
 				</tr>
 				<tr>
 					<td rowspan="3">集团公司人力资源部门审查意见</td>
-					<td colspan="7" class="borderNone"><textarea></textarea></td>
+					<td colspan="7" class="borderNone">
+	<textarea style="margin: 0px 0px 10px; width: 711px; height: 71px;"></textarea>
+</td>
 				</tr>
 				<tr>
 					<td colspan="7" class="gaizhang">（公章）</td>
 				</tr>
 				<tr>
 					<td colspan="7" class="bottomBorder textCenter"><input
-						type="date">年 <input type="month">月<input type="month">日</td>
+						type="text">年 <input type="text">月<input type="text">日</td>
 				</tr>
 			</table>
 		</div>
 	</div>
 </div>
+<style>
+<!--
+input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    border: medium none;
+    box-shadow: none;
+    width: 6%;
+}
+-->
+</style>
 
 

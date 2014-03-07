@@ -8,7 +8,6 @@
 <link rel="stylesheet" type="text/css" href="styles/global.css" />
 <link rel="stylesheet" href="styles/video-js.css" type="text/css" />
 <link rel="stylesheet" href="styles/study.css" type="text/css"></link>
-<link href="styles/font-awesome.css" rel="stylesheet"></link>
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/bootstrap.js"></script>
 <script type="text/javascript" src="scripts/mousewheel.js"></script>
@@ -20,7 +19,7 @@
 <script type="text/javascript" charset="utf-8"
 	src="${basePath}ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8"
-	src="${basePath}ueditor/ueditor.all.min.js"> </script>
+	src="${basePath}ueditor/ueditor.all.js"> </script>
 <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
 <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 <script type="text/javascript" charset="utf-8"
@@ -42,12 +41,12 @@
 				<div class="span4">
 			</c:if>
 			<c:if test="${item.resourceType==1}">
-				<a id="viewerPlaceHolder"
+				<a id="viewerPlaceHolder${index.index}"
 					style="width:100%;height:464px;display:block"></a>
 				<script type="text/javascript">
 	     		var fp = new FlexPaperViewer(	
 						 'FlexPaperViewer',
-						 'viewerPlaceHolder', { config : {
+						 'viewerPlaceHolder${index.index}', { config : {
 						 SwfFile : escape('${basePath}${item.resourcePath}'),
 						 Scale : 0.6, 
 						 ZoomTransition : 'easeOut',
@@ -74,30 +73,7 @@
 	        </script>
 			</c:if>
 			<c:if test="${item.resourceType==2}">
-				<script language="JavaScript" type="text/javascript">
-			AC_FL_RunContent(
-				'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0',
-				'width', '100%',
-				'height', '100%',
-				'src', '${item.resourcePath}',
-				'quality', 'high',
-				'pluginspage', 'http://www.adobe.com/go/getflashplayer_cn',
-				'align', 'middle',
-				'play', 'true',
-				'loop', 'true',
-				'scale', 'showall',
-				'wmode', 'transparent',
-				'devicefont', 'false',
-				'id', '${item.resourcePath}',
-				'bgcolor', '#000000',
-				'name', '${item.resourcePath}',
-				'menu', 'true',
-				'allowFullScreen', 'false',
-				'allowScriptAccess','sameDomain',
-				'movie', '${item.resourcePath}?loadedS=40&preloader_color=ff2500&preloader_background_color=B3B3B3&percentage_text_color=3299ff&ntname_txt=80&ntname_text_color=ff2500&ntnameS_txt=22&percentS_txt=60',
-				'salign', ''
-				); //end AC code
-		</script>
+			<embed id="f" width="100%" height="464" bgcolor="#000000" allowfullscreen="true" allowscriptaccess="always" flashvars="skin=mySkin.swf&video=${item.resourcePath}" name="f" src="player.swf?v1.3.5" type="application/x-shockwave-flash">
 			</c:if>
 	</div>
 	<c:if test="${index.index%2==1 }">

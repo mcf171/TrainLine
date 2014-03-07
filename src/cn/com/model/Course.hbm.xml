@@ -41,7 +41,7 @@
             </key>
             <one-to-many class="cn.com.model.Catalogue" />
         </set>
-        <set name="testquestions" inverse="true" cascade="all-delete-orphan">
+        <set name="testquestions" inverse="true" cascade="all" lazy="false" >
             <key>
                 <column name="courseId" />
             </key>

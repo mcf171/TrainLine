@@ -1,7 +1,10 @@
 package cn.com.service;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.List;
+
+import com.sun.jmx.snmp.Timestamp;
 
 import cn.com.dao.CredentialDAO;
 import cn.com.model.Credential;
@@ -16,7 +19,7 @@ public class CredentialService {
 	public boolean insert(Credential credential, File image, String imageContentType, String imageFileName, String physicalPath) {
 		
 		boolean flag = false;
-		
+		imageFileName= "" + Calendar.getInstance().getTimeInMillis() + imageFileName.substring(imageFileName.lastIndexOf("."));
 		String swfName = imageFileName;
 		String bookURL = uploadUtil.getSavePath()+"/"+swfName;
 		credential.setCredentiaPath(bookURL);
@@ -68,9 +71,40 @@ public class CredentialService {
 		
 	}
 	
-	public void update(Credential credential)
+	/**
+	 * 更新Credential
+	 * @author Apache
+	 * @time 2014-3-5 22:55
+	 * @param credential
+	 * @param image
+	 * @param imageContentType
+	 * @param imageFileName
+	 * @param string
+	 */
+	public void update(Credential credential, File image, String imageContentType, String imageFileName, String string)
 	{
-		credentialDAO.merge(credential);
+		
+
+		imageFileName= "" + Calendar.getInstance().getTimeInMillis() + imageFileName.substring(imageFileName.lastIndexOf("."));
+		String swfName = imageFileName;
+		String bookURL = uploadUtil.getSavePath()+"/"+swfName;
+		credential.setCredentiaPath(bookURL);
+		uploadUtil.setFlie(image);
+		uploadUtil.setFlieContentType(imageContentType);
+		uploadUtil.setFlieFileName(imageFileName);
+		
+		try {
+			credentialDAO.merge(credential);
+			uploadUtil.upload();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException();
+		}finally{
+			
+			uploadUtil.close();
+		}
+		
 	}
 
 	/**

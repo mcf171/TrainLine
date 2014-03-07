@@ -15,9 +15,10 @@ public class Mail implements java.io.Serializable {
 	private Integer mailId;
 	private String mailContent;
 	private Timestamp mailTime;
+	private String mailTitle;
+	private User sendUser;
+	private User reciveUser;
 	private Integer mailState;
-	private Set mailaccessories = new HashSet(0);
-	private Set userandmails = new HashSet(0);
 
 	// Constructors
 
@@ -25,15 +26,7 @@ public class Mail implements java.io.Serializable {
 	public Mail() {
 	}
 
-	/** full constructor */
-	public Mail(String mailContent, Timestamp mailTime, Integer mailState,
-			Set mailaccessories, Set userandmails) {
-		this.mailContent = mailContent;
-		this.mailTime = mailTime;
-		this.mailState = mailState;
-		this.mailaccessories = mailaccessories;
-		this.userandmails = userandmails;
-	}
+
 
 	// Property accessors
 
@@ -69,20 +62,42 @@ public class Mail implements java.io.Serializable {
 		this.mailState = mailState;
 	}
 
-	public Set getMailaccessories() {
-		return this.mailaccessories;
+
+
+	public String getMailTitle() {
+		return mailTitle;
 	}
 
-	public void setMailaccessories(Set mailaccessories) {
-		this.mailaccessories = mailaccessories;
+
+
+	public void setMailTitle(String mailTitle) {
+		this.mailTitle = mailTitle;
 	}
 
-	public Set getUserandmails() {
-		return this.userandmails;
+
+
+	public User getSendUser() {
+		return sendUser;
 	}
 
-	public void setUserandmails(Set userandmails) {
-		this.userandmails = userandmails;
+
+
+	public void setSendUser(User sendUser) {
+		this.sendUser = sendUser;
 	}
+
+
+
+	public User getReciveUser() {
+		return reciveUser;
+	}
+
+
+
+	public void setReciveUser(User reciveUser) {
+		this.reciveUser = reciveUser;
+	}
+
+	
 
 }

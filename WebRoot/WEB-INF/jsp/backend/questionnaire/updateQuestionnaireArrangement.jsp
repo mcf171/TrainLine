@@ -1,5 +1,5 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css"
 	href="${basePath}styles/mmgrid.css" />
 <link rel="stylesheet" type="text/css"
@@ -90,6 +90,13 @@
 
 						arrayPaper = mmGirdTable.selectedRowsIndex();
 						arrayClass = mmClass.selectedRowsIndex();
+						
+			if(arrayPaper.length==0||arrayClass.length==0){
+							
+							alert("必须选择一个试卷和班级");
+							return ;
+						}
+						
 						questionArrangementIntro = "&questionnaireArrangement.questionArrangementIntro="+$("#questionArrangementIntro").val();
 						
 						questionArrangementName ="questionnaireArrangement.questionArrangementName="+ $("#questionArrangementName").val();
@@ -101,6 +108,35 @@
 							//alert(mmGirdTable.row(array[i]).testQuestionId);
 						questionnaireId = "&questionnaireArrangement.questionnaire.questionnaireId="+ mmGirdTable.row(arrayPaper[0]).questionnaireId;
 						
+						if($("#questionArrangementName").val()==""){
+							$("#name").fadeIn();
+							$("#aim").fadeOut();
+							$("#time1").fadeOut();
+							$("#time2").fadeOut();
+							return ;
+						}
+						if($("#questionArrangementIntro").val() == ""){
+							$("#aim").fadeIn();
+							$("#name").fadeOut();
+							$("#time1").fadeOut();
+							$("#time2").fadeOut();
+							return ;
+						}
+						if($("#time-from").val()==""){
+							$("#time1").fadeIn();
+							$("#aim").fadeOut();
+							$("#name").fadeOut();
+							$("#time2").fadeOut();
+							return ;
+						}
+						if($("#time-to").val()==""){
+							$("#time2").fadeIn();
+							$("#aim").fadeOut();
+							$("#time1").fadeOut();
+							$("#name").fadeOut();
+							return;
+						}
+						
 						var valueTest = parseInt($("#userChoose").val()); 
 						userId="";
 						if(valueTest == 1){
@@ -109,7 +145,7 @@
 								userId = "&userId=" + mmClass.row(arrayClass[i]).userId; 
 							}
 						}
-						dataConfirm = questionArrangementName + testStartTime + testEndTime + questionnaireId + userId + questionArrangementIntro;
+						dataConfirm = "questionnaireArrangement.questionArrangementState=${questionnaireArrangment.questionArrangementState}&questionnaireArrangement.questionnaireArrangementId=" + "${questionnaireArrangement.questionnaireArrangementId}" +"&"+questionArrangementName + testStartTime + testEndTime + questionnaireId + userId + questionArrangementIntro;
 						$.ajax({
 									type : "post",
 									url : "${basePath}admin/updateQuestionnaireArrangement.action",
@@ -138,18 +174,18 @@
 				<div class="row-fluid">
 					<span class="help-inline">问卷安排名：</span> <input type="text"
 						class=" span2" id="questionArrangementName" placeholder="请输入问卷安排名"
-						name="testquestion.testQuestionName"  value="${questionnaireArrangement.questionArrangementName}"/>
+						name="testquestion.testQuestionName"  value="${questionnaireArrangement.questionArrangementName}"/><font color="red" class="hide" id="name">*不能为空</font>
 				</div>
 				<div class="row-fluid">
 					<span class="help-inline">问卷目的：</span> <input type="text"
 						class=" span2" id="questionArrangementIntro" placeholder="请输入问卷目的"
-						name="testquestion.testQuestionName" value="${questionnaireArrangement.questionArrangementIntro}"/>
+						name="testquestion.testQuestionName" value="${questionnaireArrangement.questionArrangementIntro}"/><font color="red" class="hide" id="aim">*不能为空</font>
 				</div>
 				
 				<div class="row-fluid">
 					<span class="help-inline">开始时间：</span> <input id="time-from"
 						class="span2" type="text" data-date-format="yyyy-mm-dd"
-						placeholder="单击选择开始时间" readonly="readonly" value="${questionnaireArrangement.questionArrangementBeginTime}"> 
+						placeholder="单击选择开始时间" readonly="readonly" value='<fmt:formatDate value="${questionnaireArrangement.questionArrangementBeginTime}"/>''> 
 						小时：<input type="text" readonly="readonly" id="startTimeHour" style="width:50px" value="0"/>
 						<button type="submit" class="btn" id="addStartTimeHour">
 							 +
@@ -163,11 +199,11 @@
 						</button>
 						<button type="submit" class="btn" id="reduceStartTimeMinutes">
 							 -
-						</button>
+						</button><font color="red" class="hide" id="time1">*选择时间</font>
 				</div>
 				<div class="row-fluid">
 					<span class="help-inline">结束时间：</span> </span> <input id="time-to" class="span2"
-						type="text" data-date-format="yyyy-mm-dd" placeholder="单击选择结束时间" readonly="readonly" value="${questionnaireArrangement.questionArrangementOverTime}">
+						type="text" data-date-format="yyyy-mm-dd" placeholder="单击选择结束时间" readonly="readonly"value='<fmt:formatDate value="${questionnaireArrangement.questionArrangementBeginTime}"/>''>
 						小时：<input type="text" readonly="readonly" id="endTimeHour" style="width:50px" value="0"/>
 						<button type="submit" class="btn" id="addEndTimeHour">
 							 +
@@ -181,7 +217,7 @@
 						</button>
 						<button type="submit" class="btn" id="reduceEndTimeMinutes">
 							 -
-						</button>
+						</button><font color="red" class="hide" id="time2">*选择时间</font>
 				</div>
 				<hr class="seperator top-margin">
 				<div class="row word_style">

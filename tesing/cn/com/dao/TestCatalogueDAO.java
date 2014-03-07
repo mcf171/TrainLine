@@ -22,7 +22,7 @@ public class TestCatalogueDAO extends TestCase{
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		CatalogueDAO catalogueDAO = (CatalogueDAO)context.getBean("CatalogueDAO");
 		
-		Catalogue catalogue = catalogueDAO.findById(25);
+		Catalogue catalogue = catalogueDAO.findById(58);
 		for(Resource item : catalogue.getResource()){
 			
 			System.out.println("resource id : " + item.getResourceId());

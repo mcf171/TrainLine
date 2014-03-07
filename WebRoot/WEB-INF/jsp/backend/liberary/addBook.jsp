@@ -42,11 +42,16 @@ function addBook(){
 		  }
 		});
 }
+
+function callback(msg){
+	
+	loadHTML('showBackendInsideLiberaryListPage.action');
+}
 //-->
 </script>
 	<div class="row-fluid">
 	
-	<form action="${basePath}addBook.action"  enctype="multipart/form-data" method="post">
+	<form action="${basePath}addBook.action"  enctype="multipart/form-data" method="post" target="hidden_frame">
 	<input type="hidden"  value="${book.bookState}" name="book.bookState"/>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">图书名称：</span>
@@ -86,3 +91,5 @@ function addBook(){
 			</button>
 		</div>
 		</form>
+		<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
+		

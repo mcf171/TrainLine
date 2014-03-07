@@ -14,6 +14,7 @@ import cn.com.model.Resource;
 public class CourseService {
 	private CourseDAO courseDAO;
 	private CatalogueDAO catalogueDAO;
+	private ResourceService resourceService;
 	private ResourseandcatelogueDAO resourseandcatelogueDAO;
 	private CatalogueService catalogueService;
 
@@ -37,6 +38,8 @@ public class CourseService {
 	 */
 	public void delete(Course course)
 	{
+		try {
+		
 		course = courseDAO.findById(course.getCourseId());
 		/*
 		for(Catalogue item : course.getCatalogues()){
@@ -44,7 +47,14 @@ public class CourseService {
 			catalogueService.deleteCatalogue(item);
 		}
 		*/
+		
 		courseDAO.delete(course);
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
 	}
 	
 	public void update(Course course)
@@ -60,6 +70,19 @@ public class CourseService {
 	{
 		
 		return courseDAO.findById(course.getCourseId());
+	}
+	
+	/**
+	 * 通过Id查询
+	 * @author Apache
+	 * @time 2014-3-5 10:02
+	 * @param courseId
+	 * @return
+	 */
+	public Course getCourse(int courseId)
+	{
+		
+		return courseDAO.findById(courseId);
 	}
 	
 	public List<Course> findAll(){
@@ -153,6 +176,12 @@ public class CourseService {
 	}
 	public void setCatalogueService(CatalogueService catalogueService) {
 		this.catalogueService = catalogueService;
+	}
+	public ResourceService getResourceService() {
+		return resourceService;
+	}
+	public void setResourceService(ResourceService resourceService) {
+		this.resourceService = resourceService;
 	}
 	
 	

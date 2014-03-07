@@ -33,9 +33,23 @@ public class QuestionnairerubricService {
 		return questionnaireRubricId;
 	}
 
+	/**
+	 * 删除QuestionnaireRubric
+	 * @author Apache
+	 * @time 2014-3-5 16:20
+	 * @param questionnairerubric
+	 */
 	public void delete(Questionnairerubric questionnairerubric)
 	{
+		try {
+		questionnairerubric = questionnairerubricDAO.findById(questionnairerubric.getQuestionnaireRubricId());
 		questionnairerubricDAO.delete(questionnairerubric);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
 	}
 	
 	public void update(Questionnairerubric questionnairerubric)

@@ -10,7 +10,7 @@ $("#bookURLChoose").change(function(){
 </script>
 <div class="container-fluid">
 		<div class="row-fluid">
-		<form action="${basePath}admin/addCertifiacate.action"  enctype="multipart/form-data" method="post" class="form-horizontal">
+		<form action="${basePath}admin/addCertifiacate.action"  enctype="multipart/form-data" method="post" class="form-horizontal" target="hidden_frame">
 				<div class="control-group">
 					<label class="control-label">证书名：</label>
 					<div class="controls"><input type="text" name="credential.credentialName" required="required"/></div>
@@ -35,5 +35,15 @@ $("#bookURLChoose").change(function(){
 			</table>
 			</form>
 		</div>
+		
+		<script type="text/javascript">
+<!--
+function callback(){
+	
+	loadHTML("${basePath}admin/intoCertificatePage.action");
+}
+//-->
+</script>
+<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
 		
 </div>

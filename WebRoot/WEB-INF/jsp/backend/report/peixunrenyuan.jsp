@@ -19,6 +19,7 @@ $(document).ready(function ()
 	$('#grid').mmGrid({
 		url: '/api/peixunrenyuan',
 		height: 410,
+		root:'list',
 		autoLoad: true,
 		checkCol: true,
 		multiSelect: true,

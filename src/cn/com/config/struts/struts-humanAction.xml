@@ -3,6 +3,12 @@
 <struts>
 	<package name="human" extends="system">
 		
+		 	<action name="getDepartmentList" class="humanAction" method="getDepartmentList">
+				<result type="json">
+				<param name="root">dataMap</param>
+				</result>
+	   	</action>
+		
 	</package>
 	
 	<package name="humanActionAdmin" namespace="/admin" extends="system">
@@ -58,9 +64,7 @@
 		</action>
 		
 		<action name="addPerson" class="humanAction" method="addPerson">
-			<result type="redirectAction">
-   				<param name="actionName">showBackendHumanPage</param>
-   			</result>
+			<result>/utill.jsp</result>
 		</action>
 		
 		<action name="addCompanyPage" class="humanAction" method="addCompanyPage">
@@ -68,9 +72,7 @@
 		</action>
 		
 		<action name="addCompany" class="humanAction" method="addCompany">
-			<result type="redirectAction">
-   				<param name="actionName">showBackendHumanPage</param>
-   			</result>
+			<result>/utill.jsp</result>
 		</action>
 		
 		<action name="addDepartmentPage" class="humanAction" method="addDepartmentPage">
@@ -78,9 +80,7 @@
 		</action>
 		
 		<action name="addDepartment" class="humanAction" method="addDepartment">
-			<result type="redirectAction">
-   				<param name="actionName">showBackendHumanPage</param>
-   			</result>
+			<result>/utill.jsp</result>
 		</action>
 		
 		<action name="addPositionPage" class="humanAction" method="addPositionPage">
@@ -88,9 +88,7 @@
 		</action>
 		
 		<action name="addPosition" class="humanAction" method="addPosition">
-			<result type="redirectAction">
-   				<param name="actionName">showBackendHumanPage</param>
-   			</result>
+			<result>/utill.jsp</result>
 		</action>
 		
 		<action name="modifyCompanyPage" class="humanAction" method="modifyCompanyPage">
@@ -98,9 +96,7 @@
 		</action>
 		
 		<action name="modifyCompany" class="humanAction" method="modifyCompany">
-			<result type="redirectAction">
-   				<param name="actionName">showBackendHumanPage</param>
-   			</result>
+			<result>/utill.jsp</result>
 		</action>
 		
 		<action name="modifyDepartmentPage" class="humanAction" method="modifyDepartmentPage">
@@ -108,9 +104,7 @@
 		</action>
 		
 		<action name="modifyDepartment" class="humanAction" method="modifyDepartment">
-			<result type="redirectAction">
-   				<param name="actionName">showBackendHumanPage</param>
-   			</result>
+			<result>/utill.jsp</result>
 		</action>
 
 		<action name="modifyPositionPage" class="humanAction" method="modifyPositionPage">
@@ -118,9 +112,7 @@
 		</action>
 		
 		<action name="modifyPosition" class="humanAction" method="modifyPosition">
-			<result type="redirectAction">
-   				<param name="actionName">showBackendHumanPage</param>
-   			</result>
+			<result>/utill.jsp</result>
 		</action>
 		
 		<action name="modifyPersonPage" class="humanAction" method="modifyPersonPage">
@@ -128,9 +120,7 @@
 		</action>
 		
 		<action name="modifyPerson" class="humanAction" method="modifyPerson">
-			<result type="redirectAction">
-   				<param name="actionName">showBackendHumanPage</param>
-   			</result>
+			<result>/utill.jsp</result>
 		</action>
 		
 		<action name="deleteCompany" class="humanAction" method="deleteCompany">

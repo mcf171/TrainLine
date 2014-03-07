@@ -8,7 +8,15 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 	
-	<bean id="emailAction" class="cn.com.action.EmailAction"></bean>
+	<bean id="fileDownload" class="cn.com.action.FileDownload">
+		
+	</bean>
+	
+	<bean id="mailAction" class="cn.com.action.MailAction">
+		<property name="mailService" ref="mailService"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="dataMap" ref="hashMap"></property>
+	</bean>
 	
 	<bean id="messageAction" class="cn.com.action.MessageAction" scope="prototype">
 		<property name="messageService" ref="messageService"></property>
@@ -36,6 +44,7 @@
 	
 	<bean id="reportAction" class="cn.com.action.ReportAction" scope="prototype">
 		<property name="reportService" ref="reportService"></property>
+		<property name="dataMap" ref="hashMap"></property>
 	</bean>
 
 	<bean id="newMessageAction" class="cn.com.action.NewManageAction"

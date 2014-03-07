@@ -3,6 +3,34 @@
 <struts>
 
 	<package name="report" namespace="/admin" extends="system">
+		
+		<action name="deletePeiXunRenYuanBaoMingBiao" class="reportAction" method="deletePeiXunRenYuanBaoMingBiao">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="getModifyPeiXunRenYuanBaoMingBiaoPage" class="reportAction" method="getModifyPeiXunRenYuanBaoMingBiaoPage">
+			<result>/WEB-INF/jsp/backend/report/modifyPeiXunRenYuanBaoMingBiao.jsp</result>
+		</action>
+		
+		<action name="modifyPeiXunRenYuanBaoMingBiao" class="reportAction" method="modifyPeiXunRenYuanBaoMingBiao">
+			<result>/utill.jsp</result>
+		</action>
+		
+		<action name="getAddPeiXunRenYuanBaoMingBiaoPage" class="reportAction" method="getAddPeiXunRenYuanBaoMingBiaoPage">
+			<result>
+			/WEB-INF/jsp/backend/report/addPeiXunRenYuanBaoMingBiao.jsp
+			</result>
+		</action>
+		
+		<action name="getPeiXUnRenYuanBaoMingBiaoList" class="reportAction" method="getPeiXUnRenYuanBaoMingBiaoList">
+			<result type="json"><param name="root">dataMap</param></result>
+		</action>
+		<action name="addPeiXunRenYuanBaoMingBiao" class="reportAction" method="addPeiXunRenYuanBaoMingBiao">
+			<result>/utill.jsp</result>
+		</action>
+	
 		<action name="getBackendReportPage" class="reportAction" method="getBackendReportPage">
 			<result>
 			/WEB-INF/jsp/backend/report.jsp

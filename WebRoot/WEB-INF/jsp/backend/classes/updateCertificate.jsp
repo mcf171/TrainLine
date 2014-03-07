@@ -10,7 +10,8 @@ $("#bookURLChoose").change(function(){
 </script>
 <div class="container-fluid">
 		<div class="row-fluid">
-		<form action="${basePath}admin/updateCredential.action"  enctype="multipart/form-data" method="post" class="form-horizontal">
+		<form action="${basePath}admin/updateCredential.action"  enctype="multipart/form-data" method="post" class="form-horizontal" target="hidden_frame">
+		<input  type="hidden" value="${credential.credentialId}" name="credential.credentialId"/>
 				<div class="control-group">
 					<label class="control-label">证书名：</label>
 					<div class="controls"><input type="text" name="credential.credentialName" required="required" value="${credential.credentialName}"/></div>
@@ -32,13 +33,25 @@ $("#bookURLChoose").change(function(){
 				<div class="control-group">
 					<label class="control-label"></label>
 					<div class="controls">
-					<img alt="证书照片" src="${credential.credentiaPath}"></div>
+					<img alt="证书照片" src="${basePath}${credential.credentiaPath}"></div>
 				</div>
            		<div class="control-group">
-					<div class="controls"><button type="submit" class="btn">确定</button></div>
+					<div class="controls"><button type="submit" class="btn">确定</button><button type="button" class="btn" onclick="goback()">返回</button></div>
 					</div>
 			</table>
 			</form>
 		</div>
-		
+		<script type="text/javascript">
+<!--
+
+function goback(){
+	loadHTML("${basePath}admin/intoCertificatePage.action");
+}
+function callback(){
+	
+	loadHTML("${basePath}admin/intoCertificatePage.action");
+}
+//-->
+</script>
+<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
 </div>

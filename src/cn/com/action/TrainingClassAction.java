@@ -60,8 +60,16 @@ public class TrainingClassAction extends BaseActionSupport {
 		dataMap.put("trainList", list);
 		return this.SUCCESS;
 	}
+	/**
+	 * 进入培训班级页面
+	 * @author Apache
+	 * @tiem 2014-3-5 11:00
+	 * @return
+	 */
 	public String getDetialInfoPage(){
 		
+		trainingClass = trainingClassService.getTrainingclass(trainingClass.getTrainingClassId());
+		request.setAttribute("trainingClass", trainingClass);
 		
 		return this.SUCCESS;
 	}

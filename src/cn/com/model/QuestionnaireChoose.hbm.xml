@@ -19,7 +19,7 @@
         	<column name="questionnaireChooseContent"></column>
         </property>
         
-        <many-to-one name="questionnaireRubric" class="cn.com.model.Questionnairerubric" fetch="select" >
+        <many-to-one name="questionnaireRubric" class="cn.com.model.Questionnairerubric" fetch="select"  cascade="none">
             <column name="questionnaireRubricId" />
         </many-to-one>
     </class>

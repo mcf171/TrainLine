@@ -25,6 +25,8 @@ public class HumanAction extends BaseActionSupport {
 	private Company company;
 	private Department department;
 	private Position position;
+	private String[] positionIds;
+	private String[] courseIds;
 	
 
 	public HumanAction() {
@@ -81,22 +83,22 @@ public class HumanAction extends BaseActionSupport {
 	}
 	
 	public String modifyPerson(){
-		if(user.getPersonalinformation() != null){
-			humanService.modifyPersonalinformation(user.getPersonalinformation());
-		}
-		if(user.getMajorqualification() != null){
-			humanService.modifyMajorqualification(user.getMajorqualification());
-		}
-		if(user.getEducationbackground() != null){
-			humanService.modifyEducationbackground(user.getEducationbackground());
-		}
-		boolean flag = humanService.modifyUser(user);
+//		if(user.getPersonalinformation() != null){
+//			humanService.modifyPersonalinformation(user.getPersonalinformation());
+//		}
+//		if(user.getMajorqualification() != null){
+//			humanService.modifyMajorqualification(user.getMajorqualification());
+//		}
+//		if(user.getEducationbackground() != null){
+//			humanService.modifyEducationbackground(user.getEducationbackground());
+//		}
+		boolean flag = humanService.modifyUser(user,positionIds);
 		String path = flag == true? SUCCESS : FAIL;
 		return path;
 	}
 	
 	public String deletePerson(){
-		user = humanService.getUserByExample(user).get(0);
+		user = humanService.getUserById(user.getUserId());
 		humanService.deleteUser(user);
 		dataMap.put("success", "success");
 		return SUCCESS;
@@ -229,9 +231,16 @@ public class HumanAction extends BaseActionSupport {
 		return SUCCESS;
 	}
 
+	/**
+	 * 增加职位
+	 * @author Apache
+	 * @time 2014-3-5 9:53
+	 * @return
+	 */
 	public String addPosition(){
-		System.out.println("departmentName" + position.getDepartment().getDepartmentName());
-		boolean flag = humanService.addPosition(position);
+		
+		
+		boolean flag = humanService.addPosition(position, courseIds);
 		String path = flag == true? SUCCESS:FAIL;
 		return path;
 	}
@@ -245,7 +254,7 @@ public class HumanAction extends BaseActionSupport {
 	}
 	
 	public String modifyPosition(){
-		boolean flag = humanService.modifyPosition(position);
+		boolean flag = humanService.modifyPosition(position,courseIds);
 		String path = flag == true? SUCCESS:FAIL;
 		return path;
 	}
@@ -303,4 +312,21 @@ public class HumanAction extends BaseActionSupport {
 	public void setPosition(Position position) {
 		this.position = position;
 	}
+
+	public String[] getPositionIds() {
+		return positionIds;
+	}
+
+	public void setPositionIds(String[] positionIds) {
+		this.positionIds = positionIds;
+	}
+
+	public String[] getCourseIds() {
+		return courseIds;
+	}
+
+	public void setCourseIds(String[] courseIds) {
+		this.courseIds = courseIds;
+	}
+	
 }

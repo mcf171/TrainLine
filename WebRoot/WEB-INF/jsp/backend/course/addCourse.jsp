@@ -45,6 +45,35 @@ $(document).ready(function()
 
 });
 
+function checkForm(){
+	
+	var name = $("#courseNameInput").val();
+	var descripe = $("#courseDescInput").val();
+	var teacher = $("#courseSpeaker").val();
+	if(name == ""){
+	
+		$("#name").fadeIn();
+		$("#descripe").fadeOut();
+		$("#teacher").fadeOut();
+		return false;
+	}
+	if(descripe == ""){
+		
+		$("#descripe").fadeIn();
+		$("#name").fadeOut();
+		$("#teacher").fadeOut();
+		return false;
+	}
+	if(teacher == "" ){
+		
+		$("#teacher").fadeIn();
+		$("#descripe").fadeOut();
+		$("#name").fadeOut();
+		return false;
+	}
+	
+	
+}
 	
 </script>
 <div class="row-fluid line-margin">
@@ -54,11 +83,12 @@ $(document).ready(function()
 		</div>
 
 		<form role="form" class="form-horizontal" action="${basePath}admin/addCourse.action" 
-		method="post" target="hidden_frame">
+		method="post" target="hidden_frame" onsubmit="return checkForm();">
 			<div class="control-group">
 				<label class="control-label" for="courseNameInput">课程名称:</label>
 				<div class="controls">
 					<input type="text" id="courseNameInput" name="course.courseName" placeholder="请输入课程名">
+					<font color="red" class="hide" id="name">*必须输入</font>
 				</div>
 			</div>
 
@@ -66,7 +96,8 @@ $(document).ready(function()
 				<label class="control-label" for="courseDescInput">课程描述:</label>
 				<div class="controls">
 					<textarea class="form-control" rows="3" name="course.courseIntro" id="courseDescInput"
-						placeholder="请输入课程描述"></textarea>
+						placeholder="请输入课程描述" draggable="false"></textarea>
+						<font color="red" class="hide" id="descripe">*必须输入</font>
 				</div>
 			</div>
 			
@@ -75,6 +106,7 @@ $(document).ready(function()
 				<div class="controls">
 					<input class="form-control" type="text" name="course.courseSpeaker" id="courseSpeaker"
 						placeholder="请输入课程描述"/>
+						<font color="red" class="hide" id="teacher">*必须输入</font>
 				</div>
 			</div>
 			
@@ -82,7 +114,6 @@ $(document).ready(function()
 				<label class="control-label" for="courseDescInput">课程类型:</label>
 				<div class="controls">
 					<select name="course.courseState" id="courseState">
-					<option value="-1">-------------------</option>
 					<option value="1">选课中心</option>
 					<option value="2">案例教学</option>
 					<option value="3">党建课程</option>
@@ -93,7 +124,7 @@ $(document).ready(function()
 			<div class="control-group">
 				<label class="control-label" for="courseDescInput">课程类型:</label>
 				<div class="controls">
-					<input  type="radio"  name="course.courseKind" value="1"/>二分屏（文档或视频 + 学习心得）
+					<input  type="radio"  name="course.courseKind" value="1" checked="checked"/>二分屏（文档或视频 + 学习心得）
 					<input  type="radio"  name="course.courseKind" value="2"/>三分屏（文档 + 视频 + 学习心得）
 				</div>
 			</div>

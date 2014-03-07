@@ -38,6 +38,9 @@
 					var questionnaireTitle = $("#questionnaireTitle").val();
 					var questionnaireNumber = $("#questionnaireNumber").val();
 					var questionnaireAuthor = $("#questionnaireAuthor").val();
+					
+					
+					
 					$.ajax({
 								type : "post",
 								url : "${basePath}admin/updateQuestion.action",
@@ -57,19 +60,31 @@
 
 				$("#confirm")
 						.click(
+								
+								
 								function() {
 
-									var questionnaireChooses = "";
-									var questionnaireId = $
-									{
-										questionnaireId
+									var reg = new RegExp("^[0-9]*$");
+									
+									var questionnaireRubricWeight = $("#questionnaireRubricWeight").val();
+									var questionnaireRubricIntroduce = $("#questionnaireRubricIntroduce").val();
+									
+									if(!reg.test(questionnaireRubricWeight)){
+										
+										$("#weight").fadeOut();
+										$("#introduce").fadeOut();
+										$("#weightNumber").fadeIn();
+										
+										return ;
 									}
+									
+									
+									if(questionnaireRubricWeight!="" && questionnaireRubricIntroduce!="")	{
+									
+									var questionnaireChooses = "";
+									var questionnaireId = "${questionnaire.questionnaireId}"
 									;
-									var questionnaireRubricWeight = $(
-											"#questionnaireRubricWeight").val();
-									var questionnaireRubricIntroduce = $(
-											"#questionnaireRubricIntroduce")
-											.val();
+									
 									switch (testType) {
 
 									case 1:
@@ -144,6 +159,12 @@
 															.append(htmlContent);
 												}
 											});
+									}else{
+										
+										$("#weight").fadeIn();
+										$("#introduce").fadeIn();
+										$("#weightNumber").fadeOut();
+									}
 								});
 
 				function deleteQuestionnaireRubric(obj) {
@@ -325,7 +346,7 @@
 					<div class="control-group">
 						<label class="control-label">试题简介：</label>
 						<div class="controls">
-							<input type="text" id="questionnaireRubricIntroduce" />
+							<input type="text" id="questionnaireRubricIntroduce" /><font color="red" id="introduce" class="hide">*必须填写</font>
 						</div>
 					</div>
 
@@ -343,7 +364,7 @@
 					<div class="control-group">
 						<label class="control-label">试题权重：</label>
 						<div class="controls">
-							<input type="text" id="questionnaireRubricWeight" />
+							<input type="text" id="questionnaireRubricWeight" /><font color="red" id ="weight" class="hide">*必须填写</font><font class="hide" color="red" id="weightNumber">*为数字</font>
 						</div>
 					</div>
 

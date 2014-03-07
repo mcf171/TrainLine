@@ -79,10 +79,15 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span12 resources">
-					
+					<script>
+						function addChapter(){
+							
+							$("#porcess").animate({width:'90%'});
+						}
+					</script>
 					<form role="form" class="form-horizontal"
 						action="${basePath}admin/addRescourse.action?courseId=${courseId}"
-						enctype="multipart/form-data" method="post" target="hidden_frame">
+						enctype="multipart/form-data" method="post" target="hidden_frame" onsubmit="addChapter()">
 						<div class="control-group">
 							<input type="hidden" name="courseId" value="${courseId}"/>
 							<div class="control-group">
@@ -120,12 +125,12 @@
 									<div class="control-group">
 
 										<input type="file" id="chSrcInput" name="upload"
-											placeholder="请输入章节资源" required> <input type="file"
+											placeholder="请输入章节资源" required> 
+											<c:if test="${course.courseKind==2}">
+											<input type="file"
 											id="chSrcInput" name="upload" placeholder="请输入章节资源" required>
-												<c:if test="${course.courseKind==2}">
-													<input type="file" id="chSrcInput" name="upload"
-														placeholder="请输入章节资源" required>
-												</c:if> <br>
+											</c:if>
+												 <br>
 									</div>
 								</div>
 							</div>
@@ -141,13 +146,18 @@
 									id="resetbtn">取消</button>
 							</div>
 					</form>
-
+					
+					<div class="row-fluid">
+						    <div class="progress progress-striped active">
+							    <div class="bar" style="width:0;" id="porcess"></div>
+							    </div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<<script type="text/javascript">
+<script type="text/javascript">
 <!--
 function callback(){
 	
@@ -158,7 +168,7 @@ function callback(){
 			flag = $(this).attr("id") == 1 ? true : false;
 		}
 	});
-	
+	$("#porcess").animate({width:'100%'});
 	if(flag){
 		
 		loadHTML("${basePath}admin/intoaddChapterPage.action?courseId=${courseId}&course.courseKind=${course.courseKind}");

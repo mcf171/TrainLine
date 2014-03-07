@@ -21,41 +21,62 @@ $("#confirm").click(function (){
 	var questionnaireId = ${questionnaireId};
 	var questionnaireRubricWeight = $("#questionnaireRubricWeight").val();
 	var questionnaireRubricIntroduce = $("#questionnaireRubricIntroduce").val();
-	switch(testType){
+	
+	var reg = new RegExp("^[0-9]*$");
+	
+	if(!reg.test(questionnaireRubricWeight)){
 		
-	case 1:
-		$(".danxuan").each(function(){
-			questionnaireChooses +=  "&questionnaireChooses="+$(this).val();
-		});
-		break;
-	case 2:
-		$(".duoxuan").each(function(){
-			questionnaireChooses +=  "&questionnaireChooses="+$(this).val();
-		});
-		break;
-	case 3:
-		questionnaireChooses = "&questionnaireChooses="+$("#questionnaireRubricContent").val();
-	};
-	$.ajax({
-		type:"post",
-		url:"${basePath}admin/addQuestionnaireRubric.action",
-		data:"questionnaireRubric.questionnaire.questionnaireId="+questionnaireId+"&questionnaireRubric.questionnaireRubricType="+testType+"&questionnaireRubric.questionnaireRubricWeight=" + questionnaireRubricWeight +"&questionnaireRubric.questionnaireRubricIntroduce=" + questionnaireRubricIntroduce+questionnaireChooses,
-		success:function(msg){
+		$("#weight").fadeOut();
+		$("#introduce").fadeOut();
+		$("#weightNumber").fadeIn();
+		
+		return ;
+	}
+	
+	if(questionnaireRubricWeight!="" && questionnaireRubricIntroduce!=""){
+		
+		switch(testType){
 			
-			var questionnaireRubricId = msg.questionnaireRubricId;
-			$("#addedQuestionnaireRubric").removeClass("hidden");
-			switch(testType){
-				case 1: testTypeName ="单选题";break;
-				case 2: testTypeName = "多选题";break;
-				case 3: testTypeName = "主观题";break;
+		case 1:
+			$(".danxuan").each(function(){
+				questionnaireChooses +=  "&questionnaireChooses="+$(this).val();
+			});
+			break;
+		case 2:
+			$(".duoxuan").each(function(){
+				questionnaireChooses +=  "&questionnaireChooses="+$(this).val();
+			});
+			break;
+		case 3:
+			questionnaireChooses = "&questionnaireChooses="+$("#questionnaireRubricContent").val();
+		};
+		$.ajax({
+			type:"post",
+			url:"${basePath}admin/addQuestionnaireRubric.action",
+			data:"questionnaireRubric.questionnaire.questionnaireId="+questionnaireId+"&questionnaireRubric.questionnaireRubricType="+testType+"&questionnaireRubric.questionnaireRubricWeight=" + questionnaireRubricWeight +"&questionnaireRubric.questionnaireRubricIntroduce=" + questionnaireRubricIntroduce+questionnaireChooses,
+			success:function(msg){
+				
+				var questionnaireRubricId = msg.questionnaireRubricId;
+				$("#addedQuestionnaireRubric").removeClass("hidden");
+				switch(testType){
+					case 1: testTypeName ="单选题";break;
+					case 2: testTypeName = "多选题";break;
+					case 3: testTypeName = "主观题";break;
+				}
+				htmlContent = '<div id="questionnaireRubric' + questionnaireRubricId + '"><div><i class="icon-file"></i><span>题目简介：'+questionnaireRubricIntroduce+'</span> </div><div><i class="icon-list"></i><span>题型：'+testTypeName+'</span> <i class="icon-stop"></i> <span>权重为：'+questionnaireRubricWeight+
+				'</span><button type="button" class="btn btn-default" onclick="deleteQuestionnaireRubric(this)" value="' + questionnaireRubricId + '">删除</button>'+
+				'</div>'+
+				'<hr class="seperator"/></div>';
+				$("#questionnaireRubricList").append(htmlContent);
 			}
-			htmlContent = '<div id="questionnaireRubric' + questionnaireRubricId + '"><div><i class="icon-file"></i><span>题目简介：'+questionnaireRubricIntroduce+'</span> </div><div><i class="icon-list"></i><span>题型：'+testTypeName+'</span> <i class="icon-stop"></i> <span>权重为：'+questionnaireRubricWeight+
-			'</span><button type="button" class="btn btn-default" onclick="deleteQuestionnaireRubric(this)" value="' + questionnaireRubricId + '">删除</button>'+
-			'</div>'+
-			'<hr class="seperator"/></div>';
-			$("#questionnaireRubricList").append(htmlContent);
-		}
-	});
+		});
+
+	}else{
+		
+		$("#weight").fadeIn();
+		$("#introduce").fadeIn();
+		$("#weightNumber").fadeOut();
+	}
 });
 
 function deleteQuestionnaireRubric(obj){
@@ -174,7 +195,7 @@ $(document).ready( function(){
 	<div class="control-group">
 		<label class="control-label" >试题简介：</label>
 		<div class="controls">
-			<input type="text" id="questionnaireRubricIntroduce"/>
+			<input type="text" id="questionnaireRubricIntroduce"/><font color="red" id="introduce" class="hide">*必须填写</font>
 		</div>
 	</div>
 
@@ -191,7 +212,7 @@ $(document).ready( function(){
 	<div class="control-group">
 		<label class="control-label" >试题权重：</label>
 		<div class="controls">
-			<input type="text" id="questionnaireRubricWeight"/>
+			<input type="text" id="questionnaireRubricWeight"/><font color="red" id ="weight" class="hide">*必须填写</font><font class="hide" color="red" id="weightNumber">*为数字</font>
 		</div>
 	</div>
 	

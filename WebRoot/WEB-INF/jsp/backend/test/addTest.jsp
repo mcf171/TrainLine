@@ -95,6 +95,17 @@
 
 		array = mmGirdTable.selectedRowsIndex();
 		testPaperName = $("#testPaperName").val();
+		
+		if(testPaperName == ""){
+			
+			$("#name").fadeIn();
+			return 
+		}
+		if(array.length == 0){
+			alert("你必须选择至少一个试题");
+			return ;
+		}
+		
 	//	alert(testPaperName);
 		testQuestion="";
 		
@@ -132,7 +143,7 @@
 				<div class="row-fluid">
 					<span class="help-inline">试题名：</span> <input type="text"
 						class=" span2"  id= "testPaperName" placeholder="请输入试卷名称"
-						name="testquestion.testQuestionName" />
+						name="testquestion.testQuestionName" /><font color="red" class="hide" id="name">*必须填写</font>
 				</div>
 				<hr class="seperator top-margin">
 				<div class="row word_style">
