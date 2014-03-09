@@ -92,7 +92,7 @@ public class ResourceService {
 			resource.setResourcePath(resourceURL);
 			resourceDAO.save(resource);
 			uploadUtil.upload();
-			flag = FlexpaperUtil.converterPDFToSWF(WebUtil.getWebSitePhysalPath(), imageFileName);
+			flag = FlexpaperUtil.converterDocumentToSWF(WebUtil.getWebSitePhysalPath(), uploadUtil.getSavePath(), imageFileName);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			flag = false;
@@ -123,9 +123,9 @@ public class ResourceService {
 		fileName =  "" + rightNow.getTimeInMillis() + fileType;
 		switch(resourceType){
 		
-		case 1: path += GlobalConstant.RESOURCE_VIDEO +fileName;break;
-		case 2: path += GlobalConstant.RESOURCE_DOCUMENT +fileName;break;
-		case 3:path += GlobalConstant.RESOURCE_OTHERS + fileName;break;
+		case 1: path += GlobalConstant.SAVEPATH_RESOURCE_VIDEO +fileName;break;
+		case 2: path += GlobalConstant.SAVEPATH_RESOURCE_DOCUMENT +fileName;break;
+		case 3:path += GlobalConstant.SAVEPATH_RESOURCE_OTHERS + fileName;break;
 		}
 		String dsSavePath = ServletActionContext.getServletContext().getRealPath(path);
 		File dsFile = new File(dsSavePath);
@@ -157,9 +157,9 @@ public class ResourceService {
 				Calendar rightNow = Calendar.getInstance();
 				switch(resourceType){
 				
-				case 1: path += GlobalConstant.RESOURCE_VIDEO + rightNow.getTimeInMillis() + fileType;break;
-				case 2: path += GlobalConstant.RESOURCE_DOCUMENT + rightNow.getTimeInMillis() + fileType;break;
-				case 3:path += GlobalConstant.RESOURCE_OTHERS + rightNow.getTimeInMillis() + fileType;break;
+				case 1: path += GlobalConstant.SAVEPATH_RESOURCE_VIDEO + rightNow.getTimeInMillis() + fileType;break;
+				case 2: path += GlobalConstant.SAVEPATH_RESOURCE_DOCUMENT + rightNow.getTimeInMillis() + fileType;break;
+				case 3:path += GlobalConstant.SAVEPATH_RESOURCE_OTHERS + rightNow.getTimeInMillis() + fileType;break;
 				}
 				String dsSavePath = ServletActionContext.getServletContext().getRealPath(path);
 				File dsFile = new File(dsSavePath);

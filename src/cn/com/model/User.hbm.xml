@@ -19,7 +19,7 @@
         <many-to-one name="educationbackground" class="cn.com.model.Educationbackground" lazy="false" fetch="join">
             <column name="educationBackgroundId" />
         </many-to-one>
-        <property name="userName" type="java.lang.String">
+        <property name="userName" type="java.lang.String" unique="true">
             <column name="userName" length="20" />
         </property>
         <property name="userPassword" type="java.lang.String">

@@ -22,23 +22,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>图书馆</title>
 <script type="text/javascript">
 //<![CDATA[
+var  bookType = 1;
+var mmGrid1;
+var mmGrid2;
 $(document).ready(function ()
 {
 	$("#lib1").fadeIn(500);
 	$("#lib2").fadeIn(600);
 	$('#course-switcher a[href="#selected"]').click(function ()
 			{
+				bookType = 2;
 				$('#list-selected, #filter-selected, #button-remove').removeClass('hidden');
 				$('#list-available, #filter-available, #button-select').addClass('hidden');
 			});
 
 	$('#course-switcher a[href="#available"]').click(function ()
 	{
+		bookType = 1;
 		$('#list-selected, #filter-selected, #button-remove').addClass('hidden');
 		$('#list-available, #filter-available, #button-select').removeClass('hidden');
 	});
 
-	$('#grid-available').mmGrid({
+	mmGrid1 = $('#grid-available').mmGrid({
 		url:  '${basePath}getInsideLiberaryList.action',
 		height: 280,
 		autoLoad: true,
@@ -60,18 +65,17 @@ $(document).ready(function ()
 				renderer: function (val, item, row)
 				{
 					outHTML = '<a href="readBook.action?book.bookId=' + item.bookId + '"  target="_blank">阅读</a> '; 
-					console.log(outHTML);
 					return  outHTML;
 					
 				}
 			}
 		],
 		plugins: [
-			$('#page').mmPaginator({})
+			$('#page-available').mmPaginator({})
 		]
 	});
 	
-	$('#grid-selected').mmGrid({
+	mmGrid2 = $('#grid-selected').mmGrid({
 		url:  '${basePath}getOutSideLiberaryList.action',
 		height: 280,
 		autoLoad: true,
@@ -100,11 +104,35 @@ $(document).ready(function ()
 				}
 			],
 		plugins: [
-			$('#page').mmPaginator({})
+			$('#page-selected').mmPaginator({})
 		]
 	});
 	
+	$("#list-selected").addClass('hidden');
 	
+	$("#search").click(function(){
+		
+		var bookName = $("#bookName").val();
+		var bookContent = $("#bookContent").val();
+		var bookClassIndex = $("#bookClassIndex").val();
+		var requestGrid = bookType == 1 ?  mmGrid1 : mmGrid2;
+		
+		requestGrid.load({
+			"book.bookName":bookName,
+			"book.bookContent":bookContent,
+			"bookClassIndex":bookClassIndex
+		});
+		
+		
+	});
+	
+	$("#showAll").click(function(){
+		
+	var requestGrid = bookType == 1 ?  mmGrid1 : mmGrid2;
+		
+		requestGrid.load();
+		console.log(requestGrid);
+	});
 });
 //]]>
 </script>
@@ -142,15 +170,12 @@ $(document).ready(function ()
 									class="span2 "
 									placeholder="请输入内容"
 								/>
-			                <span class="help-inline">图书类别：</span>
-			                <select class="input-small" id="bookType">
-				               
-			                </select>
+			                
 			                <span class="help-inline">图书编号：</span>
 			                <input id="bookClassIndex" type="text" class="span2" placeholder="请输入相应内容" />
 			                <div class="row-fluid line-margin">
 			                     <button class="btn " id="search"><i class="icon-search"></i>查询</button>
-			                     <button class="btn" type="reset"><i class="icon-remove"></i>清除</button>
+			                     
 			                     <button class="btn " id="showAll"><i class="icon-align-justify"></i>显示所有</button>
 		               		</div>
 		               </div>
@@ -167,7 +192,7 @@ $(document).ready(function ()
 							<div id="page-available" class="pull-right"></div>
 						</div>
 						</div>
-						<div id="list-selected" class="row-fluid hidden">
+						<div id="list-selected" class="row-fluid">
 							<div class="span12">
 								<table id="grid-selected"></table>
 								<div id="page-selected" class="pull-right"></div>

@@ -69,6 +69,7 @@
 		<property name="bookDAO" ref="BookDAO"></property>
 		<property name="bookTypeDAO" ref="BooktypeDAO"></property>
 		<property name="uploadUtil" ref="uploadUtil"></property>
+		<property name="daoUtil" ref="daoUtil"></property>
 	</bean>
 	
 	<bean id="questionnaireRubricResultService" class="cn.com.service.QuestionnaireRubricResultService" >
@@ -140,6 +141,7 @@
 		<property name="majorqualificationDAO" ref="MajorqualificationDAO"></property>
 		<property name="educationbackgroundDAO" ref="EducationbackgroundDAO"></property>
 		<property name="courseService" ref="courseService"></property>
+		<property name="daoUtil" ref="daoUtil"></property>
 	</bean>
     <bean id="resourceService" class="cn.com.service.ResourceService">
 		<property name="resourceDAO" ref="ResourceDAO"></property>

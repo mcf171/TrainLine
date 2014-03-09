@@ -35,8 +35,8 @@
 										});
 
 						$("#resetbtn").click(function showPage() {
-							alert(1);
-							//loadHtml('${basePath}course_intoCoursePage.action');
+							
+							loadHTML('${basePath}admin/intoCoursePage.action');
 						});
 
 					});
@@ -86,10 +86,11 @@
 						}
 					</script>
 					<form role="form" class="form-horizontal"
-						action="${basePath}admin/addRescourse.action?courseId=${courseId}"
+						action="${basePath}admin/addRescourse.action"
 						enctype="multipart/form-data" method="post" target="hidden_frame" onsubmit="addChapter()">
+						
 						<div class="control-group">
-							<input type="hidden" name="courseId" value="${courseId}"/>
+							<input type="hidden" name="catalogue.course.courseId" value="${courseId}"/>
 							<div class="control-group">
 								<label class="control-label">课程章节:</label><br>
 							</div>
@@ -159,23 +160,30 @@
 </div>
 <script type="text/javascript">
 <!--
-function callback(){
+function callback(msg){
 	
-	var flag = false;
-	$("input[type=radio]").each(function(){
-		
-		if($(this).prop("checked")){
-			flag = $(this).attr("id") == 1 ? true : false;
+	
+	if(msg=="true"){
+		var flag = false;
+		$("input[type=radio]").each(function(){
+			
+			if($(this).prop("checked")){
+				flag = $(this).attr("id") == 1 ? true : false;
+			}
+		});
+		$("#porcess").animate({width:'100%'});
+		if(flag){
+			
+			loadHTML("${basePath}admin/intoaddChapterPage.action?courseId=${courseId}&course.courseKind=${course.courseKind}");
+		}else{
+			
+			loadHTML("${basePath}admin/intoCoursePage.action");
 		}
-	});
-	$("#porcess").animate({width:'100%'});
-	if(flag){
 		
-		loadHTML("${basePath}admin/intoaddChapterPage.action?courseId=${courseId}&course.courseKind=${course.courseKind}");
 	}else{
-		
-		loadHTML("${basePath}admin/intoCoursePage.action");
+		alert("文件类型错误：只允许doc、ppt、pdf");
 	}
+	
 }
 //-->
 </script>

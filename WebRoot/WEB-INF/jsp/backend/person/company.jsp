@@ -21,7 +21,7 @@
 	$(document).ready(function() {
 		test = "ready";
 	mmGirdTable = $('#grid').mmGrid({
-			url : '${basePath}admin/getCompanyList.action',
+			url : '${basePath}admin/human/getCompanyList.action',
 			height : 410,
 			autoLoad : true,
 			checkCol : true,

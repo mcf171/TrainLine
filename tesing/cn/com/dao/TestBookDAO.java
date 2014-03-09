@@ -14,7 +14,23 @@ import cn.com.model.Note;
 
 public class TestBookDAO extends TestCase{
 	
+	ApplicationContext context;
+	BookDAO bookDAO;
 	
+	
+	
+	public TestBookDAO() {
+		super();
+		// TODO Auto-generated constructor stub
+		 context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		 bookDAO = (BookDAO)context.getBean("BookDAO");
+	}
+
+	public TestBookDAO(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 	public void testFindAll(){
 		
 //		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -50,5 +66,21 @@ public class TestBookDAO extends TestCase{
 		BookDAO bookDAO = (BookDAO)context.getBean("BookDAO");
 		List list = bookDAO.findByProperty("bookType.bookTypeId", 1);
 		this.assertNotNull(list);
+	}
+	
+	@Test
+	public void testFuzzSearch(){
+		
+		init();
+		Book book = new Book();
+		book.setBookContent("1");
+		List<Book> list  = bookDAO.findByPage(0, 9, book);
+		this.assertNotNull(list);
+	}
+	
+	public void init(){
+		
+		context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		 bookDAO = (BookDAO)context.getBean("BookDAO");
 	}
 }

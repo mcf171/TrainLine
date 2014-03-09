@@ -1,5 +1,6 @@
 package cn.com.action;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,12 @@ public class HumanAction extends BaseActionSupport {
 	private Department department;
 	private Position position;
 	private String[] positionIds;
+	private int page;
+	private int limit;
 	private String[] courseIds;
+	
+	private File upload;
+	private String uploadFileName;
 	
 
 	public HumanAction() {
@@ -42,13 +48,20 @@ public class HumanAction extends BaseActionSupport {
 		return SUCCESS;
 	}
 
+	/**
+	 * 获取人员列表，并进行分页
+	 * @author Apache
+	 * @time 2014-3-9 12:38
+	 * @return
+	 */
+
 	public String getPersonList() {
 		List<User> userList = null;
-		if(user == null){
-			userList = humanService.getUserList();
-		}else{
-			userList = humanService.searchUserList(user);
-		}
+
+		userList = humanService.getUserList(page, limit, user);
+		int totalCount = humanService.getTotalCount(user);
+		
+		dataMap.put("totalCount", totalCount);
 		dataMap.put("human", userList);
 		return SUCCESS;
 	}
@@ -109,15 +122,22 @@ public class HumanAction extends BaseActionSupport {
 		return SUCCESS;
 	}
 
+	/**
+	 * 获取公司列表，并进行分页
+	 * @author Apahce
+	 * @time 2014-3-9 12:43
+	 * @return
+	 */
 	public String getCompanyList() {
+		
 		List<Company> companyList = null;
-		if(company == null){
-			companyList = humanService.getCompanyList();
-		}else{
-			System.out.println(company.getCompanyId());
-			companyList = humanService.searchCompanyList(company);
-		}
+
+		companyList = humanService.getCompanyList(page, limit, company);
+		int totalCount = humanService.getTotalCount(company);
+		
+		dataMap.put("totalCount", totalCount);
 		dataMap.put("human", companyList);
+		
 		return SUCCESS;
 	}
 	
@@ -154,16 +174,21 @@ public class HumanAction extends BaseActionSupport {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 分页条件查询department
+	 * @author Apache
+	 * @time 2014-3-9 13:05
+	 * @return
+	 */
 	public String getDepartmentList() {
 		List<Department> departmentList = null;
-		if(department == null)
-		{
-			departmentList = humanService.getDepartmentList();
-		}
-		else{
-			departmentList = humanService.searchDepartmentList(department);
-		}
+
+		departmentList = humanService.getDepartmentList(page, limit, department);
+		int totalCount = humanService.getTotalCount(department);
+		
+		dataMap.put("totalCount", totalCount);
 		dataMap.put("human", departmentList);
+		
 		return SUCCESS;
 	}
 	
@@ -214,13 +239,18 @@ public class HumanAction extends BaseActionSupport {
 		return SUCCESS;
 	}
 
+	/**
+	 * 分页获取PositionList
+	 * @author Apache
+	 * @time 2014-3-7 21:41
+	 * @return
+	 */
 	public String getPositionList() {
 		List<Position> positionList = null;
-		if(position == null){
-			positionList = humanService.getPositionList();
-		}else{
-			positionList = humanService.searchPositionList(position);
-		}
+		positionList = humanService.getPositionList(page, limit, position);
+		int totalCount = humanService.getTotalCount(position);
+		
+		dataMap.put("totalCount", totalCount);
 		dataMap.put("human", positionList);
 		return SUCCESS;
 	}
@@ -328,5 +358,23 @@ public class HumanAction extends BaseActionSupport {
 	public void setCourseIds(String[] courseIds) {
 		this.courseIds = courseIds;
 	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	
 	
 }

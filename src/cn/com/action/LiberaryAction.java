@@ -18,6 +18,8 @@ public class LiberaryAction extends BaseActionSupport{
 	private Map<String, Object> dataMap;
 	private String modifyBookURL;
 	private Book book;
+	private int page;
+	private int limit;
 	
 	// 封装上传文件域的属性
     private File image;
@@ -31,9 +33,9 @@ public class LiberaryAction extends BaseActionSupport{
 		// TODO Auto-generated constructor stub
 		dataMap = new HashMap<String, Object>();
 	}
+	
 	/// 内部图书函数模块
 	public String showBackendInsideLiberaryListPage(){
-		
 		
 		List<Booktype> list = liberaryService.getBookTypeList();
 		//request.setAttribute("test", "test");
@@ -42,37 +44,36 @@ public class LiberaryAction extends BaseActionSupport{
 		return this.SUCCESS;
 	}
 	
+	/**
+	 * 获取内部图书，并带有多重条件查询功能
+	 * @author Apahce
+	 * @time 2014-3-8 22:29
+	 * @return
+	 */
 	public String getInsideLiberaryList(){
 		
 		List<Book> list = null;
-		if(book !=null){
-			
-			//book.setBookState(BookStateConstant.INISDELIBRARY);
-			list = liberaryService.searchLibraryList(book);
-		}else{
-			
-			list=  liberaryService.getInsideLiberaryList();
-		}
 		
+		list = liberaryService.getInsideLiberaryList(page, limit, book);
+		int totalCount = liberaryService.getTotalCount(book);
+		
+		dataMap.put("totalCount", totalCount);
 		dataMap.put("liberary", list);
 		return this.SUCCESS;
 	}
 	
-	//—内部图书模块
 	
 	//外部图书模块
 
 	public String getOutSideLiberaryList(){
 		
 		List<Book> list = null;
-		if(book !=null){
-			
-			//book.setBookState(BookStateConstant.INISDELIBRARY);
-			list = liberaryService.searchLibraryList(book);
-		}else{
-			
-			list = liberaryService.getOutSideLiberaryList();
-		}
+		
+		list = liberaryService.getOutSideLiberaryList(page, limit, book);
+		int totalCount = liberaryService.getTotalCount(book);
+		
+		dataMap.put("totalCount", totalCount);
+		dataMap.put("liberary", list);
 		dataMap.put("liberary", list);
 		return this.SUCCESS;
 	}
@@ -83,15 +84,12 @@ public class LiberaryAction extends BaseActionSupport{
 	public String getDangkeLiberaryList(){
 		
 		List<Book> list = null;
-		if(book !=null){
-			
-			//book.setBookState(BookStateConstant.INISDELIBRARY);
-			list = liberaryService.searchLibraryList(book);
-		}else{
-			
-			 list = liberaryService.getDangkeLiberaryList();
-		}
-
+		
+		list = liberaryService.getDangkeLiberaryList(page, limit, book);
+		int totalCount = liberaryService.getTotalCount(book);
+		
+		dataMap.put("totalCount", totalCount);
+		dataMap.put("liberary", list);
 		dataMap.put("liberary", list);
 		return this.SUCCESS;
 	}
@@ -128,10 +126,20 @@ public class LiberaryAction extends BaseActionSupport{
 	
 	public String addBook(){
 		
+		boolean flag = false;
 		
-		boolean flag = liberaryService.addBook(book, image, imageContentType, imageFileName,(String)request.getAttribute("physicalPath"));
-		String path = flag == true ? this.SUCCESS : this.FAIL;
-		return path;
+		try {
+		
+		flag = liberaryService.addBook(book, image, imageContentType, imageFileName,(String)request.getAttribute("physicalPath"));
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			request.setAttribute("msg", flag);
+			return this.SUCCESS;
+		}
+		request.setAttribute("msg", flag);
+		return this.SUCCESS;
 	}
 	
 	public String modifyBookPage(){
@@ -212,6 +220,18 @@ public class LiberaryAction extends BaseActionSupport{
 	}
 	public void setModifyBookURL(String modifyBookURL) {
 		this.modifyBookURL = modifyBookURL;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getLimit() {
+		return limit;
+	}
+	public void setLimit(int limit) {
+		this.limit = limit;
 	}
 	
 	

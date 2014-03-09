@@ -1,15 +1,21 @@
 package cn.com.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.com.model.Book;
+import cn.com.util.DAOUtil;
 
 /**
  * A data access object (DAO) providing persistence and search support for Book
@@ -34,6 +40,68 @@ public class BookDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
+	/**
+	 * 分页条件查询
+	 * @author Apache
+	 * @time 2014-3-8 23:24
+	 * @param firstResults
+	 * @param maxResults
+	 * @param book
+	 * @return
+	 */
+	public  List<Book> findByPage(final int firstResults,final int maxResults,final Book book){
+		
+		List<Book> list= this.getHibernateTemplate().executeFind(new HibernateCallback<List<Book>>() {
+
+			public List<Book> doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				// TODO Auto-generated method stub
+				String queryString = "from Book where 1=1 ";
+				
+				List<Object> params = new ArrayList<Object>();
+				
+				if(book.getBookState() != null){
+						
+					queryString += "and bookState = ? ";
+					params.add(book.getBookState());
+				}
+				if(book.getBookContent()!=null){
+					
+					queryString +="and bookContent like ? ";
+					params.add("%"+book.getBookContent() + "%");
+				}
+				
+				if(book.getBookType()!=null){
+					if(book.getBookType().getBookTypeId() !=null){
+						
+						queryString +="and bookTypeId = ? ";
+						params.add(book.getBookType().getBookTypeId());
+					}
+				}
+				if(book.getBookName()!=null){
+					
+					queryString +="and bookName like ? ";
+					params.add("%"+book.getBookName() + "%");
+				}
+				if(book.getBookClassIndex()!= null){
+					
+					queryString += "and bookClassIndex like ?";
+					params.add("%"+book.getBookClassIndex() + "%");
+				}
+				
+					Query query  = session.createQuery(queryString);
+					query = DAOUtil.setParam(query, params);
+					query.setFirstResult(firstResults);
+					query.setMaxResults(maxResults);
+					
+				return query.list();
+			}
+			
+		});
+		
+		return list;
+	}
+	
 	public void save(Book transientInstance) {
 		log.debug("saving Book instance");
 		try {
@@ -46,17 +114,8 @@ public class BookDAO extends HibernateDaoSupport {
 	}
 
 	public void delete(Book persistentInstance) {
-		log.debug("deleting Book instance");
-		try {
 			getHibernateTemplate().delete(persistentInstance);
-			
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		} finally{
 			getHibernateTemplate().flush();
-		}
 	}
 
 	public Book findById(java.lang.Integer id) {
@@ -168,34 +227,36 @@ public class BookDAO extends HibernateDaoSupport {
 		String queryString = "from Book where 1=1 ";
 		
 		List<Object> params = new ArrayList<Object>();
-		
-		if(book.getBookState() != null){
-				
-			queryString += "and bookState = ? ";
-			params.add(book.getBookState());
-		}
-		if(book.getBookContent()!=null){
+		if(book !=null) {
 			
-			queryString +="and bookContent like ? ";
-			params.add("%"+book.getBookContent() + "%");
-		}
-		
-		if(book.getBookType()!=null){
-			if(book.getBookType().getBookTypeId() !=null){
-				
-				queryString +="and bookTypeId = ? ";
-				params.add(book.getBookType().getBookTypeId());
+			if(book.getBookState() != null){
+					
+				queryString += "and bookState = ? ";
+				params.add(book.getBookState());
 			}
-		}
-		if(book.getBookName()!=null){
+			if(book.getBookContent()!=null){
+				
+				queryString +="and bookContent like ? ";
+				params.add("%"+book.getBookContent() + "%");
+			}
 			
-			queryString +="and bookName like ? ";
-			params.add("%"+book.getBookName() + "%");
-		}
-		if(book.getBookClassIndex()!= null){
-			
-			queryString += "and bookClassIndex like ?";
-			params.add("%"+book.getBookClassIndex() + "%");
+			if(book.getBookType()!=null){
+				if(book.getBookType().getBookTypeId() !=null){
+					
+					queryString +="and bookTypeId = ? ";
+					params.add(book.getBookType().getBookTypeId());
+				}
+			}
+			if(book.getBookName()!=null){
+				
+				queryString +="and bookName like ? ";
+				params.add("%"+book.getBookName() + "%");
+			}
+			if(book.getBookClassIndex()!= null){
+				
+				queryString += "and bookClassIndex like ?";
+				params.add("%"+book.getBookClassIndex() + "%");
+			}
 		}
 		List<Book> list = getHibernateTemplate().find(queryString, params.toArray());
 		

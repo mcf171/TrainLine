@@ -29,29 +29,22 @@ $("#bookURLChoose").change(function(){
 $("#cancle").click(function(){
 	loadHTML('${basePath}showBackendInsideLiberaryListPage.action');
 });
-function addBook(){
 
-		$.ajax({
-		 	 type: "post",
-		 	 url: basePath+"addBook.action",
-		 	 data:"book.bookId=" + bookId,
-		  	success: function(msg){
-			 
-			  $('#myModal').modal('hide')
-			  mmGirdTable.removeRow(mmGirdTable.selectedRowsIndex());
-		  }
-		});
-}
 
 function callback(msg){
+	if(msg=="true"){
+		$("#porcess").animate({width:'100%'});
+		loadHTML('showBackendInsideLiberaryListPage.action');	
+	}else{
+		alert("文件类型错误：只允许doc、ppt、pdf");
+	}
 	
-	loadHTML('showBackendInsideLiberaryListPage.action');
 }
 //-->
 </script>
 	<div class="row-fluid">
 	
-	<form action="${basePath}addBook.action"  enctype="multipart/form-data" method="post" target="hidden_frame">
+	<form action="${basePath}addBook.action"  enctype="multipart/form-data" method="post" target="hidden_frame" onsubmit="checkForm()" onerror="alert(1)">
 	<input type="hidden"  value="${book.bookState}" name="book.bookState"/>
 		<div class="row-fluid line-margin">
 			<span class="help-inline">图书名称：</span>
@@ -91,5 +84,16 @@ function callback(msg){
 			</button>
 		</div>
 		</form>
+		<div class="row-fluid">
+						    <div class="progress progress-striped active">
+							    <div class="bar" style="width:0;" id="porcess"></div>
+							    </div>
+					</div>
+					<script>
+						function checkForm(){
+							
+							$("#porcess").animate({width:'90%'});
+						}
+					</script>
 		<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
 		

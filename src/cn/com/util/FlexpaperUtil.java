@@ -7,12 +7,12 @@ import java.io.InputStreamReader;
 
 public class FlexpaperUtil {
 	
-	public static boolean converterPDFToSWF(String physicalPath,String pdfName, String swfName){
+	public static boolean converterPDFToSWF(String physicalPath,String savePath, String pdfName, String swfName) throws IOException{
 		
 		boolean flag = false;
 		
-		pdfName = physicalPath + "upload\\" + pdfName;
-		swfName = physicalPath + "upload\\" + swfName;
+		pdfName = physicalPath  + savePath + pdfName;
+		swfName = physicalPath +savePath+ swfName;
 		
 		 File pdfFile = new File(pdfName);
          if(pdfFile.exists()) {
@@ -28,28 +28,64 @@ public class FlexpaperUtil {
 		return flag;
 	}
 	
-public static boolean converterPDFToSWF(String physicalPath,String pdfName){
+	/**
+	 * 增加doc 等Office 文档先转换为Pdf
+	 * @author Apache
+	 * @time 2014-3-7 23:37
+	 * @param physicalPath
+	 * @param pdfName
+	 * @return
+	 * @throws IOException 
+	 */
+public static boolean converterDocumentToSWF(String physicalPath, String savePath,String docName) throws IOException{
+
+		boolean flag = false;
+		String pdfName = "";
+		String physicalSavePath = physicalPath+ savePath;
+		if(!docName.contains(".pdf")){
 		
-		String swfName = pdfName.substring(0,pdfName.indexOf(".")) + ".swf";
+		pdfName = docName.substring(0,docName.indexOf(".")) + ".pdf";
+		ConvertDocumentToPDF.office2PDF(physicalSavePath, docName, pdfName);
 		
-		return  converterPDFToSWF(physicalPath, pdfName, swfName);
+	
+	}else{
+		
+		pdfName = docName;
 	}
+	String swfName = pdfName.substring(0,docName.indexOf(".")) + ".swf";
+	
+	flag = converterPDFToSWF(physicalPath, savePath,pdfName, swfName);
+	
+	File file = new File(physicalPath + GlobalConstant.SAVEPATH_BOOk + docName);
+	
+	if(file.exists()){
+		
+		file.delete();
+	}
+	
+	file = new File(physicalSavePath +  GlobalConstant.SAVEPATH_BOOk + pdfName);
+	
+	if(file.exists()){
+		
+		file.delete();
+	}
+	
+		return  flag;
+	}
+
 	/**
      * 运行可执行文件
      *
      * @param cmd
      * @return String
+	 * @throws IOException 
      */
-    public static synchronized void executeCmdFlash(String cmd) {
+    public static synchronized void executeCmdFlash(String cmd) throws IOException {
 
-    	try{
     		//Process pro=Runtime.getRuntime().exec("f:/swftools/pdf2swf -t f:/1.pdf -s languagedir=f:/xpdf-chinese-simplified -s flashoversion=9 -o f:/test.swf");
     		Process pro=Runtime.getRuntime().exec(cmd);
     		    BufferedReader br = new BufferedReader(new InputStreamReader(pro .getInputStream()));
     		     String msg = null; 
     		    while ((msg = br.readLine()) != null) {      System.out.println(msg);     } 
-    		   } catch (IOException exception) {
-    			   exception.printStackTrace();
-    		   }
     }
 }

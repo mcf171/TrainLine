@@ -12,9 +12,12 @@
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
 		<bean id="uploadUtil" class="cn.com.util.UploadUtil">
-			<property name="savePath" value="upload">
+			<property name="savePath" value="upload/liberary/">
 				
 			</property>
+		</bean>
+		
+		<bean id="daoUtil" class="cn.com.util.DAOUtil">
 		</bean>
 		
 		<bean id="questionnaireRubricSort" class="cn.com.sort.QuestionnaireRubricSort"></bean>

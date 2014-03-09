@@ -1,5 +1,7 @@
 package cn.com.model;
 
+import java.util.List;
+
 /**
  * Company entity. @author MyEclipse Persistence Tools
  */
@@ -70,5 +72,6 @@ public class Company implements java.io.Serializable {
 	public void setCompanyShortName(String companyShortName) {
 		this.companyShortName = companyShortName;
 	}
+
 
 }

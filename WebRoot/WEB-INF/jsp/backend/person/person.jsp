@@ -11,15 +11,14 @@
 	href="${basePath}themes/mmgrid/mmpaginator.css" />
 <script type="text/javascript" src="${basePath}scripts/mmgrid.js"></script>
 <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
-<script type="text/javascript" src="${basePath}scripts/human.js"></script>
 
 <script type="text/javascript">
 	//         
-	var mmGirdTable;
+	var mmGridTable;
 	$(document).ready(
 			function() {
 				test = "ready";
-				mmGirdTable = $('#grid').mmGrid(
+				mmGridTable = $('#grid').mmGrid(
 						{
 							url : '${basePath}admin/getPersonList.action',
 							height : 410,
@@ -75,14 +74,14 @@
 											onclick = "#";
 											return  '<a href="javascript:loadHTML(\'${basePath}admin/modifyPersonPage.action?user.userId=' +item.userId + '\')")">修改</a> '
 													+ '&nbsp'
-													+ '<a href="javascript:showConfirm(' +item.userId + ',' +'\'${basePath}\''+')" >删除</a>';
+													+ '<a href="javascript:showConfirm(' +item.userId + ')" >删除</a>';
 										}
 									} ],
 							plugins : [ $('#page').mmPaginator({}) ]
 						});
 				
 	$("#showAll").click(function(){
-		mmGirdTable.load();
+		mmGridTable.load();
 	});
 				
 
@@ -91,13 +90,49 @@
 		var userName = $("#userName").val();
 		var realName = $("#realName").val();
 					
-		mmGirdTable.load({
+		mmGridTable.load({
 			"user.userId" : userId,
 			"user.userName" : userName,
 			"user.personalinformation.realName" : realName
 		});
 	});
+	
+	$("#bookURLChoose").change(function(){
+		var boj = $("#bookURL");
+		boj.text($("#bookURLChoose").val());
+		$("#hiddenBookURL").val($("#bookURLChoose").val());
+
+	});
+	
+	$("#batchButton").click(function(){
+		$("#modal2").modal();
+	});
 });
+
+var id;
+function showConfirm(obj1){
+	
+	id = obj1;
+	$('#myModal').modal();
+}
+
+function deletePerson(){
+	
+	dataInfo = "user.userId="+ id;
+	$.ajax({
+		
+		type:"post",
+		url:"${basePath}admin/user/deleteUser.action",
+		data:dataInfo,
+		success:function(){
+			mmGridTable.removeRow(mmGridTable.selectedRowsIndex());
+			$("#myModal").modal("hide");
+		},
+		error:function(){
+			alert("删除失败");
+		}
+	});
+}
 	//
 </script>
 
@@ -107,6 +142,10 @@
 			<button class="btn"
 				onclick="loadHTML('${basePath}admin/addPersonPage.action')">
 				<i class="icon-plus"></i>新增
+			</button>
+			<button class="btn" type="button" id="batchButton">
+			<i class="icon-arrow-up"></i>
+				批量导入
 			</button>
 		</div>
 		<div class="row-fluid line-margin">
@@ -152,3 +191,53 @@
 		<button class="btn btn-primary" onclick="deletePerson()">确认</button>
 	</div>
 </div>
+
+<div id="modal2" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<form action="${basePath}admin/user/batchUploadUser.action"  enctype="multipart/form-data"  onsubmit="checkForm()" target="hidden_frame" method="post">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">批量上传</h3>
+	</div>
+	<div class="modal-body">
+	<div class="row-fluid line-margin">
+			<span class="help-inline">文件选择：</span>
+			</div>
+		<div class="row-fluid line-margin">
+			
+           	<span class=" span2 uneditable-input" id="bookURL" ></span>
+           	<input type="file" id="bookURLChoose" style="width: 65px;" name="upload" class=" span2 " placeholder="请选择上传图书">
+
+		</div>
+		
+		<div class="row-fluid">
+						    <div class="progress progress-striped active">
+							    <div class="bar" style="width:0;" id="porcess"></div>
+							    </div>
+					</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		<button type="submit" class="btn btn-primary" >确认</button>
+	</div>
+	</form>
+</div>
+
+<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
+<script>
+
+function callback(msg){
+	if(msg=="true"){
+		$("#porcess").animate({width:'100%'});
+		$("#modal2").modal("hide");
+		mmGridTable.load();
+	}else{
+		alert("文件格式错误");
+	}
+	
+}
+						function checkForm(){
+							
+							$("#porcess").animate({width:'90%'});
+						}
+					</script>

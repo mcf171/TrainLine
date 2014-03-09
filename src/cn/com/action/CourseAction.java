@@ -126,43 +126,6 @@ public class CourseAction extends BaseActionSupport {
 	}
 	
 	/**
-	 * 上传文件 文件流控制
-	 * 
-	 * @param src
-	 * @param dst
-	 */
-	private static void copyFile(File src, File dst) {
-		InputStream inputStream = null;
-		OutputStream outputStream = null;
-		try {
-
-			inputStream = new BufferedInputStream(new FileInputStream(src),
-					BUFFER_SIZE);
-			outputStream = new BufferedOutputStream(new FileOutputStream(dst),
-					BUFFER_SIZE);
-			byte[] buffer = new byte[BUFFER_SIZE];
-			int len = 0;
-			while ((len = inputStream.read(buffer)) > 0) {
-				outputStream.write(buffer, 0, len);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (null != inputStream) {
-					inputStream.close();
-				}
-				if (null != outputStream) {
-					outputStream.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	/**
 	 * 退选操作
 	 * author: 王珏
 	 * time:2014-1-12 12:00
@@ -218,71 +181,15 @@ public class CourseAction extends BaseActionSupport {
 	 * @throws Exception
 	 */
 	public String addRescourse() throws Exception {
+		
+		
 		File[] srcFile = this.getUpload();
-		Set<Resource> set = new HashSet<Resource>();
-		ActionContext ac = ActionContext.getContext();   
-		ServletContext sc = (ServletContext) ac.get(ServletActionContext.SERVLET_CONTEXT);   
-		String physicalPath = sc.getRealPath("/");
-		for (int i = 0; i < srcFile.length; i++) {
-			String path = this.getSavePath() + "\\"  + this.getUploadFileName()[i];
-			String dstSavePath = ServletActionContext.getServletContext()
-					.getRealPath(path);
-			File dstFile = new File(dstSavePath);
-			this.copyFile(srcFile[i], dstFile);
-			Resource resource = new Resource();
-			resource.setResourceName(this.getUploadFileName()[i]);
-			resource.setCatalogue(catalogue);
-			resource.setDownloundCount(0);
-			
-			if(resource.getResourceName().contains(".pdf")){
-				
-				String swfName =  this.getUploadFileName()[i].substring(0, this.getUploadFileName()[i].indexOf(".")) + ".swf";
-				swfName = uploadUtil.getSavePath()+"/"+swfName;
-				
-				resource.setResourcePath(swfName);
-				
-				try {
-
-					FlexpaperUtil.converterPDFToSWF(physicalPath, this.getUploadFileName()[i]);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				resource.setResourceType(1);
-			}else {
-				
-				String swfName =  this.getUploadFileName()[i];
-				swfName = uploadUtil.getSavePath()+"/"+swfName;
-				resource.setResourcePath(swfName);
-				resource.setResourceType(2);
-			}
-			
-			set.add(resource);
-		}
-		
 		User user  = (User) session.get("user");
-		catalogue.setUploadingPerson(user.getUserName());
-		Timestamp timestamp = new Timestamp(new Date().getTime());
-		catalogue.setUploading(timestamp);
-		catalogue.setResource(set);
-		courseId = (Integer) request.getAttribute("courseId");
-		
-		if (courseId != null) {
-			Course course = new Course();
-			course.setCourseId(courseId);
-			catalogue.setCourse(course);
-		}
-		try {
-			courseService.addChapterAndRescourse(catalogue, set);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-//			List list;
-//			list = courseService.getCataloguDetail(courseId);
-//			request.setAttribute("list", list);
-			request.setAttribute("courseId", courseId);
-			return this.SUCCESS;
+		boolean flag = courseService.addChapter(srcFile, this.uploadFileName, catalogue,user);
+	
+		request.setAttribute("msg", flag);
+		request.setAttribute("courseId", courseId);
+		return this.SUCCESS;
 		
 		
 	}

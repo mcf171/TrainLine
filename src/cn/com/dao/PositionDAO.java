@@ -1,16 +1,22 @@
 package cn.com.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import cn.com.model.Company;
+import cn.com.model.Department;
 import cn.com.model.Position;
+import cn.com.util.DAOUtil;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -108,6 +114,40 @@ public class PositionDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+	
+	/**
+	 * 分页查询
+	 * @author Apache
+	 * @time 2014-3-7 21:22
+	 * @param firstResults
+	 * @param maxResults
+	 * @return
+	 */
+	public List<Position> findByPage(final int firstResults,final int maxResults,final Position position){
+
+		List<Position> list= this.getHibernateTemplate().executeFind(new HibernateCallback<List<Position>>() {
+
+			public List<Position> doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				// TODO Auto-generated method stub
+				
+				List<Object> params = new ArrayList<Object>();
+				
+				String queryString = getParamList(params ,position);
+				
+					Query query  = session.createQuery(queryString);
+					query = DAOUtil.setParam(query, params);
+					query.setFirstResult(firstResults);
+					query.setMaxResults(maxResults);
+					
+				return query.list();
+			}
+			
+		});
+		
+		return list;
+	}
+	
 
 	public Position merge(Position detachedInstance) {
 		log.debug("merging Position instance");
@@ -148,30 +188,60 @@ public class PositionDAO extends HibernateDaoSupport {
 		return (PositionDAO) ctx.getBean("PositionDAO");
 	}
 	
+	/**
+	 * 模糊查询获取记录总数
+	 * @author Apache
+	 * @time 2014-3-9 19:31
+	 * @param position
+	 * @return
+	 */
 	public List<Position> findByExampleFuzzy(Position position){
-		
-		String queryString = "from Position where 1=1 ";
+
 		List<Object> params = new ArrayList<Object>();
 		
-		if (position.getPositionId() != null) {
-			
-			queryString += "and positionId = ?";
-			params.add(position.getPositionId());
-		}
+		String queryString = getParamList(params ,position);
 		
-		if (position.getPositionName() != null) {
-
-			queryString += "and positionName like ?";
-			params.add("%" + position.getPositionName() + "%");
-		}
+		List<Position> userList = getHibernateTemplate().find(queryString,params.toArray());
 		
-		if (position.getDepartment().getDepartmentId() != null) {
-
-			queryString += "and departmentId = ?";
-			params.add( position.getDepartment().getDepartmentId() );
-		}
-		List<Position> positionList = getHibernateTemplate().find(queryString,params.toArray());
+		return userList;
 		
-		return positionList;
 	}
+
+
+	/**
+	 * 初始化参数List以及返回Query字符串
+	 * @author Apache
+	 * @time 2014-3-8
+	 * @param params 已经new 的List
+	 * @param company
+	 * @return
+	 */
+	public String getParamList(List<Object> params, Position position){
+
+		String queryString = "from Position where 1=1 ";
+		
+		if(position != null){
+			
+			if (position.getPositionId() != null) {
+				
+				queryString += "and positionId = ?";
+				params.add(position.getPositionId());
+			}
+			
+			if (position.getPositionName() != null) {
+	
+				queryString += "and positionName like ?";
+				params.add("%" + position.getPositionName() + "%");
+			}
+			
+			if (position.getDepartment().getDepartmentId() != null) {
+	
+				queryString += "and departmentId = ?";
+				params.add( position.getDepartment().getDepartmentId() );
+			}
+		}
+		return queryString;
+	}
+	
+	
 }

@@ -1,5 +1,6 @@
 package cn.com.action;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,47 @@ public class UserAction extends BaseActionSupport{
 	private User user;
 	private String[] positionIds;
 	private Map<String, Object> dataMap;
+
+	private File upload;
+	private String uploadFileName;
+	
+
+	/**
+	 * 删除User 
+	 * @aurho Apachce
+	 * @time 2014-3-9 12:15
+	 * @return
+	 */
+		
+	public String deleteUser(){
+			
+		userService.deleteUser(user);
+		
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 批量上传人员
+	 * @author Apache
+	 * @time 2014-3-9 11:14
+	 * @return
+	 */
+	public String batchUploadUser(){
+		boolean flag = false;
+		try {
+			
+		 flag = userService.batchUpload(upload, uploadFileName);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			request.setAttribute("msg", flag);
+			return this.SUCCESS;
+		}
+		request.setAttribute("msg", flag);
+		
+		return this.SUCCESS;
+	}
 	
 	/**
 	 * 添加用户
@@ -28,6 +70,7 @@ public class UserAction extends BaseActionSupport{
 		
 		return this.SUCCESS;
 	}
+	
 	/**
 	 * 显示用户信息页面
 	 * author:Apache
@@ -168,4 +211,21 @@ public class UserAction extends BaseActionSupport{
 		this.positionIds = positionIds;
 	}
 
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	
 }

@@ -1,16 +1,23 @@
 package cn.com.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.com.model.User;
 import cn.com.model.Company;
 import cn.com.model.User;
+import cn.com.util.DAOUtil;
 
 /**
  * A data access object (DAO) providing persistence and search support for User
@@ -153,38 +160,85 @@ public class UserDAO extends HibernateDaoSupport {
 		return (UserDAO) ctx.getBean("UserDAO");
 	}
 	
-	public List<User> findByExampleFuzzy(User user){
+	/**
+	 * 分页条件查询User
+	 * @author Apache
+	 * @time 2014-3-8 23:31
+	 * @param firstResults
+	 * @param maxResults
+	 * @param user
+	 * @return
+	 */
+	public  List<User> findByPage(final int firstResults,final int maxResults,final User user){
 		
-		String queryString = "from User where 1=1 ";
+		List<User> list= this.getHibernateTemplate().executeFind(new HibernateCallback<List<User>>() {
+
+			public List<User> doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				// TODO Auto-generated method stub
+				
+				List<Object> params = new ArrayList<Object>();
+				
+				String queryString = getParamList(params ,user);
+				
+					Query query  = session.createQuery(queryString);
+					query = DAOUtil.setParam(query, params);
+					query.setFirstResult(firstResults);
+					query.setMaxResults(maxResults);
+					
+				return query.list();
+			}
+			
+		});
+		
+		return list;
+	}
+	
+	/**
+	 * 模糊查询User
+	 * @author Apache
+	 * @time 2014-3-8 23:30
+	 * @param user
+	 * @return
+	 */
+	
+	public List<User> findByExampleFuzzy(User user){
 		
 		List<Object> params = new ArrayList<Object>();
 		
-		if (user.getUserId() != null) {
-
-			queryString += "and userId = ?";
-			params.add(user.getUserId());
-		}
-		
-		if (user.getUserName() != null) {
-
-			queryString += "and userName like ?";
-			params.add("%" + user.getUserName() + "%");
-		}
-		
-		if (user.getUserPassword() != null) {
-
-			queryString += "and passWord like ?";
-			params.add("%" + user.getUserPassword() + "%");
-		}
-		
-		if (user.getPersonalinformation().getPersonalInformationId() != null) {
-
-			queryString += "and personalInformationId like ?";
-			params.add("%" + user.getPersonalinformation().getPersonalInformationId() + "%");
-		}
+		String queryString = getParamList(params ,user);
 		
 		List<User> userList = getHibernateTemplate().find(queryString,params.toArray());
 		
 		return userList;
+	}
+	
+	/**
+	 * 初始化参数List以及返回Query字符串
+	 * @author Apache
+	 * @time 2014-3-8
+	 * @param params 已经new 的List
+	 * @param user
+	 * @return
+	 */
+	public String getParamList(List<Object> params, User user){
+		
+		String queryString = "from User where 1=1 ";
+	
+		if(user != null){
+		
+			if (user.getUserId() != null) {
+	
+				queryString += "and userId = ?";
+				params.add(user.getUserId());
+			}
+			
+			if (user.getUserName() != null) {
+	
+				queryString += "and userName like ?";
+				params.add("%" + user.getUserName() + "%");
+			}
+		}
+		return queryString;
 	}
 }

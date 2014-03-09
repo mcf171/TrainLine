@@ -1,9 +1,13 @@
 package cn.com.service;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
 import cn.com.dao.CompanyDAO;
 import cn.com.dao.DepartmentDAO;
 import cn.com.dao.EducationbackgroundDAO;
@@ -19,7 +23,11 @@ import cn.com.model.Majorqualification;
 import cn.com.model.Personalinformation;
 import cn.com.model.Position;
 import cn.com.model.User;
+import cn.com.util.DAOUtil;
+import cn.com.util.GlobalConstant;
 import cn.com.util.MD5;
+import cn.com.util.UploadUtil;
+import cn.com.util.WebUtil;
 
 public class HumanService {
 	
@@ -31,10 +39,30 @@ public class HumanService {
 	private PersonalinformationDAO personalinformationDAO;
 	private MajorqualificationDAO majorqualificationDAO;
 	private EducationbackgroundDAO educationbackgroundDAO;
+	private DAOUtil daoUtil;
 	
-	public List<User> getUserList(){
-		List<User> list = userDAO.findAll();
-		return userDAO.findAll();
+	/**
+	 * 分页条件查询
+	 * @author Apache
+	 * @time 2014-3-8 23:35
+	 * @param page
+	 * @param limit
+	 * @param user
+	 * @return
+	 */
+	public List<User> getUserList(int page, int limit, User user){
+
+		daoUtil.setLimit(limit);
+		daoUtil.setPage(page);
+		
+		int firstResults = daoUtil.getFirstResult();
+		int maxResults = daoUtil.getMaxResult();
+		
+		user = user == null ? new User() : user;
+		
+		List<User> list = userDAO.findByPage(firstResults, maxResults, user);
+		
+		 return list;
 	}
 	
 	public List<User> getUserByExample(User user){
@@ -44,22 +72,7 @@ public class HumanService {
 	public User getUserById(int id){
 		return userDAO.findById(id);
 	}
-	
-	public List<User> searchUserList(User user){
-		String realName = user.getPersonalinformation().getRealName();
-		List<User> userList = new ArrayList<User>();
-		if(realName.equals("") || realName == null){
-			userList = userDAO.findByExampleFuzzy(user);
-		}else{
-			List<Personalinformation> list =  personalinformationDAO.findByRealName(realName);
-			for(int i=0; i<list.size(); i++){
-				user.getPersonalinformation().setPersonalInformationId(list.get(i).getPersonalInformationId());
-			    List userListParam = userDAO.findByExampleFuzzy(user);
-			    userList.addAll(userListParam);
-			}
-		}
-		return userList;
-	}
+
 	
 	public boolean addUser(User user){
 		boolean flag = false;
@@ -120,13 +133,21 @@ public class HumanService {
 		}
 	}
 	
-	public List<Company> getCompanyList(){
-		return companyDAO.findAll();
+	public List<Company> getCompanyList(int page, int limit, Company company){
+
+		daoUtil.setLimit(limit);
+		daoUtil.setPage(page);
+		
+		int firstResults = daoUtil.getFirstResult();
+		int maxResults = daoUtil.getMaxResult();
+		
+		company = company == null ? new Company() : company;
+		
+		List<Company> list = companyDAO.findByPage(firstResults, maxResults, company);
+		
+		 return list;
 	}
 	
-	public List<Company> searchCompanyList(Company company){
-		return companyDAO.findByExampleFuzzy(company);
-	}
 	
 	public Company getCompanyByName(Object companyName){
 		return (Company) companyDAO.findByCompanyName(companyName).get(0);
@@ -169,17 +190,30 @@ public class HumanService {
 		return flag;
 	}
 	
-	public List<Department> getDepartmentList(){
-		return departmentDAO.findAll();
+	/**
+	 * 分页条件查询deparment
+	 * @author Apache
+	 * @time 2014-3-9 13:04
+	 * @param page
+	 * @param limit
+	 * @param department
+	 * @return
+	 */
+	public List<Department> getDepartmentList(int page, int limit, Department department){
+
+		daoUtil.setLimit(limit);
+		daoUtil.setPage(page);
+		
+		int firstResults = daoUtil.getFirstResult();
+		int maxResults = daoUtil.getMaxResult();
+		
+		department = department == null ? new Department() : department;
+		
+		List<Department> list = departmentDAO.findByPage(firstResults, maxResults, department);
+		
+		 return list;
 	}
 	
-	public List<Department> searchDepartmentList(Department department){
-		List<Company> companyList = companyDAO.findByCompanyName(department.getCompany().getCompanyName());
-		if(companyList.size() > 0){			
-			department.getCompany().setCompanyId(companyList.get(0).getCompanyId());
-		}
-		return departmentDAO.findByExampleFuzzy(department);
-	}
 	
 	public List<Department> getDepartmentListByCompanyId(int companyId){
 		Company company = companyDAO.findById(companyId);
@@ -225,9 +259,43 @@ public class HumanService {
 		departmentDAO.delete(department);
 	}
 	
-	public List<Position> getPositionList(){
+	/**
+	 * 增加分页功能
+	 * @author Apache
+	 * @modifyTime 2014-3-7 21:00
+	 * @param page
+	 * @param limit
+	 * @return
+	 */
+	public List<Position> getPositionList(int page, int limit,Position position ){
+
+		daoUtil.setLimit(limit);
+		daoUtil.setPage(page);
+		
+		int firstResults = daoUtil.getFirstResult();
+		int maxResults = daoUtil.getMaxResult();
+		
+		position = position == null ? new Position() : position;
+		
+		List<Position> list = positionDAO.findByPage(firstResults, maxResults, position);
+		
+		return list;
+	}
+	
+	/**
+	 * 条件查询分页
+	 * @author Apache
+	 * @time 2014-3-7 21:29
+	 * @param page
+	 * @param limit
+	 * @param position
+	 * @return
+	 */
+	public List<Position> getPositionList(String page, String limit, Position position){
+		
 		return positionDAO.findAll();
 	}
+
 
 	public List<Position> searchPositionList(Position position){
 		return positionDAO.findByExampleFuzzy(position);
@@ -473,7 +541,92 @@ public class HumanService {
 	public void setCourseService(CourseService courseService) {
 		this.courseService = courseService;
 	}
-	
-	
+
+	public DAOUtil getDaoUtil() {
+		return daoUtil;
+	}
+
+	public void setDaoUtil(DAOUtil daoUtil) {
+		this.daoUtil = daoUtil;
+	}
+
+	/**
+	 * 获取模糊查询的User数
+	 * @author Apache
+	 * @time 2014-3-8 23:36
+	 * @param user
+	 * @return
+	 */
+	public int getTotalCount(User user) {
+		// TODO Auto-generated method stub
+
+		List<User>list = userDAO.findByExampleFuzzy(user);
+		
+		int totalCount = list.size();
+		
+		return totalCount;
+	}
+
+	/**
+	 * 获取TotalCount
+	 * @author Apache
+	 * @time 2014-3-9 12:50
+	 * @param company
+	 * @return
+	 */
+	public int getTotalCount(Company company) {
+		// TODO Auto-generated method stub
+
+		List<Company>list = companyDAO.findByExampleFuzzy(company);
+		
+		int totalCount = list.size();
+		
+		return totalCount;
+	}
+
+	/**
+	 * 获取所有Company
+	 * @author Apache
+	 * @time 2014-3-9 12:42
+	 * @return
+	 */
+	public List<Company> getCompanyList() {
+		// TODO Auto-generated method stub
+		return companyDAO.findAll();
+	}
+
+	/**
+	 * 获取DepartmentCount
+	 * @author Apahce
+	 * @time 2014-3-9 12:59
+	 * @param department
+	 * @return
+	 */
+	public int getTotalCount(Department department) {
+		// TODO Auto-generated method stub
+
+		List<Department>list = departmentDAO.findByExampleFuzzy(department);
+		
+		int totalCount = list.size();
+		
+		return totalCount;
+	}
+
+	/**
+	 * 获取Position记录数
+	 * @author Apache
+	 * @time 2014-3-9 19:15
+	 * @param position
+	 * @return
+	 */
+	public int getTotalCount(Position position) {
+		// TODO Auto-generated method stub
+		List<Position>list = positionDAO.findByExampleFuzzy(position);
+		
+		int totalCount = list.size();
+		
+		return totalCount;
+	}
+
 	
 }

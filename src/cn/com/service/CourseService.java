@@ -1,6 +1,9 @@
 package cn.com.service;
 
-import java.util.Iterator;
+import java.io.File;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -10,8 +13,14 @@ import cn.com.dao.ResourseandcatelogueDAO;
 import cn.com.model.Catalogue;
 import cn.com.model.Course;
 import cn.com.model.Resource;
+import cn.com.model.User;
+import cn.com.util.FlexpaperUtil;
+import cn.com.util.GlobalConstant;
+import cn.com.util.UploadUtil;
+import cn.com.util.WebUtil;
 
 public class CourseService {
+	
 	private CourseDAO courseDAO;
 	private CatalogueDAO catalogueDAO;
 	private ResourceService resourceService;
@@ -21,6 +30,62 @@ public class CourseService {
 	public Integer insert(Course course) {
 		return courseDAO.save(course);
 	}
+	
+	public boolean addChapter(File[] srcFile, String[] fileNames, Catalogue catalogue,User user){
+		
+		boolean flag = false;
+		
+		for (int i = 0; i < srcFile.length; i++) {
+			
+			Resource resource = new Resource();
+			resource.setResourceName(fileNames[i]);
+			resource.setCatalogue(catalogue);
+			resource.setDownloundCount(0);
+			String resourceType = resource.getResourceName().substring(resource.getResourceName().lastIndexOf("."));
+			
+			
+			if(GlobalConstant.ALLOW_UPLOAD_DOC.contains(resourceType)||GlobalConstant.ALLOW_UPLOAD_MEDIO.contains(resourceType)){
+				
+				
+				String time = Calendar.getInstance().getTimeInMillis() + "";
+				String resourcePath = GlobalConstant.SAVEPATH_COURSE_RESOURCE +   time + resourceType;
+				String dstSavePath = WebUtil.getWebSitePhysalPath() + resourcePath;
+				File dstFile = new File(dstSavePath);
+				UploadUtil.copyFile(srcFile[i], dstFile);
+				int resourceTypeInt = 2;
+				try {
+				
+					if(GlobalConstant.ALLOW_UPLOAD_DOC.contains(resourceType)){
+					
+						flag = FlexpaperUtil.converterDocumentToSWF(WebUtil.getWebSitePhysalPath(), GlobalConstant.SAVEPATH_COURSE_RESOURCE,  time + resourceType);
+						resourcePath = resourcePath.substring(0,resourcePath.lastIndexOf(".")) + ".swf";
+						resourceTypeInt = 1;
+					}
+				
+					resource.setResourcePath(resourcePath);
+					resource.setResourceType(resourceTypeInt);
+					
+					catalogue.getResource().add(resource);
+					catalogue.setUploadingPerson(user.getUserName());
+					Timestamp timestamp = new Timestamp(new Date().getTime());
+					catalogue.setUploading(timestamp);
+					catalogueDAO.save(catalogue);
+					flag = true;
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					flag = false;
+					throw new RuntimeException();
+				}
+			
+			}
+		}
+		
+		return flag;
+		
+	}
+	
 	/**
 	 * 模糊查询
 	 * @param course
@@ -41,12 +106,17 @@ public class CourseService {
 		try {
 		
 		course = courseDAO.findById(course.getCourseId());
-		/*
+		
 		for(Catalogue item : course.getCatalogues()){
 			
-			catalogueService.deleteCatalogue(item);
+			for(Resource resource : item.getResource() ){
+				
+				File file = new File(WebUtil.getWebSitePhysalPath() + resource.getResourcePath());
+				if(file.exists()){
+					file.delete();
+				}
+			}
 		}
-		*/
 		
 		courseDAO.delete(course);
 		

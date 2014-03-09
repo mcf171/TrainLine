@@ -76,7 +76,7 @@ $(document).ready(function ()
 				<li id="page_6" class="span1 header-menu-item"><a href="javascript:;">报表管理</a></li>
 				<li id="page_7" class="span1 header-menu-item"><a href="javascript:;">系统管理</a></li>
 <%--				<li id="page_8" class="span1 header-menu-item"><a href="javascript:;">社区管理</a></li>--%>
-				<li id="page_9" class="span1 header-menu-item"><a href="javascript:;">图书馆管理</a></li>
+				<li id="page_9" class="span1 header-menu-item"><a href="javascript:;">图书管理</a></li>
 			</ul>
 		</div>
 	</div>

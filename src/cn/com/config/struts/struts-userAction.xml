@@ -56,4 +56,18 @@
    		</action>
    	
    	</package>
+   	
+   		<package name="adminUser" extends="system" namespace="/admin/user">
+	   	
+	   		<action name="batchUploadUser" class="userAction" method="batchUploadUser">
+	   			<result>/utill.jsp</result>
+	   		</action>
+	   		
+	   		<action name="deleteUser" class="userAction" method="deleteUser">
+	   			<result type="json">
+	   				<param name="root">dataMap</param>
+	   			</result>
+	   		</action>
+	   		
+   		</package>
 </struts>    
