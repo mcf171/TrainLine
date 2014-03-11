@@ -22,13 +22,61 @@
 
 <script type="text/javascript">
 	//         
+	var mmGridTable;
+	function deleteBook(){
+		$.ajax({
+			  type: "post",
+			  url: basePath+"admin/deleteTestquestion.action",
+			  data:"testquestion.testQuestionId=" + testquestionId,
+			  success: function(msg){
+				 
+				  $('#myModal').modal('hide')
+				  mmGridTable.removeRow(mmGridTable.selectedRowsIndex());
+			  }
+			});
+		
+	}
 	$(document)
 			.ready(
 					function() {
+						
+						$("#batchDelete").click(function(){
+							
+							var indexArray = mmGridTable.selectedRows();
+							var testQuestionIdInfo = "flag=1";
+							for(i = 0; i< indexArray.length; i++){
+								
+								testQuestionIdInfo += "&testQuestionIds=" + indexArray[i].testQuestionId;
+							}
+							$.ajax({
+								
+								type:"post",
+								url:"${basePath}admin/testQuestion/batchDelete.action",
+								data:testQuestionIdInfo,
+								success:function (msg){
+									mmGridTable.removeRow(mmGridTable.selectedRowsIndex());	
+								},
+								error:function(msg){
+									alert("删除失败");
+								}
+							});
+						});
+						
+						$("#fileURLChoose").change(function(){
+							var boj = $("#fileURL");
+							boj.text($("#fileURLChoose").val());
+
+						});
+
+						
+						$("#batchRubricButton").click(function(){
+							$("#modal3").modal();
+						});
+						
 						$('#time-to').css('background', 'none').datepicker();
 						$('#time-from').css('background', 'none').datepicker();
 
-						mmGirdTable = $('#grid').mmGrid(
+						mmGridTable = $('#grid').mmGrid(
 										{
 											url : '${basePath}admin/getQuestions.action',
 											height : 410,
@@ -128,12 +176,12 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div id="content" class="span12">
-				<div class="row-fluid " style="margin-left: -13px">
+				<div class="row-fluid  line-margin" style="margin-left: -13px">
 					<button class="btn" type="button"
 						onclick="loadHTML('${basePath}admin/getAddQuestionPage.action')">
 						<i class="icon-plus"></i>添加
 					</button>
-					<button class="btn" type="button">
+					<button class="btn" type="button" id="batchRubricButton">
 						<i class="icon-arrow-up"></i>批量导入
 					</button>
 				</div>
@@ -157,7 +205,7 @@
 				<div class="row word_style">
 					<div class="row-fluid " style="margin-top:5px">
 						<table id="grid"></table>
-						<button type="submit" class="btn">
+						<button type="submit" class="btn" id="batchDelete">
 							<i class="icon-ok"></i>批量删除
 						</button>
 						<div id="page" class="pull-right"></div>
@@ -182,5 +230,57 @@
 		<button class="btn btn-primary" onclick="deleteBook()">确认</button>
 	</div>
 </div>
+
+
+<div id="modal3" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<form action="${basePath}admin/testQuestion/batchUpload.action"  enctype="multipart/form-data"  onsubmit="checkForm2()" target="hidden_frame" method="post">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">批量上传</h3>
+	</div>
+	<div class="modal-body">
+	<div class="row-fluid line-margin">
+			<span class="help-inline">文件选择：<a href="${basePath}getFile/upload/template/batchAddTestQuestion.xls" >试卷题目基本信息模板下载</a></span>
+			</div>
+		<div class="row-fluid line-margin">
+           	<span class=" span2 uneditable-input" id="fileURL" ></span>
+           	<input type="file" id="fileURLChoose" style="width: 65px;" name="upload" class=" span2 " placeholder="请选择上传图书">
+
+		</div>
+		
+		<div class="row-fluid">
+						    <div class="progress progress-striped active">
+							    <div class="bar" style="width:0;" id="porcess2"></div>
+							    </div>
+					</div>
+	</div>
+	<div class="modal-footer">
+		
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		<button type="submit" class="btn btn-primary" >确认</button>
+	</div>
+	</form>
+</div>
+
+
+<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
+<script>
+
+function callback(msg){
+	if(msg=="true"){
+		$("#porcess2").animate({width:'100%'});
+		$("#modal3").modal("hide");
+		mmGridTable.load();
+	}else{
+		alert("文件格式错误");
+	}
+	
+}
+						function checkForm2(){
+							
+							$("#porcess2").animate({width:'90%'});
+						}
+					</script>
 </body>
 </html>

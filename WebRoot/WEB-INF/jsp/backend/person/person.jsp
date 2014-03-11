@@ -201,10 +201,9 @@ function deletePerson(){
 	</div>
 	<div class="modal-body">
 	<div class="row-fluid line-margin">
-			<span class="help-inline">文件选择：</span>
+			<span class="help-inline">文件选择：<a href="${basePath}getFile/upload/template/batchAddUser.xls" >模板下载</a></span>
 			</div>
 		<div class="row-fluid line-margin">
-			
            	<span class=" span2 uneditable-input" id="bookURL" ></span>
            	<input type="file" id="bookURLChoose" style="width: 65px;" name="upload" class=" span2 " placeholder="请选择上传图书">
 
@@ -217,6 +216,7 @@ function deletePerson(){
 					</div>
 	</div>
 	<div class="modal-footer">
+		
 		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 		<button type="submit" class="btn btn-primary" >确认</button>
 	</div>

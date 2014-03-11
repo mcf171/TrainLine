@@ -88,44 +88,53 @@ public class GetSysImfoAction extends ActionSupport{
 	public String disk() throws Exception{
 		Sigar sigar = new Sigar();
 		FileSystem fslist[] = sigar.getFileSystemList();
-		for (int i = 0; i < fslist.length; i++) {
-			FileSystem fs = fslist[i];
-			MySystem mysystem = new MySystem();
-			mysystem.setDevName(fs.getDevName());
-			mysystem.setDirName(fs.getDirName());
-			mysystem.setSysTypeName(fs.getSysTypeName());
-			mysystem.setTypeName(fs.getTypeName());
-			mysystem.setFlags(fs.getFlags());
-			FileSystemUsage usage = new FileSystemUsage();
-            usage = sigar.getFileSystemUsage(fs.getDirName());
-            switch (fs.getType()) {
-            case 0: // TYPE_UNKNOWN ：未知
-                break;
-            case 1: // TYPE_NONE
-                break;
-            case 2: // 本地硬盘
-                // 文件系统总大小
-                mysystem.setTotalDisk(usage.getTotal()/1048576L);
-                // 文件系统剩余大小
-                mysystem.setFreeDisk(usage.getFree()/1048576L);
-                // 文件系统可用大小
-                mysystem.setAvailDisk(usage.getAvail()/1048576L);
-                // 文件系统已经使用量
-                mysystem.setUsedDisk(usage.getUsed());
-                double usePercent = usage.getUsePercent() * 100D;
-                // 文件系统资源的利用率
-                mysystem.setUserPercent(usePercent);
-                break;
-            case 3:// TYPE_NETWORK ：网络
-                break;
-            case 4:// TYPE_RAM_DISK ：闪存
-                break;
-            case 5:// TYPE_CDROM ：光驱
-                break;
-            case 6:// TYPE_SWAP ：页面交换
-                break;
-            }
-			this.system.add(mysystem);
+		try {
+				
+			for (int i = 0; i < fslist.length; i++) {
+				FileSystem fs = fslist[i];
+				MySystem mysystem = new MySystem();
+				mysystem.setDevName(fs.getDevName());
+				mysystem.setDirName(fs.getDirName());
+				mysystem.setSysTypeName(fs.getSysTypeName());
+				mysystem.setTypeName(fs.getTypeName());
+				mysystem.setFlags(fs.getFlags());
+				
+	            switch (fs.getType()) {
+	            case 0: // TYPE_UNKNOWN ：未知
+	                break;
+	            case 1: // TYPE_NONE
+	                break;
+	            case 2: // 本地硬盘
+	            	FileSystemUsage usage = new FileSystemUsage();
+		            usage = sigar.getFileSystemUsage(fs.getDirName());
+	                // 文件系统总大小
+	                mysystem.setTotalDisk(usage.getTotal()/1048576L);
+	                // 文件系统剩余大小
+	                mysystem.setFreeDisk(usage.getFree()/1048576L);
+	                // 文件系统可用大小
+	                mysystem.setAvailDisk(usage.getAvail()/1048576L);
+	                // 文件系统已经使用量
+	                mysystem.setUsedDisk(usage.getUsed());
+	                double usePercent = usage.getUsePercent() * 100D;
+	                // 文件系统资源的利用率
+	                mysystem.setUserPercent(usePercent);
+	                this.system.add(mysystem);
+	                break;
+	            case 3:// TYPE_NETWORK ：网络
+	                break;
+	            case 4:// TYPE_RAM_DISK ：闪存
+	                break;
+	            case 5:// TYPE_CDROM ：光驱
+	                break;
+	            case 6:// TYPE_SWAP ：页面交换
+	                break;
+	            }
+				
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			
 		}
 		return "disk";
 	}

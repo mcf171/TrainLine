@@ -1,5 +1,6 @@
 package cn.com.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,7 +16,7 @@ public class Questionnairerubric implements java.io.Serializable {
 	private Integer questionnaireRubricType;
 	private Integer questionnaireRubricWeight;
 	private String questionnaireRubricIntroduce;
-	private Set<QuestionnaireChoose> questionnaireChoose;
+	private Set<QuestionnaireChoose> questionnaireChoose = new HashSet<QuestionnaireChoose>();
 
 	// Constructors
 

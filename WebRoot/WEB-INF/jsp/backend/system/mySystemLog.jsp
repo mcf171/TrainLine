@@ -42,10 +42,11 @@ $(document).ready(function ()
 	test="ready";
 	mmGirdTable = $('#grid').mmGrid({
 		url: '${basePath}recordAction.action',
-		height: 'auto',
+		height: '460',
 		autoLoad: true,
 		fullWidthRows: true,
 		root:'recordList',
+		
 		cols: [
 				{ title: '用户名', sortable: true,  name: 'userId' },
 				{ title: '登录IP', sortable: true, name: 'ipaddress' },

@@ -89,10 +89,13 @@
 	
 	<bean id="questionnairerService" class="cn.com.service.QuestionnaireService" scope="prototype">
 		<property name="questionnaireDAO" ref="QuestionnaireDAO"></property>
+		<property name="daoUtil" ref="daoUtil"></property>
 	</bean>
 	
 	<bean id="questionnairerubricService" class="cn.com.service.QuestionnairerubricService">
 		<property name="questionnairerubricDAO" ref="QuestionnairerubricDAO"></property>
+		<property name="questionnaireChooseDAO" ref="QuestionnaireChooseDAO"></property>
+		<property name="questionnaireDAO" ref="QuestionnaireDAO"></property>
 	</bean>
 
 	<bean id="courseService" class="cn.com.service.CourseService">
@@ -110,6 +113,8 @@
 	<bean id="testQuestionService" class="cn.com.service.TestQuestionService">
 		<property name="testquestionDAO" ref="TestquestionDAO"></property>
 		<property name="testQuestionItemService" ref="testQuestionItemService"></property>
+		<property name="testPaperDAO" ref="TestpaperDAO"></property>
+		<property name="courseDAO" ref="CourseDAO"></property>
 	</bean>
 
 	<bean id="testPaperService" class="cn.com.service.TestPaperService">
@@ -125,6 +130,7 @@
 
 	<bean id="trainingClassService" class="cn.com.service.TrainingClassService">
 		<property name="trainingclassDAO" ref="TrainingclassDAO"></property>
+		<property name="courseDAO" ref="CourseDAO"></property>
 	</bean>
 
 	<bean id="credentialService" class="cn.com.service.CredentialService">

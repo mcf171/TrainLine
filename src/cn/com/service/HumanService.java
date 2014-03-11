@@ -628,5 +628,197 @@ public class HumanService {
 		return totalCount;
 	}
 
+	/**
+	 * 批量上传公司
+	 * @author Apache
+	 * @time 2014-3-9 23:29
+	 * @param file
+	 * @param uploadFileName
+	 * @return
+	 */
+	public boolean batchUploadCompany(File file, String uploadFileName) {
+		// TODO Auto-generated method stub
+
+		boolean flag = false;
+		
+		try{
+		
+		String time = Calendar.getInstance().getTimeInMillis() + "";
+		String saveFileName = time +  uploadFileName.substring(uploadFileName.lastIndexOf("."));
+		String savePath = WebUtil.getWebSitePhysalPath() + GlobalConstant.SAVEPATH_TEMP + saveFileName;
+		File dstFile = new File(savePath);
+		UploadUtil.copyFile(file, dstFile);
+		
+		Workbook book = Workbook.getWorkbook(new File(savePath));
+        // 获得第一个工作表对象
+        Sheet sheet = book.getSheet(0);
+        // 得到第一列第一行的单元格
+        int rows = sheet.getRows();
+        for(int i=1 ; i < rows ; i++){
+        	
+        	Cell[] cells = sheet.getRow(i);
+        	Company company = new Company();
+        	
+        	for(int j=0 ; j< cells.length; j++){
+        		
+        		switch(j){
+        		
+        		//case 0: company.setCompanyId(Integer.parseInt(cells[j].getContents()));break;
+        		case 0: company.setCompanyName(cells[j].getContents());break;
+        		case 1: company.setCompanystatus(Integer.parseInt(cells[j].getContents()));break;
+        		case 2: company.setCompanyIntro(cells[j].getContents());break;
+        		case 3: company.setCompanyShortName(cells[j].getContents());break;
+        		}
+        		
+        	}
+        	companyDAO.save(company);
+        }
+        
+        book.close();
+        
+        dstFile.delete();
+        flag = true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			flag = false;
+			throw new RuntimeException();
+		}
+		return flag;
+	}
+
+	/**
+	 * 批量上传部门
+	 * @author Apache
+	 * @time 2014-3-9 23:36
+	 * @param upload
+	 * @param uploadFileName
+	 * @return
+	 */
+	public boolean batchUploadDepartment(File file, String uploadFileName) {
+		// TODO Auto-generated method stub
+
+		boolean flag = false;
+		
+		try{
+		
+		String time = Calendar.getInstance().getTimeInMillis() + "";
+		String saveFileName = time +  uploadFileName.substring(uploadFileName.lastIndexOf("."));
+		String savePath = WebUtil.getWebSitePhysalPath() + GlobalConstant.SAVEPATH_TEMP + saveFileName;
+		File dstFile = new File(savePath);
+		UploadUtil.copyFile(file, dstFile);
+		
+		Workbook book = Workbook.getWorkbook(new File(savePath));
+        // 获得第一个工作表对象
+        Sheet sheet = book.getSheet(0);
+        // 得到第一列第一行的单元格
+        int rows = sheet.getRows();
+        for(int i=1 ; i < rows ; i++){
+        	
+        	Cell[] cells = sheet.getRow(i);
+        	Department department = new Department();
+        	
+        	for(int j=0 ; j< cells.length; j++){
+        		
+        		switch(j){
+        		
+        		//case 0: department.setDepartmentId(Integer.parseInt(cells[j].getContents()));break;
+        		case 0: department.setDepartmentName(cells[j].getContents());break;
+        		case 1: department.setDepartmentstatus(Integer.parseInt(cells[j].getContents()));break;
+        		case 2: department.setDepartmentShortName(cells[j].getContents());break;
+        		case 3: department.setBusinessUnits(cells[j].getContents());break;
+        		case 4: department.setDepartmentCoding(cells[j].getContents());break;
+        		case 5: department.setCountry(cells[j].getContents());break;
+        		case 6: 
+        			List<Company> list = companyDAO.findByCompanyShortName(cells[j].getContents());
+        			if(list.size()>1){
+        				throw new RuntimeException();
+        			}
+        			Company company = list.get(0);
+        			department.setCompany(company);
+        			break;
+        		}
+        		
+        	}
+        	departmentDAO.save(department);
+        }
+        
+        book.close();
+        
+        dstFile.delete();
+        flag = true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			flag = false;
+			throw new RuntimeException();
+		}
+		return flag;
+	}
+
+
+	/**
+	 * 批量上传岗位
+	 * @author Apache
+	 * @time 2014-3-9 23:36
+	 * @param upload
+	 * @param uploadFileName
+	 * @return
+	 */
+	public boolean batchUploadPosition(File file, String uploadFileName) {
+		// TODO Auto-generated method stub
+
+		boolean flag = false;
+		
+		try{
+		
+		String time = Calendar.getInstance().getTimeInMillis() + "";
+		String saveFileName = time +  uploadFileName.substring(uploadFileName.lastIndexOf("."));
+		String savePath = WebUtil.getWebSitePhysalPath() + GlobalConstant.SAVEPATH_TEMP + saveFileName;
+		File dstFile = new File(savePath);
+		UploadUtil.copyFile(file, dstFile);
+		
+		Workbook book = Workbook.getWorkbook(new File(savePath));
+        // 获得第一个工作表对象
+        Sheet sheet = book.getSheet(0);
+        // 得到第一列第一行的单元格
+        int rows = sheet.getRows();
+        for(int i=1 ; i < rows ; i++){
+        	
+        	Cell[] cells = sheet.getRow(i);
+        	Position position = new Position();
+        	
+        	for(int j=0 ; j< cells.length; j++){
+        		
+        		switch(j){
+        		
+        		//case 0: position.setPositionId(Integer.parseInt(cells[j].getContents()));break;
+        		case 0: position.setPositionName(cells[j].getContents());break;
+        		case 1: 
+        			List<Department> list = departmentDAO.findByDepartmentCoding(cells[j].getContents());
+        			Department department = list.get(0);
+        			if(list.size()>1){
+        				throw new RuntimeException();
+        			}
+        			position.setDepartment(department);
+        			break;
+        		}
+        		
+        	}
+        	positionDAO.save(position);
+        }
+        
+        book.close();
+        
+        dstFile.delete();
+        flag = true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			flag = false;
+			throw new RuntimeException();
+		}
+		return flag;
+	}
 	
 }

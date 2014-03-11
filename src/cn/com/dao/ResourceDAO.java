@@ -46,14 +46,7 @@ public class ResourceDAO extends HibernateDaoSupport {
 	}
 
 	public void delete(Resource persistentInstance) {
-		log.debug("deleting Resource instance");
-		try {
 			getHibernateTemplate().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		}
 	}
 
 	public Resource findById(java.lang.Integer id) {

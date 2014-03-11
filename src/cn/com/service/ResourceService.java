@@ -117,7 +117,7 @@ public class ResourceService {
 	public void addResource(Resource resource,File file,String fileName){
 		
 		int resourceType = resource.getResourceType();
-		String path  = "upload/";
+		String path  = "";
 		String fileType =   fileName.substring(fileName.lastIndexOf("."));
 		Calendar rightNow = Calendar.getInstance();
 		fileName =  "" + rightNow.getTimeInMillis() + fileType;

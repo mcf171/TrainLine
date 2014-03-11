@@ -39,6 +39,7 @@ $(document).ready(function ()
 		cols: [
 	 {title: '课程ID', sortable: true, width: 70, name: 'courseId' },
      { title: '课程名', sortable: true, width: 80, name:'courseName' },
+     { title: '课程编号', sortable: true, width: 80, name:'courseCode' },
      { title: '讲师', sortable: true, width: 90, name: 'courseSpeaker' },
       { title: '课程内容', sortable: true, width: 210, name: 'courseIntro' },
       {title:'状态',sortable:true,width:100,

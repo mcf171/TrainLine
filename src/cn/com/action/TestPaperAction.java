@@ -1,5 +1,6 @@
 package cn.com.action;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,10 @@ public class TestPaperAction extends BaseActionSupport {
 	private Testpaper testPaper;
 	private int[] testQuestions;
 	private int testQuestion;
+	private int page;
+	private int limit;
+	private File upload;
+	private String uploadFileName;
 	
 	public TestPaperAction() {
 		super();
@@ -26,6 +31,28 @@ public class TestPaperAction extends BaseActionSupport {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * 批量上传问卷
+	 * @author Apache
+	 * @time 2014-3-9 11:14
+	 * @return
+	 */
+	public String batchUpload(){
+		boolean flag = false;
+		try {
+			
+		 flag = testPaperService.batchUpload(upload, uploadFileName);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			request.setAttribute("msg", flag);
+			return this.SUCCESS;
+		}
+		request.setAttribute("msg", flag);
+		
+		return this.SUCCESS;
+	}
 	public String findAllTestPaper()
 	{
 		tpList= testPaperService.findAll();
@@ -180,6 +207,38 @@ public class TestPaperAction extends BaseActionSupport {
 
 	public void setTestQuestion(int testQuestion) {
 		this.testQuestion = testQuestion;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
 	}
 
 

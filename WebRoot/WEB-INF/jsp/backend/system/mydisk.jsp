@@ -59,15 +59,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
      <div class="row-fluid line-margin">
-		<div class="span6">
+		<div class="span12">
 			<h3>磁盘</h3>
 			<div>活动时间</div>
 			<canvas id="myChart" width="500" height="200"></canvas>
 			<div>磁盘传输速率(kb/秒)</div>
 			<canvas id="myChart2" width="500" height="200"></canvas>
 		</div>
-		<div class="span6 row-fluid line-margin" style="margin-top:100px"class="page-header">
-		    <table>
+		</div>
+		<div class="row-fluid line-margin">
+		<div class="span12 row-fluid line-margin" style="margin-top:100px"class="page-header">
+		    <table class="table table-hover">
 		       <tr>
 		         <th><strong>盘符名称</strong></th>
 		         <th><strong>总容量</strong></th>

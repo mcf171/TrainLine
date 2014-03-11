@@ -16,6 +16,9 @@
         <property name="courseName" type="java.lang.String">
             <column name="courseName" length="50" />
         </property>
+        <property name="courseCode" type="java.lang.String">
+            <column name="courseCode" length="50" />
+        </property>
         <property name="courseSpeaker" type="java.lang.String">
             <column name="courseSpeaker" length="20" />
         </property>

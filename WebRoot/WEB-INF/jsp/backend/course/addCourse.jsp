@@ -102,6 +102,15 @@ function checkForm(){
 			</div>
 			
 			<div class="control-group">
+				<label class="control-label" for="courseDescInput">课程编号:</label>
+				<div class="controls">
+					<textarea class="form-control" rows="3" name="course.courseCode" id="courseDescInput"
+						placeholder="请输入课程描述" draggable="false"></textarea>
+						<font color="red" class="hide" id="descripe">*必须输入</font>
+				</div>
+			</div>
+			
+			<div class="control-group">
 				<label class="control-label" for="courseDescInput">讲课老师:</label>
 				<div class="controls">
 					<input class="form-control" type="text" name="course.courseSpeaker" id="courseSpeaker"

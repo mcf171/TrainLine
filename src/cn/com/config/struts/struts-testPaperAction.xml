@@ -51,7 +51,12 @@
 				</result>
 		</action>
 		
-		
-		
+	</package>
+	
+	<package name="adminTestPaper" namespace="/admin/testPaper" extends="system">
+	
+		<action name="batchUpload" class="testPaperAction" method="batchUpload">
+			<result>/utill.jsp</result>
+		</action>
 	</package>
 </struts>    

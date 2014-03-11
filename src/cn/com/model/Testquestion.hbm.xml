@@ -30,7 +30,7 @@
             <column name="testIndex" length="50" />
         </property>
         
-        <set name="testpapers" inverse="false" table="testandquestion" lazy="false" cascade="save-update">
+        <set name="testpapers" inverse="false" table="testandquestion" lazy="false" cascade="none">
             <key>
                 <column name="testQuestionId" not-null="true" />
             </key>

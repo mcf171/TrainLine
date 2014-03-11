@@ -8,7 +8,7 @@
     <script type="text/javascript" src="${basePath}scripts/datepicker.js"></script>
 
 <script type="text/javascript">
-var mmg;
+var mmGridTable;
 var questionnaireID;
 
 $(document).ready(function ()
@@ -16,7 +16,7 @@ $(document).ready(function ()
 	$('#time-to').css('background', 'none').datepicker();
 	$('#time-from').css('background', 'none').datepicker();
 
-	mmg = $('#grid').mmGrid({
+	mmGridTable = $('#grid').mmGrid({
 		url:'${basePath}admin/findAllQuestionnare.action',
 		height: 410,
 		autoLoad: true,
@@ -47,10 +47,40 @@ $(document).ready(function ()
 	});
 	
 	$("#searchQuestionaireBtn").click(function(){
-		mmg.load({page:1,"questionnaire.questionnaireTitle":$("#questionnaireTitleID").val(),
+		mmGridTable.load({
+			page:1,"questionnaire.questionnaireTitle":$("#questionnaireTitleID").val(),
 		"questionnaire.questionnaireAuthor":$("#questionnaireAuthorID").val(),
 		"questionnaire.questionnaireNumber":$("#questionnaireNumberID").val(),
-		"questionnaire.open":$("#openID").val()});
+		});
+	});
+	
+	$("#showAll").click(function(){
+		
+		mmGridTable.load({
+			page:1,
+			limit:10
+		});
+	});
+	
+
+	$("#bookURLChoose").change(function(){
+		var boj = $("#bookURL");
+		boj.text($("#bookURLChoose").val());
+
+	});
+	
+	$("#fileURLChoose").change(function(){
+		var boj = $("#fileURL");
+		boj.text($("#fileURLChoose").val());
+
+	});
+	
+	$("#batchButton").click(function(){
+		$("#modal2").modal();
+	});
+	
+	$("#batchRubricButton").click(function(){
+		$("#modal3").modal();
 	});
 	
 	$("#sureDeleteBtn").click(function(){
@@ -61,7 +91,7 @@ $(document).ready(function ()
 		dataType : "json",
 		success : function(json) {
 			$("#myModal1").modal('hide');
-			mmg.load({page:1});
+			mmGridTable.load({page:1});
 		},
 		error : function() {
 			alert("操作失败,请重试!");
@@ -87,7 +117,7 @@ $(document).ready(function ()
 			"&questionnaire.open="+open,
 			dataType : "json",
 			success : function(json) {
-				mmg.load();
+				mmGridTable.load();
 			},
 			error : function() {
 				alert("操作失败,请重试!");
@@ -137,8 +167,22 @@ questionnaireID = questionnaireId;
 </script>
 	
             <div class="row-fluid " id="read">
-	            
-          
+            <div class="row-fluid line-margin">
+	            <div class="span12">
+			<button class="btn"
+				onclick="loadHTML('${basePath}admin/getAddQuestionnairePage.action')">
+				<i class="icon-plus"></i>新增
+			</button>
+			<button class="btn" type="button" id="batchButton">
+			<i class="icon-arrow-up"></i>
+				批量导入问卷
+			</button>
+			<button class="btn" type="button" id="batchRubricButton">
+			<i class="icon-arrow-up"></i>
+				批量导入问卷题目
+			</button>
+		</div>
+          </div>
             <div class="row-fluid">
             	<div class="span12">
             		<form id="condition" class="span12 form-inline no-margin" action="javascript:void(0)">
@@ -148,18 +192,16 @@ questionnaireID = questionnaireId;
 			                <input type="text" style="width:150px;" class="span2" id="questionnaireTitleID" placeholder="请输入问卷标题" />
 			                 <span class="help-inline">发起人：</span>
 			                <input type="text" class="span2" style="width:150px;" id="questionnaireAuthorID" placeholder="请输入发起人名字" />
-		               </div>
-		               <div>
-		               		<div class="row-fluid line-margin"><b>高级过滤：</b>
+		              
 		               	    <span class="help-inline">问卷编号：</span>
 			                <input type="text" class="span2" id="questionnaireNumberID" placeholder="请输入问卷编号" />
-			                          状&nbsp;&nbsp;&nbsp;&nbsp;态：</span>
-			               <select class="input-small" style="width:150px;" id="openID">
-			               <option value="1">开卷</option>
-				           <option value="0">闭卷</option>
-			                </select>&nbsp;&nbsp;&nbsp;&nbsp;
+			              </div>
+			              <div class="row-fluid line-margin">
 			                     <button class="btn " id="searchQuestionaireBtn"><i class="icon-search"></i>查询</button>&nbsp;&nbsp;
 			                     <button class="btn" type="reset"><i class="icon-remove"></i>清除</button>
+			                     <button class="btn " id="showAll" type="button">
+					<i class="icon-align-justify"></i>显示所有
+				</button>
 		               		</div>
 		               		<div class="row-fluid">
 	                             <div class="span12">
@@ -167,7 +209,7 @@ questionnaireID = questionnaireId;
 								 <div id="page" class="pull-right"></div>
 						    	</div>
                             </div>
-		               </div>
+		               </ddiv>
 		            </form>
             	</div>
             </div>
@@ -212,3 +254,92 @@ questionnaireID = questionnaireId;
 	</div>
 </div>
   </div>
+  
+  
+<div id="modal2" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<form action="${basePath}admin/questionnaire/batchUpload.action"  enctype="multipart/form-data"  onsubmit="checkForm()" target="hidden_frame" method="post">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">批量上传</h3>
+	</div>
+	<div class="modal-body">
+	<div class="row-fluid line-margin">
+			<span class="help-inline">文件选择：<a href="${basePath}getFile/upload/template/batchAddQuestionnaire.xls" >问卷基本信息模板下载</a></span>
+			</div>
+		<div class="row-fluid line-margin">
+           	<span class=" span2 uneditable-input" id="bookURL" ></span>
+           	<input type="file" id="bookURLChoose" style="width: 65px;" name="upload" class=" span2 " placeholder="请选择上传图书">
+
+		</div>
+		
+		<div class="row-fluid">
+						    <div class="progress progress-striped active">
+							    <div class="bar" style="width:0;" id="porcess"></div>
+							    </div>
+					</div>
+	</div>
+	<div class="modal-footer">
+		
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		<button type="submit" class="btn btn-primary" >确认</button>
+	</div>
+	</form>
+</div>
+
+
+<div id="modal3" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<form action="${basePath}admin/questionnaireRubric/batchUpload.action"  enctype="multipart/form-data"  onsubmit="checkForm2()" target="hidden_frame" method="post">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">批量上传</h3>
+	</div>
+	<div class="modal-body">
+	<div class="row-fluid line-margin">
+			<span class="help-inline">文件选择：<a href="${basePath}getFile/upload/template/batchAddQuestionnaireRubric.xls" >问卷题目基本信息模板下载</a></span>
+			</div>
+		<div class="row-fluid line-margin">
+           	<span class=" span2 uneditable-input" id="fileURL" ></span>
+           	<input type="file" id="fileURLChoose" style="width: 65px;" name="upload" class=" span2 " placeholder="请选择上传图书">
+
+		</div>
+		
+		<div class="row-fluid">
+						    <div class="progress progress-striped active">
+							    <div class="bar" style="width:0;" id="porcess2"></div>
+							    </div>
+					</div>
+	</div>
+	<div class="modal-footer">
+		
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		<button type="submit" class="btn btn-primary" >确认</button>
+	</div>
+	</form>
+</div>
+
+<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
+<script>
+
+function callback(msg){
+	if(msg=="true"){
+		$("#porcess").animate({width:'100%'});
+		$("#porcess2").animate({width:'100%'});
+		$("#modal2").modal("hide");
+		$("#modal3").modal("hide");
+		mmGridTable.load();
+	}else{
+		alert("文件格式错误");
+	}
+	
+}
+						function checkForm(){
+							
+							$("#porcess").animate({width:'90%'});
+						}
+						function checkForm2(){
+							
+							$("#porcess2").animate({width:'90%'});
+						}
+					</script>

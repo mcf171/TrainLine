@@ -1,5 +1,6 @@
 package cn.com.action;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,34 @@ public class TrainingClassAction extends BaseActionSupport {
 	private Trainingclass trainingClass;
 	private Course course;
 	private Classcase classCase;
+	private int page;
+	private int limit;
+	private File upload;
+	private String uploadFileName;
 
+
+	/**
+	 * 批量上传班级
+	 * @author Apache
+	 * @time 2014-3-9 11:14
+	 * @return
+	 */
+	public String batchUpload(){
+		boolean flag = false;
+		try {
+			
+		 flag = trainingClassService.batchUpload(upload, uploadFileName);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			request.setAttribute("msg", flag);
+			return this.SUCCESS;
+		}
+		request.setAttribute("msg", flag);
+		
+		return this.SUCCESS;
+	}
 
 	/**
 	 * 后台获取所有课程信息
@@ -283,6 +311,38 @@ public class TrainingClassAction extends BaseActionSupport {
 
 	public void setCourseService(CourseService courseService) {
 		this.courseService = courseService;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
 	}
 
 

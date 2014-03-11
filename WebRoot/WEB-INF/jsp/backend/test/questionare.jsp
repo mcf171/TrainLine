@@ -6,8 +6,11 @@
 <script type="text/javascript" src="${basePath}scripts/mmpaginator.js"></script>
 <script type="text/javascript">
 //<![CDATA[
+
 $(document).ready(function ()
 {
+	
+ 
 	mmGridTable = $('#grid').mmGrid({
 		url: '${basePath}getTestArrangementList.action',
 		height: 280,
@@ -113,17 +116,41 @@ function deleteTestArrangement(){
 		}
 	});
 }
+var mmGridTable;
+function callback(msg){
+	if(msg=="true"){
+		$("#porcess").animate({width:'100%'});
+		$("#porcess2").animate({width:'100%'});
+		$("#modal2").modal("hide");
+		$("#modal3").modal("hide");
+		mmGridTable.load();
+	}else{
+		alert("文件格式错误");
+	}
+	
+}
+						function checkForm(){
+							
+							$("#porcess").animate({width:'90%'});
+						}
+						function checkForm2(){
+							
+							$("#porcess2").animate({width:'90%'});
+						}
 //]]>
 </script>
 <div class="row-fluid line-margin">
 	<div class="span12">
 		<button class="btn"><i class="icon-share"></i>&nbsp;发布</button>
-		<button class="btn" onclick="javascript:loadHTML('${basePath}admin/getAddTestArrangementPage.action')"><i class="icon-share"></i>&nbsp;添加</button>
+		<button class="btn" onclick="javascript:loadHTML('${basePath}admin/getAddTestArrangementPage.action')">
+		<i class="icon-share"></i>&nbsp;添加</button>
+		
+		
 	</div>
 </div>
 <div class="row-fluid line-margin">
 	<form id="condition" class="span12 form-inline no-margin">
-		<span class="help-inline"><b>查询过滤：</b>问卷状态</span>
+		<span class="help-inline"><b>查询过滤：</b>试卷状态</span>
 		<select class="input-small">
 			<option>所有</option>
 			<option>未发布</option>
@@ -132,10 +159,10 @@ function deleteTestArrangement(){
 			<option>已撤销</option>
 			<option>已过期</option>
 		</select>
-		<span class="help-inline">问卷编号</span>
-		<input type="text" class="span2" placeholder="请输入问卷编号" />
-		<span class="help-inline">问卷名称</span>
-		<input type="text" class="span2" placeholder="请输入问卷名称" />
+		<span class="help-inline">试卷编号</span>
+		<input type="text" class="span2" placeholder="请输入试卷编号" />
+		<span class="help-inline">试卷名称</span>
+		<input type="text" class="span2" placeholder="请输入试卷名称" />
 		<div class="pull-right">
 			<button class="btn"><i class="icon-search"></i>&nbsp;查询</button>
 			<button class="btn" onclick="$('#condition')[0].reset();return false;">
@@ -164,3 +191,5 @@ function deleteTestArrangement(){
 <button class="btn btn-primary" onclick="deleteTestArrangement()">确认</button>
 </div>
 </div>
+
+

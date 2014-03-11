@@ -16,6 +16,7 @@ public class Course implements java.io.Serializable {
 	private String courseName;
 	private String courseSpeaker;
 	private String courseIntro;
+	private String courseCode;
 	private Integer courseState;
 	private Integer courseKind;
 	private Set users = new HashSet(0);
@@ -174,6 +175,18 @@ public class Course implements java.io.Serializable {
 	public int hashCode() {
 		// TODO Auto-generated method stub
 		return 1;
+	}
+
+
+
+	public String getCourseCode() {
+		return courseCode;
+	}
+
+
+
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
 	}
 
 	

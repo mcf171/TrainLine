@@ -37,7 +37,8 @@ public class CourseDAO extends HibernateDaoSupport {
 	public static final String COURSE_SPEAKER = "courseSpeaker";
 	public static final String COURSE_INTRO = "courseIntro";
 	public static final String COURSE_STATE = "courseState";
-
+	public static final String COURSE_CODE ="courseCode";
+	
 	protected void initDao() {
 		// do nothing
 	}
@@ -103,6 +104,11 @@ public class CourseDAO extends HibernateDaoSupport {
 		return findByProperty(COURSE_SPEAKER, courseSpeaker);
 	}
 
+	public List findByCourseCode(Object coudeCode){
+		
+		return findByProperty(COURSE_CODE, coudeCode);
+	}
+	
 	public List findByCourseIntro(Object courseIntro) {
 		return findByProperty(COURSE_INTRO, courseIntro);
 	}

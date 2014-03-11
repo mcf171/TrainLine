@@ -23,6 +23,7 @@ public class TestLiberaryService extends TestCase{
 		
 	}
 	
+	/*
 	public void testSearchInsideLibraryList(){
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -35,5 +36,5 @@ public class TestLiberaryService extends TestCase{
 			System.out.println(item.getBookContent());
 		}
 		this.assertNotNull(list);
-	}
+	}*/
 }

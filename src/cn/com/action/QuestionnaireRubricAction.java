@@ -1,5 +1,6 @@
 package cn.com.action;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +21,35 @@ public class QuestionnaireRubricAction extends BaseActionSupport{
 	private Questionnairerubric questionnaireRubric;
 	private String[] questionnaireChooses;
 	
+	private File upload;
+	private String uploadFileName;
+	
 	private Map<String, Object>dataMap;
+	
+
+	/**
+	 * 批量上传问卷
+	 * @author Apache
+	 * @time 2014-3-9 11:14
+	 * @return
+	 */
+	public String batchUpload(){
+		boolean flag = false;
+		try {
+			
+		 flag = questionnairerubricService.batchUpload(upload, uploadFileName);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			request.setAttribute("msg", flag);
+			return this.SUCCESS;
+		}
+		request.setAttribute("msg", flag);
+		
+		return this.SUCCESS;
+	}
+	
 	/**
 	 * 返回所有的问卷题目
 	 * @return
@@ -100,6 +129,22 @@ public class QuestionnaireRubricAction extends BaseActionSupport{
 	public void setQuestionnaireChooseService(
 			QuestionnaireChooseService questionnaireChooseService) {
 		this.questionnaireChooseService = questionnaireChooseService;
+	}
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
 	}
 	
 	

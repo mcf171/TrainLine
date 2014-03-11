@@ -1,10 +1,12 @@
 package cn.com.action;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import cn.com.base.BaseActionSupport;
 import cn.com.model.Questionnaire;
+import cn.com.model.User;
 import cn.com.service.QuestionnaireService;
 
 public class QuestionnaireAction extends BaseActionSupport{
@@ -12,6 +14,10 @@ public class QuestionnaireAction extends BaseActionSupport{
 	private List<Questionnaire> qList;
 	private Map<String,Object> dataMap;
 	private Questionnaire questionnaire;
+	private int page;
+	private int limit;
+	private File upload;
+	private String uploadFileName;
 	
 	
 	public QuestionnaireAction()
@@ -19,6 +25,30 @@ public class QuestionnaireAction extends BaseActionSupport{
 		dataMap = new HashMap<String, Object>();
 	}
 
+
+	/**
+	 * 批量上传问卷
+	 * @author Apache
+	 * @time 2014-3-9 11:14
+	 * @return
+	 */
+	public String batchUpload(){
+		boolean flag = false;
+		try {
+			
+		 flag = questionnairerService.batchUpload(upload, uploadFileName);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			request.setAttribute("msg", flag);
+			return this.SUCCESS;
+		}
+		request.setAttribute("msg", flag);
+		
+		return this.SUCCESS;
+	}
+	
 	/**
 	 * 获取updateQuestionnaire页面
 	 * @author Apache
@@ -45,16 +75,23 @@ public class QuestionnaireAction extends BaseActionSupport{
 		return this.SUCCESS;
 	}
 	
-	public String findAllQuestionnare()throws Exception{
-		if(questionnaire!=null)
-		{
-			qList = questionnairerService.findByConditions(questionnaire);
-		}else {
-			qList = questionnairerService.findAll();
-		}
+	/**
+	 * 通过Questionniare
+	 * @author Apache
+	 * @time 2014-3-10 12:18
+	 * @return
+	 */
+	public String findAllQuestionnare(){
 		
-		dataMap.put("qList",qList);
-		return SUCCESS;
+		List<Questionnaire> questionnaireList = null;
+
+		questionnaireList = questionnairerService.getQuetionnaireList(page, limit, questionnaire);
+		int totalCount = questionnairerService.getTotalCount(questionnaire);
+		
+		dataMap.put("totalCount", totalCount);
+		dataMap.put("qList", questionnaireList);
+		
+		return this.SUCCESS;
 	}
 	
 	public String getQuestionnaireById()
@@ -107,7 +144,7 @@ public class QuestionnaireAction extends BaseActionSupport{
 		
 		int questionnaireId = questionnairerService.insert(questionnaire);
 		
-		request.setAttribute("questionnaireId", questionnaireId);
+		dataMap.put("questionnaireId", questionnaireId);
 		
 		return this.SUCCESS;
 	}
@@ -150,4 +187,41 @@ public class QuestionnaireAction extends BaseActionSupport{
 		this.questionnaire = questionnaire;
 	}
 
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+
+	public File getUpload() {
+		return upload;
+	}
+
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	
 }

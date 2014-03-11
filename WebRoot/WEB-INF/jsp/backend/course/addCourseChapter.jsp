@@ -82,12 +82,21 @@
 					<script>
 						function addChapter(){
 							
+							var catalogueWeight = $("#catalogueWeight").val();
+							
+							var reg = new RegExp("^[0-9]+$");
+							console.log(catalogueWeight);
+							if(!reg.test(catalogueWeight)){
+								
+								alert("权重请输入数字");
+								return false;
+							}
 							$("#porcess").animate({width:'90%'});
 						}
 					</script>
 					<form role="form" class="form-horizontal"
 						action="${basePath}admin/addRescourse.action"
-						enctype="multipart/form-data" method="post" target="hidden_frame" onsubmit="addChapter()">
+						enctype="multipart/form-data" method="post" target="hidden_frame" onsubmit="return addChapter()">
 						
 						<div class="control-group">
 							<input type="hidden" name="catalogue.course.courseId" value="${courseId}"/>
@@ -114,8 +123,8 @@
 							<div class="control-group">
 								<label class="control-label" for="chNameInput">章节权重:</label>
 								<div class="controls">
-									<input type="text" id="chNameInput" name="catalogue.cataloguaWeight"
-										placeholder="请输入章节权重" required >
+									<input type="text"  name="catalogue.cataloguaWeight"
+										placeholder="请输入章节权重" required id="catalogueWeight">
 								</div>
 							</div>
 

@@ -34,6 +34,74 @@ public class HumanAction extends BaseActionSupport {
 	private File upload;
 	private String uploadFileName;
 	
+	/**
+	 * 批量上传公司
+	 * @author Apache
+	 * @time 2014-3-9 11:14
+	 * @return
+	 */
+	public String batchUploadCompany(){
+		boolean flag = false;
+		try {
+			
+		 flag = humanService.batchUploadCompany(upload, uploadFileName);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			request.setAttribute("msg", flag);
+			return this.SUCCESS;
+		}
+		request.setAttribute("msg", flag);
+		
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 批量上传部门
+	 * @author Apache
+	 * @time 2014-3-9 11:14
+	 * @return
+	 */
+	public String batchUploadDepartment(){
+		boolean flag = false;
+		try {
+			
+		 flag = humanService.batchUploadDepartment(upload, uploadFileName);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			request.setAttribute("msg", flag);
+			return this.SUCCESS;
+		}
+		request.setAttribute("msg", flag);
+		
+		return this.SUCCESS;
+	}
+	
+	/**
+	 * 批量上传岗位
+	 * @author Apache
+	 * @time 2014-3-9 11:14
+	 * @return
+	 */
+	public String batchUploadPosition(){
+		boolean flag = false;
+		try {
+			
+		 flag = humanService.batchUploadPosition(upload, uploadFileName);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			request.setAttribute("msg", flag);
+			return this.SUCCESS;
+		}
+		request.setAttribute("msg", flag);
+		
+		return this.SUCCESS;
+	}
 
 	public HumanAction() {
 		super();
@@ -56,6 +124,7 @@ public class HumanAction extends BaseActionSupport {
 	 */
 
 	public String getPersonList() {
+		
 		List<User> userList = null;
 
 		userList = humanService.getUserList(page, limit, user);
@@ -373,6 +442,22 @@ public class HumanAction extends BaseActionSupport {
 
 	public void setLimit(int limit) {
 		this.limit = limit;
+	}
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
 	}
 
 	

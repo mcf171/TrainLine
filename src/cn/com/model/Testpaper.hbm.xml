@@ -14,6 +14,9 @@
         <property name="testPaperName" type="java.lang.String">
             <column name="testPaperName" length="50" />
         </property>
+        <property name="testPaperCode" type="java.lang.String">
+            <column name="testPaperCode" length="50" />
+        </property>
         <set name="testquestions" inverse="false" table="testandquestion" lazy="false" cascade="save-update">
             <key>
                 <column name="testPaperId" />

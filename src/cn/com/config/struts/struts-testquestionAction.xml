@@ -39,4 +39,17 @@
 		
 		
 	</package>
+	
+	<package name="adminTestQuestion" namespace="/admin/testQuestion" extends="system">
+	
+		<action name="batchUpload" class="testquestionAction" method="batchUpload">
+			<result>/utill.jsp</result>
+		</action>
+		
+		<action name="batchDelete" class="testquestionAction" method="batchDelete">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+	</package>
 </struts>    

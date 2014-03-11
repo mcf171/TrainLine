@@ -95,6 +95,7 @@
 
 		array = mmGirdTable.selectedRowsIndex();
 		testPaperName = $("#testPaperName").val();
+		var testPaperCode = $("#testPaperCode").val();
 		
 		if(testPaperName == ""){
 			
@@ -119,7 +120,7 @@
 		$.ajax({
 			  type: "post",
 			  url: "${basePath}admin/addTestPaper.action",
-			  data:"testPaper.testPaperName=" + testPaperName +testQuestion,
+			  data:"testPaper.testPaperName=" + testPaperName +testQuestion + "&testPaper.testPaperCode=" + testPaperCode,
 			  success: function(msg){
 				 /*
 				  $('#myModal').modal('hide')
@@ -143,6 +144,11 @@
 				<div class="row-fluid">
 					<span class="help-inline">试题名：</span> <input type="text"
 						class=" span2"  id= "testPaperName" placeholder="请输入试卷名称"
+						name="testquestion.testQuestionName" /><font color="red" class="hide" id="name">*必须填写</font>
+				</div>
+				<div class="row-fluid">
+					<span class="help-inline">试卷编号：</span> <input type="text"
+						class=" span2"  id= "testPaperCode" placeholder="请输入试卷名称"
 						name="testquestion.testQuestionName" /><font color="red" class="hide" id="name">*必须填写</font>
 				</div>
 				<hr class="seperator top-margin">

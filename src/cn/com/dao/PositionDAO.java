@@ -234,10 +234,12 @@ public class PositionDAO extends HibernateDaoSupport {
 				params.add("%" + position.getPositionName() + "%");
 			}
 			
-			if (position.getDepartment().getDepartmentId() != null) {
-	
-				queryString += "and departmentId = ?";
-				params.add( position.getDepartment().getDepartmentId() );
+			if(position.getDepartment()!=null){
+				if (position.getDepartment().getDepartmentId() != null) {
+		
+					queryString += "and departmentId = ?";
+					params.add( position.getDepartment().getDepartmentId() );
+				}
 			}
 		}
 		return queryString;

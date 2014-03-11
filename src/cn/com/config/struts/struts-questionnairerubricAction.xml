@@ -20,4 +20,10 @@
 			</result>
 		</action>
 	</package>
+	
+	<package name="adminQuestionnaireRubric" namespace="/admin/questionnaireRubric" extends="system">
+		<action name="batchUpload" class="questionnaireRubricAction" method="batchUpload">
+			<result>/utill.jsp</result>
+		</action>
+	</package>
 </struts>    

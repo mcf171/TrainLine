@@ -17,7 +17,7 @@ public class Department implements java.io.Serializable {
 	private Integer departmentstatus;
 	private String departmentShortName;
 	private String businessUnits;
-	private Integer departmentCoding;
+	private String departmentCoding;
 	private String country;
 	private Set positions = new HashSet(0);
 
@@ -25,21 +25,6 @@ public class Department implements java.io.Serializable {
 
 	/** default constructor */
 	public Department() {
-	}
-
-	/** full constructor */
-	public Department(Company company, String departmentName,
-			Integer departmentstatus, String departmentShortName,
-			String businessUnits, Integer departmentCoding, String country,
-			Set positions) {
-		this.company = company;
-		this.departmentName = departmentName;
-		this.departmentstatus = departmentstatus;
-		this.departmentShortName = departmentShortName;
-		this.businessUnits = businessUnits;
-		this.departmentCoding = departmentCoding;
-		this.country = country;
-		this.positions = positions;
 	}
 
 	// Property accessors
@@ -92,11 +77,12 @@ public class Department implements java.io.Serializable {
 		this.businessUnits = businessUnits;
 	}
 
-	public Integer getDepartmentCoding() {
-		return this.departmentCoding;
+
+	public String getDepartmentCoding() {
+		return departmentCoding;
 	}
 
-	public void setDepartmentCoding(Integer departmentCoding) {
+	public void setDepartmentCoding(String departmentCoding) {
 		this.departmentCoding = departmentCoding;
 	}
 

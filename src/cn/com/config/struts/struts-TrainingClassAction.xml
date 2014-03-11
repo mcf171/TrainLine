@@ -88,4 +88,11 @@
 			
 	</package>
 	
+	<package name="adminTrainningClass" namespace="/admin/trainingClass" extends="system">
+		
+		<action name="batchUpload" class="trainingClassAction" method="batchUpload">
+				<result>/utill.jsp</result>
+			</action>
+	
+	</package>
 </struts>    

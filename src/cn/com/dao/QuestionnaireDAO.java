@@ -1,16 +1,24 @@
 package cn.com.dao;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Set;
+
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.com.model.Questionnaire;
+import cn.com.model.User;
+import cn.com.util.DAOUtil;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -166,27 +174,90 @@ public class QuestionnaireDAO extends HibernateDaoSupport {
 		return (QuestionnaireDAO) ctx.getBean("QuestionnaireDAO");
 	}
 
-	public List<Questionnaire> findByConditions(Questionnaire questionnaire) {
-		String hql ="from Questionnaire where 1=1 ";
-		if(questionnaire.getQuestionnaireNumber()!=null){
-			hql+=" and questionnaireNumber like '%"+questionnaire.getQuestionnaireNumber()+"%' ";
-		}
-		if(questionnaire.getQuestionnaireTitle()!=null)
-		{
-			hql+=" and questionnaireTitle like '%"+questionnaire.getQuestionnaireTitle()+"%' ";
-		}
-		if(questionnaire.getQuestionnaireAuthor()!=null)
-		{
-			hql +=" and questionnaireAuthor like '%"+questionnaire.getQuestionnaireAuthor()+"%' ";
-		}
-		if(questionnaire.getOpen()!=null){
-			hql +=" and open = "+questionnaire.getOpen();
-		}
+	/**
+	 * Questionnare，通过模糊查询
+	 * @author 2014-3-10 12:14
+	 * @param questionnaire
+	 * @return
+	 */
+	public List<Questionnaire> findByExampleFuzzy(Questionnaire questionnaire) {
 		
-		List<Questionnaire> list = getHibernateTemplate().find(hql);
+		List<Object> params = new ArrayList<Object>();
+		
+		String queryString = getParamList(params ,questionnaire);
+		
+		List<Questionnaire> userList = getHibernateTemplate().find(queryString,params.toArray());
+		
+		return userList;
+	}
+
+	/**
+	 * 通过分页查询Questionnaire
+	 * @author Apache
+	 * @time 2014-3-10 12:15
+	 * @param firstResults
+	 * @param maxResults
+	 * @param questionnaire
+	 * @return
+	 */
+	public List<Questionnaire> findByPage(final int firstResults,final int maxResults,final Questionnaire questionnaire) {
+		// TODO Auto-generated method stub
+
+		List<Questionnaire> list= this.getHibernateTemplate().executeFind(new HibernateCallback<List<Questionnaire>>() {
+
+			public List<Questionnaire> doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				// TODO Auto-generated method stub
+				
+				List<Object> params = new ArrayList<Object>();
+				
+				String queryString = getParamList(params ,questionnaire);
+				
+					Query query  = session.createQuery(queryString);
+					query = DAOUtil.setParam(query, params);
+					query.setFirstResult(firstResults);
+					query.setMaxResults(maxResults);
+					
+				return query.list();
+			}
+			
+		});
 		
 		return list;
 	}
 
+
+	/**
+	 * 初始化参数List以及返回Query字符串
+	 * @author Apache
+	 * @time 2014-3-8
+	 * @param params 已经new 的List
+	 * @param user
+	 * @return
+	 */
+	public String getParamList(List<Object> params, Questionnaire questionnaire){
+		
+		String hql ="from Questionnaire where 1=1 ";
+	
+		if(questionnaire != null){
+		
+			
+			if(questionnaire.getQuestionnaireNumber()!=null){
+				hql+=" and questionnaireNumber like '%"+questionnaire.getQuestionnaireNumber()+"%' ";
+			}
+			if(questionnaire.getQuestionnaireTitle()!=null)
+			{
+				hql+=" and questionnaireTitle like '%"+questionnaire.getQuestionnaireTitle()+"%' ";
+			}
+			if(questionnaire.getQuestionnaireAuthor()!=null)
+			{
+				hql +=" and questionnaireAuthor like '%"+questionnaire.getQuestionnaireAuthor()+"%' ";
+			}
+			if(questionnaire.getOpen()!=null){
+				hql +=" and open = "+questionnaire.getOpen();
+			}
+		}
+		return hql;
+	}
 	
 }

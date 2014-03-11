@@ -25,8 +25,8 @@
         <property name="businessUnits" type="java.lang.String" >
             <column name="BusinessUnits" length="20" />
         </property>
-        <property name="departmentCoding" type="java.lang.Integer">
-            <column name="departmentCoding" precision="8" scale="0" />
+        <property name="departmentCoding" type="java.lang.String">
+            <column name="departmentCoding"  length="20" />
         </property>
         <property name="country" type="java.lang.String">
             <column name="country" length="20" />

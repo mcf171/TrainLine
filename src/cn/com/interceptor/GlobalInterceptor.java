@@ -8,6 +8,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
 
 import cn.com.model.User;
 import cn.com.util.InterceptorUtil;
@@ -41,6 +42,8 @@ public class GlobalInterceptor extends AbstractInterceptor{
 		ActionContext ctx = invocation.getInvocationContext();
 		
 		HttpServletRequest request =  (HttpServletRequest) ctx.get(ServletActionContext.HTTP_REQUEST);
+		ApplicationContext application = (ApplicationContext) ctx.get(ServletActionContext.APPLICATION);
+		//application.
 		
 		//String actionName = invocation.getAction().getClass().getName();
 		String url = InterceptorUtil.getURL(request);

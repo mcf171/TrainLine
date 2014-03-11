@@ -17,10 +17,10 @@
 
 <script type="text/javascript">
 	//         
-	var mmGirdTable;
+	var mmGridTable;
 	$(document).ready(function() {
 		test = "ready";
-		mmGirdTable = $('#grid').mmGrid({
+		mmGridTable = $('#grid').mmGrid({
 			url : '${basePath}admin/getDepartmentList.action',
 			height : 410,
 			autoLoad : true,
@@ -84,7 +84,16 @@
 		});
 	
 		$("#showAll").click(function(){
-			mmGirdTable.load();
+			mmGridTable.load();
+		});
+		$("#bookURLChoose").change(function(){
+			var boj = $("#bookURL");
+			boj.text($("#bookURLChoose").val());
+			$("#hiddenBookURL").val($("#bookURLChoose").val());
+
+		});
+		$("#batchButton").click(function(){
+			$("#modal2").modal();
 		});
 		
 		$("#search").click(function(){
@@ -93,7 +102,7 @@
 			var departmentstatus = $("#departmentstatus").val();
 			var companyName = $("#companyName").val();
 			
-			mmGirdTable.load({
+			mmGridTable.load({
 				"department.departmentId" : departmentId,
 				"department.departmentName" : departmentName,
 				"department.departmentstatus" : departmentstatus,
@@ -109,7 +118,7 @@
 			  data:"department.departmentId=" + id,
 			  success: function(msg){
 				  $('#myModal').modal('hide');
-				  mmGirdTable.removeRow(mmGirdTable.selectedRowsIndex());
+				  mmGridTable.removeRow(mmGridTable.selectedRowsIndex());
 			  }
 			});
 	}
@@ -122,6 +131,10 @@
 		<button class="btn" onclick="loadHTML('${basePath}admin/addDepartmentPage.action')">
 			<i class="icon-plus"></i>新增
 		</button>
+		<button class="btn" type="button" id="batchButton">
+			<i class="icon-arrow-up"></i>
+				批量导入
+			</button>
 	</div>
 	<div class="row-fluid">
 		<div class="span12">
@@ -181,3 +194,53 @@
 	</div>
 </div>
 
+
+<div id="modal2" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<form action="${basePath}admin/human/batchUploadDepartment.action"  enctype="multipart/form-data"  onsubmit="checkForm()" target="hidden_frame" method="post">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">批量上传</h3>
+	</div>
+	<div class="modal-body">
+	<div class="row-fluid line-margin">
+			<span class="help-inline">文件选择：<a href="${basePath}getFile/upload/template/batchAddDepartment.xls" >模板下载</a></span>
+			</div>
+		<div class="row-fluid line-margin">
+           	<span class=" span2 uneditable-input" id="bookURL" ></span>
+           	<input type="file" id="bookURLChoose" style="width: 65px;" name="upload" class=" span2 " placeholder="请选择上传图书">
+
+		</div>
+		
+		<div class="row-fluid">
+						    <div class="progress progress-striped active">
+							    <div class="bar" style="width:0;" id="porcess"></div>
+							    </div>
+					</div>
+	</div>
+	<div class="modal-footer">
+		
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		<button type="submit" class="btn btn-primary" >确认</button>
+	</div>
+	</form>
+</div>
+
+<iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
+<script>
+
+function callback(msg){
+	if(msg=="true"){
+		$("#porcess").animate({width:'100%'});
+		$("#modal2").modal("hide");
+		mmGridTable.load();
+	}else{
+		alert("文件格式错误");
+	}
+	
+}
+						function checkForm(){
+							
+							$("#porcess").animate({width:'90%'});
+						}
+					</script>

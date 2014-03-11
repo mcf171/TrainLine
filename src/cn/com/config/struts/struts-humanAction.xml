@@ -156,5 +156,19 @@
 				<param name="root">dataMap</param>
 				</result>
 	   	</action>
+	   	
+	   	<action name="batchUploadCompany" class="humanAction" method="batchUploadCompany">
+				<result>/utill.jsp</result>
+	   	</action>
+	   	
+	   	<action name="batchUploadPosition" class="humanAction" method="batchUploadPosition">
+				<result>/utill.jsp</result>
+	   	</action>
+	   	
+	   	<action name="batchUploadDepartment" class="humanAction" method="batchUploadDepartment">
+				<result>/utill.jsp</result>
+	   	</action>
 	</package>
+	
+	
 </struts>    
