@@ -159,7 +159,15 @@ $(document).ready(function ()
 					</form>
 				</div>
 
-
+<div class="row word_style">
+					<div class="row-fluid " style="margin-top:5px">
+						<table id="grid"></table>
+						<button type="submit" class="btn">
+							<i class="icon-ok"></i>批量删除
+						</button>
+						<div id="page" class="pull-right"></div>
+					</div>
+				</div>
 				
 			</div>
 		</div>

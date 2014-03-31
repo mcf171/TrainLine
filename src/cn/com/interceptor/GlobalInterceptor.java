@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 public class GlobalInterceptor extends AbstractInterceptor{
 
-	private static String basePath;
+	private  String basePath;
 	private static String rootPath;
 	private static String physicalPath;
 	private static final List<String>avoidAction;
@@ -42,7 +42,7 @@ public class GlobalInterceptor extends AbstractInterceptor{
 		ActionContext ctx = invocation.getInvocationContext();
 		
 		HttpServletRequest request =  (HttpServletRequest) ctx.get(ServletActionContext.HTTP_REQUEST);
-		ApplicationContext application = (ApplicationContext) ctx.get(ServletActionContext.APPLICATION);
+		//ApplicationContext application = (ApplicationContext) ctx.get(ServletActionContext.APPLICATION);
 		//application.
 		
 		//String actionName = invocation.getAction().getClass().getName();
