@@ -19,12 +19,13 @@
 	//        
 	
 	var mmGirdTable;
+	var sendAll=false;
 	$(document).ready(function() {
 		$("#userChoose").change(function(){
 			var valueTest = parseInt($("#userChoose").val()); 
 			switch(valueTest){
-			case 2: $("#userList").fadeOut();break;
-			case 1: $("#userList").fadeIn();break;
+			case 2: $("#userList").fadeOut();sendAll=false;break;
+			case 1: $("#userList").fadeIn();sendAll=true;break;
 			}
 		});
 		/*
@@ -90,12 +91,15 @@
 
 						arrayPaper = mmGirdTable.selectedRowsIndex();
 						arrayClass = mmClass.selectedRowsIndex();
+						console.log(arrayPaper.length);
+						console.log(arrayClass.length);
 						
-						if(arrayPaper.length==0||arrayClass.length==0){
-							
-							alert("必须选择一个试卷和用户");
-							return ;
-						}
+							if(sendAll==false && arrayClass.length==0){
+								if(arrayPaper.length==0){
+									
+									alert("必须选择一个试卷和用户");
+									return ;
+						}}
 						
 						questionArrangementIntro = "&questionnaireArrangement.questionArrangementIntro="+$("#questionArrangementIntro").val();
 						

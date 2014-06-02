@@ -20,6 +20,8 @@ $("#add").click(function(){
 			data:"questionnaire.questionnaireTitle="+questionnaireTitle+"&questionnaire.questionnaireNumber=" + questionnaireNumber + "&questionnaire.questionnaireAuthor="+questionnaireAuthor,
 			success:function(msg){
 				
+				questionnaireId = msg.questionnaireId;
+				console.log(questionnaireId);
 				$("#success").fadeIn();
 				$("#fail").fadeOut();
 			},

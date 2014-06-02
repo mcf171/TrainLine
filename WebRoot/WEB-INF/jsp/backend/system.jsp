@@ -44,9 +44,16 @@ loadHTML("${basePath}getReciveEmail.action");
 						<li class="jstree-leaf"><a href="${basePath}systemaction_disk.action">磁盘状态</a></li>
 						<li class="jstree-leaf"><a href="${basePath}systemaction_net.action">网络状态</a></li>
 						<li class="jstree-leaf"><a href="${basePath}showPageAction.action">系统日志</a></li> 
+						
 					</ul>
 				</li>
-				
+				<li class="jstree-open">
+					<a href="#">权限控制</a>
+					<ul>
+						<li class="jstree-leaf"><a href="${basePath}admin/getRoleManagerPage.action">角色管理</a></li>
+						<li class="jstree-leaf"><a href="${basePath}admin/getAbilityManagerPage.action">权限管理</a></li>
+					</ul>
+				</li>
 				<li class="jstree-open">
 					<a href="#">站内信</a>
 					<ul>

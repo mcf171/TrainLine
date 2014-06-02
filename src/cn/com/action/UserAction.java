@@ -15,6 +15,7 @@ public class UserAction extends BaseActionSupport{
 	private RecordService recordService;
 	private User user;
 	private String[] positionIds;
+	private String[] roleIds;
 	private Map<String, Object> dataMap;
 
 	private File upload;
@@ -66,7 +67,7 @@ public class UserAction extends BaseActionSupport{
 	 */
 	public String addUser(){
 		
-		userService.add(user,positionIds);
+		userService.add(user,positionIds, roleIds);
 		
 		return this.SUCCESS;
 	}
@@ -225,6 +226,14 @@ public class UserAction extends BaseActionSupport{
 
 	public void setUploadFileName(String uploadFileName) {
 		this.uploadFileName = uploadFileName;
+	}
+
+	public String[] getRoleIds() {
+		return roleIds;
+	}
+
+	public void setRoleIds(String[] roleIds) {
+		this.roleIds = roleIds;
 	}
 
 	

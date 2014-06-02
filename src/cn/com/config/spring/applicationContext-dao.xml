@@ -17,12 +17,26 @@
   <property name="sessionFactory" ref="sessionFactory" />
 </bean>
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<!-- 
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
 		<property name="url" value="jdbc:mysql://localhost:3306/trainline"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="919294"></property>
-
+-->
+ 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver">
+		</property>
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl"></property>
+		<property name="username" value="scott"></property>
+		<property name="password" value="tiger"></property>
+		 
+		 <!-- 
+		 <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver">
+		</property>
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.8:1521:GWD"></property>
+		<property name="username" value="TSJ"></property>
+		<property name="password" value="txjt2014"></property>
+		 -->
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -31,7 +45,7 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
+				<prop key="hibernate.dialect">	org.hibernate.dialect.OracleDialect
 				</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
@@ -40,6 +54,8 @@
 		</property>
 		<property name="mappingResources">
 			<list>
+				<value>cn/com/model/Ability.hbm.xml</value>
+				<value>cn/com/model/Role.hbm.xml</value>
 				<value>cn/com/model/Course.hbm.xml</value>
 				<value>cn/com/model/Tiezi.hbm.xml</value>
 				<value>cn/com/model/Testarrangement.hbm.xml</value>
@@ -112,6 +128,17 @@
 					cn/com/model/PeiXunRenYuanBaoMingBiao.hbm.xml
 				</value>
 			</list>
+		</property>
+	</bean>
+	<bean id="RoleDAO" class="cn.com.dao.RoleDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="AbilityDAO" class="cn.com.dao.AbilityDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
 		</property>
 	</bean>
 	

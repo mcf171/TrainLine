@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="role" namespace="/" extends="system">
+		
+	</package>
+
+	<package name="roleAdmin" namespace="/admin" extends="system">
+		
+		<action name="getRoleManagerPage" class="roleAction" method="getRoleManagerPage">
+			<result>/WEB-INF/jsp/backend/role/role.jsp</result>
+		</action>
+		
+		<action name="getAllRoles" class="roleAction" method="getAllRoles">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="getAddRolePage" class="roleAction" method="getAddRolePage">
+			<result>/WEB-INF/jsp/backend/role/addRole.jsp</result>
+		</action>
+		
+		<action name="addRole" class="roleAction" method="addRole">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="getModifyRolePage" class="roleAction" method="getModifyRolePage">
+			<result>/WEB-INF/jsp/backend/role/modifyRole.jsp</result>
+		</action>
+		
+		<action name="modifyRole" class="roleAction" method="modifyRole">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+		<action name="deleteRole" class="roleAction" method="deleteRole">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		
+	</package>
+
+</struts>    

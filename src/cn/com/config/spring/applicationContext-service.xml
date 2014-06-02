@@ -30,6 +30,14 @@
     </tx:attributes>
   </tx:advice>
 	
+	<bean id="roleService" class="cn.com.service.RoleService">
+		<property name="roleDAO" ref="RoleDAO"></property>
+		<property name="abilityService" ref="abilityService"></property>
+	</bean>
+	<bean id="abilityService" class="cn.com.service.AbilityService">
+		<property name="abilityDAO" ref="AbilityDAO"></property>
+	</bean>
+
 	<bean id="testGradeService" class="cn.com.service.TestGradeService">
 		<property name="testGradeDAO" ref="TestGradeDAO"></property>
 	</bean>
@@ -85,6 +93,7 @@
 	<bean id="userService" class="cn.com.service.UserService" scope="prototype">
 		<property name="userDAO" ref="UserDAO"></property>
 		<property name="positionDAO" ref="PositionDAO"></property>
+		<property name="roleService" ref="roleService"></property>
 	</bean>
 	
 	<bean id="questionnairerService" class="cn.com.service.QuestionnaireService" scope="prototype">

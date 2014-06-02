@@ -23,6 +23,8 @@ public class User implements java.io.Serializable {
 	private Set courses = new HashSet(0);
 	private Set notices = new HashSet(0);
 	private Set message  = new HashSet(0);
+	
+	private Set<Role> roles = new HashSet<Role>();
 	/*
 	private Set posts = new HashSet(0);
 	private Set jobcertificates = new HashSet(0);
@@ -177,6 +179,14 @@ public class User implements java.io.Serializable {
 
 	public void setSendMail(Set<Mail> sendMail) {
 		this.sendMail = sendMail;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 

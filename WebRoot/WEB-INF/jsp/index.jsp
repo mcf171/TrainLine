@@ -63,6 +63,11 @@ function deleteMessage(messageId){
 		}
 	});
 }
+
+function loadBackend(){
+	
+	$('#content').load('${basePath}getBackendIndex.action');
+}
 //]]>
 </script>
 </head>
@@ -132,7 +137,7 @@ function deleteMessage(messageId){
 			<a href="${basePath}logout.action">注销</a>
 			&nbsp;
 			<c:if test="${user.userState== 1}">
-			<a href="getBackendIndex.action" target="_blank">后台管理</a>
+			<a href="javascript:loadBackend()">后台管理</a>
 			&nbsp;
 			</c:if>
 			<a href="${basePath}getUserInfoPage.action" target="_blank" >个人中心</a>

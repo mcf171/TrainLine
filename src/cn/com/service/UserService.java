@@ -7,12 +7,10 @@ import java.util.List;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
-
-import org.hibernate.dialect.function.PositionSubstringFunction;
-
 import cn.com.dao.PositionDAO;
 import cn.com.dao.UserDAO;
 import cn.com.model.Position;
+import cn.com.model.Role;
 import cn.com.model.User;
 import cn.com.util.GlobalConstant;
 import cn.com.util.MD5;
@@ -23,7 +21,7 @@ public class UserService {
 
 	private UserDAO userDAO;
 	private PositionDAO positionDAO;
-	
+	private RoleService roleService;
 
 	public boolean deleteUser(User user){
 		
@@ -108,7 +106,7 @@ public class UserService {
 	 * @param user
 	 * @return
 	 */
-	public boolean add(User user,String[] positions){
+	public boolean add(User user,String[] positions, String[] roleIds){
 		
 		boolean flag = false;
 		
@@ -117,6 +115,14 @@ public class UserService {
 			Position position = positionDAO.findById(Integer.parseInt(item));
 			user.getPositions().add(position);
 		}
+		
+		for(String item : roleIds){
+			
+			Role role = new Role();
+			role.setRoleId(Integer.parseInt(item));
+			user.getRoles().add(role);
+		}
+		
 		
 		user.setUserPassword(MD5.getInstance().getMD5ofStr(user.getUserPassword()));
 		
@@ -198,6 +204,12 @@ public class UserService {
 
 	public void setPositionDAO(PositionDAO positionDAO) {
 		this.positionDAO = positionDAO;
+	}
+	public RoleService getRoleService() {
+		return roleService;
+	}
+	public void setRoleService(RoleService roleService) {
+		this.roleService = roleService;
 	}
 	
 	

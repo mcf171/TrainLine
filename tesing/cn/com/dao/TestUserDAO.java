@@ -1,5 +1,7 @@
 package cn.com.dao;
 
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.hibernate.Session;
@@ -37,4 +39,10 @@ public class TestUserDAO extends TestCase {
 			this.assertNotNull(item.getDepartment());
 		}
 	}
+	 @Test
+	 public void testSelectAll(){
+		 
+		 List<User> users = userDAO.findAll();
+		 this.assertNotNull(users);
+	 }
 }

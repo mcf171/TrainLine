@@ -39,6 +39,8 @@
 	<include file="cn/com/config/struts/struts-humanAction.xml"></include>
 	<include file="cn/com/config/struts/struts-resource.xml"></include>
 	
+	<include file="cn/com/config/struts/struts-abilityAction.xml"></include>
+	<include file="cn/com/config/struts/struts-roleAction.xml"></include>
 	<include file="cn/com/config/struts/struts-testPaperAction.xml"></include>
 	<include file="cn/com/config/struts/struts-testquestionAction.xml"></include>
 	<include file="cn/com/config/struts/struts-testArrangementAction.xml"></include>

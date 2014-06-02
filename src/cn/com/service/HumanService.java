@@ -316,10 +316,12 @@ public class HumanService {
 	public boolean addPosition(Position position, String[] courseIds){
 		boolean flag = false;
 		try{
-			for(String courseId : courseIds){
-				
-				Course course = courseService.getCourse(Integer.parseInt(courseId));
-				position.getCourses().add(course);
+			if(courseIds != null){
+				for(String courseId : courseIds){
+					
+					Course course = courseService.getCourse(Integer.parseInt(courseId));
+					position.getCourses().add(course);
+				}
 			}
 			positionDAO.save(position);
 			flag = true;

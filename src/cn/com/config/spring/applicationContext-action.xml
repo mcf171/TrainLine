@@ -8,11 +8,21 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 	
-	<bean id="fileDownload" class="cn.com.action.FileDownload">
+	<bean id="fileDownload" class="cn.com.action.FileDownload" scope="prototype">
 		
 	</bean>
 	
-	<bean id="mailAction" class="cn.com.action.MailAction">
+	<bean id="abilityAction" class="cn.com.action.AbilityAction" scope="prototype">
+		<property name="abilityService" ref="abilityService"></property>
+		<property name="dataMap" ref="hashMap"></property>
+	</bean>
+	
+	<bean id="roleAction" class="cn.com.action.RoleAction" scope="prototype">
+		<property name="roleService" ref="roleService"></property>
+		<property name="dataMap" ref="hashMap"></property>
+	</bean>
+	
+	<bean id="mailAction" class="cn.com.action.MailAction" scope="prototype">
 		<property name="mailService" ref="mailService"></property>
 		<property name="userService" ref="userService"></property>
 		<property name="dataMap" ref="hashMap"></property>

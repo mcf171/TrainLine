@@ -27,9 +27,10 @@ public class HumanAction extends BaseActionSupport {
 	private Department department;
 	private Position position;
 	private String[] positionIds;
-	private int page;
-	private int limit;
+	private int page = 1;
+	private int limit = 5;
 	private String[] courseIds;
+	private String[] roleIds;
 	
 	private File upload;
 	private String uploadFileName;
@@ -458,6 +459,14 @@ public class HumanAction extends BaseActionSupport {
 
 	public void setUploadFileName(String uploadFileName) {
 		this.uploadFileName = uploadFileName;
+	}
+
+	public String[] getRoleIds() {
+		return roleIds;
+	}
+
+	public void setRoleIds(String[] roleIds) {
+		this.roleIds = roleIds;
 	}
 
 	
